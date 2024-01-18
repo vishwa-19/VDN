@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="vdn.EditDeleteIconsInDraftwithContent"/>
+      <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>
+      <class name="vdn.RejectedCountUnderTextBookAndYourOrganisation"/>
+      <class name="vdn.VerifyCreatedProjectsAreAvailableOnAllProjectsTabForIndContributor"/>
+      <class name="vdn.SourceOrgAdminIsAbleToCreateProjectWithSkipReviewDisabled"/>
+      <class name="vdn.ChangeRoleToAdminInManageUsersAndVerifyToastMessage"/>
+      <class name="vdn.DefaultContributionOrgReviewerIsAbleToPreview"/>
+      <class name="vdn.VdnDemo"/>
+      <class name="vdn.SourcingOrgAdminIsAbleToAssignReviewer"/>
+      <class name="vdn.AssignedReviewerIsAbleToPublishTheContentForTheDigitalTextbook"/>
+      <class name="vdn.ExplicityRegisteredContributionOrgAdminIsAbleToAssignRoles"/>
+      <class name="vdn.DefaultContributionOrgContributorIsAbleToUploadContentForSkipReviewEnabled"/>
+      <class name="vdn.AdminAbleToCreateFromOrganizationOnly"/>
+      <class name="vdn.SourcingOrgAdminIsAbleToRejectNomination"/>
+      <class name="vdn.VerifyProjectsAvailableForNominationProjects"/>
+      <class name="vdn.ProjectWithSkipReviewEnabledForOrgOnly"/>
+      <class name="vdn.VerifyContributorsAreAbleToNominateToTheProjectWithoutUploadingSamples"/>
+      <class name="vdn.AdminIsAbleToCreateProjectAndAccept"/>
+      <class name="vdn.EditDeleteAndCloseTheProjectWithoutTargetCollectionSection"/>
+      <class name="vdn.DraftStatusInTOCFromIndContributorSide"/>
+      <class name="vdn.ContentStatusCountsOnCourseTab"/>
+      <class name="vdn.AssignedReviewerIsAbleToViewDetailsWithNominationDisabled"/>
+      <class name="vdn.UserShouldNotBeAllowedToReviewHisOwnContent"/>
+      <class name="vdn.AssignedReviewerIsAbleToViewDetailsWithNominationEnable"/>
+      <class name="vdn.EditDeleteTheDraftAndLiveProjectAndClose"/>
+      <class name="vdn.AssignedProjectContributorAbleToUploadContentWithSkipReviewDisable"/>
+      <class name="vdn.ApprovalPendingStatusInTOCFromIndContributorSide"/>
+      <class name="vdn.MyContentsTabIsAvailable"/>
+      <class name="vdn.IndContributorIsAbleToNominateWithoutTargetCollection"/>
+      <class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>
+      <class name="vdn.ProjectWithSkipReviewDisabledForSetOfContributors"/>
+      <class name="vdn.ContributorOrgAdminIsAbleToSearchAndAssignRoles"/>
+      <class name="vdn.CreateNewProjectwithAllContentTypes"/>
+      <class name="vdn.SourcingOrgAdminAbleToViewTheSamplesUploadedByTheUsers"/>
+      <class name="vdn.VerifySourcingOrgAdminIsAbleToAcceptNomination"/>
+      <class name="vdn.ContirbutionOrgAdminIsAbleToUploadSampleAndNominateWithoutTargetCollection"/>
+      <class name="vdn.SendbackCorrectionsAndRejectBtnsNotDisplayedForSkipReviewEnabledProject"/>
+      <class name="vdn.ContentLabelInNominiatonList"/>
+      <class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>
+      <class name="vdn.ContentStatusCountsDigitalTextBook"/>
+      <class name="vdn.SourcingOrgAdminIsAbleToViewSampleAndAcceptNomination"/>
+      <class name="vdn.Upload"/>
+      <class name="vdn.SuccessfulReviewerRoleUpdatedForWithoutProjectAnyTargetCollection"/>
+      <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
+      <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
+      <class name="vdn.AssignedAdminIsAbleToAssignContributorAndRevieweRole"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
