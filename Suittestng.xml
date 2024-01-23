@@ -111,7 +111,7 @@
 			
 			<!--<class name="TPD.userShouldNotAbleToRequestTheReportsOnceStatusIsSubmitted" />-->
 			<!--<class name="vdn.ContentLabelInNominiatonList"/>-->
-			<class name="regression.sourcing.VerifyApplyFiltersPopUpPageIsDisplayedPostClickingOnApplyFilterButtonAndItsDetails" />
+			<class name="regression.sourcing.VerifyOrgadminIsAbleToCreateAndPublishProjectWithGuidelineDocument" />
 			
 		</classes>
 	</test>

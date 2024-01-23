@@ -52,9 +52,91 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()=' Apply ']")
 	private WebElement applyButton;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Delete Project ']")
+	private WebElement assertHeaerConfirmationPopUp;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Are you sure you want to delete this project? ']")
+	private WebElement assertConfirmationPopUpMsg;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' No ']")
+	private WebElement assertNoOption;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='close icon']")
+	private WebElement closeConfirmationIcon;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='The project cannot be deleted because it has nominations']")
+	private WebElement assertErrorMsgOnDeleteNominatedProject;
+	
+	@FindBy(how=How.XPATH,using="//div[contains(text(), 'Select contributors')]")
+	private WebElement assertSelectContributorPopUpHeader;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Contributor Type ']")
+	private WebElement assertContributorTypeLabel;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Save']")
+	private WebElement assertSaveBtn;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Close']")
+	private WebElement assertCloseBtn;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='testUser ']")
+	private WebElement assertSelectedContributor;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='contributor(s) added']")
+	private WebElement assertContributorSelected;
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertContributorSelected() {
+		return assertContributorSelected;
+	}
+
+
+	public WebElement getAssertSelectedContributor() {
+		return assertSelectedContributor;
+	}
+
+
+	public WebElement getAssertCloseBtn() {
+		return assertCloseBtn;
+	}
+
+
+	public WebElement getAssertSaveBtn() {
+		return assertSaveBtn;
+	}
+	
+	
+	public WebElement getAssertContributorTypeLabel() {
+		return assertContributorTypeLabel;
+	}
+
+	public WebElement getAssertSelectContributorPopUpHeader() {
+		return assertSelectContributorPopUpHeader;
+	}
+
+	public WebElement getAssertErrorMsgOnDeleteNominatedProject() {
+		return assertErrorMsgOnDeleteNominatedProject;
+	}
+
+	public WebElement getCloseConfirmationIcon() {
+		return closeConfirmationIcon;
+	}
+
+	public WebElement getAssertNoOption() {
+		return assertNoOption;
+	}
+
+	public WebElement getAssertConfirmationPopUpMsg() {
+		return assertConfirmationPopUpMsg;
+	}
+
+	public WebElement getAssertHeaerConfirmationPopUp() {
+		return assertHeaerConfirmationPopUp;
+	}
 
 	public WebElement getApplyButton() {
 		return applyButton;
