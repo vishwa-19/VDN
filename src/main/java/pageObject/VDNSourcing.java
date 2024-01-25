@@ -85,11 +85,36 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//span[text()='contributor(s) added']")
 	private WebElement assertContributorSelected;
 	
+	@FindBy(how=How.XPATH,using="//strong[text()='Document Successfully Uploaded...']")
+	private WebElement assertUploadDocument;
+	
+	@FindBy(how=How.XPATH,using="//div[@class='ui container p-0 m-0 d-flex flex-ai-center flex-jc-center']")
+	private WebElement assertTabList;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Select this option in case you do not want to have review done by your organization while contributing. ']")
+	private WebElement assertDisplayMsgWithSkipRev;
 	
 	
 	
 	
 	
+	
+	
+	public WebElement getAssertDisplayMsgWithSkipRev() {
+		return assertDisplayMsgWithSkipRev;
+	}
+
+
+	public WebElement getAssertTabList() {
+		return assertTabList;
+	}
+
+
+	public WebElement getAssertUploadDocument() {
+		return assertUploadDocument;
+	}
+
+
 	public WebElement getAssertContributorSelected() {
 		return assertContributorSelected;
 	}
