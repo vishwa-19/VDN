@@ -2645,7 +2645,87 @@ public class VDNSourcingMethods extends BaseClass {
 
 	}
 	
+	public static void addNewContributorsToProject(String ProjectName) throws InterruptedException {
+		
+		String expect = "Admin should be able to add new contributor to live project";
+		String actual = "Admin unable to add new contributor to live project";
+		String text = "N/A";
+		try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+//		((//*[text()=' AutoP_qrPFEC '])[1]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i
+		String s1 = "((//*[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i/..";
+		
+		WebElement clickModify = driver.findElement(By.xpath("/html/body/app-root/div/app-program-list/sui-tabset/div[2]/div/div[2]/div/table/tbody/tr[1]/td[6]/div/div/i"));
+		Thread.sleep(2000);
+		clickModify.click();
+//		VDNUtils.waitToBeClickableAndClick(VS.getModifyButton());
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VS.getModifyContributor());
+		VDNUtils.waitToBeClickableAndClick(VS.getModifyContributor());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+		js.executeScript("arguments[0].scrollIntoView(true);", VS.getUpdateButton());
+		VDNUtils.waitToBeClickableAndClick(VS.getUpdateButton());
+		text = "Completed";
+		actual = "Admin is able to add new contributor to live project successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
 	
+	public static void verfiCreateNewProjectPopUp() {
+		
+		String expect = "Project option should be display to admin";
+		String actual = "Project option is not display to admin";
+		String text = "N/A";
+		try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		Assert.assertTrue(VO.getProjOpt3().isDisplayed());
+		Assert.assertTrue(VO.getProjOpt1().isDisplayed());
+		Assert.assertTrue(VO.getProjectOption2().isDisplayed());
+		text = "Completed";
+		actual = "Project option is display to admin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyProjectDetailForforSourcingOrgadmin() {
+		
+		String expect = "Project details should be display to sourcing orgadmin";
+		String actual = "Project details is not displayed to sourcing orgadmin";
+		String text = "N/A";
+		
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		Assert.assertTrue(VO.getEnterProjectName().isDisplayed());
+		Assert.assertTrue(VO.getEnterProjectDesc().isDisplayed());
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VS.getNomination());
+		Assert.assertTrue(VS.getNomination().isDisplayed());
+		js.executeScript("arguments[0].scrollIntoView(true);", VS.getSkipTwoLevelBtn());
+		Assert.assertTrue(VS.getSkipTwoLevelBtn().isDisplayed());
+		js.executeScript("window.scrollBy(0,100)");
+		Assert.assertTrue(VO.getNominationEndDate().isDisplayed());
+		Assert.assertTrue(VO.getShortlistEndDate().isDisplayed());
+		Assert.assertTrue(VO.getContributionEndDate().isDisplayed());
+		Assert.assertTrue(VO.getEnrollmentEndDate().isDisplayed());
+		Assert.assertTrue(VS.getRecognition().isDisplayed());
+		text = "Completed";
+		actual = "Project details is displayed to sourcing orgadmin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
 	
 }
 

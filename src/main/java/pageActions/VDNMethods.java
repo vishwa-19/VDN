@@ -3760,6 +3760,8 @@ public class VDNMethods extends BaseClass {
 		Thread.sleep(500);
 		action.sendKeys("4").perform();
 		Thread.sleep(500);		
+		
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkNextButton());
 
 		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
 

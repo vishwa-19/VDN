@@ -106,18 +106,47 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()=' Apply ']")
 	private WebElement btnApply;
 	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-dock-icon-tooltip d-inline-block']")
+	private WebElement modifyContributor;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Update']")
+	private WebElement updateButton;
 	
+	@FindBy(how=How.XPATH,using="(//*[@data-tooltip='Modify'])[119]")
+	private WebElement modifyButton;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='How do you want to get contributions for this project?']")
+	private WebElement nomination;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Skip two - level Review']")
+	private WebElement skipTwoLevelBtn;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Recognition to Contributors (If any) ']")
+	private WebElement recognition;
 	
+	public WebElement getRecognition() {
+		return recognition;
+	}
 	
+	public WebElement getSkipTwoLevelBtn() {
+		return skipTwoLevelBtn;
+	}
 	
+	public WebElement getNomination() {
+		return nomination;
+	}
 	
+	public WebElement getModifyButton() {
+		return modifyButton;
+	}
 	
+	public WebElement getUpdateButton() {
+		return updateButton;
+	}
 	
-	
+	public WebElement getModifyContributor() {
+		return modifyContributor;
+	}
 	
 	
 	public WebElement getBtnApply() {

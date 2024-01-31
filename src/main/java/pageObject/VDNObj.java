@@ -688,12 +688,15 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//span[text()='Not Accepted']")
 	private WebElement assertNotAcceptedOnRC;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Get content targeted to Question Sets']")
+	private WebElement projectOption2;
 	
 	
 	
 	
-	
-	
+	public WebElement getProjectOption2() {
+		return projectOption2;
+	}
 	
 	
 	public WebElement getAssertNotAcceptedOnRC() {
