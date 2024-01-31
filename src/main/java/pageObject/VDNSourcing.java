@@ -94,12 +94,52 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[text()=' Select this option in case you do not want to have review done by your organization while contributing. ']")
 	private WebElement assertDisplayMsgWithSkipRev;
 	
+	@FindBy(how=How.XPATH,using="//sui-select[@labelfield='name']")
+	private WebElement selFrameworkDropdown;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Continuous Professional Development']")
+	private WebElement selFrameworTypeAsCPD;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Yes']")
+	private WebElement btnYes;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Apply ']")
+	private WebElement btnApply;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public WebElement getBtnApply() {
+		return btnApply;
+	}
+
+
+	public WebElement getBtnYes() {
+		return btnYes;
+	}
+
+
+	public WebElement getSelFrameworTypeAsCPD() {
+		return selFrameworTypeAsCPD;
+	}
+
+
+	public WebElement getSelFrameworkDropdown() {
+		return selFrameworkDropdown;
+	}
+
+
 	public WebElement getAssertDisplayMsgWithSkipRev() {
 		return assertDisplayMsgWithSkipRev;
 	}
