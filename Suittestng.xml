@@ -111,7 +111,8 @@
 			
 			<!--<class name="TPD.userShouldNotAbleToRequestTheReportsOnceStatusIsSubmitted" />-->
 			<!--<class name="vdn.ContentLabelInNominiatonList"/>-->
-			<class name="regression.sourcing.VerifyNominationTabIsNotDisplayedForNominationDisabledProject" />
+			<class name="regression.sourcing.VerifyOpenButtonIsAvailableAgainstPendingNomination" />
+			
 			
 		</classes>
 	</test>
