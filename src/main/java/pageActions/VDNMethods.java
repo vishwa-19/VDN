@@ -2957,48 +2957,12 @@ public class VDNMethods extends BaseClass {
 			Assert.assertEquals(Tot,TotalC);
 			
 			
-			
-			//*******************************
-			//VDNUtils.waitForElementToBeVisible(VO.getBackBtn());
-			
-			//*******************************
-//			js.executeScript("arguments[0].scrollIntoView(true);", VO.getBackBtn());
-//			VO.getBackBtn().click();
-//			Thread.sleep(10000);
-//			
-//			Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
-//			String TotalCount1 = VO.getAssertTotalTab1().getText();
-//			System.out.println(TotalCount1);
-//			
-//			
-//			Assert.assertTrue(VO.getAssertApprovalPendingTab().isDisplayed());
-//			String APCount1 = VO.getAssertApprovalPendingTab().getText();
-//			System.out.println(APCount1);
-//			
-//			Assert.assertTrue(VO.getAssertApprovedTab().isDisplayed());
-//			String ApprovedCount1 = VO.getAssertApprovedTab().getText();
-//			System.out.println(ApprovedCount1);
-//			
-//			Assert.assertTrue(VO.getAssertRejectedTab().isDisplayed());
-//			String RejectedCount1 = VO.getAssertRejectedTab().getText();
-//			System.out.println(RejectedCount1);
-//			
-//			Assert.assertTrue(VO.getAssertCorrectionTab().isDisplayed());
-//			String CorrectioCountCount1 = VO.getAssertCorrectionTab().getText();
-//			System.out.println(CorrectioCountCount1);
-			
-			//************************
-			
-			
-//			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
-//			VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
-//			Thread.sleep(3000);
-//			Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
-//			home = VO.getAssertNominationSuccess().getText();
-//			actual = ProjectName + " is Successfully Nominated";
+		
+			home = VO.getApprovalPenNode().getText();
+			actual = ProjectName + " is Sent For Approval and Send For Correction";
 		} finally {
-//			String homeText = home != null ? home : "N/A";
-//			Listeners.customAssert("Nomination updated successfully...", homeText, expect, actual);
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Approval Pending:", homeText, expect, actual);
 		}
 
 }

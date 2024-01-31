@@ -106,8 +106,42 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()=' Apply ']")
 	private WebElement btnApply;
 	
+
 	@FindBy(how=How.XPATH,using="//*[@class='sb-dock-icon-tooltip d-inline-block']")
 	private WebElement modifyContributor;
+
+	@FindBy(how=How.XPATH,using="//h4[text()='List of Digital Textbooks ']")
+	private WebElement assertListOfTextBook;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(), 'Title')]")
+	private WebElement assertTitle;
+	
+	
+
+	@FindBy(how=How.XPATH,using="//th[contains(text(), 'Medium')]")
+	private WebElement assertMedium;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(), 'Class')]")
+	private WebElement assertClass;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(), 'Subject')]")
+	private WebElement assertSubject;
+	
+	@FindBy(how=How.XPATH,using="//dt[contains(text(), 'Content Type(s)')]")
+	private WebElement assertContentTypes;
+	
+	@FindBy(how=How.XPATH,using="//a[contains(text(), 'Color ')]")
+	private WebElement assertOrg;
+	
+	@FindBy(how=How.XPATH,using="//div[contains(text(), 'Profile Details')]")
+	private WebElement assertProfileDet;
+	
+	@FindBy(how=How.XPATH,using="//div[contains(text(), 'Color')]")
+	private WebElement assertOrgNameOnPopUp;
+	
+	@FindBy(how=How.XPATH,using="//dt[contains(text(), 'Organisation')]")
+	private WebElement assertOrgTypeOnPopUp;
+
 	
 	@FindBy(how=How.XPATH,using="//*[text()='Update']")
 	private WebElement updateButton;
@@ -144,11 +178,70 @@ public class VDNSourcing {
 		return updateButton;
 	}
 	
+
 	public WebElement getModifyContributor() {
 		return modifyContributor;
 	}
+
+	public WebElement getAssertOrgTypeOnPopUp() {
+		return assertOrgTypeOnPopUp;
+	}
+
+
+
+	public WebElement getAssertOrgNameOnPopUp() {
+		return assertOrgNameOnPopUp;
+	}
+
+
+
+	public WebElement getAssertProfileDet() {
+		return assertProfileDet;
+	}
+
+
+
+	public WebElement getAssertOrg() {
+		return assertOrg;
+	}
+
+
+
+	public WebElement getAssertContentTypes() {
+		return assertContentTypes;
+	}
+
+
+
+	public WebElement getAssertSubject() {
+		return assertSubject;
+	}
+
+
+
+	public WebElement getAssertClass() {
+		return assertClass;
+	}
+
+
+
+	public WebElement getAssertTitle() {
+		return assertTitle;
+	}
+	
+
 	
 	
+	public WebElement getAssertMedium() {
+		return assertMedium;
+	}
+
+
+	public WebElement getAssertListOfTextBook() {
+		return assertListOfTextBook;
+	}
+
+
 	public WebElement getBtnApply() {
 		return btnApply;
 	}

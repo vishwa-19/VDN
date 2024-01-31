@@ -2645,6 +2645,7 @@ public class VDNSourcingMethods extends BaseClass {
 
 	}
 	
+
 	public static void addNewContributorsToProject(String ProjectName) throws InterruptedException {
 		
 		String expect = "Admin should be able to add new contributor to live project";
@@ -2675,8 +2676,102 @@ public class VDNSourcingMethods extends BaseClass {
 			Listeners.customAssert("Completed", text, expect, actual);
 		}
 	}
-	
-	public static void verfiCreateNewProjectPopUp() {
+
+	public static void validateOpenButtonIsAvailableAgainstPendingNomination(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String Result1 = null;
+		String expect1 = " 1. Open button should be available against the pending nomination";
+		String actual1 = "1. Open button is not available against the pending nomination";
+		
+		String Result2 = null;
+		String expect2 = "2. Should Display Nominated textbook list";
+		String actual2 = "2. Not Displayed Nominated textbook list ";
+		
+		String Result3 = null;
+		String expect3 = "3.Textbook tile, medium, class and subject Should Displayed";
+		String actual3 = "3.Textbook tile, medium, class and subject is Not Displayed ";
+		
+		
+		
+//		String expect = ProjectName + " is Successfully Nominated";
+//		String actual = ProjectName + " is not Successfully Nominated";
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+			
+			Assert.assertTrue(VO.getAssertPending().isDisplayed());
+			
+			Assert.assertTrue(VO.getOpenUserAction().isDisplayed());
+			//span[contains(text(),' Pending ')]//following::button[1]
+			
+//			VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
+//			Thread.sleep(3000);
+//			Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
+			Result1 = VO.getOpenUserAction().getText();
+			System.out.println(Result1);
+			actual1 =  "1. Open button should be available against the pending nomination";
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VS.getAssertListOfTextBook().isDisplayed());
+			
+			Result2 = VS.getAssertListOfTextBook().getText();
+			System.out.println(Result2);
+			actual2 =  "2.Displayed Nominated textbook list";
+			
+			
+			Assert.assertTrue(VS.getAssertMedium().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertTitle().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertClass().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertSubject().isDisplayed());
+			
+			
+			Result3 = VS.getAssertSubject().getText();
+			System.out.println(Result3);
+			actual3 =  "3.Textbook tile, medium, class and subject is Displayed";
+			
+			
+			
+			Assert.assertTrue(VO.getBtnAccept().isDisplayed());
+			
+			Assert.assertTrue(VO.getBtnReject().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertContentTypes().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertOrg().isDisplayed());
+			
+			VDNUtils.waitToBeClickableAndClick(VS.getAssertOrg());
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VS.getAssertProfileDet().isDisplayed());
+			
+			
+		} finally {
+			String Resul1Text = Result1 != null ? Result1 : "N/A";
+			Listeners.customAssert("Open", Resul1Text, expect1, actual1);
+			
+			String Resul2Text = Result2 != null ? Result2 : "N/A";
+			Listeners.customAssert("List of Digital Textbooks", Resul2Text, expect2, actual2);
+			
+			String Resul3Text = Result3 != null ? Result3 : "N/A";
+			Listeners.customAssert("Subject", Resul3Text, expect3, actual3);
+		}
+
+	}
+		public static void verfiCreateNewProjectPopUp() {
 		
 		String expect = "Project option should be display to admin";
 		String actual = "Project option is not display to admin";
@@ -2727,5 +2822,96 @@ public class VDNSourcingMethods extends BaseClass {
 		}
 	}
 	
+		
+	
+	public static void validateProfilePopUpIsOpenedOnClickOfContributorName(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String Result1 = null;
+		String expect1 = " 1.Profile pop up should be opened on click of contributor name.";
+		String actual1 = "1. Profile pop up is not opened on click of contributor name.";
+		
+		String Result2 = null;
+		String expect2 = "2. The details should be correct in the profile pop up.";
+		String actual2 = "2. The details are not correct in the profile pop up. ";
+		
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+			
+			Assert.assertTrue(VO.getAssertPending().isDisplayed());
+			
+			Assert.assertTrue(VO.getOpenUserAction().isDisplayed());
+			//span[contains(text(),' Pending ')]//following::button[1]
+			
+//			VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
+//			Thread.sleep(3000);
+//			Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VS.getAssertListOfTextBook().isDisplayed());
+			
+			
+			Assert.assertTrue(VS.getAssertMedium().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertTitle().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertClass().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertSubject().isDisplayed());
+			
+			
+			Assert.assertTrue(VO.getBtnAccept().isDisplayed());
+			
+			Assert.assertTrue(VO.getBtnReject().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertContentTypes().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertOrg().isDisplayed());
+			
+			VDNUtils.waitToBeClickableAndClick(VS.getAssertOrg());
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VS.getAssertProfileDet().isDisplayed());
+			
+			Result1 = VS.getAssertProfileDet().getText();
+			System.out.println(Result1);
+			actual1 =  "1. Profile pop up is opened on click of contributor name.";
+			
+			
+			Assert.assertTrue(VS.getAssertOrgNameOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertOrgTypeOnPopUp().isDisplayed());
+			
+			Result2 = VS.getAssertOrgTypeOnPopUp().getText();
+			System.out.println(Result2);
+			actual2 =  "2.The details are correct in the profile pop up.";
+			
+			
+			
+		} finally {
+			String Resul1Text = Result1 != null ? Result1 : "N/A";
+			Listeners.customAssert("Profile Details", Resul1Text, expect1, actual1);
+			
+			String Resul2Text = Result2 != null ? Result2 : "N/A";
+			Listeners.customAssert("Organisation", Resul2Text, expect2, actual2);
+			
+		}
+	
+	
+	}
+
+
 }
 
