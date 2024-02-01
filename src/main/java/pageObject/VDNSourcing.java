@@ -106,6 +106,10 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()=' Apply ']")
 	private WebElement btnApply;
 	
+
+	@FindBy(how=How.XPATH,using="//*[@class='sb-dock-icon-tooltip d-inline-block']")
+	private WebElement modifyContributor;
+
 	@FindBy(how=How.XPATH,using="//h4[text()='List of Digital Textbooks ']")
 	private WebElement assertListOfTextBook;
 	
@@ -137,23 +141,53 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="//dt[contains(text(), 'Organisation')]")
 	private WebElement assertOrgTypeOnPopUp;
+
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Update']")
+	private WebElement updateButton;
 	
+
 	@FindBy(how=How.XPATH,using="//option[text()=' NONE ']")
 	private WebElement assertNonOpt;
 	
 	
 	@FindBy(how=How.XPATH,using="//button[text()=' Yes ']")
 	private WebElement clkYesBtn;
+
+	@FindBy(how=How.XPATH,using="(//*[@data-tooltip='Modify'])[119]")
+	private WebElement modifyButton;
+
 	
+	@FindBy(how=How.XPATH,using="//*[text()='How do you want to get contributions for this project?']")
+	private WebElement nomination;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Skip two - level Review']")
+	private WebElement skipTwoLevelBtn;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Recognition to Contributors (If any) ']")
+	private WebElement recognition;
 	
+	public WebElement getRecognition() {
+		return recognition;
+	}
 	
+	public WebElement getSkipTwoLevelBtn() {
+		return skipTwoLevelBtn;
+	}
 	
+	public WebElement getNomination() {
+		return nomination;
+	}
 	
+	public WebElement getModifyButton() {
+		return modifyButton;
+	}
 	
+	public WebElement getUpdateButton() {
+		return updateButton;
+	}
 	
+
 	
 	
 	
@@ -169,6 +203,13 @@ public class VDNSourcing {
 		return assertNonOpt;
 	}
 
+
+
+
+
+	public WebElement getModifyContributor() {
+		return modifyContributor;
+	}
 
 
 	public WebElement getAssertOrgTypeOnPopUp() {
@@ -217,6 +258,7 @@ public class VDNSourcing {
 		return assertTitle;
 	}
 	
+
 	
 	
 	public WebElement getAssertMedium() {
