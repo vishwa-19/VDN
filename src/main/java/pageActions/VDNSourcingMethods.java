@@ -2825,8 +2825,76 @@ public class VDNSourcingMethods extends BaseClass {
 			Listeners.customAssert("Organisation", Resul2Text, expect2, actual2);
 			
 		}
-	
-	
 	}	
+	
+	
+	public static void validateNoneOptionIsDisplayedAsDropdown()
+			throws InterruptedException {
+		String home = null;
+		String expect = " Admin should be able to assign reviewer to the Project and is Displayed on the Top";
+		String actual =  "Admin should be unable to assign reviewer to the Project or is not Displayed on the Top";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			
+//			String s1 = "//div[text()=' ";
+//			String s2 = ProjectName;
+//			String s3 = " ']//following::button[text()='Open '][1]";
+//			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+//			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+//			assertProjectOnContributor.isDisplayed();
+//			assertProjectOnContributor.click();
+//			VDNUtils.waitForElementToBeVisible(VO.getAssertNominations());
+//
+//			Assert.assertTrue(VO.getAssertNominations().isDisplayed());
+//
+//			Assert.assertTrue(VO.getAssertAssignUsers().isDisplayed());
+//
+//			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
+//
+//			Assert.assertTrue(VO.getAssertReport().isDisplayed());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+
+			VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+			
+			Assert.assertTrue(VO.getSearchField().isDisplayed());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "Jaga2");
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+			Thread.sleep(5000);
+			//VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+			
+			//VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+			
+			
+			Assert.assertTrue(VS.getAssertNonOpt().isDisplayed());
+			
+			
+			
+			home = VS.getAssertNonOpt().getText();
+			System.out.println(home);
+			
+			VDNUtils.waitToBeClickableAndClick(VS.getAssertNonOpt());
+			
+			VDNUtils.waitToBeClickableAndClick(VS.getClkYesBtn());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+
+			actual = " Admin should be able to assign reviewer to the Project and is Displayed on the Top" ;
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("NONE", homeText, expect, actual);
+		}
+	}
+	
+	
 }
 

@@ -139,6 +139,12 @@ public class VDNSourcing {
 	private WebElement assertOrgTypeOnPopUp;
 	
 	
+	@FindBy(how=How.XPATH,using="//option[text()=' NONE ']")
+	private WebElement assertNonOpt;
+	
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Yes ']")
+	private WebElement clkYesBtn;
 	
 	
 	
@@ -148,6 +154,23 @@ public class VDNSourcing {
 	
 	
 	
+	
+	
+	
+	
+	
+	public WebElement getClkYesBtn() {
+		return clkYesBtn;
+	}
+
+
+
+	public WebElement getAssertNonOpt() {
+		return assertNonOpt;
+	}
+
+
+
 	public WebElement getAssertOrgTypeOnPopUp() {
 		return assertOrgTypeOnPopUp;
 	}
