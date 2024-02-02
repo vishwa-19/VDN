@@ -2981,7 +2981,7 @@ public class VDNSourcingMethods extends BaseClass {
 	}
 	
 	
-	}
+	
 	
 	public static void verifyDeleteAndCloseOptionForProjectWithNomination(String ProjectName) throws Exception {
 		
@@ -3012,7 +3012,7 @@ public class VDNSourcingMethods extends BaseClass {
 		}
 	}
 
-
+}
 
 
 
