@@ -10,7 +10,6 @@
       <class name="vdn.SourceOrgAdminIsAbleToCreateProjectWithSkipReviewDisabled"/>
       <class name="vdn.ChangeRoleToAdminInManageUsersAndVerifyToastMessage"/>
       <class name="vdn.DefaultContributionOrgReviewerIsAbleToPreview"/>
-      <class name="vdn.VdnDemo"/>
       <class name="vdn.SourcingOrgAdminIsAbleToAssignReviewer"/>
       <class name="vdn.AssignedReviewerIsAbleToPublishTheContentForTheDigitalTextbook"/>
       <class name="vdn.ExplicityRegisteredContributionOrgAdminIsAbleToAssignRoles"/>

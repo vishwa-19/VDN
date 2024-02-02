@@ -167,6 +167,20 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Recognition to Contributors (If any) ']")
 	private WebElement recognition;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='The project cannot be deleted because it has nominations']")
+	private WebElement deleteErrorMsg;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Yes ']")
+	private WebElement closeYesBtn;
+	
+	public WebElement getCloseYesBtn() {
+		return closeYesBtn;
+	}
+	
+	public WebElement getDeleteErrorMsg() {
+		return deleteErrorMsg;
+	}
+	
 	public WebElement getRecognition() {
 		return recognition;
 	}

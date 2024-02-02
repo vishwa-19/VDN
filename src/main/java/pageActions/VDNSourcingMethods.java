@@ -2655,11 +2655,12 @@ public class VDNSourcingMethods extends BaseClass {
 		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
 //		((//*[text()=' AutoP_qrPFEC '])[1]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i
+//		((//*[text()=' AutoP_PdlIqN '])[3]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i[@data-tooltip='Modify']
 		String s1 = "((//*[text()=' ";
 		String s2 = ProjectName;
-		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i/..";
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i[@data-tooltip='Modify']";
 		
-		WebElement clickModify = driver.findElement(By.xpath("/html/body/app-root/div/app-program-list/sui-tabset/div[2]/div/div[2]/div/table/tbody/tr[1]/td[6]/div/div/i"));
+		WebElement clickModify = driver.findElement(By.xpath(s1+s2+s3));
 		Thread.sleep(2000);
 		clickModify.click();
 //		VDNUtils.waitToBeClickableAndClick(VS.getModifyButton());
@@ -2980,6 +2981,35 @@ public class VDNSourcingMethods extends BaseClass {
 	}
 	
 	
+	}
+	
+	public static void verifyDeleteAndCloseOptionForProjectWithNomination(String ProjectName) throws Exception {
+		
+		String expect = "Admin should not be able to delete close project with nomination";
+		String actual = "Admin is able to delete close project with nomination";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i";
+		String s4 = "/following-sibling::a/child::div";
+		WebElement kebabMenu = driver.findElement(By.xpath(s1 + s2 + s3 + s4));
+		VDNUtils.waitToBeClickableAndClick(kebabMenu);
+		String s5 = "/descendant::a/following-sibling::a/child::i[@data-tooltip='Close']";
+		WebElement closeBtn = driver.findElement(By.xpath(s1 + s2 + s3 + s4 + s5));
+		VDNUtils.waitToBeClickableAndClick(closeBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getCloseYesBtn());
+		String s6 = "[@data-tooltip='Delete']";
+		WebElement deletBtn = driver.findElement(By.xpath(s1 + s2 + s3 + s6));
+		VDNUtils.waitToBeClickableAndClick(deletBtn);
+		Assert.assertTrue(VS.getDeleteErrorMsg().isDisplayed());
+		Thread.sleep(10000);
+		text = "completed";
+		actual = "Admin is not able to delete close project with nomination successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
 	}
 
 
