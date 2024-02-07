@@ -173,6 +173,62 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()=' Yes ']")
 	private WebElement closeYesBtn;
 	
+	@FindBy(how=How.XPATH,using="//*[@id='sb-dropdown']")
+	private WebElement board;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Others'])[3]")
+	private WebElement boardValue;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select Medium']")
+	private WebElement medium;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select All']")
+	private WebElement mediumValue;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select Class']")
+	private WebElement class1;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select All']")
+	private WebElement classValue;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select Subject']")
+	private WebElement subject;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select All']")
+	private WebElement subjectValue;
+	
+	public WebElement getSubjectValue() {
+		return subjectValue;
+	}
+	
+	public WebElement getSubject() {
+		return subject;
+	}
+	
+	public WebElement getClassValue() {
+		return classValue;
+	}
+	
+	public WebElement getClass1() {
+		return class1;
+	}
+	
+	public WebElement getMediumValue() {
+		return mediumValue;
+	}
+	
+	public WebElement getMedium() {
+		return medium;
+	}
+	
+	public WebElement getBoardValue() {
+		return boardValue;
+	}
+	
+	public WebElement getBoard() {
+		return board;
+	}
+	
 	public WebElement getCloseYesBtn() {
 		return closeYesBtn;
 	}
