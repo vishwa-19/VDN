@@ -167,6 +167,106 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Recognition to Contributors (If any) ']")
 	private WebElement recognition;
 	
+	@FindBy(how=How.XPATH,using="(//span[text()='Others'])[2]")
+	private WebElement selFrameworkTypeK12;
+	
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Total'])[1]")
+	private WebElement assertTotDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Approval Pending']")
+	private WebElement assertAppPenDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Approved'])[1]")
+	private WebElement assertApprovedDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Rejected'])[1]")
+	private WebElement assertRejectedDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Corrections pending']")
+	private WebElement assertCorrPenDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Title') and @class='w-15 cursor-pointer sb-sorting']")
+	private WebElement assertTitleWithSort;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Medium') and @class='w-15 cursor-pointer sb-sorting']")
+	private WebElement assertMediumWithSort;
+	
+
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Class') and @class='w-15 cursor-pointer sb-sorting']")
+	private WebElement assertClassWithSort;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Subject') and @class='w-15 cursor-pointer sb-sorting']")
+	private WebElement assertSubjectWithSort;
+	
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Chapter')]")
+	private WebElement assertChapter;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Status') and @class='w-20 cursor-pointer sb-sorting']")
+	private WebElement assertStatusWithSort;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public WebElement getAssertStatusWithSort() {
+		return assertStatusWithSort;
+	}
+
+	public WebElement getAssertChapter() {
+		return assertChapter;
+	}
+
+	public WebElement getAssertSubjectWithSort() {
+		return assertSubjectWithSort;
+	}
+
+	public WebElement getAssertClassWithSort() {
+		return assertClassWithSort;
+	}
+
+	public WebElement getAssertMediumWithSort() {
+		return assertMediumWithSort;
+	}
+	
+	public WebElement getAssertTitleWithSort() {
+		return assertTitleWithSort;
+	}
+
+	public WebElement getAssertTotDigiTextBook() {
+		return assertTotDigiTextBook;
+	}
+	
+	public WebElement getAssertAppPenDigiTextBook() {
+		return assertAppPenDigiTextBook;
+	}
+	
+	public WebElement getAssertApprovedDigiTextBook() {
+		return assertApprovedDigiTextBook;
+	}
+	
+	public WebElement getAssertRejectedDigiTextBook() {
+		return assertRejectedDigiTextBook;
+	}
+	
+	
+	public WebElement getAssertCorrPenDigiTextBook() {
+		return assertCorrPenDigiTextBook;
+	}
+
+	public WebElement getSelFrameworkTypeK12() {
+		return selFrameworkTypeK12;
+	}
+
+
 	@FindBy(how=How.XPATH,using="//*[text()='The project cannot be deleted because it has nominations']")
 	private WebElement deleteErrorMsg;
 	
@@ -535,17 +635,7 @@ public class VDNSourcing {
 	public WebElement getAssertCollection() {
 		return assertCollection;
 	}
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
+		
 	
 }
 

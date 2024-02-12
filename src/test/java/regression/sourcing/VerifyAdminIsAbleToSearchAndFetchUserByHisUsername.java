@@ -15,6 +15,6 @@ public static void verifyAdminIsAbleToSearchAndFetchUserByHisUsername() throws E
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
 	VDNMethods.verifySourcingOrgAdminIsAbleToAssignReviewer(ProjectName);
-	//VDNSourcingMethods.validateNoneOptionIsDisplayedAsDropdown();
+	VDNSourcingMethods.validateNoneOptionIsDisplayedAsDropdown();
 	}
 }

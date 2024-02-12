@@ -111,7 +111,12 @@
 			
 			<!--<class name="TPD.userShouldNotAbleToRequestTheReportsOnceStatusIsSubmitted" />-->
 			<!--<class name="vdn.ContentLabelInNominiatonList"/>-->
+
 			<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
+
+			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />
+			<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />
+
 			
 		</classes>
 	</test>
