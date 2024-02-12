@@ -197,6 +197,62 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Select All']")
 	private WebElement subjectValue;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Contributor Type ']")
+	private WebElement contributorType;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Name    ']")
+	private WebElement contributorName;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Email']")
+	private WebElement contributorEmail;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Mobile']")
+	private WebElement contributorMobile;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Type']")
+	private WebElement contributorType1;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Next'])[2]")
+	private WebElement contributorNextBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Color']")
+	private WebElement selectedContributor;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='contributor(s) added']")
+	private WebElement addedContributor;
+	
+	public WebElement getAddedContributor() {
+		return addedContributor;
+	}
+	
+	public WebElement getSelectedContributor() {
+		return selectedContributor;
+	}
+	
+	public WebElement getContributorNextBtn() {
+		return contributorNextBtn;
+	}
+	
+	public WebElement getContributorType1() {
+		return contributorType1;
+	}
+	
+	public WebElement getContributorMobile() {
+		return contributorMobile;
+	}
+	
+	public WebElement getContributorEmail() {
+		return contributorEmail;
+	}
+	
+	public WebElement getContributorName() {
+		return contributorName;
+	}
+	
+	public WebElement getContributorType() {
+		return contributorType;
+	}
+	
 	public WebElement getSubjectValue() {
 		return subjectValue;
 	}

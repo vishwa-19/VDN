@@ -111,7 +111,7 @@
 			
 			<!--<class name="TPD.userShouldNotAbleToRequestTheReportsOnceStatusIsSubmitted" />-->
 			<!--<class name="vdn.ContentLabelInNominiatonList"/>-->
-			<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />
+			<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
 			
 		</classes>
 	</test>

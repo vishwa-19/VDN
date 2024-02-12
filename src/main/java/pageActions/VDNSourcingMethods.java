@@ -3097,6 +3097,80 @@ public class VDNSourcingMethods extends BaseClass {
 			Listeners.customAssert("Completed", text, expect, actual);
 		}
 	}
+	
+	public static void verifySelectContributorsPopUp() {
+		
+		String expect = "All the element of contributors popup should be display to admin";
+		String actual = "All the element of contributors is not display to admin";
+		String text = "N/A";
+		
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt3());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSelectedContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+		Assert.assertTrue(VO.getEnterOrgName().isDisplayed());
+		Assert.assertTrue(VS.getContributorType().isDisplayed());
+		Assert.assertTrue(VS.getContributorName().isDisplayed());
+		Assert.assertTrue(VS.getContributorEmail().isDisplayed());
+		Assert.assertTrue(VS.getContributorMobile().isDisplayed());
+		Assert.assertTrue(VS.getContributorType1().isDisplayed());
+		Assert.assertTrue(VS.getContributorNextBtn().isDisplayed());
+		Assert.assertTrue(VO.getClkSaveButton().isDisplayed());
+		text = "Completed";
+		actual = "All the element of contributors popup is display to admin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void verifyAdminCanAddMoreContributorToProject() throws InterruptedException {
+		String expect = "Admin should be able to add more contributor to project";
+		String actual = "Admin is not able to add more contributor to project";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt3());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSelectedContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),"Color");
+		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+		VDNUtils.waitToBeClickableAndClick(VS.getAddedContributor());
+		Assert.assertTrue(VS.getSelectedContributor().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to add more contributor to project successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
 
 }
 
