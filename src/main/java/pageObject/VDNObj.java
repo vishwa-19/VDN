@@ -691,9 +691,19 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//*[text()='Get content targeted to Question Sets']")
 	private WebElement projectOption2;
 	
+	@FindBy(how=How.XPATH,using="(//a[text()='Nominations ']//following::span[1])[1]")
+	private WebElement assertNomCount;
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertNomCount() {
+		return assertNomCount;
+	}
+
+
 	public WebElement getProjectOption2() {
 		return projectOption2;
 	}
