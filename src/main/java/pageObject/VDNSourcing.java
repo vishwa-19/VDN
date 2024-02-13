@@ -321,6 +321,27 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='contributor(s) added']")
 	private WebElement addedContributor;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Edit Course Unit(s) ']")
+	private WebElement editCourseUnit;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Title ']/ancestor::thead/following-sibling::tbody/descendant::input")
+	private WebElement courseUnitCheckBox;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Done ']")
+	private WebElement courseUnitDoneBtn;
+	
+	public WebElement getCourseUnitDoneBtn() {
+		return courseUnitDoneBtn;
+	}
+	
+	public WebElement getCourseUnitCheckBox() {
+		return courseUnitCheckBox;
+	}
+	
+	public WebElement getEditCourseUnit() {
+		return editCourseUnit;
+	}
+	
 	public WebElement getAddedContributor() {
 		return addedContributor;
 	}
