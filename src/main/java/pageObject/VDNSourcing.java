@@ -206,17 +206,93 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//th[contains(text(),'Status') and @class='w-20 cursor-pointer sb-sorting']")
 	private WebElement assertStatusWithSort;
 	
+	@FindBy(how=How.XPATH,using="//input[@type='radio']/following-sibling::label[text()='Get content targeted to Textbooks, Courses or other collections']")
+	private WebElement assertRadioOpt1;
+
+
+	@FindBy(how=How.XPATH,using="//input[@type='radio']//following-sibling::label[text()='Get content targeted to Question Sets']")
+	private WebElement assertRadioOpt2;
 	
+	@FindBy(how=How.XPATH,using="//input[@type='radio']//following-sibling::label[text()='Get individual content not targeted to any collection']")
+	private WebElement assertRadioOpt3;
 	
+	@FindBy(how=How.XPATH,using="//button[text()='Cancel']")
+	private WebElement btnCancel;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Content Type(s) ']")
+	private WebElement assertContentType;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Select target collection ']")
+	private WebElement assertTargetCol;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Board  ']")
+	private WebElement assertBoard;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Medium']")
+	private WebElement assertMed;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Class']")
+	private WebElement assertClassOpt;
+
+
+	@FindBy(how=How.XPATH,using="//label[text()='Subject']")
+	private WebElement assertSub;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Guidelines Document ']")
+	private WebElement assertGuideline;
 	
 	
 	
 	
 
+	public WebElement getAssertGuideline() {
+		return assertGuideline;
+	}
+
+
+	public WebElement getAssertSub() {
+		return assertSub;
+	}
+	
+	public WebElement getAssertClassOpt() {
+		return assertClassOpt;
+	}
+
+
+	public WebElement getAssertMed() {
+		return assertMed;
+	}
+	
+	
+	public WebElement getAssertBoard() {
+		return assertBoard;
+	}
+
+	public WebElement getAssertTargetCol() {
+		return assertTargetCol;
+	}
+
+	public WebElement getAssertContentType() {
+		return assertContentType;
+	}
+
+	public WebElement getBtnCancel() {
+		return btnCancel;
+	}
+
+	public WebElement getAssertRadioOpt1() {
+		return assertRadioOpt1;
+	}
+	
+	public WebElement getAssertRadioOpt2() {
+		return assertRadioOpt2;
+	}
+	
+	public WebElement getAssertRadioOpt3() {
+		return assertRadioOpt3;
+	}
+	
+	
 	public WebElement getAssertStatusWithSort() {
 		return assertStatusWithSort;
 	}
