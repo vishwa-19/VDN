@@ -116,13 +116,13 @@
 			<!-- <class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />-->
 
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
-			<class name="regression.sourcing.VerifyAdminCanCreateAndPublishProjectWithPartialChapter" />
+			<!--<class name="regression.sourcing.VerifyAdminCanCreateAndPublishProjectWithPartialChapter" />-->
 
-			<class name="regression.sourcing.VerifyAdminAbleCreateAndPublishK12FrameworkProjectOfTargetCollectionTextbook" />
+			<!--<class name="regression.sourcing.VerifyAdminAbleCreateAndPublishK12FrameworkProjectOfTargetCollectionTextbook" />-->
 			<!--<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />-->
-			<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
-			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />
-			<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />
+			<!--<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />-->
+			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
+			<class name="regression.sourcing.VerifyUnitOfTargetCollection" />
 
 
 			

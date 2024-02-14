@@ -5128,14 +5128,139 @@ public class VDNSourcingMethods extends BaseClass {
 		VS.getCourseUnitCheckBox().click();
 		Thread.sleep(1000);
 		VS.getCourseUnitCheckBox().click();
-//		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitCheckBox());
-//		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitCheckBox());
 		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitDoneBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
 		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
 		text = "Completed";
 		actual = "Admin is able to create project with partial chapter successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void createAndSaveAsDraftProjectWithPartialChapter() throws Exception {
+		
+		String expect = "Admin should be able to save as draft project with partial chapter";
+		String actual = "Admin is not able to save as draft project with partial chapter";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+		Date.setTodayDate(driver, VO.getNominationEndDate());
+		Thread.sleep(500);
+		Date.setTodayDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+		Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+		Thread.sleep(500);
+		Date.setTomorrowDate(driver);
+		Thread.sleep(1000);
+		
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		js.executeScript("arguments[0].click();", VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourse());
+		VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+		VDNUtils.waitToBeClickableAndClick(VS.getEditCourseUnit());
+		Thread.sleep(1000);
+		VS.getCourseUnitCheckBox().click();
+		Thread.sleep(1000);
+		VS.getCourseUnitCheckBox().click();
+		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitDoneBtn());
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getBtnSaveAsDraft());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSaveAsDraft());
+		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectSaved());
+		Assert.assertTrue(VO.getAssertProjectSaved().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to save as draft project with partial chapter successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyTabsOfTargetCollection(String projectName, String expectTab) {
+		
+		String expect = "Target collection tab should be dispaly to admin";
+		String actual = "Target collection tab is not dispaly to admin";
+		String text = "N/A";
+		try {
+//		((//*[text()=' AutoP_MVcwTv '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitForElementToBeVisible(VS.getTargetCollection());
+		String targetCollection = VS.getTargetCollection().getText();
+		String actualTab = targetCollection.replaceAll("[0-9]", "");
+		Assert.assertEquals(actualTab.trim(), expectTab);
+		text = "Completed";
+		actual = "Target collection tab is dispaly to admin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+public static void verifyUnitOfTargetCollection(String projectName) {
+		
+		String expect = "Target collection unit should be dispaly to admin";
+		String actual = "Target collection unit is not dispaly to admin";
+		String text = "N/A";
+		try {
+
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitForElementToBeVisible(VS.getTargetCollection());
+		Assert.assertTrue(VS.getTargetCollection().isDisplayed());
+		text = "Completed";
+		actual = "Target collection unit is dispaly to admin successfully";
 		}finally {
 			Listeners.customAssert("Completed", text, expect, actual);
 		}

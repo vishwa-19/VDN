@@ -406,6 +406,13 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()=' Done ']")
 	private WebElement courseUnitDoneBtn;
 	
+	@FindBy(how=How.XPATH,using="(//*[@class='item active'])[2]")
+	private WebElement targetCollection;
+	
+	public WebElement getTargetCollection() {
+		return targetCollection;
+	}
+	
 	public WebElement getCourseUnitDoneBtn() {
 		return courseUnitDoneBtn;
 	}
