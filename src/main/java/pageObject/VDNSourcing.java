@@ -241,9 +241,123 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//label[text()='Guidelines Document ']")
 	private WebElement assertGuideline;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Filter Digital Textbooks']")
+	private WebElement assertFilterTextBooks;
+	
+	@FindBy(how=How.XPATH,using="(//i[@class='dropdown icon'])[2]")
+	private WebElement clkMedDropdown;
+	
+	@FindBy(how=How.XPATH,using="(//span[text()='English'])[3]")
+	private WebElement selectEngVal;
+	
+	@FindBy(how=How.XPATH,using="(//i[@class='dropdown icon'])[3]")
+	private WebElement clkSubDropdown;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Mathematics']")
+	private WebElement selectSubVal;
+	
+	@FindBy(how=How.XPATH,using="(//i[@class='dropdown icon'])[4]")
+	private WebElement clkClassDropdown;
+
+	@FindBy(how=How.XPATH,using="//span[text()='Class 1']")
+	private WebElement selectClass1Val;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Modify Filters']")
+	private WebElement assertModifyFilters;
+	
+	@FindBy(how=How.XPATH,using="(//div[contains(text(),'English')])[2]")
+	private WebElement assertMedPostFilter;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Mathematics '])[2]")
+	private WebElement assertSubPostFilter;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Class 1 '])[2]")
+	private WebElement assertClassPostFilter;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Reset']")
+	private WebElement clkResetBtn;
+	
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::button[text()='View Contribution']")
+	private WebElement clkViewContribution;
+	
+	@FindBy(how=How.XPATH,using="//h4[text()='List of Content Playlists ']")
+	private WebElement listOfContentPlaylist;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='No users found.']")
+	private WebElement assertNoUsersFound;
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertNoUsersFound() {
+		return assertNoUsersFound;
+	}
+
+	public WebElement getListOfContentPlaylist() {
+		return listOfContentPlaylist;
+	}
+
+	public WebElement getClkViewContribution() {
+		return clkViewContribution;
+	}
+
+	public WebElement getClkResetBtn() {
+		return clkResetBtn;
+	}
+
+	public WebElement getAssertClassPostFilter() {
+		return assertClassPostFilter;
+	}
+
+	public WebElement getAssertSubPostFilter() {
+		return assertSubPostFilter;
+	}
+
+	public WebElement getAssertMedPostFilter() {
+		return assertMedPostFilter;
+	}
+
+	public WebElement getAssertModifyFilters() {
+		return assertModifyFilters;
+	}
+
+	public WebElement getSelectClass1Val() {
+		return selectClass1Val;
+	}
+
+	public WebElement getClkClassDropdown() {
+		return clkClassDropdown;
+	}
+
+	
+	
+	public WebElement getSelectSubVal() {
+		return selectSubVal;
+	}
+
+
+	public WebElement getClkSubDropdown() {
+		return clkSubDropdown;
+	}
+
+
+	public WebElement getSelectEngVal() {
+		return selectEngVal;
+	}
+
+
+	public WebElement getClkMedDropdown() {
+		return clkMedDropdown;
+	}
+
+
+	public WebElement getAssertFilterTextBooks() {
+		return assertFilterTextBooks;
+	}
+
 
 	public WebElement getAssertGuideline() {
 		return assertGuideline;
