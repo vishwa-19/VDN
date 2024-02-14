@@ -13,6 +13,4 @@ public class VerifyOrgadminIsAbleToCreateAndPublishProjectWithGuidelineDocument 
 	UserOnBoarding.loginAsSourcing("Admin");
 	VDNSourcingMethods.createProjectWithGuidelineDocument();
 	}
-	
-
 }
