@@ -4910,6 +4910,211 @@ public class VDNSourcingMethods extends BaseClass {
 			Listeners.customAssert("Completed", text, expect, actual);
 		}
 	}
+	
+	public static void verifyPaginationAvailableForSourcingOrgadmin() {
+		
+		String expect = "Pagination should be available for sourcing org admin";
+		String actual = "Pagination is not available for sourcing org admin";
+		String text = "N/A";
+		
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt3());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSelectedContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+		Assert.assertTrue(VO.getEnterOrgName().isDisplayed());
+		Assert.assertTrue(VS.getContributorType().isDisplayed());
+		Assert.assertTrue(VS.getContributorName().isDisplayed());
+		Assert.assertTrue(VS.getContributorEmail().isDisplayed());
+		Assert.assertTrue(VS.getContributorMobile().isDisplayed());
+		Assert.assertTrue(VS.getContributorType1().isDisplayed());
+		Assert.assertTrue(VS.getContributorNextBtn().isDisplayed());
+		Assert.assertTrue(VO.getClkSaveButton().isDisplayed());
+		text = "Completed";
+		actual = "Pagination is available for sourcing org admin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void createProjectWithAllContentType() throws Exception {
+		
+		String expect = "Admin should be able to create project with all content type";
+		String actual = "Admin is not able to create project with all content type";
+		String text = "N/A";
+		try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+		Date.setTodayDate(driver, VO.getNominationEndDate());
+		Thread.sleep(500);
+		Date.setTodayDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+		Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+		Thread.sleep(500);
+		Date.setTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		js.executeScript("arguments[0].click();", VO.getClkNextButton());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelExplanationContent());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelLearningResource());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelPQuestionSet());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherResource());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+		VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+//		(//*[text()=' AutoP_pvfeDU '])[1]/parent::td/following-sibling::td/child::div/child::span
+		String s1 = "(//*[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td/child::div/child::span";
+		WebElement contentType = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(contentType);
+		String actualContentType = contentType.getText();
+		String expectedContentType = "Course Assessment, eTextbook, Explanation Content, Learning Resource, Practice Question Set, Teacher Resource";
+		Assert.assertEquals(actualContentType, expectedContentType);
+		text = "Completed";
+		actual = "Admin is able to create project with all content type successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void createProjectWithPartialChapter() throws Exception {
+		
+		String expect = "Admin should be able to create project with partial chapter";
+		String actual = "Admin is not able to create project with partial chapter";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+		Date.setTodayDate(driver, VO.getNominationEndDate());
+		Thread.sleep(500);
+		Date.setTodayDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+		Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+		Thread.sleep(500);
+		Date.setTomorrowDate(driver);
+		Thread.sleep(1000);
+		
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		js.executeScript("arguments[0].click();", VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourse());
+		VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+		VDNUtils.waitToBeClickableAndClick(VS.getEditCourseUnit());
+		Thread.sleep(1000);
+		VS.getCourseUnitCheckBox().click();
+		Thread.sleep(1000);
+		VS.getCourseUnitCheckBox().click();
+//		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitCheckBox());
+//		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitCheckBox());
+		VDNUtils.waitToBeClickableAndClick(VS.getCourseUnitDoneBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+		text = "Completed";
+		actual = "Admin is able to create project with partial chapter successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
 
 	public static void verifyOrgadminIsAbleToFilterTheTextbook() throws Exception {
 		String home1 = null;

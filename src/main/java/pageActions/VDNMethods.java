@@ -86,7 +86,6 @@ public class VDNMethods extends BaseClass {
 
 		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
 		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
-
 		Thread.sleep(500);
 		Date.setNextToDayAfterTomorrowDate(driver);
 		Thread.sleep(1000);
@@ -94,7 +93,8 @@ public class VDNMethods extends BaseClass {
 		Thread.sleep(500);
 		action.sendKeys("4").perform();
 		Thread.sleep(500);
-		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		js.executeScript("arguments[0].click();", VO.getClkNextButton());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
 		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
