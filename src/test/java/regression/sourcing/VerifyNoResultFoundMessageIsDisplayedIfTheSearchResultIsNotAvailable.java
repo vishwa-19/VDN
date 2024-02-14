@@ -15,6 +15,5 @@ public static void verifyNoResultFoundMessageIsDisplayedIfTheSearchResultIsNotAv
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
 	VDNSourcingMethods.SourcingOrgAdminIsAbleToSearchWithUserNameAndVerifyNoResultMsg(ProjectName);
-//	VDNSourcingMethods.validateNoneOptionIsDisplayedAsDropdown();
 	}
 }

@@ -12,5 +12,6 @@ public class VerifySourcingOrgadminIsAbleToFilterTheTextbookInProjectDetailsPage
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName=VDNSourcingMethods.createProjectTextBookWithSkipReviewDisable();
 	VDNSourcingMethods.verifyProjectCreatedWithNominationOpenAndSkipRevDisable(ProjectName);
+	VDNSourcingMethods.verifyOrgadminIsAbleToFilterTheTextbook();
 	}
 }
