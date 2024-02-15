@@ -1,7 +1,10 @@
 
 package pageObject;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -522,6 +525,104 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="(//*[@class='item active'])[2]")
 	private WebElement targetCollection;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Open']")
+	private WebElement contentOpenBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-toc-accor-1']")
+	private WebElement contentUnits;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-meta-data'])[1]")
+	private WebElement totalCount;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-meta-data'])[2]")
+	private WebElement awaitingForMyReviewCount;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select Status']")
+	private WebElement selectStatus;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='dropdown icon'])[3]")
+	private WebElement selectStatusDropDown;
+	
+	@FindAll(@FindBy(how = How.XPATH, using = "//*[@class='transition ui label visible']"))
+	private List<WebElement> multipleStatus;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Nominations ']")
+	private WebElement nominationTab;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='fa fa-sort'])[5]")
+	private WebElement contributorNameSort;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='fa fa-sort'])[6]")
+	private WebElement typeSort;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='fa fa-sort'])[7]")
+	private WebElement contentSort;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='fa fa-sort'])[8]")
+	private WebElement sampleSort;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='d-inline-block'])[2]")
+	private WebElement nominationDateSort;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Status']")
+	private WebElement nominationTabStatus;
+	
+	public WebElement getNominationTabStatus() {
+		return nominationTabStatus;
+	}
+		
+	public WebElement getNominationDateSort() {
+		return nominationDateSort;
+	}
+	
+	public WebElement getSampleSort() {
+		return sampleSort;
+	}
+	
+	public WebElement getContentSort() {
+		return contentSort;
+	}
+	
+	public WebElement getTypeSort() {
+		return typeSort;
+	}
+	
+	public WebElement getContributorNameSort() {
+		return contributorNameSort;
+	}
+	
+	public WebElement getNominationTab() {
+		return nominationTab;
+	}
+	
+	public List<WebElement> getMultipleStatus() {
+		return multipleStatus;
+	}
+	
+	public WebElement getSelectStatusDropDown() {
+		return selectStatusDropDown;
+	}
+	
+	public WebElement getSelectStatus() {
+		return selectStatus;
+	}
+	
+	public WebElement getAwaitingForMyReviewCount() {
+		return awaitingForMyReviewCount;
+	}
+	
+	public WebElement getTotalCount() {
+		return totalCount;
+	}
+	
+	public WebElement getContentUnits() {
+		return contentUnits;
+	}
+	
+	public WebElement getContentOpenBtn() {
+		return contentOpenBtn;
+	}
 	
 	public WebElement getTargetCollection() {
 		return targetCollection;
