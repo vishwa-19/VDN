@@ -12,28 +12,6 @@ import org.openqa.selenium.support.How;
 
 public class VDNSourcing {
 	
-
-	@FindBy(how=How.XPATH,using="//a[text()='For Books/Course/Other Collections '] ")
-	private WebElement assertCollection;
-	
-	@FindBy(how=How.XPATH,using="//a[text()='For Question Sets ']")
-	private WebElement assertForQSet;
-	
-	@FindBy(how=How.XPATH,using="//a[text()='For individual content not for any collection '] ")
-	private WebElement assertIndContent;
-	
-	@FindBy(how=How.XPATH,using="(//button[contains(text(),'Apply Filter')])[1]")
-	private WebElement applyBtn;
-	
-	@FindBy(how=How.XPATH,using="//div[contains(text(),' Apply filters ')]")
-	private WebElement assertApplyFilterPopUp;
-		
-	@FindBy(how=How.XPATH,using="//label[text()='Medium(s)']")
-	private WebElement assertMediumOnPopUp;
-	
-	@FindBy(how=How.XPATH,using="//label[text()='Class(es)']")
-	private WebElement assertClassOnPopUp;
-	
 	@FindBy(how=How.XPATH,using="//label[text()='Subject(s)']")
 	private WebElement assertSubjectsOnPopUp;
 	
@@ -78,6 +56,27 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="//button[text()='Save']")
 	private WebElement assertSaveBtn;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='For Books/Course/Other Collections '] ")
+	private WebElement assertCollection;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='For Question Sets ']")
+	private WebElement assertForQSet;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='For individual content not for any collection '] ")
+	private WebElement assertIndContent;
+	
+	@FindBy(how=How.XPATH,using="(//button[contains(text(),'Apply Filter')])[1]")
+	private WebElement applyBtn;
+	
+	@FindBy(how=How.XPATH,using="//div[contains(text(),' Apply filters ')]")
+	private WebElement assertApplyFilterPopUp;
+		
+	@FindBy(how=How.XPATH,using="//label[text()='Medium(s)']")
+	private WebElement assertMediumOnPopUp;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Class(es)']")
+	private WebElement assertClassOnPopUp;
 	
 	@FindBy(how=How.XPATH,using="//button[text()='Close']")
 	private WebElement assertCloseBtn;
@@ -290,11 +289,39 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[text()='No users found.']")
 	private WebElement assertNoUsersFound;
 	
+	@FindBy(how=How.XPATH,using="//div[@class='twelve wide tablet five wide computer column text-right']")
+	private WebElement assertGuidelineDetails;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Download Digital Textbook details ']")
+	private WebElement assertDigiTextBookDet;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Details ']")
+	private WebElement assertDetailsTab;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project Scope ']")
+	private WebElement assertProjectScopeTab;
 	
 	
 	
 	
 	
+	
+	public WebElement getAssertProjectScopeTab() {
+		return assertProjectScopeTab;
+	}
+
+	public WebElement getAssertDetailsTab() {
+		return assertDetailsTab;
+	}
+
+	public WebElement getAssertDigiTextBookDet() {
+		return assertDigiTextBookDet;
+	}
+
+	public WebElement getAssertGuidelineDetails() {
+		return assertGuidelineDetails;
+	}
+
 	public WebElement getAssertNoUsersFound() {
 		return assertNoUsersFound;
 	}
@@ -526,6 +553,7 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="(//*[@class='item active'])[2]")
 	private WebElement targetCollection;
 	
+
 	@FindBy(how=How.XPATH,using="//*[text()='Open']")
 	private WebElement contentOpenBtn;
 	
@@ -628,6 +656,8 @@ public class VDNSourcing {
 		return targetCollection;
 	}
 	
+
+
 	public WebElement getCourseUnitDoneBtn() {
 		return courseUnitDoneBtn;
 	}
@@ -939,10 +969,12 @@ public class VDNSourcing {
 		return assertApplyFilterPopUp;
 	}
 
+	
 	public WebElement getApplyBtn() {
 		return applyBtn;
 	}
 
+	
 	public WebElement getAssertIndContent() {
 		return assertIndContent;
 	}
@@ -954,6 +986,8 @@ public class VDNSourcing {
 	public WebElement getAssertCollection() {
 		return assertCollection;
 	}
+	
+	
 		
 	
 }
