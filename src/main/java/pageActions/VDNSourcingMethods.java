@@ -5532,6 +5532,103 @@ public static String createProjectCourseWithSkipReviewEnableK12Framework() throw
 }
 
 
+	public static void verifyUnitsDisplayUnderDropDown(String projectName) {
+	
+		String expect = "All content units should be display under drop down";
+		String actual = "All content units is not display under drop down";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getContentUnits().isDisplayed());
+		text = "Completed";
+		actual = "All content units is display under drop down successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyTotalAndAwaitingForMyReviewCountIsAvailable(String projectName) {
+		
+		String expect = "Verify total and awaiting for my review count should be display";
+		String actual = "Verify total and awaiting for my review count is not display";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getTotalCount().isDisplayed());
+		Assert.assertTrue(VS.getAwaitingForMyReviewCount().isDisplayed());
+		text = "Completed";
+		actual = "Total and awaiting for my review count is display successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyAdminCanAbleToSelectMultipleStatus(String projectName) {
+		
+		String expect = "Verfi admin should be able to select multiple status";
+		String actual = "Verfi admin is not able to select multiple status";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getSelectStatus().isDisplayed());
+		int statusCount = VS.getMultipleStatus().size();
+		Assert.assertTrue(1<statusCount);
+		text = "Completed";
+		actual = "Admin is able to select multiple status successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void applySortAndFilterInNominationTab(String projectName) {
+		
+		String expect = "Verfi admin should be able to apply sort and filter in nomination tab";
+		String actual = "Verfi admin is not able to apply sort and filter in nomination tab";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+		Assert.assertTrue(VS.getContributorNameSort().isDisplayed());
+		Assert.assertTrue(VS.getTypeSort().isDisplayed());
+		Assert.assertTrue(VS.getContentSort().isDisplayed());
+		Assert.assertTrue(VS.getSampleSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationDateSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationTabStatus().isDisplayed());
+		text = "Completed";
+		actual = "Verfi admin is able to apply sort and filter in nomination tab successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+
+
 public static void verifyGuidelineNotAvailableInTheTextbookTab(String ProjectName) throws InterruptedException {
 	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 	String home = null;
@@ -5572,6 +5669,7 @@ public static String CreateNewProjectwithAllContentTypesWithDigitalTextBooks() t
 	String home = null;
 	String expect = "Sourcing org admin is able to create Project without Guideline Document";
 	String actual = "Sourcing org admin is unable to create Project without Guideline Document";
+
 	
 	String home2 = null;
 	String expect2 = "Confirmation pop up should displayed on click of publish button";
