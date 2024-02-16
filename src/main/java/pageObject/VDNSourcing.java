@@ -231,8 +231,7 @@ public class VDNSourcing {
 	private WebElement assertMed;
 	
 	@FindBy(how=How.XPATH,using="//label[text()='Class']")
-	private WebElement assertClassOpt;
-
+	private WebElement assertClassOpt1;
 
 	@FindBy(how=How.XPATH,using="//label[text()='Subject']")
 	private WebElement assertSub;
@@ -297,10 +296,6 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="//div[text()=' Project Scope ']")
 	private WebElement assertProjectScopeTab;
-	
-	
-	
-	
 	
 	
 	public WebElement getAssertProjectScopeTab() {
@@ -396,7 +391,7 @@ public class VDNSourcing {
 	}
 	
 	public WebElement getAssertClassOpt() {
-		return assertClassOpt;
+		return assertClassOpt1;
 	}
 
 
@@ -550,6 +545,15 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="(//*[@class='item active'])[2]")
 	private WebElement targetCollection;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Are you sure you want to remove the user from the project? ']")
+	private WebElement assertConfirmationPopup;
+	
+	 
+	
+	public WebElement getAssertConfirmationPopup() {
+		return assertConfirmationPopup;
+	}
+
 	public WebElement getCourseUnitDoneBtn() {
 		return courseUnitDoneBtn;
 	}

@@ -5814,6 +5814,262 @@ public static void verifyAdminIsAbleToLoginToTheSourcingPortal() throws Exceptio
 
 }
 
+
+public static void validateConfirmationPopUpDisplayedOnClickOfNoneInTheDropDown()
+		throws InterruptedException {
+	String home = null;
+	String expect = "Confirmation pop with message 'Are you sure you want to remove the user from the project?' Should be displayed on click of none in the drop down.";
+	String actual =  "Confirmation pop with message 'Are you sure you want to remove the user from the project?' is not displayed on click of none in the drop down.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+
+		VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+		
+		Assert.assertTrue(VO.getSearchField().isDisplayed());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "Jaga2");
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+		Thread.sleep(5000);
+		Assert.assertTrue(VS.getAssertNonOpt().isDisplayed());
+		
+		VDNUtils.waitToBeClickableAndClick(VS.getAssertNonOpt());
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getAssertConfirmationPopup().isDisplayed());
+		
+		home = VS.getAssertConfirmationPopup().getText();
+		System.out.println(home);
+		
+		VDNUtils.waitToBeClickableAndClick(VS.getClkYesBtn());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+		Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+
+		actual = "Confirmation pop with message 'Are you sure you want to remove the user from the project?' is displayed on click of none in the drop down." ;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("Are you sure you want to remove the user from the project?", homeText, expect, actual);
+	}
+}
+
+public static String createProjectTextBookWithYourOrgAndSkipReviewDisable() throws Exception {
+	String home = null;
+	String expect = "Sourcing org admin is able to create and Publish The Project Successfully ";
+	String actual = "Sourcing org admin is unable to create and Publish The Project Successfully";
+
+	try {
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+	String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+	String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);		
+	
+//	js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+//	Date.setTodayDate(driver, VO.getNominationEndDate());
+//
+//	Thread.sleep(500);
+//	Date.setTodayDate(driver);
+//	Thread.sleep(1000);
+//	Actions action = new Actions(driver);
+//	action.sendKeys("\b").perform();
+//	Thread.sleep(500);
+//	action.sendKeys("4").perform();
+//	Thread.sleep(500);
+//
+//	VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+//	Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+//
+//	Thread.sleep(500);
+//	Date.setTomorrowDate(driver);
+//	Thread.sleep(1000);
+//	action.sendKeys("\b").perform();
+//	Thread.sleep(500);
+//	action.sendKeys("4").perform();
+//	Thread.sleep(500);
+//	
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSelYourOrgOnly());
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getContributionEndDate());
+	VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+	Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+	Thread.sleep(500);
+	Date.setDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	Actions action = new Actions(driver);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+	VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+	Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+	Thread.sleep(500);
+	Date.setNextToDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getSelFrameworkDropdown());
+	
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VS.getSelFrameworkTypeK12());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getBtnApply());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+	VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+	home = VO.getAssertProjectPublished().getText();
+	actual = "Sourcing org admin is able to Create and Publish The Project Successfully";
+	return ProjectName;
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+}
+
+}
+
+public static String createProjectWithCourseWithSkipRevEnable() throws InterruptedException {
+	String home = null;
+	String expect = "Sourcing org admin is able to create and Publish The Project Successfully";
+	String actual = "Sourcing org admin is unable to create and Publish The Project Successfully";
+
+	try {
+
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSkipReview());
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+		Date.setTodayDate(driver, VO.getNominationEndDate());
+
+		Thread.sleep(500);
+		Date.setTodayDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+		Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+
+		Thread.sleep(500);
+		Date.setTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());			
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelCourse());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+
+		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+		
+		home = VO.getAssertProjectPublished().getText();
+		actual = "Sourcing org admin is able to Create and Publish The Project Successfully";
+
+		return ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+	}
+
+}
 	
 }
 
