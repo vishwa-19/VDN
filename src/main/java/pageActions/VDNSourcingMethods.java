@@ -5897,22 +5897,84 @@ public static void verifyAdminIsAbleToLoginToTheSourcingPortal() throws Exceptio
 
 	try {
 		
-	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
-	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
-	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-	Assert.assertTrue(VO.getCreateNewBtn().isDisplayed());
-
-	home = VO.getCreateNewBtn().getText();
-	actual = "sourcing org admin is able to login successfully into the sourcing portal, select and deselect the contributor";
-
-} finally {
-	String homeText = home != null ? home : "N/A";
-	Listeners.customAssert("Create New Project", homeText, expect, actual);
-}
-
-}
-
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+		Assert.assertTrue(VO.getCreateNewBtn().isDisplayed());
 	
+		home = VO.getCreateNewBtn().getText();
+		actual = "sourcing org admin is able to login successfully into the sourcing portal, select and deselect the contributor";
+	
+			} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Create New Project", homeText, expect, actual);
+		}
+
+	}
+
+	public static void verifyAllTheDetailsAreAvailableInNominationTab(String projectName) {
+		
+		String expect = "Verify all details should be available in nomination tab";
+		String actual = "All the details are not available in nomination tab";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+		Assert.assertTrue(VS.getNominationCount().isDisplayed());
+		Assert.assertTrue(VS.getNominationTotal().isDisplayed());
+		Assert.assertTrue(VS.getNominationApproved().isDisplayed());
+		Assert.assertTrue(VS.getNominationRejected().isDisplayed());
+		Assert.assertTrue(VS.getNominationPending().isDisplayed());
+		Assert.assertTrue(VS.getDownloadNominationsList().isDisplayed());
+		Assert.assertTrue(VS.getContributedBy().isDisplayed());
+		Assert.assertTrue(VS.getNominationsContent().isDisplayed());
+		Assert.assertTrue(VS.getNominationsContentType().isDisplayed());
+		Assert.assertTrue(VS.getContributorNameSort().isDisplayed());
+		Assert.assertTrue(VS.getTypeSort().isDisplayed());
+		Assert.assertTrue(VS.getContentSort().isDisplayed());
+		Assert.assertTrue(VS.getSampleSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationDateSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationTabStatus().isDisplayed());
+		text = "Completed";
+		actual = "All the details are available in nomination tab successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyStatusFilterInNominationTab(String projectName) {
+		
+		String expect = "Verify admin can apply filter get the nomination status";
+		String actual = "Admin is unable to apply filter get the nomination status";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+		Assert.assertTrue(VS.getNominationTabStatus().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTabStatus());
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationsApproved());
+		Assert.assertTrue(VS.getViewContribution().isDisplayed());
+		text = "Completed";
+		actual = "Admin able to apply filter get the nomination status successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+		
 }
 
 
