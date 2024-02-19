@@ -600,6 +600,83 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Status']")
 	private WebElement nominationTabStatus;
 	
+	@FindBy(how=How.XPATH,using="(//*[@class='item active'])[2]/child::span")
+	private WebElement nominationCount;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='text-left line-height-1-3']/child::div)[1]")
+	private WebElement nominationTotal;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='text-left line-height-1-3']/child::div)[2]")
+	private WebElement nominationApproved;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='text-left line-height-1-3']/child::div)[3]")
+	private WebElement nominationRejected;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='text-left line-height-1-3']/child::div)[4]")
+	private WebElement nominationPending;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Download Nominations List']")
+	private WebElement downloadNominationsList;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='text-left flex-grow-1']")
+	private WebElement contributedBy;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='br-1 text-center flex-grow-1 bl-2']")
+	private WebElement nominationsContent;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='br-1 text-right flex-grow-1 bl-2']")
+	private WebElement nominationsContentType;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Approved']")
+	private WebElement nominationsApproved;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='View Contribution']")
+	private WebElement viewContribution;
+	
+	public WebElement getViewContribution() {
+		return viewContribution;
+	}
+
+	public WebElement getNominationsApproved() {
+		return nominationsApproved;
+	}
+
+	public WebElement getNominationsContentType() {
+		return nominationsContentType;
+	}
+
+	public WebElement getNominationsContent() {
+		return nominationsContent;
+	}
+
+	public WebElement getContributedBy() {
+		return contributedBy;
+	}
+
+	public WebElement getDownloadNominationsList() {
+		return downloadNominationsList;
+	}
+
+	public WebElement getNominationTotal() {
+		return nominationTotal;
+	}
+
+	public WebElement getNominationApproved() {
+		return nominationApproved;
+	}
+
+	public WebElement getNominationRejected() {
+		return nominationRejected;
+	}
+
+	public WebElement getNominationPending() {
+		return nominationPending;
+	}	
+	
+	public WebElement getNominationCount() {
+		return nominationCount;
+	}
+
 	public WebElement getNominationTabStatus() {
 		return nominationTabStatus;
 	}
