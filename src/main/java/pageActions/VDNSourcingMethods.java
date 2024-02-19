@@ -5897,16 +5897,11 @@ public static void verifyAdminIsAbleToLoginToTheSourcingPortal() throws Exceptio
 
 	try {
 		
-<<<<<<< HEAD
+
 		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
 		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
 		Assert.assertTrue(VO.getCreateNewBtn().isDisplayed());
-=======
-	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
-	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
-	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-	Assert.assertTrue(VO.getCreateNewBtn().isDisplayed());
 
 	home = VO.getCreateNewBtn().getText();
 	actual = "sourcing org admin is able to login successfully into the sourcing portal, select and deselect the contributor";
@@ -6174,17 +6169,7 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 	}
 
 }
->>>>>>> f6c69c2ef22b69efe8fb5a8add58b97f32ab0c8a
-	
-		home = VO.getCreateNewBtn().getText();
-		actual = "sourcing org admin is able to login successfully into the sourcing portal, select and deselect the contributor";
-	
-			} finally {
-		String homeText = home != null ? home : "N/A";
-		Listeners.customAssert("Create New Project", homeText, expect, actual);
-		}
 
-	}
 
 	public static void verifyAllTheDetailsAreAvailableInNominationTab(String projectName) {
 		
