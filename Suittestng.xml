@@ -115,7 +115,7 @@
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToLoginSuccessfullyIntoTheSourcingPortal" />-->
 
 			<!--<class name="regression.sourcing.VerifyNoneOptionIsDisplayedAsDropdownForTheExistingReviewerOfTheProject" />-->
-			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToLoginSuccessfullyIntoTheSourcingPortal" />
+			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToLoginSuccessfullyIntoTheSourcingPortal" />-->
 			<!-- <class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />-->
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
 			<!--<class name="regression.sourcing.VerifyAdminCanCreateAndPublishProjectWithPartialChapter" />
@@ -128,7 +128,7 @@
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
 			<!--<class name="regression.sourcing.VerifyUnitOfTargetCollection" />
 			<class name="regression.sourcing.VerifyAdminCanCreateAndPublishProjectWithPartialChapter" />-->
-			<class name="regression.sourcing.VerifyOrgAdminIsAbleToCreateProjectCourseCPDWithNomOpenAndSkipEnable" />
+			<class name="regression.sourcing.VerifyApplyFiltersPopUpPageIsDisplayedPostClickingOnApplyFilterButtonAndItsDetails" />
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />
 			<class name="regression.sourcing.VerifyUnitOfTargetCollection" />
 			<class name="regression.sourcing.VerifyAdminCanCreateAndPublishProjectWithPartialChapter" />
@@ -136,7 +136,7 @@
 			<class name="regression.sourcing.VerifyFilterWhileCreatingProject" /
 			<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
 			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />>-->
-			<class name="regression.sourcing.VerifyAdminCanAbleToApplySortAndFilterInNominationTab" />
+			<!--<class name="regression.sourcing.VerifyAdminCanAbleToApplySortAndFilterInNominationTab" />-->
 			<!--<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />-->
 			<!--<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
 			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />
