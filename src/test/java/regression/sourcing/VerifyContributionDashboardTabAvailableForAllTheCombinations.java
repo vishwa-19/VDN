@@ -1,0 +1,32 @@
+package regression.sourcing;
+
+import org.testng.annotations.Test;
+
+import pageActions.UserOnBoarding;
+import pageActions.VDNSourcingMethods;
+import utility.BaseClass;
+
+public class VerifyContributionDashboardTabAvailableForAllTheCombinations extends BaseClass {
+	
+	
+	@Test
+	public static void verifyContributionDashboardTabAvailableForAllTheCombinations() throws Exception {
+	UserOnBoarding.loginAsSourcing("Admin");
+	String ProjectName1=VDNSourcingMethods.createProjectBookWithSkipReviewEnable();
+	VDNSourcingMethods.verifyProjectCreatedWithNominationOpenAndSkipRevEnable(ProjectName1);
+	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName1);
+	
+	String ProjectName2=VDNSourcingMethods.createProjectCourseWithSkipReviewDisable();
+	VDNSourcingMethods.verifyProjectCreatedWithNominationOpenAndSkipRevDisable(ProjectName2);
+	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName2);
+	
+	String ProjectName3=VDNSourcingMethods.createProjectCourseWithNominationDisAndSkipReviewEnable();
+	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipEnabled(ProjectName3);
+	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName3);
+	
+	String ProjectName4=VDNSourcingMethods.createProjectCourseWithNomAndSkipDisable();
+	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipDisable(ProjectName4);
+	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName4);
+	}
+
+}
