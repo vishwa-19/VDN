@@ -811,6 +811,143 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='View Contribution']")
 	private WebElement viewContribution;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Assign users to project ']")
+	private WebElement assignUserTab;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Content Type(s)']")
+	private WebElement contentTypeProject;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='program-timeline px-10 py-10']")
+	private WebElement projectDates;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-pageSection-header']")
+	private WebElement nameWithUserCount;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='input-div relative']")
+	private WebElement searchBar;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='w-10 cursor-pointer sb-sorting'])[5]")
+	private WebElement userName;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Email / Mobile']")
+	private WebElement userEmailMobile;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='w-5 cursor-pointer sb-sorting'])[1]")
+	private WebElement userMedium;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='w-5 cursor-pointer sb-sorting'])[2]")
+	private WebElement userClass;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='w-5 cursor-pointer sb-sorting'])[3]")
+	private WebElement userSubject;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Select Role ']/parent::select")
+	private WebElement selectRole;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()=' Select Role ']/parent::select/child::option[text()=' REVIEWER '])[1]")
+	private WebElement roleReviewer;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Roles updated...']")
+	private WebElement roleUpdated;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Download Contribution Details ']")
+	private WebElement downloadContributonDetails;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='va-top sb-sorting cursor-pointer'])[1]")
+	private WebElement contributor;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='va-top sb-sorting cursor-pointer'])[2]")
+	private WebElement typeOfContributor;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='bb-0 pb-0'])[1]")
+	private WebElement contributingOrganisation;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='bb-0 pb-0'])[2]")
+	private WebElement yourOrganisation;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Contribution Dashboard ']")
+	private WebElement contributionDashboard;
+	
+	public WebElement getContributionDashboard() {
+		return contributionDashboard;
+	}
+
+	public WebElement getYourOrganisation() {
+		return yourOrganisation;
+	}
+
+	public WebElement getContributingOrganisation() {
+		return contributingOrganisation;
+	}
+
+	public WebElement getTypeOfContributor() {
+		return typeOfContributor;
+	}
+
+	public WebElement getContributor() {
+		return contributor;
+	}
+
+	public WebElement getDownloadContributonDetails() {
+		return downloadContributonDetails;
+	}
+
+	public WebElement getRoleUpdated() {
+		return roleUpdated;
+	}
+
+	public WebElement getRoleReviewer() {
+		return roleReviewer;
+	}
+
+	public WebElement getSelectRole() {
+		return selectRole;
+	}
+
+	public WebElement getUserMedium() {
+		return userMedium;
+	}
+
+	public WebElement getUserClass() {
+		return userClass;
+	}
+
+	public WebElement getUserSubject() {
+		return userSubject;
+	}
+
+	public WebElement getUserEmailMobile() {
+		return userEmailMobile;
+	}
+
+	public WebElement getUserName() {
+		return userName;
+	}
+
+	public WebElement getSearchBar() {
+		return searchBar;
+	}
+
+	public WebElement getNameWithUserCount() {
+		return nameWithUserCount;
+	}
+
+	public WebElement getProjectDates() {
+		return projectDates;
+	}
+
+	public WebElement getContentTypeProject() {
+		return contentTypeProject;
+	}
+
+	public WebElement getAssertClassOpt1() {
+		return assertClassOpt1;
+	}
+
+	public WebElement getAssignUserTab() {
+		return assignUserTab;
+	}
+
 	public WebElement getViewContribution() {
 		return viewContribution;
 	}
