@@ -6233,8 +6233,105 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 		
 	}
 	
+
+	public static void verifyAllTheDetailsInAssignUsersToProjectTab(String projectName) {
+			
+			String expect = "All the details in assign user tab should be display to user";
+			String actual = "All the details in assign user tab is not displayed to user";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "((//*[text()=' ";
+			String s2 = projectName;
+			String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+			String s4 = "((//*[text()='";
+			String s5 = " ']))";
+			WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(openBtn);
+			VDNUtils.waitToBeClickableAndClick(VS.getAssignUserTab());
+			WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+			Assert.assertTrue(projectname.isDisplayed());
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+			Assert.assertTrue(VS.getProjectDates().isDisplayed());
+			Assert.assertTrue(VS.getNameWithUserCount().isDisplayed());
+			Assert.assertTrue(VS.getSearchBar().isDisplayed());
+			Assert.assertTrue(VS.getUserName().isDisplayed());
+			Assert.assertTrue(VS.getUserEmailMobile().isDisplayed());
+			Assert.assertTrue(VS.getUserSubject().isDisplayed());
+			Assert.assertTrue(VS.getUserClass().isDisplayed());
+			Assert.assertTrue(VS.getUserMedium().isDisplayed());
+			text = "Completed";
+			actual = "All the details in assign user tab is displayed to user successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+	public static void assignRoleToUser(String projectName) throws Exception {
+		
+		String expect = "Admin should be able to assign role to user";
+		String actual = "Admin unable to assign role to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getAssignUserTab());
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
+		VDNUtils.waitToBeClickableAndClick(VS.getRoleReviewer());
+		Thread.sleep(1000);
+		Assert.assertTrue(VS.getRoleUpdated().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to assign role to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void verifyAllTheDetailsInContributionDashboardTab(String projectName) {
+		
+		String expect = "All the details in contribution dashboard tab should be display to user";
+		String actual = "All the details in contribution dashboard tab is not displayed to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s4 = "((//*[text()='";
+		String s5 = " ']))";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContributionDashboard());
+		WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+		Assert.assertTrue(projectname.isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getDownloadContributonDetails().isDisplayed());
+		Assert.assertTrue(VS.getContributor().isDisplayed());
+		Assert.assertTrue(VS.getTypeOfContributor().isDisplayed());
+		Assert.assertTrue(VS.getContributingOrganisation().isDisplayed());
+		Assert.assertTrue(VS.getYourOrganisation().isDisplayed());
+		text = "Completed";
+		actual = "All the details in contribution dashboard tab is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+
 	public static void validateyNominationAndContributionStatusAndApply()
 			throws Exception {
+
 		
 		String home1 = null;
 		String expect1 = "sourcing orgadmin should be able apply filter as Open for contribution date.";
