@@ -300,6 +300,91 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[text()=' Project Scope ']")
 	private WebElement assertProjectScopeTab;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Open']")
+	private WebElement clkNomOpenStatus;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Closed']")
+	private WebElement clkNomClosedStatus;
+
+	@FindBy(how=How.XPATH,using="//span[text()='Any']")
+	private WebElement clkNomAnyStatus;
+	
+	@FindBy(how=How.XPATH,using="(//span[text()='Open'])[2]")
+	private WebElement clkConOpenStatus;
+
+	@FindBy(how=How.XPATH,using="(//span[text()='Closed'])[2]")
+	private WebElement clkConClosedStatus;
+
+	@FindBy(how=How.XPATH,using="(//span[text()='Any'])[2]")
+	private WebElement clkConAnyStatus;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Contribution Date']//following::sui-select")
+	private WebElement selContributionDate;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Nomination Date']//following::sui-select")
+	private WebElement selNominationDate;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' 2 Filters applied '])[1]")
+	private WebElement assert2Filters;
+	
+	@FindBy(how=How.XPATH,using="//textarea[@placeholder='Add description']")
+	private WebElement enterReco;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Framework Type ']")
+	private WebElement assertFrameworkType;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public WebElement getAssertFrameworkType() {
+		return assertFrameworkType;
+	}
+
+	public WebElement getEnterReco() {
+		return enterReco;
+	}
+
+	public WebElement getAssert2Filters() {
+		return assert2Filters;
+	}
+
+	public WebElement getSelNominationDate() {
+		return selNominationDate;
+	}
+
+	public WebElement getSelContributionDate() {
+		return selContributionDate;
+	}
+
+	public WebElement getClkConAnyStatus() {
+		return clkConAnyStatus;
+	}
+
+	public WebElement getClkConClosedStatus() {
+		return clkConClosedStatus;
+	}
+	
+	public WebElement getClkConOpenStatus() {
+		return clkConOpenStatus;
+	}
+	
+	public WebElement getClkNomAnyStatus() {
+		return clkNomAnyStatus;
+	}
+	
+	public WebElement getClkNomClosedStatus() {
+		return clkNomClosedStatus;
+	}
+	
+	public WebElement getClkNomOpenStatus() {
+		return clkNomOpenStatus;
+	}
 	
 	public WebElement getAssertProjectScopeTab() {
 		return assertProjectScopeTab;
