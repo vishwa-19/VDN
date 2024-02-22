@@ -24,7 +24,7 @@ public class VerifyContributionDashboardTabAvailableForAllTheCombinations extend
 	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipEnabled(ProjectName3);
 	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName3);
 	
-	String ProjectName4=VDNSourcingMethods.createProjectCourseWithNomAndSkipDisable();
+	String ProjectName4=VDNSourcingMethods.createProjectCourseWithNomAndSkipDisable1();
 	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipDisable(ProjectName4);
 	VDNSourcingMethods.verifyContributionDashboardAvailableForAllTheCombinations(ProjectName4);
 	}

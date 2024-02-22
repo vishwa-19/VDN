@@ -165,7 +165,7 @@
 
 			<!--<class name="regression.sourcing.VerifyAdminIsAbleToApplyStatusFilterAndFetchTheResultInTheNominationStatus" />-->
 
-			<class name="regression.sourcing.VerifyOptionsAvailableForSourcingOrgadmin" />
+			<class name="regression.sourcing.VerifyContentCategoriesDuringTheProjectCreation" />
       
 			<!--<class name="regression.sourcing.VerifyThereIsAOptionToSelectTheFrameworkTypeInTheProjectScopeTabWhileCreatingTheProject" />-->
 

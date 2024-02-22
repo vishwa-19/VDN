@@ -374,14 +374,21 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()='Know More']")
 	private WebElement assertKnowMoreBtn;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Others']")
+	private WebElement assertK12FrameWork;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Invite User']")
+	private WebElement assertInviteUser;
 	
 	
-	
-	
-	
+	public WebElement getAssertInviteUser() {
+		return assertInviteUser;
+	}
 
+	public WebElement getAssertK12FrameWork() {
+		return assertK12FrameWork;
+	}
 
-	
 	public WebElement getAssertKnowMoreBtn() {
 		return assertKnowMoreBtn;
 	}
@@ -867,7 +874,14 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="//*[text()=' Contribution Dashboard ']")
 	private WebElement contributionDashboard;
+			
+	@FindBy(how=How.XPATH,using="(//button[text()='Cancel']//preceding::button[1])[2]")
+	private WebElement clkNextBtn;
 	
+	public WebElement getClkNextBtn() {
+		return clkNextBtn;
+	}
+
 	public WebElement getContributionDashboard() {
 		return contributionDashboard;
 	}
