@@ -174,8 +174,8 @@
 
 			<!--<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />-->
 			<!--<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
-			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />
-			<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />	 -->
+			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
+			<class name="regression.sourcing.VerifyAdminIsAbleToSearchFetchTheUserAndClearTheSearch" />	 
 
 		</classes>
 	</test>
