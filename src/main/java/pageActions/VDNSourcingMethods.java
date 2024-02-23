@@ -6710,27 +6710,149 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 	}	
 	
 	
-public static void verifyContributionDashboardAvailableForAllTheCombinations(String projectName) {
+	public static void verifyContributionDashboardAvailableForAllTheCombinations(String projectName) {
+			
+		String home = null;
+		String expect = "Contribution dashboard should be available for "+projectName;
+		String actual = "Contribution dashboard is unavailable for "+projectName;
+			try {
 		
-	String home = null;
-	String expect = "Contribution dashboard should be available for "+projectName;
-	String actual = "Contribution dashboard is unavailable for "+projectName;
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
+			
+			home = VO.getAssertContribution().getText();
+			System.out.print(home);
+			
+			actual = "Contribution dashboard is unavailable for "+projectName;
+			}finally {
+				String homeText = home != null ? home : "N/A";
+				Listeners.customAssert("Contribution Dashboard", homeText, expect, actual);
+	
+			}
+			
+		}
+	
+	public static void verifyAllDetailsRreAvailableInTheReportSection(String projectName) {
+			
+			String expect = "All the details in report tab should be display to user";
+			String actual = "All the details in report tab is not displayed to user";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "((//*[text()=' ";
+			String s2 = projectName;
+			String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+			String s4 = "((//*[text()='";
+			String s5 = " ']))";
+			WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(openBtn);
+			VDNUtils.waitToBeClickableAndClick(VS.getReportTab());
+			WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+			Assert.assertTrue(projectname.isDisplayed());
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+			Assert.assertTrue(VS.getProjectDates().isDisplayed());
+			Assert.assertTrue(VS.getReportName().isDisplayed());
+			Assert.assertTrue(VS.getReportDescription().isDisplayed());
+			Assert.assertTrue(VS.getReportDownloadBtn().isDisplayed());
+			text = "Completed";
+			actual = "All the details in report tab is displayed to user successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+	public static void verifyAllTheReportsAreAvailableInTheReportSection(String projectName,String expectedReport) {
+		
+		String expect = expectedReport+" should be available in report tab";
+		String actual = expectedReport+" is not available in report tab";
+		String text = "N/A";
 		try {
 	
-		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
-		Assert.assertTrue(VO.getAssertContribution().isDisplayed());
-		
-		home = VO.getAssertContribution().getText();
-		System.out.print(home);
-		
-		actual = "Contribution dashboard is unavailable for "+projectName;
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getReportTab());
+		VDNUtils.waitForElementToBeVisible(VS.getReports());
+		String actualReport = VS.getReports().getText();
+		Assert.assertEquals(actualReport, expectedReport);
+		text = "Completed";
+		actual = expectedReport+" is available in report tab";
 		}finally {
-			String homeText = home != null ? home : "N/A";
-			Listeners.customAssert("Contribution Dashboard", homeText, expect, actual);
-
+			Listeners.customAssert("Completed", text, expect, actual);
 		}
 		
 	}
+
+	
+	public static void verifyManageUserTab() {
+			
+			String expect = "User with content reviewer role should be available in manage user tab";
+			String actual = "User with content reviewer role is not available in manage user tab";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VS.getManageUsers());
+			VS.getRoles().click();
+			Assert.assertTrue(VS.getRole().isDisplayed());
+			text = "Completed";
+			actual = "User with content reviewer role is available in manage user tab successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+	public static void verifyAdminIsAbleToSortTheUserBasedOnNameAndRole() {
+		
+		String expect = "Adimn should be able to sort users based on name and role";
+		String actual = "Adimn is not able to sort users based on name and role";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUsers());
+		Assert.assertTrue(VS.getUserNameSort().isDisplayed());
+		Assert.assertTrue(VS.getUserRoleSort().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VS.getUserNameSort());
+		text = "Completed";
+		actual = "Adimn is able to sort users based on name and role successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+public static void verifyAdminIsAbleToSearchFetchTheUserAndClearTheSearch(String expectedUser) throws Exception {
+		
+		String expect = "Admin should be able to search and fetch the user and clear the search";
+		String actual = "Admin is not able to search and fetch the user and clear the search";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUsers());
+		VDNUtils.waitToBeClickableAndSendKeys(VS.getManageUserSearch(), expectedUser);
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
+		String searchedUser = VS.getSearchedUser().getText();
+		Assert.assertEquals(searchedUser, expectedUser);
+		VDNUtils.waitToBeClickableAndClick(VS.getCloseIcon());
+		text = "Completed";
+		actual = "Admin is able to search and fetch the user and clear the search successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+
+
+
 
 public static String validateCreateNewProjectwithAllContentTypesSkipRevEnable() throws InterruptedException {
 	String home = null;
@@ -8533,8 +8655,6 @@ public static void verifyProjectWithSkipReviewDisabledWithoutTC(String ProjectNa
 	}
 
 }
-
-
 
 }
 
