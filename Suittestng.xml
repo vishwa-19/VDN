@@ -165,8 +165,15 @@
 
 			<!--<class name="regression.sourcing.VerifyAdminIsAbleToApplyStatusFilterAndFetchTheResultInTheNominationStatus" />-->
 
-			<class name="regression.sourcing.VerifyContentCategoriesDuringTheProjectCreation" />
-      
+			<!--<class name="regression.sourcing.VerifyContentCategoriesDuringTheProjectCreation" />-->
+			<class name="regression.sourcing.VerifyAdminIsCreateProjectFromYourOrgWithSkipRevEnableWithoutTC" />
+			<class name="regression.sourcing.VerifySelectedSetOfContributorsProjectWithSkipReviewDisabledWithoutTC" />
+			<class name="regression.sourcing.VerifySelectedSetOfContributorsProjectWithSkipReviewEnanbleWithoutTC" />
+			<class name="regression.sourcing.VerifyAdminIsCreateProjectFromYourOrgWithSkipRevDisableWithoutTC" />
+			
+			
+				
+       
 			<!--<class name="regression.sourcing.VerifyThereIsAOptionToSelectTheFrameworkTypeInTheProjectScopeTabWhileCreatingTheProject" />-->
 
 			<!--<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />-->
