@@ -333,15 +333,115 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//label[text()='Framework Type ']")
 	private WebElement assertFrameworkType;
 	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[2]")
+	private WebElement assertDraftCount;
+	
+	@FindBy(how=How.XPATH,using="//th[text()=' Draft ']")
+	private WebElement assertDraftTitle;
+	
+	@FindBy(how=How.XPATH,using="//th[text()=' Review Pending ']")
+	private WebElement assertRevPenTitle;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[3]")
+	private WebElement assertRevPenCount;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[4]")
+	private WebElement asssertCorPenCount;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[5]")
+	private WebElement asssertAcceptedCount;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[6]")
+	private WebElement asssertNotAcceptedCount;
+	
+
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[7]")
+	private WebElement assertOrgAppPenCount;
+	                   
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[8]")
+	private WebElement assertApprovedCount;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[9]")
+	private WebElement assertRejectedCount;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Need Help?']")
+	private WebElement assertNeedHelp;
+	
+	@FindBy(how=How.XPATH,using="//i[@id='sourcing_manage_users_help']")
+	private WebElement assertQuestionMarkIcon;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Know More']")
+	private WebElement assertKnowMoreBtn;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Others']")
+	private WebElement assertK12FrameWork;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Invite User']")
+	private WebElement assertInviteUser;
 	
 	
+	public WebElement getAssertInviteUser() {
+		return assertInviteUser;
+	}
+
+	public WebElement getAssertK12FrameWork() {
+		return assertK12FrameWork;
+	}
+
+	public WebElement getAssertKnowMoreBtn() {
+		return assertKnowMoreBtn;
+	}
+
+	public WebElement getAssertQuestionMarkIcon() {
+		return assertQuestionMarkIcon;
+	}
+
+	public WebElement getAssertNeedHelp() {
+		return assertNeedHelp;
+	}
+
+	public WebElement getAssertRejectedCount() {
+		return assertRejectedCount;
+	}
+
+	public WebElement getAssertApprovedCount() {
+		return assertApprovedCount;
+	}
+
+	public WebElement getAsssertNotAcceptedCount() {
+		return asssertNotAcceptedCount;
+	}
+
 	
-	
-	
-	
-	
-	
-	
+	public WebElement getAssertOrgAppPenCount() {
+		return assertOrgAppPenCount;
+	}
+
+	public WebElement getAsssertAcceptedCount() {
+		return asssertAcceptedCount;
+	}
+
+	public WebElement getAsssertCorPenCount() {
+		return asssertCorPenCount;
+	}
+
+	public WebElement getAssertRevPenCount() {
+		return assertRevPenCount;
+	}
+
+	public WebElement getAssertRevPenTitle() {
+		return assertRevPenTitle;
+	}
+
+	public WebElement getAssertDraftTitle() {
+		return assertDraftTitle;
+	}
+
+	public WebElement getAssertDraftCount() {
+		return assertDraftCount;
+	}
+
 	public WebElement getAssertFrameworkType() {
 		return assertFrameworkType;
 	}
@@ -774,7 +874,11 @@ public class VDNSourcing {
 	
 	@FindBy(how=How.XPATH,using="//*[text()=' Contribution Dashboard ']")
 	private WebElement contributionDashboard;
+			
+	@FindBy(how=How.XPATH,using="(//button[text()='Cancel']//preceding::button[1])[2]")
+	private WebElement clkNextBtn;
 	
+
 	@FindBy(how=How.XPATH,using="//*[text()=' Reports ']")
 	private WebElement reportTab;
 	
@@ -871,6 +975,11 @@ public class VDNSourcing {
 
 	public WebElement getReportTab() {
 		return reportTab;
+	}	
+
+	public WebElement getClkNextBtn() {
+		return clkNextBtn;
+
 	}
 
 	public WebElement getContributionDashboard() {
