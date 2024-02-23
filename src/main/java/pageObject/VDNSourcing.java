@@ -878,8 +878,108 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="(//button[text()='Cancel']//preceding::button[1])[2]")
 	private WebElement clkNextBtn;
 	
+
+	@FindBy(how=How.XPATH,using="//*[text()=' Reports ']")
+	private WebElement reportTab;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Report Name']")
+	private WebElement reportName;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Description']")
+	private WebElement reportDescription;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Download'])[1]")
+	private WebElement reportDownloadBtn;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-color-primary font-weight-bold'])[1]")
+	private WebElement reports;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Manage Users']")
+	private WebElement manageUsers;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='custom-selectbx ng-untouched ng-pristine ng-valid'])[1]")
+	private WebElement roles;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()=' Reviewer '])[1]")
+	private WebElement role;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='fa fa-sort']")
+	private WebElement userNameSort;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='fa fa-sort-desc']")
+	private WebElement userRoleSort;
+	
+	@FindBy(how=How.XPATH,using="//*[@placeholder='Search...']")
+	private WebElement manageUserSearch;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Search']")
+	private WebElement manageUserSearchBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb__ellipsis sb__ellipsis--three sb-color-primary font-weight-bold']")
+	private WebElement searchedUser;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='close icon']")
+	private WebElement closeIcon;
+	
+	public WebElement getCloseIcon() {
+		return closeIcon;
+	}
+
+	public WebElement getSearchedUser() {
+		return searchedUser;
+	}
+
+	public WebElement getManageUserSearchBtn() {
+		return manageUserSearchBtn;
+	}
+
+	public WebElement getManageUserSearch() {
+		return manageUserSearch;
+	}
+
+	public WebElement getUserRoleSort() {
+		return userRoleSort;
+	}
+
+	public WebElement getUserNameSort() {
+		return userNameSort;
+	}
+
+	public WebElement getRole() {
+		return role;
+	}
+
+	public WebElement getRoles() {
+		return roles;
+	}
+
+	public WebElement getManageUsers() {
+		return manageUsers;
+	}
+
+	public WebElement getReports() {
+		return reports;
+	}
+	
+	public WebElement getReportDownloadBtn() {
+		return reportDownloadBtn;
+	}
+
+	public WebElement getReportDescription() {
+		return reportDescription;
+	}
+
+	public WebElement getReportName() {
+		return reportName;
+	}
+
+	public WebElement getReportTab() {
+		return reportTab;
+	}	
+
 	public WebElement getClkNextBtn() {
 		return clkNextBtn;
+
 	}
 
 	public WebElement getContributionDashboard() {
