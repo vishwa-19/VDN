@@ -8344,6 +8344,201 @@ public static String verifyContentCategoriesDuringProjectCreation() throws Excep
 
 }
 
+	public static void verifyMyProjectTabForSourcingOrgreviewer() throws InterruptedException {
+		
+		String expect = "Verify my project details are present for sourcing orgreviewer";
+		String actual = "My project details are not present for sourcing orgreviewer";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		
+		Assert.assertTrue(VS.getMyProjectHeader().isDisplayed());
+		Assert.assertTrue(VS.getMyProjectCount().isDisplayed());
+		Assert.assertTrue(VS.getMyProjectSort().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getMyProjectMCS().isDisplayed());
+		Assert.assertTrue(VS.getMyProjectDates().isDisplayed());
+		text = "Completed";
+		actual = "My project details are present for sourcing orgreviewer successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyApplyFilterPopUp() throws InterruptedException {
+			
+			String expect = "Verify sourcing orgreviewer able to apply filter";
+			String actual = "Sourcing orgreviewer not able to apply filter";
+			String text = "N/A";
+			try {
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VS.getApplyFilterBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getMediumFilter());
+			VDNUtils.waitToBeClickableAndClick(VS.getSelectMediumFilter());
+			VDNUtils.waitToBeClickableAndClick(VS.getApplyButton1());
+			Assert.assertTrue(VS.getFilterApplied().isDisplayed());
+			text = "Completed";
+			actual = "Sourcing orgreviewer is able to apply filter successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+		}
+	
+	public static void verifyContentPlayListForSourcingOrgreviewer() throws InterruptedException {
+		
+		String expect = "All the details in content playlist should be display to sourcing orgreviewer";
+		String actual = "All the details in content playlist is not displayed to sourcing orgreviewer";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		Assert.assertTrue(VS.getProjectName().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getContentPlaylistTotalCount().isDisplayed());
+		Assert.assertTrue(VS.getApprovalPendingCount().isDisplayed());
+		Assert.assertTrue(VS.getApprovedCount().isDisplayed());
+		Assert.assertTrue(VS.getRejectedCount().isDisplayed());
+		Assert.assertTrue(VS.getCorrectionsPendingCount().isDisplayed());
+		Assert.assertTrue(VS.getContentList().isDisplayed());
+		Assert.assertTrue(VS.getOpenBtn().isDisplayed());
+		Assert.assertTrue(VS.getContentPlaylistFilter().isDisplayed());
+		Assert.assertTrue(VS.getContentPlaylistDownload().isDisplayed());
+		text = "Completed";
+		actual = "All the details in content playlist is display to sourcing orgreviewer successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+public static void verifyContentCountIsAvailableOnTOCOnEachNode(String projectName) {
+		
+		String expect = "Verify content count is available on TOC on each node";
+		String actual = "Content count is not available on TOC on each node";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getSelectStatus().isDisplayed());
+		int statusCount = VS.getMultipleStatus().size();
+		Assert.assertTrue(1<statusCount);
+		text = "Completed";
+		actual = "Content count is available on TOC on each node";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+
+	public static void verifyAssignedReviewerAbleToUseSortFunctionality(String projectName) {
+		
+		String expect = "Verfi assigned reviewer should be able to apply sort and filter in nomination tab";
+		String actual = "Assigned reviewer is not able to apply sort and filter in nomination tab";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+		Assert.assertTrue(VS.getContributorNameSort().isDisplayed());
+		Assert.assertTrue(VS.getTypeSort().isDisplayed());
+		Assert.assertTrue(VS.getContentSort().isDisplayed());
+		Assert.assertTrue(VS.getSampleSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationDateSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationTabStatus().isDisplayed());
+		text = "Completed";
+		actual = "Assigned reviewer is able to apply sort and filter in nomination tab successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static String verifyAssignedReviewerAbleToUseFilterAndResetFilter() throws InterruptedException {
+			
+			String expect = "Assigned reviewer should be able to apply and reset filter";
+			String actual = "Assigned reviewer is unable to apply and reset filter";
+			String text = "N/A";
+			try {
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+			String projectName = VS.getProjectName1().getText();
+			VDNUtils.waitToBeClickableAndClick(VS.getContentPlaylistFilter());
+			VDNUtils.waitToBeClickableAndClick(VS.getMediumFilter());
+			VDNUtils.waitToBeClickableAndClick(VS.getSelectMediumFilter());
+			VDNUtils.waitToBeClickableAndClick(VS.getApplyButton1());
+			Assert.assertTrue(VS.getModifyFilterBtn().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VS.getModifyFilterBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getResetBtn());
+			text = "Completed";
+			actual = "Assigned reviewer is able to apply and reset filter successfully";
+			return projectName;
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+		}
+	
+	public static void verifyPreviouslyAppliedFilter(String projectName) throws InterruptedException {
+		
+		String expect = "Verify previously applied filter are display";
+		String actual = "Previously applied filter are not displayed";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		
+		String s1 = "//div[text()=' ";
+		String s2 = projectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		Assert.assertTrue(VS.getModifyFilterBtn().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VS.getModifyFilterBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getResetBtn());
+		text = "Completed";
+		actual = "Previously applied filter are displayed successfully";
+		
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static String applyFilterAndResetFilter() throws InterruptedException {
+		
+		String expect = "Assigned reviewer should be able to apply and reset filter";
+		String actual = "Assigned reviewer is unable to apply and reset filter";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		String projectName = VS.getProjectName1().getText();
+		VDNUtils.waitToBeClickableAndClick(VS.getContentPlaylistFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getMediumFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectMediumFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getApplyButton1());
+		Assert.assertTrue(VS.getModifyFilterBtn().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VS.getModifyFilterBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getResetBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getContentPlaylistFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getMediumFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectMediumFilter());
+		VDNUtils.waitToBeClickableAndClick(VS.getApplyButton1());
+		Assert.assertTrue(VS.getModifyFilterBtn().isDisplayed());
+		text = "Completed";
+		actual = "Assigned reviewer is able to apply and reset filter successfully";
+		return projectName;
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+
 }
 
 
