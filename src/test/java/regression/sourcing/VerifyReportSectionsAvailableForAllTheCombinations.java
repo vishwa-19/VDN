@@ -1,0 +1,32 @@
+package regression.sourcing;
+
+import org.testng.annotations.Test;
+
+import pageActions.UserOnBoarding;
+import pageActions.VDNSourcingMethods;
+import utility.BaseClass;
+
+public class VerifyReportSectionsAvailableForAllTheCombinations extends BaseClass {
+	
+	
+	@Test
+	public static void VerifyReportSectionsAvailableForAllTheCombinations() throws Exception {
+	UserOnBoarding.loginAsSourcing("Admin");
+	String ProjectName1=VDNSourcingMethods.createProjectBookWithSkipReviewEnable();
+	VDNSourcingMethods.verifyProjectCreatedWithNominationOpenAndSkipRevEnable(ProjectName1);
+	VDNSourcingMethods.verifyReportSectionsdAvailableForAllTheCombinations(ProjectName1);
+	
+	String ProjectName2=VDNSourcingMethods.createProjectCourseWithSkipReviewDisable();
+	VDNSourcingMethods.verifyProjectCreatedWithNominationOpenAndSkipRevDisable(ProjectName2);
+	VDNSourcingMethods.verifyReportSectionsdAvailableForAllTheCombinations(ProjectName2);
+	
+	String ProjectName3=VDNSourcingMethods.createProjectCourseWithNominationDisAndSkipReviewEnable();
+	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipEnabled(ProjectName3);
+	VDNSourcingMethods.verifyReportSectionsdAvailableForAllTheCombinations(ProjectName3);
+	
+	String ProjectName4=VDNSourcingMethods.createProjectCourseWithNomAndSkipDisable1();
+	VDNSourcingMethods.verifyOrgAdminAbleToCreateAndPublishWithNominationDisableAndSkipDisable(ProjectName4);
+	VDNSourcingMethods.verifyReportSectionsdAvailableForAllTheCombinations(ProjectName4);
+	}
+
+}

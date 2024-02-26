@@ -2844,19 +2844,12 @@ public class VDNSourcingMethods extends BaseClass {
 			Assert.assertTrue(VO.getAssertPending().isDisplayed());
 			
 			Assert.assertTrue(VO.getOpenUserAction().isDisplayed());
-			//span[contains(text(),' Pending ')]//following::button[1]
-			
-//			VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
-//			Thread.sleep(3000);
-//			Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
-			
 			
 			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
 			
 			Thread.sleep(3000);
 			
 			Assert.assertTrue(VS.getAssertListOfTextBook().isDisplayed());
-			
 			
 			Assert.assertTrue(VS.getAssertMedium().isDisplayed());
 			
@@ -2865,7 +2858,6 @@ public class VDNSourcingMethods extends BaseClass {
 			Assert.assertTrue(VS.getAssertClass().isDisplayed());
 			
 			Assert.assertTrue(VS.getAssertSubject().isDisplayed());
-			
 			
 			Assert.assertTrue(VO.getBtnAccept().isDisplayed());
 			
@@ -2885,16 +2877,12 @@ public class VDNSourcingMethods extends BaseClass {
 			System.out.println(Result1);
 			actual1 =  "1. Profile pop up is opened on click of contributor name.";
 			
-			
 			Assert.assertTrue(VS.getAssertOrgNameOnPopUp().isDisplayed());
-			
 			Assert.assertTrue(VS.getAssertOrgTypeOnPopUp().isDisplayed());
 			
 			Result2 = VS.getAssertOrgTypeOnPopUp().getText();
 			System.out.println(Result2);
 			actual2 =  "2.The details are correct in the profile pop up.";
-			
-			
 			
 		} finally {
 			String Resul1Text = Result1 != null ? Result1 : "N/A";
@@ -8655,6 +8643,28 @@ public static void verifyProjectWithSkipReviewDisabledWithoutTC(String ProjectNa
 	}
 
 }
+
+public static void verifyReportSectionsdAvailableForAllTheCombinations(String projectName) {
+	
+	String home = null;
+	String expect = "Reports sections should be available for "+projectName;
+	String actual = "Reports sections is unavailable for "+projectName;
+		try {
+	
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		Assert.assertTrue(VO.getAssertReport().isDisplayed());
+		
+		home = VO.getAssertContribution().getText();
+		System.out.print(home);
+		
+		actual = "Reports sections is unavailable for "+projectName;
+		}finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Contribution Dashboard", homeText, expect, actual);
+
+		}
+		
+	}
 
 }
 
