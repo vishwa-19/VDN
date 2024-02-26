@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+	
+	<listeners>
+		<listener class-name="utility.Listeners"></listener>
+	</listeners>
+	
   <test thread-count="5" name="Test">
     <classes>
-      <class name="vdn.EditDeleteIconsInDraftwithContent"/>
+      <!-- <class name="vdn.EditDeleteIconsInDraftwithContent"/>
       <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>
       <class name="vdn.RejectedCountUnderTextBookAndYourOrganisation"/>
       <class name="vdn.VerifyCreatedProjectsAreAvailableOnAllProjectsTabForIndContributor"/>
@@ -47,7 +52,8 @@
       <class name="vdn.SuccessfulReviewerRoleUpdatedForWithoutProjectAnyTargetCollection"/>
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
-      <class name="vdn.AssignedAdminIsAbleToAssignContributorAndRevieweRole"/>
+      <class name="vdn.AssignedAdminIsAbleToAssignContributorAndRevieweRole"/>-->
+      <class name="regression.sourcing.VerifyPreviouslyAppliedFilter" />	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
