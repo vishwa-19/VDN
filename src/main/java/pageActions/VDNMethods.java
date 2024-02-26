@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.awt.RenderingHints.Key;
+import java.io.IOException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -894,7 +895,7 @@ public class VDNMethods extends BaseClass {
 
 	
 	public static void verifySourcingOrgAdminIsAbleToAssignReviewer(String ProjectName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		String home = null;
 		String expect = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top";
 		String actual =  "Admin should be unable to assign reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
@@ -925,7 +926,11 @@ public class VDNMethods extends BaseClass {
 			
 			Assert.assertTrue(VO.getSearchField().isDisplayed());
 			Thread.sleep(3000);
-			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "Jaga2");
+			
+			String user =  excel.getContentName("User Role1");
+			System.out.print(user);
+			
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), user);
 			Thread.sleep(3000);
 			
 			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
@@ -3691,8 +3696,11 @@ public class VDNMethods extends BaseClass {
 		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
 		
+		String OrgCon =  excel.getContentName("Org Contributor");
+		System.out.print(OrgCon);
+		
 		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
-		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),"Color");
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),OrgCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
@@ -4229,9 +4237,11 @@ public class VDNMethods extends BaseClass {
 		VDNUtils.waitToBeClickableAndClick(VO.getSelIndividual());
 		Thread.sleep(3000);
 		
+		String IndCon =  excel.getContentName("Ind Contributor");
+		System.out.print(IndCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
-		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),"testUser");
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),IndCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());

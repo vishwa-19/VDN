@@ -165,14 +165,19 @@
 
 			<!--<class name="regression.sourcing.VerifyAdminIsAbleToApplyStatusFilterAndFetchTheResultInTheNominationStatus" />-->
 
-			<class name="regression.sourcing.VerifyContentCategoriesDuringTheProjectCreation" />
-      
+			<!--<class name="regression.sourcing.VerifyContentCategoriesDuringTheProjectCreation" />-->
+			<!--<class name="regression.sourcing.VerifyAdminIsCreateProjectFromYourOrgWithSkipRevEnableWithoutTC" />
+			<class name="regression.sourcing.VerifySelectedSetOfContributorsProjectWithSkipReviewDisabledWithoutTC" />
+			<class name="regression.sourcing.VerifySelectedSetOfContributorsProjectWithSkipReviewEnanbleWithoutTC" />
+			<class name="regression.sourcing.VerifyAdminIsCreateProjectFromYourOrgWithSkipRevDisableWithoutTC" />-->
 			<!--<class name="regression.sourcing.VerifyThereIsAOptionToSelectTheFrameworkTypeInTheProjectScopeTabWhileCreatingTheProject" />-->
 
 			<!--<class name="regression.sourcing.VerifyFilterWhileCreatingProject" />-->
 			<!--<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
 			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
-			<class name="regression.sourcing.VerifyAdminIsAbleToSearchFetchTheUserAndClearTheSearch" />	 
+			<!--<class name="regression.sourcing.VerifyReportSectionsAvailableForAllTheCombinations" />	 -->
+			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />
+			  
 
 		</classes>
 	</test>
