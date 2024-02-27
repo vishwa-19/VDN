@@ -15,7 +15,6 @@ public class Date extends BaseClass {
 	public static void setTodayDate(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
- 
 		LocalDate today = LocalDate.now().plusDays(12);
 		String formattedDate = today.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -26,7 +25,6 @@ public class Date extends BaseClass {
 	public static void setTodayDate(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
- 
 		LocalDate today = LocalDate.now().plusDays(12);
 		String formattedDate = today.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -112,5 +110,9 @@ public class Date extends BaseClass {
 		jsExecutor.executeScript(script, driver.findElement(By.xpath("//input[@formcontrolname='enddate']")),
 				formattedDate);
 	}
+
  
 }
+
+
+

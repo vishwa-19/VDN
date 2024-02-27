@@ -921,6 +921,14 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[@class='close icon']")
 	private WebElement closeIcon;
 	
+
+	@FindBy(how=How.XPATH,using="//h4[text()='List of Courses ']")
+	private WebElement listOfCourses;
+	
+	public WebElement getListOfCourses() {
+		return listOfCourses;
+	}
+
 	@FindBy(how=How.XPATH,using="(//*[text()='My Projects'])[1]")
 	private WebElement myProjectHeader;
 	
@@ -1088,6 +1096,7 @@ public class VDNSourcing {
 
 	public WebElement getMyProjectHeader() {
 		return myProjectHeader;
+
 	}
 
 	public WebElement getCloseIcon() {

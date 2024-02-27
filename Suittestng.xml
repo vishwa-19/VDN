@@ -176,7 +176,12 @@
 			<!--<class name="regression.sourcing.VerifyAdminCanAddMoreContributorToProject" />
 			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToCreateAndPublishK12SelectedContForTextBook" />-->
 			<!--<class name="regression.sourcing.VerifyReportSectionsAvailableForAllTheCombinations" />	 -->
-			<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />
+			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />-->
+			<!--<class name="regression.sourcing.VerifyViewContributionButtonIsAvailableForApprovedNomination" />-->
+			<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToCloseWithoutTargetCollection" />
+			
+			
+			
 			  
 
 		</classes>
