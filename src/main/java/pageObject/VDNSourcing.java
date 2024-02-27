@@ -990,7 +990,14 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[@class='practical-header__title ']/child::h5")
 	private WebElement projectName1;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Approved']")
+	private WebElement nominationFilterOpn;
 	
+	
+	public WebElement getNominationFilterOpn() {
+		return nominationFilterOpn;
+	}
+
 	public WebElement getProjectName1() {
 		return projectName1;
 	}

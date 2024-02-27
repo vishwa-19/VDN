@@ -6295,6 +6295,10 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
 		VDNUtils.waitToBeClickableAndClick(openBtn);
 		VDNUtils.waitToBeClickableAndClick(VS.getAssignUserTab());
+		VDNUtils.waitToBeClickableAndSendKeys(VS.getManageUserSearch(), "jaga2");
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("arguments[0].click();", VS.getManageUserSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
 		VDNUtils.waitToBeClickableAndClick(VS.getRoleReviewer());
 		Thread.sleep(1000);
@@ -8861,6 +8865,100 @@ public static void verifyReportSectionsdAvailableForAllTheCombinations(String pr
 		
 
 	}
+
+	public static void verifyTotalAndAwaitingForMyReviewCountIsAvailableForReviewer() {
+		
+		String expect = "Verify total and awaiting for my review count should be display";
+		String actual = "Verify total and awaiting for my review count is not display";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getTotalCount().isDisplayed());
+		Assert.assertTrue(VS.getAwaitingForMyReviewCount().isDisplayed());
+		text = "Completed";
+		actual = "Total and awaiting for my review count is display successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+public static void verifySelectStatusAndSelectUnitForReviewer(String projectName) throws InterruptedException {
+		
+		String expect = "Verify select status and select unit for reviewer";
+		String actual = "Select status and select unit is not displayed for reviewer";
+		String text = "N/A";
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		
+		String s1 = "//div[text()=' ";
+		String s2 = projectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
+		Assert.assertTrue(VS.getContentUnits().isDisplayed());
+		Assert.assertTrue(VS.getSelectStatus().isDisplayed());
+		text = "Completed";
+		actual = "Select status and select unit is displayed for reviewer successfully";
+		
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+
+	public static void verifyAllTheDetailsAreAvailableInNominationTabForReviewer() {
+		
+		String expect = "Verify all details should be available in nomination tab";
+		String actual = "All the details are not available in nomination tab";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+		Assert.assertTrue(VS.getNominationCount().isDisplayed());
+		Assert.assertTrue(VS.getNominationTotal().isDisplayed());
+		Assert.assertTrue(VS.getNominationApproved().isDisplayed());
+		Assert.assertTrue(VS.getNominationRejected().isDisplayed());
+		Assert.assertTrue(VS.getNominationPending().isDisplayed());
+		Assert.assertTrue(VS.getDownloadNominationsList().isDisplayed());
+		Assert.assertTrue(VS.getContributedBy().isDisplayed());
+		Assert.assertTrue(VS.getNominationsContent().isDisplayed());
+		Assert.assertTrue(VS.getNominationsContentType().isDisplayed());
+		Assert.assertTrue(VS.getContributorNameSort().isDisplayed());
+		Assert.assertTrue(VS.getTypeSort().isDisplayed());
+		Assert.assertTrue(VS.getContentSort().isDisplayed());
+		Assert.assertTrue(VS.getSampleSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationDateSort().isDisplayed());
+		Assert.assertTrue(VS.getNominationTabStatus().isDisplayed());
+		text = "Completed";
+		actual = "All the details are available in nomination tab successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyReviewerIsAbleToApplyFilterInNominationTab() {
+			
+			String expect = "Verify reviewer is able to apply filter in nomination tab";
+			String actual = "Reviewer is unable to apply filter in nomination tab";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+			VDNUtils.waitToBeClickableAndClick(VS.getNominationTabStatus());
+			VDNUtils.waitToBeClickableAndClick(VS.getNominationFilterOpn());
+			text = "Completed";
+			actual = "Reviewer is able to apply filter in nomination tab successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+		}
 
 }
 

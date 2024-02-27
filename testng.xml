@@ -53,7 +53,7 @@
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
       <class name="vdn.AssignedAdminIsAbleToAssignContributorAndRevieweRole"/>-->
-      <class name="regression.sourcing.VerifyPreviouslyAppliedFilter" />	 
+      <class name="regression.sourcing.VerifyTotalAndAwaitingForMyReviewCountAvailableForAssignedReviewer" />	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
