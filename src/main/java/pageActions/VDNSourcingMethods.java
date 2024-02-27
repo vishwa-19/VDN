@@ -8666,6 +8666,39 @@ public static void verifyReportSectionsdAvailableForAllTheCombinations(String pr
 		
 	}
 
+public static void verifyViewContributionOnApprovedCourse() throws Exception {
+	String home1 = null;
+	String expect1 = "View contribution button should be available";
+	String actual1 = "View contribution button is available";
+	String home2 = null;
+	String expect2 = "List of Courses should be available in the Project created using Content playlist on click of view contribution in the nomination tab";
+	String actual2 = "List of Courses playlist is unavailable in the Project created using Content playlist on click of view contribution in the nomination tab";
+	
+try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		Assert.assertTrue(VS.getClkViewContribution().isDisplayed());
+		
+		home1 = VS.getClkViewContribution().getText();
+		actual1 = "View contribution button should be available";
+		
+		VDNUtils.waitToBeClickableAndClick(VS.getClkViewContribution());
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getListOfCourses().isDisplayed());
+	
+		home2 = VS.getListOfCourses().getText();
+		actual1 = "Content Courses should be available in the Project created using Content playlist on click of view contribution in the nomination tab";
+		
+			
+	}finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("View Contribution", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("List of Courses", homeText2, expect2, actual2);
+	
+}
+}
+
 }
 
 
