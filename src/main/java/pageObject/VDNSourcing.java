@@ -921,11 +921,175 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[@class='close icon']")
 	private WebElement closeIcon;
 	
+
 	@FindBy(how=How.XPATH,using="//h4[text()='List of Courses ']")
 	private WebElement listOfCourses;
 	
 	public WebElement getListOfCourses() {
 		return listOfCourses;
+	}
+
+	@FindBy(how=How.XPATH,using="(//*[text()='My Projects'])[1]")
+	private WebElement myProjectHeader;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-pageSection-header mb-0']")
+	private WebElement myProjectCount;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='w-15 cursor-pointer sb-sorting']")
+	private WebElement myProjectSort;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Medium, Class, Subject']")
+	private WebElement myProjectMCS;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Project Dates']")
+	private WebElement myProjectDates;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Apply Filter ']")
+	private WebElement applyFilterBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[@formcontrolname='medium']")
+	private WebElement mediumFilter;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='item selected'])[1]")
+	private WebElement selectMediumFilter;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Apply ']")
+	private WebElement applyButton1;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='fs-0-785 font-italic sb-color-gray-300 mb-10 d-inline-block']")
+	private WebElement filterApplied;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Open '])[1]")
+	private WebElement projectOpenBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='m-0 p-0 pb-10 font-weight-bold d-inline-block break-word']")
+	private WebElement projectName;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-color-gray-400 d-inline-block br-2 pr-10 pt-5']")
+	private WebElement contentPlaylistTotalCount;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-color-gray-400 d-inline-block br-2 pr-10 pt-5']")
+	private WebElement approvalPendingCount;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-color-success d-inline-block br-2 px-10'])[1]")
+	private WebElement approvedCount;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='sb-color-error d-inline-block br-2  px-10']")
+	private WebElement rejectedCount;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-color-primary d-inline-block px-10'])[1]")
+	private WebElement correctionsPendingCount;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-table-responsive'])[1]")
+	private WebElement contentList;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Open']")
+	private WebElement openBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Filter Content Playlists']")
+	private WebElement contentPlaylistFilter;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Download Content Playlist details ']")
+	private WebElement contentPlaylistDownload;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Modify Filters']")
+	private WebElement modifyFilterBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='practical-header__title ']/child::h5")
+	private WebElement projectName1;
+	
+	
+	public WebElement getProjectName1() {
+		return projectName1;
+	}
+
+	public WebElement getModifyFilterBtn() {
+		return modifyFilterBtn;
+	}
+
+	public WebElement getContentPlaylistDownload() {
+		return contentPlaylistDownload;
+	}
+
+	public WebElement getContentPlaylistFilter() {
+		return contentPlaylistFilter;
+	}
+
+	public WebElement getOpenBtn() {
+		return openBtn;
+	}
+
+	public WebElement getContentList() {
+		return contentList;
+	}
+
+	public WebElement getCorrectionsPendingCount() {
+		return correctionsPendingCount;
+	}
+
+	public WebElement getRejectedCount() {
+		return rejectedCount;
+	}
+
+	public WebElement getApprovedCount() {
+		return approvedCount;
+	}
+
+	public WebElement getApprovalPendingCount() {
+		return approvalPendingCount;
+	}
+
+	public WebElement getContentPlaylistTotalCount() {
+		return contentPlaylistTotalCount;
+	}
+
+	public WebElement getProjectName() {
+		return projectName;
+	}
+
+	public WebElement getProjectOpenBtn() {
+		return projectOpenBtn;
+	}
+
+	public WebElement getFilterApplied() {
+		return filterApplied;
+	}
+
+	public WebElement getApplyButton1() {
+		return applyButton1;
+	}
+
+	public WebElement getSelectMediumFilter() {
+		return selectMediumFilter;
+	}
+
+	public WebElement getMediumFilter() {
+		return mediumFilter;
+	}
+
+	public WebElement getApplyFilterBtn() {
+		return applyFilterBtn;
+	}
+
+	public WebElement getMyProjectDates() {
+		return myProjectDates;
+	}
+
+	public WebElement getMyProjectMCS() {
+		return myProjectMCS;
+	}
+
+	public WebElement getMyProjectSort() {
+		return myProjectSort;
+	}
+
+	public WebElement getMyProjectCount() {
+		return myProjectCount;
+	}
+
+	public WebElement getMyProjectHeader() {
+		return myProjectHeader;
+
 	}
 
 	public WebElement getCloseIcon() {
