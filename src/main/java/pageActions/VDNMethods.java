@@ -23,6 +23,7 @@ import io.reactivex.rxjava3.functions.Action;
 import pageObject.HomePage;
 import pageObject.UploadPdfContent;
 import pageObject.VDNObj;
+import pageObject.VDNSourcing;
 import utility.BaseClass;
 import utility.Listeners;
 import utility.VDNUtils;
@@ -4952,13 +4953,14 @@ public class VDNMethods extends BaseClass {
 			String s2 = ProjectName;
 			String s3 = " ']//following::button[text()='Open '][1]";
 			Thread.sleep(10000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
 			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
 			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
 		
-			
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
 			Assert.assertTrue(VO.getViewSampleBtn().isDisplayed());
 //			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
 			

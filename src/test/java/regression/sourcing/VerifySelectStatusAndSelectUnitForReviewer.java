@@ -14,9 +14,9 @@ public class VerifySelectStatusAndSelectUnitForReviewer extends BaseClass{
 		UserOnBoarding.loginAsSourcing("Admin");
 		String projectName = VDNMethods.createProjectWithDigitalTextBook();
 		VDNSourcingMethods.assignRoleToUser(projectName);
-//		UserOnBoarding.VDNlogout();
-//		UserOnBoarding.loginAsSourcing("Assigned Reviewer");
-//		VDNSourcingMethods.verifySelectStatusAndSelectUnitForReviewer(projectName);
+		UserOnBoarding.VDNlogout();
+		UserOnBoarding.loginAsSourcing("Assigned Reviewer");
+		VDNSourcingMethods.verifySelectStatusAndSelectUnitForReviewer(projectName);
 	}
 
 }

@@ -1022,7 +1022,21 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Approved']")
 	private WebElement nominationFilterOpn;
 	
+	@FindBy(how=How.XPATH,using="//*[text()=' Back ']")
+	private WebElement backBtn;
 	
+	@FindBy(how=How.XPATH,using="//button[text()='Accept']")
+	private WebElement acceptBtn;
+	
+	
+	public WebElement getAcceptBtn() {
+		return acceptBtn;
+	}
+
+	public WebElement getBackBtn() {
+		return backBtn;
+	}
+
 	public WebElement getNominationFilterOpn() {
 		return nominationFilterOpn;
 	}

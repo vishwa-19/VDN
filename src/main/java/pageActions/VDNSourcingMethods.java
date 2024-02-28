@@ -6296,8 +6296,8 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 		VDNUtils.waitToBeClickableAndClick(openBtn);
 		VDNUtils.waitToBeClickableAndClick(VS.getAssignUserTab());
 		VDNUtils.waitToBeClickableAndSendKeys(VS.getManageUserSearch(), "jaga2");
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		js.executeScript("arguments[0].click();", VS.getManageUserSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
 		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
 		VDNUtils.waitToBeClickableAndClick(VS.getRoleReviewer());
@@ -8994,6 +8994,65 @@ try {
 }
 }
 
+	public static void verifyAllTheDetailsAreAvailableInContributionDashboardForReviewer() {
+		
+		String expect = "All the details in contribution dashboard tab should be display to user";
+		String actual = "All the details in contribution dashboard tab is not displayed to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getContributionDashboard());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getDownloadContributonDetails().isDisplayed());
+		Assert.assertTrue(VS.getContributor().isDisplayed());
+		Assert.assertTrue(VS.getTypeOfContributor().isDisplayed());
+		Assert.assertTrue(VS.getContributingOrganisation().isDisplayed());
+		Assert.assertTrue(VS.getYourOrganisation().isDisplayed());
+		text = "Completed";
+		actual = "All the details in contribution dashboard tab is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void verifySourcingOrgAdminAbleToViewSampleAndAcceptNomination(String ProjectName) throws Exception {
+			
+		
+		String text = "N/A";
+		String expect = "Admin should be able to view sample and accept nomination";
+		String actual = "Admin is not able to view sample and accept nomination";
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+			Assert.assertTrue(VO.getViewSampleBtn().isDisplayed());	
+			String SampleCount = VO.getAssertSampleCount1().getText();
+			System.out.print(SampleCount);	
+			int SampleC=Integer.parseInt(SampleCount); 
+			Assert.assertEquals(SampleC, 1);	
+			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
+			Thread.sleep(3000);
+			Assert.assertTrue(VO.getSelectSample1().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getAcceptBtn());
+			text = "Completed";
+			actual = "Admin is able to view sample and accept nomination successfully";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
 
 public static void uploadContentFromDefaultContributor(String ProjectName)
 		throws Exception {
