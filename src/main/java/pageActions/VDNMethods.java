@@ -1493,7 +1493,7 @@ public class VDNMethods extends BaseClass {
 			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
 			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
 
-			actual = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+			actual = " Admin should be able to Roles to the Project "+ProjectName+" and is Displayed on the Top" ;
 		} finally {
 			String homeText = home != null ? home : "N/A";
 			System.out.println(homeText);
@@ -5050,8 +5050,8 @@ public class VDNMethods extends BaseClass {
 		
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			
-			VDNUtils.waitForElementToBeVisible(VO.getOpenOwnContent());
-			VDNUtils.waitToBeClickableAndClick(VO.getOpenOwnContent());
+			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending2());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending2());
 			
 			Thread.sleep(3000);
 			String tabDetails = VO.getAssertAllReviewContentHead().getText();
