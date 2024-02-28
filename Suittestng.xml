@@ -178,12 +178,8 @@
 			<!--<class name="regression.sourcing.VerifyReportSectionsAvailableForAllTheCombinations" />	 -->
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />-->
 			<!--<class name="regression.sourcing.VerifyViewContributionButtonIsAvailableForApprovedNomination" />-->
-			<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToCloseWithoutTargetCollection" />
+			<class name="regression.sourcing.VerifyTitlesUnderManageUsersTab" />
 			
-			
-			
-			  
-
 		</classes>
 	</test>
 </suite>

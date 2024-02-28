@@ -380,7 +380,28 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()=' Invite User']")
 	private WebElement assertInviteUser;
 	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'User')]")
+	private WebElement assertUserTitle;
 	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Email / Mobile')]")
+	private WebElement assertEmailMobTitle;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Roles')]")
+	private WebElement assertRolesTitle;
+	
+	
+	public WebElement getAssertRolesTitle() {
+		return assertRolesTitle;
+	}
+
+	public WebElement getAssertEmailMobTitle() {
+		return assertEmailMobTitle;
+	}
+
+	public WebElement getAssertUserTitle() {
+		return assertUserTitle;
+	}
+
 	public WebElement getAssertInviteUser() {
 		return assertInviteUser;
 	}
