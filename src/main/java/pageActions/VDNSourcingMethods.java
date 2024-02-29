@@ -9278,6 +9278,121 @@ public static void validateitlesUnderManageUsersTab() throws InterruptedExceptio
 	}
 }
 
+
+	public static String verifyAdminCanSelectOnlyOneFrameworkType() throws InterruptedException {
+		String text = "N/A";
+		String expect = "Admin should be able to select only one framework type";
+		String actual = "Admin should unable to select only one framework type";
+	
+		try {
+	
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+	
+			String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+	
+			String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+	
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+			Date.setTodayDate(driver, VO.getNominationEndDate());
+	
+			Thread.sleep(500);
+			Date.setTodayDate(driver);
+			Thread.sleep(1000);
+			Actions action = new Actions(driver);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+			Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+	
+			Thread.sleep(500);
+			Date.setTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+			Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+	
+			Thread.sleep(500);
+			Date.setDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());			
+			Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+	
+			Thread.sleep(500);
+			Date.setNextToDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+			VDNUtils.waitToBeClickableAndClick(VS.getFrameworkType());
+			VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptn());
+			VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptnYesBtn());
+			Assert.assertTrue(VS.getFrameworkOptn().isDisplayed());
+			text = "Completed";
+			actual = "Admin should is able to select only one framework type successfully";
+	
+			return ProjectName;
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	
+	}
+	
+	public static void verifyAdminIsAbleToEditTheFrameworkTypeWhenProjectInDraftStatus(String ProjectName)throws InterruptedException {
+		
+		
+		String text = "N/A";
+		String expect = "Admin should be able to edit framework type when project in draft status";
+		String actual = "Admin unable to edit framework type when project in draft status";
+		try {
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);	
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::span[text()='Edit Draft'])[1]";
+		Thread.sleep(10000);
+		WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+		assertProjectEdit.isDisplayed();
+		assertProjectEdit.click();
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkType());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptn());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptnYesBtn());
+		Assert.assertTrue(VS.getFrameworkOptn().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to edit framework type when project in draft status successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	}
+
 public static void validateSourceOrgReviewerIsAbleToSendTheContentForCorrection(String ProjectName)
 		throws Exception {
 	String home = null;
@@ -9431,6 +9546,7 @@ public static void validateyTargetCollectionsOnPopup()
 //		Listeners.customAssert("2 Filters applied" ,homeText7, expect7, actual7);
 	}
 }
+
 
 }
 

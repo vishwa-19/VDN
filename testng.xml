@@ -53,7 +53,7 @@
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
       <class name="vdn.SourcingOrgAdminAbleToViewTheSamplesUploadedByTheUsers"/>-->
-       <class name="regression.sourcing.VerifySourcingOrgAdminAbleToViewSampleAndAcceptNomination" />	 
+       <class name="regression.sourcing.VerifyAdminIsAbleToEditTheFrameworkTypeWhenProjectInDraftStatus" />	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
