@@ -9219,6 +9219,160 @@ public static void validateitlesUnderManageUsersTab() throws InterruptedExceptio
 	}
 }
 
+public static void validateSourceOrgReviewerIsAbleToSendTheContentForCorrection(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " default contribution org reviewer is able to preview the uploaded content by contributor.";
+	String actual =  "default contribution org reviewer is unable to preview the uploaded content by contributor.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		
+//		Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
+//		String TotalCount = VO.getAssertTotalTab1().getText();
+//		System.out.print(TotalCount);
+//		
+//		
+//		Assert.assertTrue(VO.getAssertApprovalPendingTab().isDisplayed());
+//		String APCount = VO.getAssertApprovalPendingTab().getText();
+//		System.out.print(APCount);
+//		
+//		Assert.assertTrue(VO.getAssertApprovedTab().isDisplayed());
+//		String ApprovedCount = VO.getAssertApprovalPendingTab().getText();
+//		System.out.print(ApprovedCount);
+//		
+//		Assert.assertTrue(VO.getAssertRejectedTab().isDisplayed());
+//		String RejectedCount = VO.getAssertRejectedTab().getText();
+//		System.out.print(RejectedCount);
+//		
+//		Assert.assertTrue(VO.getAssertCorrectionTab().isDisplayed());
+//		String CorrectioCountCount = VO.getAssertCorrectionTab().getText();
+//		System.out.print(CorrectioCountCount);
+		
+		VO.getClkOpenBtnOnNoTC().click();
+		Thread.sleep(3000);
+		VO.getAssertApprovalPending().click();
+		Thread.sleep(3000);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getBtnSendCorrect());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSendCorrect());	
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Correct");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+
+	
+		VDNUtils.waitForElementToBeVisible(VO.getassertCorrPenNoTC());
+		Assert.assertTrue(VO.getassertCorrPenNoTC().isDisplayed());
+		
+		
+		home = VO.getassertCorrPenNoTC().getText();
+		System.out.println(home);
+		actual = "sourcing org admin is able to send back to correction the content for The Project "+ProjectName;
+		
+		
+	} finally {
+//		String homeText = home != null ? home : "N/A";
+//		Listeners.customAssert("Edit details" ,homeText, expect, actual);
+	}
+}
+
+
+public static void validateyTargetCollectionsOnPopup()
+		throws Exception {
+
+	
+	String home1 = null;
+	String expect1 = "Content Playlist should be Available Under Tarhet Collection Dropdown";
+	String actual1 = "Content Playlist is not Available Under Tarhet Collection Dropdown";
+	String home2 = null;
+	String expect2 = "Course should be Available Under Tarhet Collection Dropdown";
+	String actual2 = "Course is not Available Under Tarhet Collection Dropdown";
+	String home3 = null;
+	String expect3 = "Digital Textbook should be Available Under Tarhet Collection Dropdown";
+	String actual3 = "Digital Textbook is not Available Under Tarhet Collection Dropdown";
+	
+	String home4 = null;
+	String expect4 = "Question paper should be Available Under Tarhet Collection Dropdown";
+	String actual4 = "Question paper is Available Under Tarhet Collection Dropdown";
+	
+	try {
+		
+		Thread.sleep(3000);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		Thread.sleep(2000);
+		
+		VDNUtils.waitToBeClickableAndClick(VS.getApplyBtn());
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getClkTargetColl().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkTargetColl());
+		Assert.assertTrue(VS.getClkContentPlaylist().isDisplayed());
+		home1 = VS.getClkContentPlaylist().getText();
+		System.out.print(home1);
+		Thread.sleep(2000);
+		actual1 = "Content Playlist is Available Under Tarhet Collection Dropdown";
+		
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getClkTargetColl().isDisplayed());
+		//VDNUtils.waitToBeClickableAndClick(VS.getClkTargetColl());
+		Assert.assertTrue(VS.getClkCourse().isDisplayed());
+		home2 = VS.getClkCourse().getText();
+		System.out.print(home2);
+		Thread.sleep(2000);
+		actual2 = "Course is Available Under Tarhet Collection Dropdown";
+		
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getClkTargetColl().isDisplayed());
+		//VDNUtils.waitToBeClickableAndClick(VS.getClkTargetColl());
+		Assert.assertTrue(VS.getClkDigiTextBook().isDisplayed());
+		home3 = VS.getClkDigiTextBook().getText();
+		System.out.print(home3);
+		Thread.sleep(2000);
+		actual3 = "Digital Textbook is not Available Under Tarhet Collection Dropdown";
+		
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getClkTargetColl().isDisplayed());
+		//VDNUtils.waitToBeClickableAndClick(VS.getClkTargetColl());
+		Assert.assertTrue(VS.getClkQPaper().isDisplayed());
+		home4 = VS.getClkQPaper().getText();
+		System.out.print(home4);
+		Thread.sleep(2000);
+		actual4 = "Question paper is not Available Under Tarhet Collection Dropdown";
+		
+		VDNUtils.waitToBeClickableAndClick(VS.getApplyButton());
+		
+		
+
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Content Playlist" ,homeText1, expect1, actual1);
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Course" ,homeText2, expect2, actual2);
+		String homeText3 = home3 != null ? home3 : "N/A";
+		Listeners.customAssert("Digital Textbook" ,homeText3, expect3, actual3);
+		String homeText4 = home4 != null ? home4 : "N/A";
+		Listeners.customAssert("Question paper" ,homeText4, expect4, actual4);
+//		String homeText5 = home2 != null ? home5 : "N/A";
+//		Listeners.customAssert("Closed" ,homeText5, expect5, actual5);
+//		String homeText6 = home6 != null ? home6 : "N/A";
+//		Listeners.customAssert("Any" ,homeText6, expect6, actual6);
+//		String homeText7 = home7 != null ? home7 : "N/A";
+//		Listeners.customAssert("2 Filters applied" ,homeText7, expect7, actual7);
+	}
+}
+
 }
 
 
