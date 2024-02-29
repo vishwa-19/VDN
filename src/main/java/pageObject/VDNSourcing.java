@@ -390,6 +390,45 @@ public class VDNSourcing {
 	private WebElement assertRolesTitle;
 	
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Target collection']//following::sui-multi-select")
+	private WebElement clkTargetColl;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Content Playlist']")
+	private WebElement ClkContentPlaylist;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Course']")
+	private WebElement ClkCourse;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Digital Textbook']")
+	private WebElement ClkDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Question paper']")
+	private WebElement ClkQPaper;
+	
+	
+	public WebElement getClkQPaper() {
+		return ClkQPaper;
+	}
+
+
+	public WebElement getClkDigiTextBook() {
+		return ClkDigiTextBook;
+	}
+
+
+	public WebElement getClkCourse() {
+		return ClkCourse;
+	}
+	
+	
+	public WebElement getClkContentPlaylist() {
+		return ClkContentPlaylist;
+	}
+
+	public WebElement getClkTargetColl() {
+		return clkTargetColl;
+	}
+
 	public WebElement getAssertRolesTitle() {
 		return assertRolesTitle;
 	}
