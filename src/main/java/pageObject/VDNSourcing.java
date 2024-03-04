@@ -1177,6 +1177,29 @@ public class VDNSourcing {
 	}
 
 
+
+	@FindBy(how=How.XPATH,using="//*[@formcontrolname='framework']")
+	private WebElement frameworkType;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Continuous Professional Development']")
+	private WebElement frameworkOptn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Yes']")
+	private WebElement frameworkOptnYesBtn;
+	
+	
+	public WebElement getFrameworkOptnYesBtn() {
+		return frameworkOptnYesBtn;
+	}
+
+	public WebElement getFrameworkOptn() {
+		return frameworkOptn;
+	}
+
+	public WebElement getFrameworkType() {
+		return frameworkType;
+	}
+
 	public WebElement getAcceptBtn() {
 		return acceptBtn;
 	}

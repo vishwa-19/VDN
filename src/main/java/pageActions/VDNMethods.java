@@ -4944,7 +4944,7 @@ public class VDNMethods extends BaseClass {
 }
 	
 	public static void verifySourcingOrgAdminIsAbleToToViewTheSamples(String ProjectName) throws InterruptedException {
-		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		
 		String home = null;
 		String expect = "sourcing org admin is able to view the samples uploaded by the users.";
 		String actual = "sourcing org admin is unable to view the samples uploaded by the users.";
@@ -4959,20 +4959,14 @@ public class VDNMethods extends BaseClass {
 			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
 			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
-		
 			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
 			Assert.assertTrue(VO.getViewSampleBtn().isDisplayed());
-//			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
-			
 			String SampleCount = VO.getAssertSampleCount1().getText();
 			System.out.print(SampleCount);
-			
 			int SampleC=Integer.parseInt(SampleCount); 
 			Assert.assertEquals(SampleC, 1);
-			
 			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
 			Thread.sleep(3000);
-			//button[contains(text(),'View Sample Content')]//preceding::td[1]
 			Assert.assertTrue(VO.getSelectSample1().isDisplayed());
 			home = VO.getSelectSample1().getText();
 			actual = "sourcing org admin is able to view the samples uploaded by the users ";
