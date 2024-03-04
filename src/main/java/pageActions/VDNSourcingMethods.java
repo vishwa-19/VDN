@@ -5576,7 +5576,7 @@ public static String createProjectCourseWithSkipReviewEnableK12Framework() throw
 		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
 		String s1 = "((//*[text()=' ";
 		String s2 = projectName;
-		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s3 = " '])[1]/parent::td/following-sibling::td)[4]/descendant::button[text()='Open ']";
 		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
 		VDNUtils.waitToBeClickableAndClick(openBtn);
 		VDNUtils.waitToBeClickableAndClick(VS.getContentOpenBtn());
@@ -6299,6 +6299,7 @@ public static String createProjectWithCourseWithSkipRevEnable() throws Interrupt
 		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
 		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
+		Thread.sleep(1000);
 		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
 		VDNUtils.waitToBeClickableAndClick(VS.getRoleReviewer());
 		Thread.sleep(1000);
@@ -9546,6 +9547,102 @@ public static void validateyTargetCollectionsOnPopup()
 //		Listeners.customAssert("2 Filters applied" ,homeText7, expect7, actual7);
 	}
 }
+
+	public static void verifyAdminIsAbleToAssignReviewerToTheInvitedUser(String ProjectName)throws InterruptedException {
+		
+		String text = "N/A";
+		String expect = "Admin should be able to assign reviewer role to invited user";
+		String actual =  "Admin is unable to assign reviewer role to invited user";
+	
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			VDNUtils.waitForElementToBeVisible(VO.getAssertAssignUsers());
+			Assert.assertTrue(VO.getAssertAssignUsers().isDisplayed());
+			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
+			Assert.assertTrue(VO.getAssertReport().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+			VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+			Assert.assertTrue(VO.getSearchField().isDisplayed());
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "Jaga2");
+			Thread.sleep(10000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+			text = "Completed";
+			actual = "Admin is able to assign reviewer role to invited user successfully" ;
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+	
+	public static void verifyReviewerAbleToViewSampleUploadedByContributors(String ProjectName) throws InterruptedException {
+			
+			String home = null;
+			String expect = "Reviewer is able to view the samples uploaded by the users.";
+			String actual = "Reviewer is unable to view the samples uploaded by the users.";
+			try {
+				String s1 = "//div[text()=' ";
+				String s2 = ProjectName;
+				String s3 = " ']//following::button[text()='Open '][1]";
+				Thread.sleep(10000);
+				VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+				VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+				WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+				VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+				VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+				VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+				Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+				Assert.assertTrue(VO.getViewSampleBtn().isDisplayed());
+				String SampleCount = VO.getAssertSampleCount1().getText();
+				System.out.print(SampleCount);
+				int SampleC=Integer.parseInt(SampleCount); 
+				Assert.assertEquals(SampleC, 1);
+				VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
+				Thread.sleep(3000);
+				Assert.assertTrue(VO.getSelectSample1().isDisplayed());
+				home = VO.getSelectSample1().getText();
+				actual = "Reviewer is able to view the samples uploaded by the users ";
+			} finally {
+				String homeText = home != null ? home : "N/A";
+				Listeners.customAssert("Sample1", homeText, expect, actual);
+			}
+	}
+	
+public static void verifySortFunctionalityInContributionDashboard() {
+		
+		String expect = "Sort functionality should be work fine in contribution dashboard";
+		String actual = "Sort functionality is not working in contribution dashboard";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VS.getProjectOpenBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getContributionDashboard());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getDownloadContributonDetails().isDisplayed());
+		Assert.assertTrue(VS.getContributor().isDisplayed());
+		Assert.assertTrue(VS.getTypeOfContributor().isDisplayed());
+		Assert.assertTrue(VS.getContributingOrganisation().isDisplayed());
+		Assert.assertTrue(VS.getYourOrganisation().isDisplayed());
+		text = "Completed";
+		actual = "Sort functionality is working fine in contribution dashboard successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
 
 
 }
