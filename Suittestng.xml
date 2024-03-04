@@ -178,7 +178,9 @@
 			<!--<class name="regression.sourcing.VerifyReportSectionsAvailableForAllTheCombinations" />	 -->
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />-->
 			<!--<class name="regression.sourcing.VerifyViewContributionButtonIsAvailableForApprovedNomination" />-->
-			<class name="regression.sourcing.VerifyApplyFiltersPopUpPageIsDisplayedPostClickingOnApplyFilterButtonAndItsDetails" />	
+			<!--<class name="regression.sourcing.VerifyDetailsOpeningPublishedProjectsWithoutTCSkipReviewDisabled" />-->
+			<class name="regression.sourcing.VerifyAdminIsAbleToModifyProjectDetails" />
+			
 		</classes>
 	</test>
 </suite>
