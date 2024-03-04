@@ -5,6 +5,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 import java.awt.RenderingHints.Key;
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -8802,13 +8803,6 @@ public static void verifyProjectWithSkipReviewDisabledWithoutTC(String ProjectNa
 		Thread.sleep(10000);
 		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
-//
-//		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
-//		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
-//		Thread.sleep(5000);
-		
-		//Assert.assertTrue(VO.getAssertSkipReviewEnabled().isDisplayed());
-		
 		WebElement PublishedProject = driver.findElement(By.xpath(s1 + s2 + s3));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", PublishedProject);
@@ -9244,6 +9238,11 @@ public static void validateitlesUnderManageUsersTab() throws InterruptedExceptio
 		Assert.assertTrue(VS.getAssertUserTitle().isDisplayed());
 		Thread.sleep(2000);
 		
+		WebElement table=driver.findElement(By.xpath("/html/body/app-root/div/app-org-user-list/div/div[2]/div/table/tbody/tr[1]/td[1]"));
+		List<WebElement> lst=table.findElements(By.tagName("tr"));
+		System.out.println(lst);
+		
+		
 		home1 = VS.getAssertUserTitle().getText();
 		System.out.println(home1);
 		actual1 = "1.User name is not Displayed on Manage Users tab";
@@ -9645,6 +9644,496 @@ public static void verifySortFunctionalityInContributionDashboard() {
 	}
 
 
+public static void verifyPublishedProjectsShouldBeAvailableForTC(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home1 = null;
+	String expect1 = "Published Projects should be available under For individual contents not for any target collections";
+	String actual1 = "Published Projects is not available under For individual contents not for any target collections";
+	
+	String home2 = null;
+	String expect2 = "Created Project "+ProjectName + " Must be Displayed with Nomination Disable and Skip Review Enable";
+	String actual2 = "Created Project "+ProjectName + " is Not Displayed with Nomination Disable and Skip Review Enable";
+
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		String s4 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		WebElement PublishedProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", PublishedProject);
+		Assert.assertTrue(PublishedProject.isDisplayed());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s4));
+		
+		home1 = clkOpenProject.getText();
+		System.out.println(home1);
+		actual1 = "published Projects is available under For individual contents not for any target collections";
+		
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		
+		String TabDetails = VS.getAssertTabList().getText();
+		String[] lines = TabDetails.split("\r\n|\r|\n");
+		System.out.println(lines);
+		System.out.println(lines.length);
+		
+		for (String line : lines) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Nominations");
+		}
+		
+		String contentDetails = VO.getAssertContnts().getText();
+		String[] lines1 = contentDetails.split("\r\n|\r|\n");
+		System.out.println(lines1.length);
+		
+		for (String line : lines1) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Skip two level review enabled");
+		}
+		
+		home2 = VO.getAssertAssignUsers().getText();
+		actual2 = "Created Project "+ProjectName + " is Displayed with Nomination Disable and Skip Review Enable";
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Open", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Assign users to project", homeText2, expect2, actual2);
+	}
+
+}
+
+public static void verifyPublishedProjectsShouldBeAvailableForTCWithNomOpenAndSkipDis(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home1 = null;
+	String expect1 = "Published Projects should be available under For individual contents not for any target collections";
+	String actual1 = "Published Projects is not available under For individual contents not for any target collections";
+	
+	String home2 = null;
+	String expect2 = "Created Project "+ProjectName + " Must be Displayed with Nomination Disable and Skip Review Enable";
+	String actual2 = "Created Project "+ProjectName + " is Not Displayed with Nomination Disable and Skip Review Enable";
+
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		String s4 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		WebElement PublishedProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", PublishedProject);
+		Assert.assertTrue(PublishedProject.isDisplayed());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s4));
+		
+		home1 = clkOpenProject.getText();
+		System.out.println(home1);
+		actual1 = "published Projects is available under For individual contents not for any target collections";
+		
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		
+		Assert.assertTrue(VO.getAssertNominationTab().isDisplayed());
+		
+		String contentDetails = VO.getAssertContnts().getText();
+		String[] lines1 = contentDetails.split("\r\n|\r|\n");
+		System.out.println(lines1.length);
+		
+		for (String line : lines1) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Skip two level review enabled");
+		}
+		
+		home2 = VO.getAssertAssignUsers().getText();
+		actual2 = "Created Project "+ProjectName + " is Displayed with Nomination Disable and Skip Review Enable";
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Open", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Assign users to project", homeText2, expect2, actual2);
+	}
+
+}
+
+
+public static void verifyDetailsOpeningPublishedProjectsWithSkipReviewDisabled(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home1 = null;
+	String expect1 = "1. Project name and framework name should displayed on top with Sourcing organization ";
+	String actual1 = "1. Project name and framework name is not displayed on top with Sourcing organization ";
+	
+	String home2 = null;
+	String expect2 = "2. Board Medium Class Subject of the Project Should be displayed";
+	String actual2 = "2. Board Medium Class Subject of the Project is not displayed";
+	
+	String home3 = null;
+	String expect3 = "3. Content types selected in the Project should Displayed";
+	String actual3 = "3. Content types selected in the Project is not Displayed";
+	
+	String home4 = null;
+	String expect4 = "4. Project dates ie Nomination end date, Shortlisting date, Contribution end date and Project end date should displayed";
+	String actual4 = "4. Project dates ie Nomination end date, Shortlisting date, Contribution end date and Project end date are not displayed";
+	
+
+	try {
+		String s1 = "//h5[text()='";
+		String s2 = ProjectName;
+		String s3 = " ']";
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		WebElement PublishedProject = driver.findElement(By.xpath(s1 + s2 + s3));
+
+		Assert.assertTrue(PublishedProject.isDisplayed());
+		Assert.assertTrue(VS.getAssertFramework().isDisplayed());
+		
+		home1 = VS.getAssertFramework().getText();
+		System.out.println(home1);	
+		actual1 = "1. Project name and framework name is displayed on top with Sourcing organization ";
+		
+		Assert.assertTrue(VS.getAssertBoardTitle().isDisplayed());
+		Assert.assertTrue(VS.getAssertMedTitle().isDisplayed());
+		Assert.assertTrue(VS.getAssertClassTitle().isDisplayed());
+		Assert.assertTrue(VS.getAssertSubTitle().isDisplayed());
+		
+		home2 = VS.getAssertSubTitle().getText();
+		System.out.println(home2);	
+		actual1 = "2. Board Medium Class Subject of the Project is not displayed";
+		
+		Assert.assertTrue(VS.getAssertConentTypeTitle().isDisplayed());
+		Assert.assertTrue(VS.getAssertConentType().isDisplayed());
+		
+		home3 = VS.getAssertConentType().getText();
+		System.out.println(home3);	
+		actual3 = "Content types selected in the Project is Displayed";
+		
+		Assert.assertTrue(VS.getAssertNominationDate().isDisplayed());
+		Assert.assertTrue(VS.getAssertShortlistDate().isDisplayed());
+		Assert.assertTrue(VS.getAssertContributionDate().isDisplayed());
+		Assert.assertTrue(VS.getAssertProjectEndDate().isDisplayed());
+		
+		home4 = VS.getAssertProjectEndDate().getText();
+		System.out.println(home4);
+		actual4 = "Project dates ie Nomination end date, Shortlisting date, Contribution end date and Project end dates are displayed";
+		
+		
+		String contentDetails = VO.getAssertContnts().getText();
+		String[] lines1 = contentDetails.split("\r\n|\r|\n");
+		System.out.println(lines1.length);
+		
+		for (String line : lines1) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Skip two level review enabled");
+		}
+		
+//		home2 = VO.getAssertAssignUsers().getText();
+//		actual2 = "Created Project "+ProjectName + " is Displayed with Nomination Disable and Skip Review Enable";
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Others", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Subject", homeText2, expect2, actual2);
+		
+		String homeText3 = home3 != null ? home3 : "N/A";
+		Listeners.customAssert("eTextbook", homeText3, expect3, actual3);
+		
+		String homeText4 = home4 != null ? home4 : "N/A";
+		Listeners.customAssert("Project End Date", homeText4, expect4, actual4);
+	}
+
+}
+
+public static String createProjectBookSkipEnableSelectedCont() throws Exception {
+	String home = null;
+	String expect = "Sourcing org admin is able to create and Publish The Project Successfully without Target Collection For Selected Organization";
+	String actual = "Sourcing org admin is unable to create and Publish The Project Successfully without Target Collection For Selected Organization";
+
+	try {
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+	String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+	String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSkipReview());
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSelectedContributors());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+	VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+	
+	String OrgCon =  excel.getContentName("Org Contributor");
+	System.out.print(OrgCon);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+	VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),OrgCon);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getCloseConfirmationIcon());
+	Thread.sleep(2000);
+	
+	String OrgCon2 =  excel.getContentName("Org Contributor2");
+	System.out.print(OrgCon2);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+	VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),OrgCon2);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+	
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+	Thread.sleep(3000);
+	
+	Assert.assertTrue(VS.getAddedContributor().isDisplayed()&&VS.getAssertTwoCont().isDisplayed());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+	Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+
+	Thread.sleep(500);
+	Date.setDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	Actions action = new Actions(driver);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+
+	VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+	Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+
+	Thread.sleep(500);
+	Date.setNextToDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);		
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkNextButton());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+	
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+	Thread.sleep(3000);
+	
+	UploadContentMethods.UploadPdf();
+	
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+
+	VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+	home = VO.getAssertProjectPublished().getText();
+	actual = "Sourcing org admin is able to Create and Publish The Project Successfully without Target Collection For Selected Organization";
+	return ProjectName;
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+}
+
+}
+
+public static String createProjectBookWithSkipReviewEnableAndSelIndCon() throws Exception {
+	String home = null;
+	String expect = "Sourcing org admin is able to create and Publish The Project Successfully ";
+	String actual = "Sourcing org admin is unable to create and Publish The Project Successfully";
+
+	try {
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+	String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+	String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);		
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+	VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+	Thread.sleep(3000);
+	Assert.assertTrue(VS.getAssertSelectContributorPopUpHeader().isDisplayed());
+	Assert.assertTrue(VS.getAssertContributorTypeLabel().isDisplayed());
+	Assert.assertTrue(VS.getAssertSaveBtn().isDisplayed());
+	Assert.assertTrue(VS.getAssertCloseBtn().isDisplayed());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContributionType());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelIndividual());
+	Thread.sleep(3000);
+	String IndCon =  excel.getContentName("Ind Contributor");
+	System.out.print(IndCon);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+	VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),IndCon);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+			
+	Assert.assertTrue(VS.getAssertSelectedContributor().isDisplayed());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getCloseConfirmationIcon());
+	Thread.sleep(2000);
+	
+	
+	String IndCon2 =  excel.getContentName("Ind Contributor2");
+	System.out.print(IndCon2);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+	VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),IndCon2);
+	
+	VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+	
+	Assert.assertTrue(VS.getAddedContributor().isDisplayed()&&VS.getAssertTwoCont().isDisplayed());
+	
+	Assert.assertTrue(VS.getAssertContributorSelected().isDisplayed());
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkSkipReview());
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getContributionEndDate());
+	VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+	Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+	Thread.sleep(500);
+	Date.setDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	Actions action = new Actions(driver);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+	VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+	Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+	Thread.sleep(500);
+	Date.setNextToDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+	VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+	home = VO.getAssertProjectPublished().getText();
+	actual = "Sourcing org admin is able to Create and Publish The Project Successfully";
+	return ProjectName;
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+}
+
+}
+
+
+public static void editAndModifyTheLiveProject(String ProjectName)
+		throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = " User should be able to Update the live project";
+	String actual = " User is unable to Update athe live project";
+	try {
+	String s1 = "(//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::i[@data-tooltip='Modify'])[1] ";
+	Thread.sleep(10000);
+	WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3));
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+	assertProjectEdit.isDisplayed();
+	assertProjectEdit.click();
+	
+	String ProjectName_Update = VDNUtils.set_Content_Name("AutoPU_");
+	VO.getEnterProjectName().clear();
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName_Update);
+
+	String ProjectDesc_Update = VDNUtils.set_Content_Name("AutoDU_");
+	VO.getEnterProjectDesc().clear();
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc_Update);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);	
+	
+	VDNUtils.waitForElementToBeVisible(VS.getUpdateButton());
+	VDNUtils.waitToBeClickableAndClick(VS.getUpdateButton());
+	
+	VDNUtils.waitForElementToBeVisible(VS.getAssertModifiedMsg());
+	home = VS.getAssertModifiedMsg().getText();
+	actual = " User is able to Update and delete the draft project";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("The project has been modified successfully.", homeText, expect, actual);
+}
+}
 }
 
 

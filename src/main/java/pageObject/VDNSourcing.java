@@ -1067,6 +1067,117 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//button[text()='Accept']")
 	private WebElement acceptBtn;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Others']")
+	private WebElement assertFramework;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Board']")
+	private WebElement assertBoardTitle;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Medium']")
+	private WebElement assertMedTitle;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Class']")
+	private WebElement assertClassTitle;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Subject']")
+	private WebElement assertSubTitle;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='eTextbook']")
+	private WebElement assertConentType;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Content Type(s)']")
+	private WebElement assertConentTypeTitle;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Nomination End Date']")
+	private WebElement assertNominationDate;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Shortlisting Nominations']")
+	private WebElement assertShortlistDate;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Contribution & Review']")
+	private WebElement assertContributionDate;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Project End Date']")
+	private WebElement assertProjectEndDate;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='2']")
+	private WebElement assertTwoCont;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='The project has been modified successfully.']")
+	private WebElement assertModifiedMsg;
+	
+	
+	
+	
+	
+	
+	
+	public WebElement getAssertModifiedMsg() {
+		return assertModifiedMsg;
+	}
+
+
+	public WebElement getAssertTwoCont() {
+		return assertTwoCont;
+	}
+
+
+	public WebElement getAssertProjectEndDate() {
+		return assertProjectEndDate;
+	}
+
+
+	public WebElement getAssertContributionDate() {
+		return assertContributionDate;
+	}
+
+
+	public WebElement getAssertShortlistDate() {
+		return assertShortlistDate;
+	}
+
+
+	public WebElement getAssertNominationDate() {
+		return assertNominationDate;
+	}
+
+
+	public WebElement getAssertConentTypeTitle() {
+		return assertConentTypeTitle;
+	}
+
+
+	public WebElement getAssertConentType() {
+		return assertConentType;
+	}
+
+
+	public WebElement getAssertSubTitle() {
+		return assertSubTitle;
+	}
+
+
+	public WebElement getAssertClassTitle() {
+		return assertClassTitle;
+	}
+
+
+	public WebElement getAssertMedTitle() {
+		return assertMedTitle;
+	}
+
+
+	public WebElement getAssertBoardTitle() {
+		return assertBoardTitle;
+	}
+
+
+	public WebElement getAssertFramework() {
+		return assertFramework;
+	}
+
+
+
 	@FindBy(how=How.XPATH,using="//*[@formcontrolname='framework']")
 	private WebElement frameworkType;
 	
