@@ -688,12 +688,33 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//span[text()='Not Accepted']")
 	private WebElement assertNotAcceptedOnRC;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Get content targeted to Question Sets']")
+	private WebElement projectOption2;
+	
+	@FindBy(how=How.XPATH,using="(//a[text()='Nominations ']//following::span[1])[1]")
+	private WebElement assertNomCount;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='rating2']//following::button[text()='Open']")
+	private WebElement assertRevPending3;
 	
 	
 	
 	
 	
 	
+	public WebElement getAssertRevPending3() {
+		return assertRevPending3;
+	}
+
+
+	public WebElement getAssertNomCount() {
+		return assertNomCount;
+	}
+
+
+	public WebElement getProjectOption2() {
+		return projectOption2;
+	}
 	
 	
 	public WebElement getAssertNotAcceptedOnRC() {

@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.awt.RenderingHints.Key;
+import java.io.IOException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -22,6 +23,7 @@ import io.reactivex.rxjava3.functions.Action;
 import pageObject.HomePage;
 import pageObject.UploadPdfContent;
 import pageObject.VDNObj;
+import pageObject.VDNSourcing;
 import utility.BaseClass;
 import utility.Listeners;
 import utility.VDNUtils;
@@ -86,7 +88,6 @@ public class VDNMethods extends BaseClass {
 
 		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
 		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
-
 		Thread.sleep(500);
 		Date.setNextToDayAfterTomorrowDate(driver);
 		Thread.sleep(1000);
@@ -94,7 +95,8 @@ public class VDNMethods extends BaseClass {
 		Thread.sleep(500);
 		action.sendKeys("4").perform();
 		Thread.sleep(500);
-		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		js.executeScript("arguments[0].click();", VO.getClkNextButton());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
 		VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
@@ -894,7 +896,7 @@ public class VDNMethods extends BaseClass {
 
 	
 	public static void verifySourcingOrgAdminIsAbleToAssignReviewer(String ProjectName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		String home = null;
 		String expect = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top";
 		String actual =  "Admin should be unable to assign reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
@@ -925,7 +927,11 @@ public class VDNMethods extends BaseClass {
 			
 			Assert.assertTrue(VO.getSearchField().isDisplayed());
 			Thread.sleep(3000);
-			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "Jaga2");
+			
+			String user =  excel.getContentName("User Role1");
+			System.out.print(user);
+			
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), user);
 			Thread.sleep(3000);
 			
 			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
@@ -1488,7 +1494,7 @@ public class VDNMethods extends BaseClass {
 			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
 			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
 
-			actual = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+			actual = " Admin should be able to Roles to the Project "+ProjectName+" and is Displayed on the Top" ;
 		} finally {
 			String homeText = home != null ? home : "N/A";
 			System.out.println(homeText);
@@ -2957,48 +2963,12 @@ public class VDNMethods extends BaseClass {
 			Assert.assertEquals(Tot,TotalC);
 			
 			
-			
-			//*******************************
-			//VDNUtils.waitForElementToBeVisible(VO.getBackBtn());
-			
-			//*******************************
-//			js.executeScript("arguments[0].scrollIntoView(true);", VO.getBackBtn());
-//			VO.getBackBtn().click();
-//			Thread.sleep(10000);
-//			
-//			Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
-//			String TotalCount1 = VO.getAssertTotalTab1().getText();
-//			System.out.println(TotalCount1);
-//			
-//			
-//			Assert.assertTrue(VO.getAssertApprovalPendingTab().isDisplayed());
-//			String APCount1 = VO.getAssertApprovalPendingTab().getText();
-//			System.out.println(APCount1);
-//			
-//			Assert.assertTrue(VO.getAssertApprovedTab().isDisplayed());
-//			String ApprovedCount1 = VO.getAssertApprovedTab().getText();
-//			System.out.println(ApprovedCount1);
-//			
-//			Assert.assertTrue(VO.getAssertRejectedTab().isDisplayed());
-//			String RejectedCount1 = VO.getAssertRejectedTab().getText();
-//			System.out.println(RejectedCount1);
-//			
-//			Assert.assertTrue(VO.getAssertCorrectionTab().isDisplayed());
-//			String CorrectioCountCount1 = VO.getAssertCorrectionTab().getText();
-//			System.out.println(CorrectioCountCount1);
-			
-			//************************
-			
-			
-//			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
-//			VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
-//			Thread.sleep(3000);
-//			Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
-//			home = VO.getAssertNominationSuccess().getText();
-//			actual = ProjectName + " is Successfully Nominated";
+		
+			home = VO.getApprovalPenNode().getText();
+			actual = ProjectName + " is Sent For Approval and Send For Correction";
 		} finally {
-//			String homeText = home != null ? home : "N/A";
-//			Listeners.customAssert("Nomination updated successfully...", homeText, expect, actual);
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Approval Pending:", homeText, expect, actual);
 		}
 
 }
@@ -3727,8 +3697,11 @@ public class VDNMethods extends BaseClass {
 		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
 		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
 		
+		String OrgCon =  excel.getContentName("Org Contributor");
+		System.out.print(OrgCon);
+		
 		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
-		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),"Color");
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),OrgCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
@@ -3760,6 +3733,8 @@ public class VDNMethods extends BaseClass {
 		Thread.sleep(500);
 		action.sendKeys("4").perform();
 		Thread.sleep(500);		
+		
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkNextButton());
 
 		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
 
@@ -4263,9 +4238,11 @@ public class VDNMethods extends BaseClass {
 		VDNUtils.waitToBeClickableAndClick(VO.getSelIndividual());
 		Thread.sleep(3000);
 		
+		String IndCon =  excel.getContentName("Ind Contributor");
+		System.out.print(IndCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
-		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),"testUser");
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),IndCon);
 		
 		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
 		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
@@ -4967,7 +4944,7 @@ public class VDNMethods extends BaseClass {
 }
 	
 	public static void verifySourcingOrgAdminIsAbleToToViewTheSamples(String ProjectName) throws InterruptedException {
-		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		
 		String home = null;
 		String expect = "sourcing org admin is able to view the samples uploaded by the users.";
 		String actual = "sourcing org admin is unable to view the samples uploaded by the users.";
@@ -4976,25 +4953,20 @@ public class VDNMethods extends BaseClass {
 			String s2 = ProjectName;
 			String s3 = " ']//following::button[text()='Open '][1]";
 			Thread.sleep(10000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
 			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
 			VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
-		
-			
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
 			Assert.assertTrue(VO.getViewSampleBtn().isDisplayed());
-//			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
-			
 			String SampleCount = VO.getAssertSampleCount1().getText();
 			System.out.print(SampleCount);
-			
 			int SampleC=Integer.parseInt(SampleCount); 
 			Assert.assertEquals(SampleC, 1);
-			
 			VDNUtils.waitToBeClickableAndClick(VO.getViewSampleBtn());
 			Thread.sleep(3000);
-			//button[contains(text(),'View Sample Content')]//preceding::td[1]
 			Assert.assertTrue(VO.getSelectSample1().isDisplayed());
 			home = VO.getSelectSample1().getText();
 			actual = "sourcing org admin is able to view the samples uploaded by the users ";
@@ -5074,8 +5046,8 @@ public class VDNMethods extends BaseClass {
 		
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			
-			VDNUtils.waitForElementToBeVisible(VO.getOpenOwnContent());
-			VDNUtils.waitToBeClickableAndClick(VO.getOpenOwnContent());
+			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending3());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending3());
 			
 			Thread.sleep(3000);
 			String tabDetails = VO.getAssertAllReviewContentHead().getText();
@@ -6977,4 +6949,5 @@ public class VDNMethods extends BaseClass {
 			Listeners.customAssert("Not Accepted" ,homeText, expect, actual);
 		}
 	}
+	
 }

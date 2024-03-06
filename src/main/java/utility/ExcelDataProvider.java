@@ -144,7 +144,7 @@ public class ExcelDataProvider extends BaseClass {
 	public String getContentName(String contentType) throws IOException {
 
 		String contentName = "";
-		String sheetname = "TestData";
+		String sheetname = "Data";
 
 		int typeCell = 0;
 		int dataCell = 1;
@@ -174,7 +174,7 @@ public class ExcelDataProvider extends BaseClass {
 	public String getDoID(String contentType) throws IOException {
 
 		String doID = "";
-		String sheetname = "TestData";
+		String sheetname = "Data";
 		int typeCell = 0;
 		int dataCell = 2;
 

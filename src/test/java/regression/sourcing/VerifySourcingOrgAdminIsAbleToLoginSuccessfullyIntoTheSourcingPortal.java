@@ -12,5 +12,6 @@ public class VerifySourcingOrgAdminIsAbleToLoginSuccessfullyIntoTheSourcingPorta
 	@Test
 	public static void verifySourcingOrgAdminIsAbleToLoginSuccessfullyIntoTheSourcingPortal() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
+	VDNSourcingMethods.verifyAdminIsAbleToLoginToTheSourcingPortal();
 	}
 }

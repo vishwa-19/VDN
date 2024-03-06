@@ -28,14 +28,14 @@ public class ExtendReportGenerator {
         String reportTime = timeFormat.format(currentTime);
         String formattedTime = reportTime.replace(":", "-");
 
-        ExtentSparkReporter reporter=new ExtentSparkReporter(path+"DIKSHA Automation Report "+formattedDate+"_"+formattedTime+".html");
+        ExtentSparkReporter reporter=new ExtentSparkReporter(path+"VDN Automation Report "+formattedDate+"_"+formattedTime+".html");
         reporter.config().setDocumentTitle("Diksha Automation Test Report");
-        reporter.config().setReportName("DIKSHA Automation Report");
+        reporter.config().setReportName("VDN Automation Report");
         reporter.config().setTheme(Theme.STANDARD);
 
          extent=new ExtentReports();
         extent.attachReporter(reporter);
-        extent.setSystemInfo("Project Name","Diksha");
+        extent.setSystemInfo("Project Name","VDN");
         extent.setSystemInfo("O.S", "Windows");
 
 

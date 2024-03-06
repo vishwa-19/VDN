@@ -11,5 +11,8 @@ public class VerifyApplyFiltersPopUpPageIsDisplayedPostClickingOnApplyFilterButt
 	public static void verifyApplyFiltersPopUpPageIsDisplayedPostClickingOnApplyFilterButtonAndItsDetails() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
 	VDNSourcingMethods.validateyApplyFiltersPopUpPageAndItsDetails();
+	VDNSourcingMethods.validateyNominationAndContributionStatusAndApply();
+	VDNSourcingMethods.validateyTargetCollectionsOnPopup();
+	
 	}
 }
