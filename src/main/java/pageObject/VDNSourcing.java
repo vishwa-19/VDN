@@ -405,7 +405,38 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//span[text()='Question paper']")
 	private WebElement ClkQPaper;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project description is required ']")
+	private WebElement assertProjDescError;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project name is required ']")
+	private WebElement assertNameError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Content types are required ']")
+	private WebElement assertContentTypeError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Target collection is required ']")
+	private WebElement assertTargetCollError;
+	
+	public WebElement getAssertTargetCollError() {
+		return assertTargetCollError;
+	}
+
+
+	public WebElement getAssertContentTypeError() {
+		return assertContentTypeError;
+	}
+
+
+	public WebElement getAssertNameError() {
+		return assertNameError;
+	}
+
+
+	public WebElement getAssertProjDescError() {
+		return assertProjDescError;
+	}
+
+
 	public WebElement getClkQPaper() {
 		return ClkQPaper;
 	}

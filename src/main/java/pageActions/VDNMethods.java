@@ -920,9 +920,9 @@ public class VDNMethods extends BaseClass {
 			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
 
 			Assert.assertTrue(VO.getAssertReport().isDisplayed());
-
+			Thread.sleep(3000);
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
-
+			Thread.sleep(3000);
 			VDNUtils.waitForElementToBeVisible(VO.getSearchField());
 			
 			Assert.assertTrue(VO.getSearchField().isDisplayed());
@@ -5046,8 +5046,8 @@ public class VDNMethods extends BaseClass {
 		
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			
-			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending2());
-			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending2());
+			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending3());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending3());
 			
 			Thread.sleep(3000);
 			String tabDetails = VO.getAssertAllReviewContentHead().getText();
@@ -6949,5 +6949,6 @@ public class VDNMethods extends BaseClass {
 			Listeners.customAssert("Not Accepted" ,homeText, expect, actual);
 		}
 	}
+		
 	
 }
