@@ -1219,6 +1219,26 @@ public class VDNSourcing {
 	private WebElement frameworkOptnYesBtn;
 	
 	
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content rejected successfully']")
+	private WebElement assertContentRejectToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='jaga1']//following::span[text()='Not Accepted']")
+	private WebElement assertNotAcceptedOnBoth;
+	
+	
+	
+	
+	public WebElement getAssertNotAcceptedOnBoth() {
+		return assertNotAcceptedOnBoth;
+	}
+
+
+	public WebElement getAssertContentRejectToastMsg() {
+		return assertContentRejectToastMsg;
+	}
+
+
 	public WebElement getFrameworkOptnYesBtn() {
 		return frameworkOptnYesBtn;
 	}

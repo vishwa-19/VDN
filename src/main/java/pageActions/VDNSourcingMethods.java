@@ -10635,6 +10635,113 @@ public static void validErrorMessagewithoutMandatoryFields() throws InterruptedE
 		Listeners.customAssert("Content types are required", homeText3, expect3, actual3);
 	}
 }
+
+public static void verifyDefaultOrgUserWithReviwerAsRoleIsAbleToReviewTheContent(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " Default org reviewer should able to request the content for change.";
+	String actual =  "Default org reviewer is not able to request the content for change.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		Thread.sleep(2000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkReviewContent());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContent());
+		
+		Thread.sleep(2000);
+		VDNUtils.waitForElementToBeVisible(VO.getAssertReviewPending());
+		Assert.assertTrue(VO.getAssertReviewPending().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+		VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+		Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		Assert.assertTrue(VO.getAssertSample().isDisplayed());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkRequestChanges());
+		
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Request");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertNotAcceptedOnRC());
+		Assert.assertTrue(VO.getAssertNotAcceptedOnRC().isDisplayed());
+		String stausNotAcceptedOnRC = VO.getAssertNotAcceptedOnRC().getText();
+		Assert.assertEquals(stausNotAcceptedOnRC,"Not Accepted");
+		
+		home = VO.getAssertNotAcceptedOnRC().getText();
+		actual = "Default org reviewer is able to request the content for change.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Not Accepted" ,homeText, expect, actual);
+	}
+}
+
+public static void UserWithBothRoleIsAbleToReviewRequestChangesForOthersContent()
+		throws Exception {
+	String home1 = null;
+	String expect1 = "Default org user with both role should able to request the changes for the content";
+	String actual1 = "Default org user with both role is not able to request the changes for the content";
+	
+	String home2 = null;
+	String expect2 = "Default org user with both role should able to request the changes for the content is reflected";
+	String actual2 = "Default org user with both role is request the changes for the content is not reflected";
+
+	try {
+	
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitForElementToBeVisible(VO.getAssertRevPendingOnBoth());
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPendingOnBoth());
+		
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+		Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		Assert.assertTrue(VO.getAssertSample().isDisplayed());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkRequestChanges());
+		
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Request");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+		
+		home1 = VS.getAssertContentRejectToastMsg().getText();
+		actual1 = "Default org user with both role is able to request the changes for the content";
+		Thread.sleep(3000);
+		
+		home2 = VS.getAssertNotAcceptedOnBoth().getText();
+		actual2 = "Default org user with both role is request the changes for the content is  reflected";
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Content rejected successfully" ,homeText1, expect1, actual1);
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Not Accepted" ,homeText2, expect2, actual2);
+	}
+}
+
+
 }
 
 
