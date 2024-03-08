@@ -52,8 +52,8 @@
       <class name="vdn.SuccessfulReviewerRoleUpdatedForWithoutProjectAnyTargetCollection"/>
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
-      <class name="vdn.SourcingOrgAdminAbleToViewTheSamplesUploadedByTheUsers"/>-->
-       <class name="regression.sourcing.VerifySortFunctionalityInContributionDashboard" />	 
+      <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>-->
+       <class name="regression.sourcing.VerifyProjectDetailsOfYourOrganizationWithSkipReviewEnabled" />	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

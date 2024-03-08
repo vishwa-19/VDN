@@ -10134,6 +10134,98 @@ public static void editAndModifyTheLiveProject(String ProjectName)
 	Listeners.customAssert("The project has been modified successfully.", homeText, expect, actual);
 }
 }
+
+	public static void verifyProjectDetailsOfSelectedSetOfContributorsWithSkipReviewDisabled(String projectName) {
+		
+		String expect = "All the project details should be display to user";
+		String actual = "All the project details is not display to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s4 = "((//*[text()='";
+		String s5 = " ']))";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+		Assert.assertTrue(projectname.isDisplayed());
+//		Assert.assertTrue(VS.getReportTab().isDisplayed());
+		Assert.assertTrue(VS.getAssignUserTab().isDisplayed());
+		Assert.assertTrue(VS.getNominationTab().isDisplayed());
+		Assert.assertTrue(VS.getContributionDashboard().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		text = "Completed";
+		actual = "All the project details is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+public static void verifyProjectDetailsOfSelectedSetOfContributorsWithSkipReviewEnabled(String projectName) {
+		
+		String expect = "All the project details should be display to user";
+		String actual = "All the project details is not display to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s4 = "((//*[text()='";
+		String s5 = " ']))";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+		Assert.assertTrue(projectname.isDisplayed());
+		Assert.assertTrue(VS.getAssignUserTab().isDisplayed());
+		Assert.assertTrue(VS.getNominationTab().isDisplayed());
+		Assert.assertTrue(VS.getContributionDashboard().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getSkipReviewIcon().isDisplayed());
+		text = "Completed";
+		actual = "All the project details is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+
+	public static void verifyProjectDetailsOfYourOrganizationWithSkipReviewEnabled(String projectName) {
+		
+		String expect = "All the project details should be display to user";
+		String actual = "All the project details is not display to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s4 = "((//*[text()='";
+		String s5 = " ']))";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+		Assert.assertTrue(projectname.isDisplayed());
+		Assert.assertTrue(VS.getAssignUserTab().isDisplayed());
+		Assert.assertTrue(VS.getContributionDashboard().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		Assert.assertTrue(VS.getSkipReviewIcon().isDisplayed());
+		text = "Completed";
+		actual = "All the project details is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
 }
 
 

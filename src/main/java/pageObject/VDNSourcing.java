@@ -981,6 +981,14 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[@class='close icon']")
 	private WebElement closeIcon;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Skip two level review enabled']")
+	private WebElement skipReviewIcon;
+	
+
+	public WebElement getSkipReviewIcon() {
+		return skipReviewIcon;
+	}
+
 
 	@FindBy(how=How.XPATH,using="//h4[text()='List of Courses ']")
 	private WebElement listOfCourses;
