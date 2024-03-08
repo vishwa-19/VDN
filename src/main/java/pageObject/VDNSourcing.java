@@ -1226,9 +1226,28 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//span[text()='jaga1']//following::span[text()='Not Accepted']")
 	private WebElement assertNotAcceptedOnBoth;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::td[@class='text-center w-10']")
+	private WebElement assertViewCont;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::span[text()=' Rejected ']")
+	private WebElement assertReject;
 	
 	
 	
+	
+	
+	
+	
+	public WebElement getAssertReject() {
+		return assertReject;
+	}
+
+
+	public WebElement getAssertViewCont() {
+		return assertViewCont;
+	}
+
+
 	public WebElement getAssertNotAcceptedOnBoth() {
 		return assertNotAcceptedOnBoth;
 	}

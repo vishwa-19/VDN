@@ -10742,6 +10742,159 @@ public static void UserWithBothRoleIsAbleToReviewRequestChangesForOthersContent(
 }
 
 
+public static void verifySourcingOrgAdminIsAbleToViewSampleRejectNominationWithoutTC(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	String home = null;
+	String expect = " sourcing orgadmin should be able to Rejected the nomination with comment for "+ProjectName;
+	String actual = " sourcing orgadmin is unable to Rejected the nomination with comment for "+ProjectName;
+	
+	String home2 = null;
+	String expect2 = " view contribution button should be not displayed against the rejected nomination.";
+	String actual2 = " view contribution button is displayed against the rejected nomination.";
+
+	try {
+			
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkOpenSample());
+		Assert.assertTrue(VO.getAssertSample().isDisplayed());
+		Assert.assertTrue(VO.getAssertSampleContentDetails().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnReject());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Reject");
+		VDNUtils.waitToBeClickableAndClick(VO.getRejectSubmit());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
+		home = VO.getAssertNominationSuccess().getText();
+		actual = "sourcing orgadmin is able to Rejected the nomination with comment for "+ProjectName;
+		
+		Thread.sleep(5000);
+		String contentDetails = VS.getAssertViewCont().getText();
+		String[] lines = contentDetails.split("\r\n|\r|\n");
+		System.out.println(lines.length);
+		
+		for (String line : lines) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"View Contribution");
+		}
+
+		String[] lines1 = contentDetails.split("\r\n|\r|\n");
+		Assert.assertNotEquals(lines1,"View Contribution");
+		Thread.sleep(3000);
+		
+		home2 = VS.getAssertReject().getText();
+		System.out.println(home2);
+		actual2 = "view contribution button is displayed against the rejected nomination";
+		
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Nomination updated successfully...", homeText, expect, actual);
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Rejected", homeText2, expect2, actual2);
+
+	}
+
+}
+
+
+public static String verifyAdminCanSelectOnlyOneFrameworkTypeWithoutTC() throws InterruptedException {
+	String home = null;
+	String expect = "Sourcing org admin should able to select only one framework type from the drop down for Without Target Collection";
+	String actual = "Sourcing org admin is unable to select only one framework type from the drop down for Without Target Collection";
+
+	try {
+
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt3());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+		Date.setTodayDate(driver, VO.getNominationEndDate());
+
+		Thread.sleep(500);
+		Date.setTodayDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+		Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+
+		Thread.sleep(500);
+		Date.setTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());			
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkType());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptn());
+		VDNUtils.waitToBeClickableAndClick(VS.getFrameworkOptnYesBtn());
+		Assert.assertTrue(VS.getFrameworkOptn().isDisplayed());
+		home = VS.getFrameworkOptn().getText();
+		System.out.println(home);
+		actual = "Sourcing org admin is able to select only one framework type from the drop down for Without Target Collection";
+
+		return ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Continuous Professional Development", homeText, expect, actual);
+	}
+
+}
+
 }
 
 
