@@ -405,7 +405,38 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//span[text()='Question paper']")
 	private WebElement ClkQPaper;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project description is required ']")
+	private WebElement assertProjDescError;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project name is required ']")
+	private WebElement assertNameError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Content types are required ']")
+	private WebElement assertContentTypeError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Target collection is required ']")
+	private WebElement assertTargetCollError;
+	
+	public WebElement getAssertTargetCollError() {
+		return assertTargetCollError;
+	}
+
+
+	public WebElement getAssertContentTypeError() {
+		return assertContentTypeError;
+	}
+
+
+	public WebElement getAssertNameError() {
+		return assertNameError;
+	}
+
+
+	public WebElement getAssertProjDescError() {
+		return assertProjDescError;
+	}
+
+
 	public WebElement getClkQPaper() {
 		return ClkQPaper;
 	}
@@ -1196,6 +1227,45 @@ public class VDNSourcing {
 	private WebElement frameworkOptnYesBtn;
 	
 	
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content rejected successfully']")
+	private WebElement assertContentRejectToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='jaga1']//following::span[text()='Not Accepted']")
+	private WebElement assertNotAcceptedOnBoth;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::td[@class='text-center w-10']")
+	private WebElement assertViewCont;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::span[text()=' Rejected ']")
+	private WebElement assertReject;
+	
+	
+	
+	
+	
+	
+	
+	public WebElement getAssertReject() {
+		return assertReject;
+	}
+
+
+	public WebElement getAssertViewCont() {
+		return assertViewCont;
+	}
+
+
+	public WebElement getAssertNotAcceptedOnBoth() {
+		return assertNotAcceptedOnBoth;
+	}
+
+
+	public WebElement getAssertContentRejectToastMsg() {
+		return assertContentRejectToastMsg;
+	}
+
+
 	public WebElement getFrameworkOptnYesBtn() {
 		return frameworkOptnYesBtn;
 	}

@@ -179,7 +179,18 @@
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminIsAbleToRejectedNomination" />-->
 			<!--<class name="regression.sourcing.VerifyViewContributionButtonIsAvailableForApprovedNomination" />-->
 			<!--<class name="regression.sourcing.VerifyDetailsOpeningPublishedProjectsWithoutTCSkipReviewDisabled" />-->
-			<class name="regression.sourcing.VerifyAdminIsAbleToModifyProjectDetails" />
+			<!--<class name="regression.sourcing.VerifyEditOptionIsAvailableAgainstDraftProjects" />-->
+			<!--<class name="regression.sourcing.VerifyApplyFiltersPopUpPageIsDisplayedForSourcingOrgreviewer" />-->
+			<!--<class name="regression.sourcing.VerifyDefaultContOrgContributorAbleToUploadSaveAndPublishContentSkipReviewEnabled" />-->
+			
+			<!--<class name="regression.sourcing.VerifyDefContIsAbleToContributeContentFromASelectedSetOfContributors" />-->
+			<!--<class name="regression.sourcing.VerifyAssignedProjectsAreAvailableForSourcingOrgreviewer" />-->
+			<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToRejectNominationWithoutTC" />
+			
+			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
+			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
+			
+			
 			
 		</classes>
 	</test>

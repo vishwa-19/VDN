@@ -920,9 +920,9 @@ public class VDNMethods extends BaseClass {
 			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
 
 			Assert.assertTrue(VO.getAssertReport().isDisplayed());
-
+			Thread.sleep(3000);
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
-
+			Thread.sleep(3000);
 			VDNUtils.waitForElementToBeVisible(VO.getSearchField());
 			
 			Assert.assertTrue(VO.getSearchField().isDisplayed());
@@ -5046,8 +5046,8 @@ public class VDNMethods extends BaseClass {
 		
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			
-			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending2());
-			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending2());
+			VDNUtils.waitForElementToBeVisible(VO.getAssertRevPending3());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertRevPending3());
 			
 			Thread.sleep(3000);
 			String tabDetails = VO.getAssertAllReviewContentHead().getText();
@@ -6950,6 +6950,7 @@ public class VDNMethods extends BaseClass {
 		}
 	}
 	
+
 	public static String createProjectBookWithoutTargetCollectionSelectedContWithSkipReview() throws Exception {
 		String home = null;
 		String expect = "Sourcing org admin is able to create and Publish The Project Successfully without Target Collection For Selected Organization";
@@ -7050,5 +7051,57 @@ public class VDNMethods extends BaseClass {
 	}
 
 	}
+
+	
+	public static void verifyNominationDisabledProjectAvailableOnMyProjectsTabForDefCont(String ProjectName)
+			throws InterruptedException {
+		
+		String home1 = null;
+		String expect1 = " Nomination disabled project should be available on my projects tab with Open status for default contributor";
+		String actual1 =  "Nomination disabled project is not available on my projects tab with Open status for default contributor.";
+		String home2 = null;
+		String expect2 = " Nomination disabled project should be available on my projects tab with approved status for default contributor";
+		String actual2 =  "Nomination disabled project is not available on my projects tab with approved status for default contributor.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			String s4 = " ']//following::button[text()='Open '][1]";
+			String s5 = " ']//following::span[text()='Approved'][1]";
+			
+			WebElement assertProjectOnDefCont = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnDefCont);
+			assertProjectOnDefCont.isDisplayed();
+			WebElement assertProjectOpen = driver.findElement(By.xpath(s1 + s2 + s4));
+			assertProjectOpen.isDisplayed();
+			home1 = assertProjectOpen.getText();
+			System.out.print(home1);
+
+			
+			actual1 = "Nomination disabled project is available on my projects tab with Open status for default contributor." ;
+
+			WebElement assertProjectApproved = driver.findElement(By.xpath(s1 + s2 + s5));
+			assertProjectApproved.isDisplayed();
+			
+			home2 = assertProjectApproved.getText();
+			System.out.print(home2);
+
+			actual2 = "Nomination disabled project is available on my projects tab with approved status for default contributor." ;
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Open", homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			System.out.println(homeText2);
+			Listeners.customAssert("Approved", homeText2, expect2, actual2);
+		}
+	}
+
+		
+
 	
 }

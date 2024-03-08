@@ -694,11 +694,29 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="(//a[text()='Nominations ']//following::span[1])[1]")
 	private WebElement assertNomCount;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='rating2']//following::button[text()='Open']")
+	private WebElement assertRevPending3;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='jaga1']//following::span[text()='Review Pending']")
+	private WebElement assertRevPendingOnBoth;
 	
 	
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertRevPendingOnBoth() {
+		return assertRevPendingOnBoth;
+	}
+
+
+	public WebElement getAssertRevPending3() {
+		return assertRevPending3;
+	}
+
+
 	public WebElement getAssertNomCount() {
 		return assertNomCount;
 	}
