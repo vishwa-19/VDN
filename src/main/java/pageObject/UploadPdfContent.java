@@ -141,6 +141,16 @@ public class UploadPdfContent {
 	private WebElement selectFiles;
 	
 	//div[text()='Select file(s)']
+	
+	@FindBy(how=How.XPATH,using="//i[@class='remove icon custom-cursor']")
+	private WebElement closeIcon;
+	
+	
+
+	public WebElement getCloseIcon() {
+		return closeIcon;
+	}
+
 
 	public WebElement getSelectFiles() {
 		return selectFiles;

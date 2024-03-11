@@ -185,7 +185,12 @@
 			
 			<!--<class name="regression.sourcing.VerifyDefContIsAbleToContributeContentFromASelectedSetOfContributors" />-->
 			<!--<class name="regression.sourcing.VerifyAssignedProjectsAreAvailableForSourcingOrgreviewer" />-->
-			<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToRejectNominationWithoutTC" />
+			<!--<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToRejectNominationWithoutTC" />-->
+			<!--<class name="regression.sourcing.VerifySourcingOrgAdminAableToViewSampleAndAcceptForK12FrameworkCourse" />-->
+			<!--<class name="regression.sourcing.VerifyOrgAdminIsAbleToEditAndSaveExistingDraftProjects" />-->
+			<class name="regression.sourcing.VerifyOrgadminIsNotAbleToModifyFrameworkTypePostPublishingProject" />
+			
+			
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->

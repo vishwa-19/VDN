@@ -1137,12 +1137,33 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//strong[text()='The project has been modified successfully.']")
 	private WebElement assertModifiedMsg;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Create Interactive Content online']")
+	private WebElement courseContOnline;
+	
+	@FindBy(how=How.XPATH,using="//div[@class='ui pointing secondary menu sb-bg-color-primary-0']")
+	private WebElement getProjectTabs;
+		
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	public WebElement getGetProjectTabs() {
+		return getProjectTabs;
+	}
+
+
+	public WebElement getCourseContOnline() {
+		return courseContOnline;
+	}
+
+
 	public WebElement getAssertModifiedMsg() {
 		return assertModifiedMsg;
 	}
