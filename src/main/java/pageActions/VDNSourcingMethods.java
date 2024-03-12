@@ -20,7 +20,9 @@ import freemarker.core.ReturnInstruction.Return;
 import org.openqa.selenium.interactions.Actions;
 
 import io.reactivex.rxjava3.functions.Action;
+import pageObject.CourseAssesment;
 import pageObject.HomePage;
+import pageObject.ResourcesPom;
 import pageObject.UploadPdfContent;
 import pageObject.VDNObj;
 import utility.BaseClass;
@@ -243,6 +245,7 @@ public class VDNSourcingMethods extends BaseClass {
 			
 		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		ResourcesPom rs = PageFactory.initElements(driver, ResourcesPom.class);
 		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
 		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
 
@@ -11168,6 +11171,227 @@ public static void verifyAdminIsAbleToViewTheContributionDashboard(String projec
 	
 }
 
+
+public static void openAndNominateWithUploadCourse(String ProjectName) throws Exception {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	ResourcesPom rs = PageFactory.initElements(driver, ResourcesPom.class);
+	String home = null;
+	String expect = ProjectName + " Nomination is sent Successfully";
+	String actual = ProjectName + " Nomination is not sent Successfully";
+	try {
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::button[text()='Open '][1]";
+	Thread.sleep(10000);
+	WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssessment());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getCourseContOnline());
+	
+//	UploadContentMethods.UploadPdf();
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	
+	CourseAssesment assesment=PageFactory.initElements(driver, CourseAssesment.class);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+//	VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
+//	VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
+//	VDNUtils.waitToBeClickableAndClick(assesment.getCourseAssesmentTab());
+//	String randomName=VDNUtils.set_Content_Name("CourseAssessment_");
+//	excel.updateData("TestData","CourseAssessment" ,randomName, "");
+//	VDNUtils.waitToBeClickableAndSendKeys(assesment.getNameTextField(), randomName);
+//	VDNUtils.waitToBeClickableAndSendKeys(assesment.getMaxAttemptTextField(), "3");
+//	VDNUtils.waitToBeVisibleAndClick(assesment.getStartCreatingButton());
+	Thread.sleep(8000);
+	WebElement iframe = driver.findElement(By.tagName("iframe"));
+	driver.switchTo().frame(iframe);
+	VDNUtils.waitToBeClickableAndClick(assesment.getAddQuestionSetButton());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(rs.getCreateQuestionButton());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(rs.getSelectMCQButton());
+	Thread.sleep(2000);
+	WebElement iframe1 = driver.findElement(By.xpath("//iframe[contains(@title,'Rich Text Editor')]"));
+	driver.switchTo().frame(iframe1);
+
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(rs.getEnterTheQuestionTextfield());
+	VDNUtils.waitToBeClickableAndSendKeys(rs.getEnterTheQuestionTextfield(),"Capital of India");
+
+	driver.switchTo().defaultContent();
+	Thread.sleep(1000);
+	WebElement iframe2 = driver.findElement(By.xpath("//iframe[@class='iziModal-iframe']"));
+	driver.switchTo().frame(iframe2);
+	
+	
+	 JavascriptExecutor js=(JavascriptExecutor)driver;
+	 js.executeScript("arguments[0].scrollIntoView(true);", rs.getTickCorrectAnswer());
+	
+	
+	 VDNUtils.waitToBeClickableAndClick(rs.getTickCorrectAnswer());
+	
+	 VDNUtils.waitToBeClickableAndClick(rs.getAnswerNo1Textfield());
+	 VDNUtils.waitToBeClickableAndSendKeys(rs.getAnswerNo1Textfield(),"Delhi");
+	
+	 VDNUtils.waitToBeClickableAndClick(rs.getAnswerNo2Textfield());
+	 VDNUtils.waitToBeClickableAndSendKeys(rs.getAnswerNo2Textfield(),"Mumbai");
+	 VDNUtils.waitToBeClickableAndClick(rs.getNextButton());
+
+	 VDNUtils.waitToBeClickableAndClick(rs.getSelectBoardSyllabus());
+	 VDNUtils.waitToBeClickableAndClick(rs.getBoardSelected());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSelectMedium());
+	 VDNUtils.waitToBeClickableAndClick(rs.getMediumSelected());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSelectGrade());
+	 VDNUtils.waitToBeClickableAndClick(rs.getGradeSelected());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSelectSubject());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSubjectSelected());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSelectLevel());
+	 VDNUtils.waitToBeClickableAndClick(rs.getLevelSelected());
+	 VDNUtils.waitToBeClickableAndClick(rs.getSaveAndCreateButton());
+	 VDNUtils.waitToBeClickableAndClick(rs.getCancelButton());
+	 VDNUtils.waitToBeClickableAndClick(rs.getNextButtonAfterClickingCheckbox());
+	
+	 VDNUtils.waitToBeClickableAndSendKeys(assesment.getQuestionSetTitleTextfield(),"QA Questions");
+	VDNUtils.waitToBeClickableAndClick(assesment.getAddButton());
+  
+    
+	VDNUtils.waitToBeClickableAndClick(Upload.getSave());
+	VDNUtils.waitToBeClickableAndClick(Upload.getClose());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(Upload.getCloseIcon());
+	Thread.sleep(1000);
+	driver.switchTo().defaultContent();
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	
+	
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	
+	//JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+	home=VO.getAssertNominationSent().getText();
+	actual = ProjectName + " Nomination is sent Successfully";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Nomination sent", homeText, expect, actual);
+}
+
+}
+
+public static void SourcingOrgAdminIsAbleToEditAndModififyThePrpjectWithoutTargetCol(String ProjectName)
+		throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = "Sourcing org admin is able to edit and Modifify the Prpject Wihout Target Collection";
+	String actual = " Sourcing org admin is unable to edit or Modifify the Prpject Wihout Target Collection";
+	try {
+	String s1 = "(//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " '])[3]";
+	String s4 = "//following::i[@data-tooltip='Modify'][1]";
+	Thread.sleep(10000);
+	WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+	assertProjectEdit.isDisplayed();
+	assertProjectEdit.click();
+	
+	String ProjectName_Update = VDNUtils.set_Content_Name("AutoPU_");
+	VO.getEnterProjectName().clear();
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName_Update);
+
+	String ProjectDesc_Update = VDNUtils.set_Content_Name("AutoDU_");
+	VO.getEnterProjectDesc().clear();
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc_Update);
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkUpdateBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUpdateBtn());
+	VDNUtils.waitForElementToBeVisible(VO.getAssertModify());
+	Assert.assertTrue(VO.getAssertModify().isDisplayed());		
+	home = VO.getAssertModify().getText();
+	actual = " User is able to Update and delete the draft project";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("The project has been modified successfully.", homeText, expect, actual);
+}
+}
+
+public static void VerifyNotAbleToModifyFrameworkTypePostPublishing(String ProjectName)
+		throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String home = null;
+	String expect = "Sourcing org admin should not able to modify the framework type post publishing the project.";
+	String actual = " Sourcing org admin is not able to modify the framework type post publishing the project.";
+	try {
+	String s1 = "(//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " '])[3]";
+	String s4 = "//following::i[@data-tooltip='Modify'][1]";
+	Thread.sleep(10000);
+	WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+	assertProjectEdit.isDisplayed();
+	assertProjectEdit.click();
+	
+	Thread.sleep(10000);
+	String TabDetails = VS.getGetProjectTabs().getText();
+	String[] lines = TabDetails.split("\r\n|\r|\n");
+	System.out.println(lines);
+	System.out.println(lines.length);
+	
+	for (String line : lines) {
+	    System.out.println(line);
+	    Assert.assertNotEquals(line,"Project Scope");
+	}
+		
+	home = VS.getAssertDetailsTab().getText();
+	System.out.print(home);
+	actual = " Sourcing or admin is not able to modify the framework type post publishing the project.";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Details", homeText, expect, actual);
+}
+}
 
 }
 
