@@ -10991,6 +10991,186 @@ public static String verifyAdminCanSelectOnlyOneFrameworkTypeWithoutTC() throws 
 
 }
 
+	public static void verifyProjectDetailsOfYourOrganizationWithSkipReviewDisabled(String projectName) {
+		
+		String expect = "All the project details should be display to user";
+		String actual = "All the project details is not display to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		String s4 = "((//*[text()='";
+		String s5 = " ']))";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+		Assert.assertTrue(projectname.isDisplayed());
+		Assert.assertTrue(VS.getAssignUserTab().isDisplayed());
+		Assert.assertTrue(VS.getContributionDashboard().isDisplayed());
+		Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+		Assert.assertTrue(VS.getProjectDates().isDisplayed());
+		text = "Completed";
+		actual = "All the project details is display to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void verifyFilterContentsPopUpInContentTab(String projectName) {
+			
+			String expect = "All the filter contents PopUp details should be display to user";
+			String actual = "All the filter contents PopUp details is not display to user";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "((//*[text()=' ";
+			String s2 = projectName;
+			String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+			String s4 = "((//*[text()='";
+			String s5 = " ']))";
+			WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(openBtn);
+			VDNUtils.waitToBeClickableAndClick(VS.getFilterContents());
+			Assert.assertTrue(VS.getFilterMedium().isDisplayed());
+			Assert.assertTrue(VS.getFilterSubject().isDisplayed());
+			Assert.assertTrue(VS.getFilterClass().isDisplayed());
+			Assert.assertTrue(VS.getApplyButton1().isDisplayed());
+			Assert.assertTrue(VS.getResetButton().isDisplayed());
+			text = "Completed";
+			actual = "All the filter contents PopUp details is display to user successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+public static void verifyDigitalTextbookTabHeaderIsDisplayToAdmin(String projectName) {
+		
+		String expect = "Digital textbook should be dispaly to admin";
+		String actual = "Digital textbook is not dispalyed to admin";
+		String text = "N/A";
+		try {
+
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		Assert.assertTrue(VS.getDigitalTextbook().isDisplayed());
+		text = "Completed";
+		actual = "Digital textbook is dispalyed to admin successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	}
+
+public static void verifyCourseTabHeaderIsDisplayToAdmin(String projectName) {
+	
+	String expect = "Courses tab should be dispaly to admin";
+	String actual = "Courses tab is not dispalyed to admin";
+	String text = "N/A";
+	try {
+
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String s1 = "((//*[text()=' ";
+	String s2 = projectName;
+	String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+	WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(openBtn);
+	Assert.assertTrue(VS.getCourses().isDisplayed());
+	text = "Completed";
+	actual = "Courses tab is dispalyed to admin successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+}
+
+public static void verifyContentPlaylistTabHeaderIsDisplayToAdmin(String projectName) {
+	
+	String expect = "Content Playlist tab should be dispaly to admin";
+	String actual = "Content Playlist tab is not dispalyed to admin";
+	String text = "N/A";
+	try {
+
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String s1 = "((//*[text()=' ";
+	String s2 = projectName;
+	String s3 = " '])[1]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+	WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(openBtn);
+	Assert.assertTrue(VS.getContentPlaylist().isDisplayed());
+	text = "Completed";
+	actual = "Content Playlist tab is dispalyed to admin successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+}
+
+public static void adminAbleTofilterAndFetchTheTextbookCourseContentPlaylist(String projectName) {
+	
+	String expect = "Admin should be able to filter and fetch the content";
+	String actual = "Admin is not able to filter and fetch the content";
+	String text = "N/A";
+	try {
+
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String s1 = "((//*[text()=' ";
+	String s2 = projectName;
+	String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+	String s4 = "((//*[text()='";
+	String s5 = " ']))";
+	WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(openBtn);
+	VDNUtils.waitToBeClickableAndClick(VS.getFilterContents());
+	Assert.assertTrue(VS.getFilterMedium().isDisplayed());
+	Assert.assertTrue(VS.getFilterSubject().isDisplayed());
+	Assert.assertTrue(VS.getFilterClass().isDisplayed());
+	Assert.assertTrue(VS.getApplyButton1().isDisplayed());
+	Assert.assertTrue(VS.getResetButton().isDisplayed());
+	VDNUtils.waitToBeClickableAndClick(VS.getApplyButton1());
+	text = "Completed";
+	actual = "Admin is able to filter and fetch the content successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	
+}
+
+public static void verifyAdminIsAbleToViewTheContributionDashboard(String projectName) {
+	
+	String expect = "Admin should be able to view the Contribution Dashboard";
+	String actual = "Admin is not able to view the Contribution Dashboard";
+	String text = "N/A";
+	try {
+
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String s1 = "((//*[text()=' ";
+	String s2 = projectName;
+	String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+	String s4 = "((//*[text()='";
+	String s5 = " ']))";
+	WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(openBtn);
+	WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+	Assert.assertTrue(projectname.isDisplayed());
+	Assert.assertTrue(VS.getAssignUserTab().isDisplayed());
+	Assert.assertTrue(VS.getContributionDashboard().isDisplayed());
+	Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+	Assert.assertTrue(VS.getProjectDates().isDisplayed());
+	text = "Completed";
+	actual = "Admin is able to view the Contribution Dashboard successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	
+}
+
 
 public static void openAndNominateWithUploadCourse(String ProjectName) throws Exception {
 	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
