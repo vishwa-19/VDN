@@ -868,7 +868,7 @@ public class VDNMethods extends BaseClass {
 			VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
 
 			VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
-
+			Thread.sleep(1000);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
 
 			VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
@@ -5249,7 +5249,7 @@ public class VDNMethods extends BaseClass {
 			action.sendKeys("\b").perform();
 			Thread.sleep(500);
 			action.sendKeys("4").perform();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 			VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
 			Date.setTomorrowDate(driver, VO.getShortlistEndDate());
@@ -7099,6 +7099,75 @@ public class VDNMethods extends BaseClass {
 			System.out.println(homeText2);
 			Listeners.customAssert("Approved", homeText2, expect2, actual2);
 		}
+	}
+	
+	public static String createProjectBookWithoutTargetCollectionOrgWithSkipReviewDisabled() throws Exception {
+		String home = null;
+		String expect = "Sourcing org admin is able to create and Publish The Project Successfully without Target Collection";
+		String actual = "Sourcing org admin is unable to create and Publish The Project Successfully without Target Collection";
+
+		try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt3());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelYourOrgOnly());
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkSkipReview());
+		
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getContributionEndDate());
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+	
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+		home = VO.getAssertProjectPublished().getText();
+		actual = "Sourcing org admin is able to Create and Publish The Project Successfully without Target Collection";
+		return ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+	}
+
 	}
 
 		

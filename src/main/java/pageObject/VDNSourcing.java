@@ -1015,6 +1015,70 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Skip two level review enabled']")
 	private WebElement skipReviewIcon;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Filter Contents']")
+	private WebElement filterContents;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Medium'])[2]")
+	private WebElement filterMedium;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Subject'])[2]")
+	private WebElement filterSubject;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Class'])[2]")
+	private WebElement filterClass;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Reset']")
+	private WebElement resetButton;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Digital Textbooks ']")
+	private WebElement digitalTextbook;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Content Playlists ']")
+	private WebElement contentPlaylist;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Courses ']")
+	private WebElement courses;
+	
+
+	public WebElement getCourses() {
+		return courses;
+	}
+
+
+	public WebElement getContentPlaylist() {
+		return contentPlaylist;
+	}
+
+
+	public WebElement getDigitalTextbook() {
+		return digitalTextbook;
+	}
+
+
+	public WebElement getResetButton() {
+		return resetButton;
+	}
+
+
+	public WebElement getFilterClass() {
+		return filterClass;
+	}
+
+
+	public WebElement getFilterSubject() {
+		return filterSubject;
+	}
+
+
+	public WebElement getFilterMedium() {
+		return filterMedium;
+	}
+
+
+	public WebElement getFilterContents() {
+		return filterContents;
+	}
+
 
 	public WebElement getSkipReviewIcon() {
 		return skipReviewIcon;
