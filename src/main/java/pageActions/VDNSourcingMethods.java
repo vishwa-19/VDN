@@ -11868,6 +11868,414 @@ try {
 		System.out.println(homeText2);
 		Listeners.customAssert("List of Contents", homeText2, expect2, actual2);	
 }
+}
+
+public static void uploadContentsFromAssignedContributorWithoutTargetColl(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " Content should be available on the TOC with Approval Pending status for "+ProjectName+" and is Displayed on the Top";
+	String actual =  "Content is not available on the TOC with Approval Pending status for "+ProjectName+" or is not Displayed on the Top";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+
+		Assert.assertTrue(VO.getClkUploadContent().isDisplayed());
+
+		for(int i=1;i<=3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadContent());
+			Thread.sleep(2000);
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+		
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample"+i);
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+		}
+		Thread.sleep(5000);
+		VDNUtils.waitForElementToBeVisible(VO.getAssertApprovalPending());
+		
+		home = VO.getAssertApprovalPending().getText();
+		actual = "sourcing org admin is able to create nomination disabled without target and skip review enabled for project "+ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Approval Pending" ,homeText, expect, actual);
+	}
+}
+
+public static void verifySourcingOrgAdminIsAbleToApproveRejectContentFromWithoutTC(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	String home1 = null;
+	String expect1 = "sourcing orgadmin should able to Approve for the Project "+ProjectName+" under View Contribution";
+	String actual1 = "sourcing orgadmin is unable to Approve for the Project "+ProjectName+" under View Contribution";
+	
+	String home2 = null;
+	String expect2 = "sourcing orgadmin should able to Reject for the Project "+ProjectName+" under View Contribution";
+	String actual2 = "sourcing orgadmin is unable to Reject for the Project "+ProjectName+" under View Contribution";
+	try {
+//		String s1 = "//div[text()=' ";
+//		String s2 = ProjectName;
+//		String s3 = " ']//following::button[text()='Open '][1]";
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(10000);
+//		Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
+//		String TotalCount = VO.getAssertTotalTab1().getText();
+//		System.out.print(TotalCount);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertNominationTab());
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkOpenSample1());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkOpenSample1());
+
+		Thread.sleep(5000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+		VO.getClkPublish().click();
+		Thread.sleep(2000);
+		
+		VDNUtils.waitForElementToBeVisible(VS.getAssertPublishToastMsg());
+		Assert.assertTrue(VS.getAssertPublishToastMsg().isDisplayed());
+		
+		home1 = VS.getAssertPublishToastMsg().getText();
+		System.out.println(home1);
+		actual1 = "sourcing orgadmin is able to Approve for the Project "+ProjectName+" under View Contribution";
+		
+		for(int i=0;i<3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+			VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		}	
+		
+		Assert.assertTrue(VS.getAssertApprovedMsg().isDisplayed());
+		
+		
+		
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkOpenSample2());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkOpenSample2());
+
+		Thread.sleep(5000);
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getBtnReject());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnReject());
+	//	VO.getClkPublish().click();
+			
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Reject");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VS.getAssertRejectToastMsg());
+		Assert.assertTrue(VS.getAssertRejectToastMsg().isDisplayed());
+		
+		home2 = VS.getAssertRejectToastMsg().getText();
+		System.out.println(home2);
+		actual2 = "sourcing orgadmin is able to Reject for the Project "+ProjectName+" under View Contribution";
+		
+		for(int i=0;i<3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+			VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		}	
+		
+		Assert.assertTrue(VS.getAssertRejectedMsg().isDisplayed());
+		
+	
+//		
+//		VO.getSelectSample1().click();
+//		Thread.sleep(2000);
+//		//VDNUtils.waitForElementToBeVisible(VO.getAssertApprovalPending());
+//		
+//		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+//		Thread.sleep(2000);
+//		
+//		VDNUtils.waitForElementToBeVisible(VO.getAssertRejectedOnTOC());
+//		Assert.assertTrue(VO.getAssertRejectedOnTOC().isDisplayed());
+//		
+//		String RejCount = VO.getAssertRejectedCount().getText();
+//		System.out.print(RejCount);
+//		
+//		int RejC=Integer.parseInt(RejCount); 
+//		
+//		
+//		
+//		
+//		VO.getSelectSample3().click();
+//		Thread.sleep(5000);
+//		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+//		
+//		
+//		VDNUtils.waitForElementToBeVisible(VO.getBtnSendCorrect());
+//		VDNUtils.waitToBeClickableAndClick(VO.getBtnSendCorrect());
+//		
+//		Thread.sleep(3000);
+//		
+//		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Correct");
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+//		Thread.sleep(3000);
+//	
+//		VDNUtils.waitForElementToBeVisible(VO.getAssertContentCorrection());
+//		Assert.assertTrue(VO.getAssertContentCorrection().isDisplayed());
+//		
+//		VO.getSelectSample1().click();
+//		Thread.sleep(2000);
+//		//VDNUtils.waitForElementToBeVisible(VO.getAssertApprovalPending());
+//		
+//		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+//		Thread.sleep(2000);
+//		
+//		VDNUtils.waitForElementToBeVisible(VO.getCorrectionsPenTOC());
+//		Assert.assertTrue(VO.getCorrectionsPenTOC().isDisplayed());
+//		//Assert.assertTrue(VO.getAssertTotalContOnTOC().isDisplayed());
+//		
+//		String CorCount = VO.getCorrectionsPenCount().getText();
+//		System.out.print(CorCount);
+//		
+//		int CorC=Integer.parseInt(CorCount); 
+//		
+//		
+//		VDNUtils.waitForElementToBeVisible(VO.getApprovalPenNode());
+//		Assert.assertTrue(VO.getApprovalPenNode().isDisplayed());
+//		//Assert.assertTrue(VO.getAssertTotalContOnTOC().isDisplayed());
+//		
+//		String AppPenC = VO.getApprovalPenCount().getText();
+//		System.out.print(AppPenC);
+//		
+//		int PenC=Integer.parseInt(AppPenC);
+//		
+//		
+//		
+//		int Tot = AppC+RejC+CorC+PenC;
+//		System.out.println(Tot);
+//		
+//		
+//		Assert.assertTrue(VO.getTotalNode().isDisplayed());
+//		
+//		String TotCount = VO.getTotalCount().getText();
+//		int TotalC=Integer.parseInt(TotCount);
+//		
+//		System.out.println(TotCount);
+//		Assert.assertEquals(Tot,TotalC);
+		
+		
+		
+		//*******************************
+		//VDNUtils.waitForElementToBeVisible(VO.getBackBtn());
+		
+		//*******************************
+//		js.executeScript("arguments[0].scrollIntoView(true);", VO.getBackBtn());
+//		VO.getBackBtn().click();
+//		Thread.sleep(10000);
+//		
+//		Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
+//		String TotalCount1 = VO.getAssertTotalTab1().getText();
+//		System.out.println(TotalCount1);
+//		
+//		
+//		Assert.assertTrue(VO.getAssertApprovalPendingTab().isDisplayed());
+//		String APCount1 = VO.getAssertApprovalPendingTab().getText();
+//		System.out.println(APCount1);
+//		
+//		Assert.assertTrue(VO.getAssertApprovedTab().isDisplayed());
+//		String ApprovedCount1 = VO.getAssertApprovedTab().getText();
+//		System.out.println(ApprovedCount1);
+//		
+//		Assert.assertTrue(VO.getAssertRejectedTab().isDisplayed());
+//		String RejectedCount1 = VO.getAssertRejectedTab().getText();
+//		System.out.println(RejectedCount1);
+//		
+//		Assert.assertTrue(VO.getAssertCorrectionTab().isDisplayed());
+//		String CorrectioCountCount1 = VO.getAssertCorrectionTab().getText();
+//		System.out.println(CorrectioCountCount1);
+		
+		//************************
+		
+		
+//		VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+//		VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
+//		Thread.sleep(3000);
+//		Assert.assertTrue(VO.getAssertNominationSuccess().isDisplayed());
+//		home = VO.getAssertApprovedNoTC().getText();
+//		actual = ProjectName + " is Successfully Nominated";
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Content is successfully approved", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home1 : "N/A";
+		Listeners.customAssert("Content is successfully rejected", homeText2, expect2, actual2);
+	}
+
+}
+
+public static void verifySourcingOrgAdminIsAbleToApproveRejectAndSendBackTheContentFromWithoutTC(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	String home1 = null;
+	String expect1 = "sourcing orgadmin should able to Approve for the Project "+ProjectName+" under View Contribution";
+	String actual1 = "sourcing orgadmin is unable to Approve for the Project "+ProjectName+" under View Contribution";
+	
+	String home2 = null;
+	String expect2 = "sourcing orgadmin should able to Reject for the Project "+ProjectName+" under View Contribution";
+	String actual2 = "sourcing orgadmin is unable to Reject for the Project "+ProjectName+" under View Contribution";
+	
+	String home3 = null;
+	String expect3 = "sourcing orgadmin should able to Send for Correction for the Project "+ProjectName+" under View Contribution";
+	String actual3 = "sourcing orgadmin is unable to Send for Correction for the Project "+ProjectName+" under View Contribution";
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(10000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertNominationTab());
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkOpenSample1());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkOpenSample1());
+
+		Thread.sleep(5000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+		VO.getClkPublish().click();
+		Thread.sleep(2000);
+		
+		VDNUtils.waitForElementToBeVisible(VS.getAssertPublishToastMsg());
+		Assert.assertTrue(VS.getAssertPublishToastMsg().isDisplayed());
+		
+		home1 = VS.getAssertPublishToastMsg().getText();
+		System.out.println(home1);
+		actual1 = "sourcing orgadmin is able to Approve for the Project "+ProjectName+" under View Contribution";
+		
+		for(int i=0;i<3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+			VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		}	
+		
+		Assert.assertTrue(VS.getAssertApprovedMsg().isDisplayed());	
+		VDNUtils.waitForElementToBeVisible(VS.getClkOpenSample2());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkOpenSample2());
+
+		Thread.sleep(5000);
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getBtnReject());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnReject());	
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Reject");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VS.getAssertRejectToastMsg());
+		Assert.assertTrue(VS.getAssertRejectToastMsg().isDisplayed());
+		
+		home2 = VS.getAssertRejectToastMsg().getText();
+		System.out.println(home2);
+		actual2 = "sourcing orgadmin is able to Reject for the Project "+ProjectName+" under View Contribution";
+		for(int i=0;i<3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+			VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		}	
+		
+		Assert.assertTrue(VS.getAssertRejectedMsg().isDisplayed());
+		
+		VDNUtils.waitForElementToBeVisible(VS.getClkOpenSample3());
+		VDNUtils.waitToBeClickableAndClick(VS.getClkOpenSample3());
+
+		Thread.sleep(5000);
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+		VDNUtils.waitForElementToBeVisible(VO.getBtnReject());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getBtnSendCorrect());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSendCorrect());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Correct");
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VS.getAssertCorrectioToastMsg());
+		Assert.assertTrue(VS.getAssertCorrectioToastMsg().isDisplayed());
+		
+		home3 = VS.getAssertCorrectioToastMsg().getText();
+		System.out.println(home3);
+		actual3 = "sourcing orgadmin is able to Send For Correction for the Project "+ProjectName+" under View Contribution";
+		
+		for(int i=0;i<3;i++) {
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VS.getClkNomViewContr());
+			VDNUtils.waitToBeClickableAndClick(VS.getClkNomViewContr());
+		}	
+		
+		Assert.assertTrue(VS.getAssertCorrectionMsg().isDisplayed());
+
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Content is successfully approved", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Content is successfully rejected", homeText2, expect2, actual2);
+		
+		String homeText3 = home3 != null ? home3 : "N/A";
+		Listeners.customAssert("Content sent for corrections", homeText3, expect3, actual3);
+	}
 
 }
 }
