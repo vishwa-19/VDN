@@ -1039,6 +1039,46 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Courses ']")
 	private WebElement courses;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='Approval Pending']")
+	private WebElement approvalPending;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Send back for corrections']")
+	private WebElement sendBackForCorrections;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Publish']")
+	private WebElement publishBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Reject']")
+	private WebElement rejectBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Content Details']")
+	private WebElement contentDetails;
+	
+
+	public WebElement getContentDetails() {
+		return contentDetails;
+	}
+
+
+	public WebElement getRejectBtn() {
+		return rejectBtn;
+	}
+
+
+	public WebElement getPublishBtn() {
+		return publishBtn;
+	}
+
+
+	public WebElement getSendBackForCorrections() {
+		return sendBackForCorrections;
+	}
+
+
+	public WebElement getApprovalPending() {
+		return approvalPending;
+	}
+
 
 	public WebElement getCourses() {
 		return courses;
