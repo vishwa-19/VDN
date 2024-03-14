@@ -417,6 +417,16 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[text()=' Target collection is required ']")
 	private WebElement assertTargetCollError;
 	
+	@FindBy(how=How.XPATH,using="//h4[text()='List of Contents ']")
+	private WebElement assertListOfContents;
+	
+	
+	
+	public WebElement getAssertListOfContents() {
+		return assertListOfContents;
+	}
+
+
 	public WebElement getAssertTargetCollError() {
 		return assertTargetCollError;
 	}
@@ -1255,6 +1265,53 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[@class='ui pointing secondary menu sb-bg-color-primary-0']")
 	private WebElement getProjectTabs;
 		
+	@FindBy(how=How.XPATH,using="//span[text()='Course Assessment']")
+	private WebElement assertCourseContent;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='Contents ']")
+	private WebElement assertContentsTab;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='Nominations ']")
+	private WebElement assertNominationTab;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='Assign users to project ']")
+	private WebElement assertAssignUsersTab;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='icon check circle sb-color-secondary-200 fs-1-286 va-text-top']")
+	private WebElement skipRevEnableTick;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='This means content review is not required with in your organisation. Content will be directly submitted to sourcing organization for approval.']")
+	private WebElement msgOnonHovering;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' publicuser mentior ']//following::button[text()='View Contribution']")
+	private WebElement clkNomViewContr;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample1']//following::button[text()='Open']")
+	private WebElement clkOpenSample1;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content is successfully approved']")
+	private WebElement assertPublishToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample1']//following::span[text()='Approved']")
+	private WebElement assertApprovedMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample2']//following::button[text()='Open']")
+	private WebElement clkOpenSample2;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content is successfully rejected']")
+	private WebElement assertRejectToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample2']//following::span[text()='Rejected']")
+	private WebElement assertRejectedMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample3']//following::button[text()='Open']")
+	private WebElement clkOpenSample3;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content sent for corrections']")
+	private WebElement assertCorrectioToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample3']//following::span[text()='Corrections pending']")
+	private WebElement assertCorrectionMsg;
 	
 	
 	
@@ -1262,10 +1319,86 @@ public class VDNSourcing {
 	
 	
 	
-	
-	
-	
-	
+	public WebElement getAssertCorrectionMsg() {
+		return assertCorrectionMsg;
+	}
+
+
+	public WebElement getAssertCorrectioToastMsg() {
+		return assertCorrectioToastMsg;
+	}
+
+
+	public WebElement getClkOpenSample3() {
+		return clkOpenSample3;
+	}
+
+
+	public WebElement getAssertRejectedMsg() {
+		return assertRejectedMsg;
+	}
+
+
+	public WebElement getAssertRejectToastMsg() {
+		return assertRejectToastMsg;
+	}
+
+
+	public WebElement getClkOpenSample2() {
+		return clkOpenSample2;
+	}
+
+
+	public WebElement getAssertApprovedMsg() {
+		return assertApprovedMsg;
+	}
+
+
+	public WebElement getAssertPublishToastMsg() {
+		return assertPublishToastMsg;
+	}
+
+
+	public WebElement getClkOpenSample1() {
+		return clkOpenSample1;
+	}
+
+
+	public WebElement getClkNomViewContr() {
+		return clkNomViewContr;
+	}
+
+
+	public WebElement getMsgOnonHovering() {
+		return msgOnonHovering;
+	}
+
+
+	public WebElement getSkipRevEnableTick() {
+		return skipRevEnableTick;
+	}
+
+
+	public WebElement getAssertAssignUsersTab() {
+		return assertAssignUsersTab;
+	}
+
+
+	public WebElement getAssertNominationTab() {
+		return assertNominationTab;
+	}
+
+
+	public WebElement getAssertContentsTab() {
+		return assertContentsTab;
+	}
+
+
+	public WebElement getAssertCourseContent() {
+		return assertCourseContent;
+	}
+
+
 	public WebElement getGetProjectTabs() {
 		return getProjectTabs;
 	}
