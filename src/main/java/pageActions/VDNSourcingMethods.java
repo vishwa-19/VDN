@@ -11393,6 +11393,140 @@ public static void VerifyNotAbleToModifyFrameworkTypePostPublishing(String Proje
 }
 }
 
+
+	public static void assignReviewerRoleToUser(String projectName) throws Exception {
+		
+		String expect = "Admin should be able to assign reviewer role to user";
+		String actual = "Admin unable to assign reviewer role to user";
+		String text = "N/A";
+		try {
+	
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = projectName;
+		String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+		WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(openBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getAssignUserTab());
+		VDNUtils.waitToBeClickableAndSendKeys(VS.getManageUserSearch(), "jaga2");
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
+		VDNUtils.waitToBeClickableAndClick(VS.getManageUserSearchBtn());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VS.getSelectRole());
+		VDNUtils.waitToBeClickableAndClick(VS.getRoleReviewer());
+		Thread.sleep(1000);
+		Assert.assertTrue(VS.getRoleUpdated().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to assign reviewer role to user successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	
+	public static void verifyCountforForSkipReviewDisabledProjectInContributionDashboard(String projectName) {
+			
+			String expect = "All the details in contribution dashboard tab should be display to user";
+			String actual = "All the details in contribution dashboard tab is not displayed to user";
+			String text = "N/A";
+			try {
+		
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "((//*[text()=' ";
+			String s2 = projectName;
+			String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+			String s4 = "((//*[text()='";
+			String s5 = " ']))";
+			WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(openBtn);
+			VDNUtils.waitToBeClickableAndClick(VS.getContributionDashboard());
+			Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+			Assert.assertTrue(VS.getProjectDates().isDisplayed());
+			Assert.assertTrue(VS.getDownloadContributonDetails().isDisplayed());
+			Assert.assertTrue(VS.getContributor().isDisplayed());
+			Assert.assertTrue(VS.getTypeOfContributor().isDisplayed());
+			Assert.assertTrue(VS.getContributingOrganisation().isDisplayed());
+			Assert.assertTrue(VS.getYourOrganisation().isDisplayed());
+			text = "Completed";
+			actual = "All the details in contribution dashboard tab is display to user successfully";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+	public static void verifyPublishRejectedsendBackForCorrectionButtonNotAvailableForCloseProject(String ProjectName) throws InterruptedException {
+		
+		
+		String text = "N/A";
+		String expect = "Verify Publish Rejected sendBackForCorrection Button Not Available For Close Project";
+		String actual = "Verify Publish Rejected sendBackForCorrection Button Are  Available For Close Project";
+		try {
+			
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "((//*[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " '])[1]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i";
+			String s4 = "/following-sibling::a/child::div";
+			WebElement kebabMenu = driver.findElement(By.xpath(s1 + s2 + s3 + s4));
+			VDNUtils.waitToBeClickableAndClick(kebabMenu);
+			String s5 = "/descendant::a/following-sibling::a/child::i[@data-tooltip='Close']";
+			WebElement closeBtn = driver.findElement(By.xpath(s1 + s2 + s3 + s4 + s5));
+			VDNUtils.waitToBeClickableAndClick(closeBtn);
+			VDNUtils.waitToBeClickableAndClick(VS.getCloseYesBtn());
+			String ss1 = "//div[text()=' ";
+			String ss2 = ProjectName;
+			String ss3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(1000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VS.getOpenBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getApprovalPending());
+			Assert.assertTrue(VS.getApprovalPending().isDisplayed());
+			text = "Completed";
+			actual = "Publish Rejected sendBackForCorrection Button Not Available For Close Project";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+
+}
+	
+	public static void verifyReviewerAbleToEditTheNameOfTheContentAndSaveIt(String ProjectName) throws InterruptedException {
+			
+			
+			String text = "N/A";
+			String expect = "Verify reviewer should be able to edit the name of the content and save it";
+			String actual = "Reviewer not able to edit the name of the content and save it";
+			try {
+				
+				VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+				VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+				String ss1 = "//div[text()=' ";
+				String ss2 = ProjectName;
+				String ss3 = " ']//following::button[text()='Open '][1]";
+				Thread.sleep(1000);
+				WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+				VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+				VDNUtils.waitToBeClickableAndClick(VS.getOpenBtn());
+				VDNUtils.waitToBeClickableAndClick(VS.getApprovalPending());
+				VDNUtils.waitToBeClickableAndClick(VS.getContentDetails());
+				Thread.sleep(1000);
+				VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+				Thread.sleep(1000);
+				VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
+				VDNUtils.waitForElementToBeVisible(VO.getContentSavedtMessage());
+				Assert.assertTrue(VO.getContentSavedtMessage().isDisplayed());
+				text = "Completed";
+				actual = "Reviewer is able to edit the name of the content and save it successfully";
+			} finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+	
+	}
+
+
 public static String createProjectFromYourOrgOnlyWithSkipDisableTC() throws Exception {
 	String home1 = null;
 	String expect1 = "Sourcing org admin is able to upload guideline document without Target Collection";
