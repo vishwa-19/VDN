@@ -12278,6 +12278,158 @@ public static void verifySourcingOrgAdminIsAbleToApproveRejectAndSendBackTheCont
 	}
 
 }
+
+public static void verifySourcingOrgAdminIsAbleToAssignMoreThanOneReviewer(String ProjectName)
+		throws InterruptedException, IOException {
+	String home = null;
+	String expect = " Admin should be able to assign user1 as a reviewer to the Project "+ProjectName+" and is Displayed on the Top";
+	String actual =  "Admin is unable to asassign user1 as a reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
+	
+	String home2 = null;
+	String expect2 = " Admin should be able to assign user2 as a reviewer to the Project "+ProjectName+" and is Displayed on the Top";
+	String actual2 =  "Admin is unable to asassign user2 as a reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+		Thread.sleep(3000);
+		VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+		
+		Assert.assertTrue(VO.getSearchField().isDisplayed());
+		Thread.sleep(3000);
+		
+		String user =  excel.getContentName("User Role1");
+		System.out.print(user);
+		
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), user);
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+		
+		home = VO.getRolesUpdatedMsg().getText();
+		System.out.println(home);
+		VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+		Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+
+		actual = " Admin is able to assign user1 as a reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+		
+//		VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+//		Thread.sleep(3000);
+		Assert.assertTrue(VO.getSearchField().isDisplayed());
+		
+		String user2 =  excel.getContentName("User Role2");
+		System.out.print(user2);
+		
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), user2);
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+		
+		home2 = VO.getRolesUpdatedMsg().getText();
+		System.out.println(home2);
+		
+		actual = " Admin is able to assign user2 as a reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+
+		
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("Roles updated...", homeText, expect, actual);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		System.out.println(homeText2);
+		Listeners.customAssert("Roles updated...", homeText2, expect2, actual2);
+	}
+}
+
+
+
+public static void SourcingOrgadminIsNotAbleToAcceptorRejectominationWithClosedNoTC(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	String home = null;
+	String expect = " sourcing orgadmin should not be able to accept/Rejected the nomination of the closed without target collection for Project  "+ProjectName;
+	String actual = " sourcing orgadmin is able to accept/Rejected the nomination of the closed without target collection for Project  "+ProjectName;
+
+	try {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		String s4 = "//following::span[@class='sb-dotmenu'][1]";
+		Thread.sleep(10000);
+		WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+		assertProjectEdit.isDisplayed();
+		assertProjectEdit.click();
+		
+		String s5 ="//following::a[text()='Close '][1]";
+		
+		WebElement assertProjectCloseBtn = driver.findElement(By.xpath(s1 + s2 + s3+s5));
+		assertProjectCloseBtn.isDisplayed();
+		assertProjectCloseBtn.click();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getConfirmDeletion());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertClose());
+		
+		String s6 = "(//div[text()=' ";
+		String s7 = ProjectName;
+		String s8 = " ']//following::button[text()='Open '][1])[3]";
+		Thread.sleep(10000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		WebElement clkOpenProject = driver.findElement(By.xpath(s6 + s7 + s8));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		Thread.sleep(3000);
+		
+
+//		VDNUtils.waitToBeClickableAndClick(VO.getOpenUserAction());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkOpenSample());
+//		Assert.assertTrue(VO.getAssertSample().isDisplayed());
+//		Assert.assertTrue(VO.getAssertSampleContentDetails().isDisplayed());
+//		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+//		Thread.sleep(3000);
+//		VDNUtils.waitToBeClickableAndClick(VO.getBtnAccept());
+//		Thread.sleep(3000);
+		
+		String contentDetails = VS.getAssertViewCont().getText();
+		String[] lines = contentDetails.split("\r\n|\r|\n");
+		System.out.println(lines.length);
+		
+		for (String line : lines) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Open");
+		}
+		
+		Assert.assertTrue(VS.getAssertPending().isDisplayed());
+		home = VS.getAssertPending().getText();
+		actual = " sourcing orgadmin is not be able to accept/Rejected the nomination of the closed without target collection for Project "+ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Pending", homeText, expect, actual);
+	}
+
+}
 }
 
 
