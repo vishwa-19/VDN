@@ -1523,11 +1523,21 @@ public class VDNSourcing {
 	private WebElement assertReject;
 	
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::span[text()=' Pending ']")
+	private WebElement assertPending;
 	
 	
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertPending() {
+		return assertPending;
+	}
+
+
 	public WebElement getAssertReject() {
 		return assertReject;
 	}
