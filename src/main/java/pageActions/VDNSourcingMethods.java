@@ -6,6 +6,7 @@ import static org.testng.AssertJUnit.assertTrue;
 import java.awt.RenderingHints.Key;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12413,6 +12414,202 @@ public static void verifySourcingOrgAdminIsAbleToApproveRejectAndSendBackTheCont
 
 }
 
+
+public static void verifyReviewerAbleToPublishTheContent(String ProjectName) throws InterruptedException {
+	
+	
+	String text = "N/A";
+	String expect = "Verify reviewer should be able to publish the content";
+	String actual = "Reviewer is not able to publish the content";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String ss1 = "//div[text()=' ";
+		String ss2 = ProjectName;
+		String ss3 = " ']//following::button[text()='Open '][1]";
+		Thread.sleep(1000);
+		WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		VDNUtils.waitToBeClickableAndClick(VS.getOpenBtn());
+		VDNUtils.waitToBeClickableAndClick(VS.getApprovalPending());
+		VDNUtils.waitToBeClickableAndClick(VS.getPublishBtn());
+		text = "Completed";
+		actual = "Reviewer is able to publish the content successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+
+	public static void verifyHelpCenterOpendInAnotherTabForDefaultContributer() {
+		
+		String text = "N/A";
+		String expect = "Verify help center should be opend in another tab";
+		String actual = "Help center is not opend in another tab";
+		
+		try {
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		
+		String mainWindowHandle = driver.getWindowHandle();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VS.getHelpCenter());
+		VDNUtils.waitForElementToBeVisible(VS.getHelpCenter());
+		VDNUtils.waitToBeClickableAndClick(VS.getHelpCenter());
+		Set<String> allWindowHandles = driver.getWindowHandles();
+		for (String handle : allWindowHandles) {
+		    
+		    if (!handle.equals(mainWindowHandle)) {
+		        System.out.println("New window opened");
+		    }
+		}
+		text = "Completed";
+		actual = "Help center is opend in another tab successfully";
+		}finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+		
+	}
+	
+	public static void verifyFrameworkOptionIsAvailableWhileCreatingTheProject() throws Exception {
+			
+			String text = "N/A";
+			String expect = "Verify framework option should be available while creating project";
+			String actual = "Framework option is not available while creating project";
+			
+			try {
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+
+			VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+			String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+			String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+			Date.setTodayDate(driver, VO.getNominationEndDate());
+
+			Thread.sleep(500);
+			Date.setTodayDate(driver);
+			Thread.sleep(1000);
+			Actions action = new Actions(driver);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+
+			VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+			Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+
+			Thread.sleep(500);
+			Date.setTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+
+			VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+			Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+
+			Thread.sleep(500);
+			Date.setDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+
+			VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());			
+			Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+
+			Thread.sleep(500);
+			Date.setNextToDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+			Assert.assertTrue(VS.getAssertFrameworkType().isDisplayed());
+			text = "Completed";
+			actual = "Framework option is available while creating project";
+			}finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+			
+		}
+	
+	public static void verifySourcingOrgAdminRejectTheContent(String ProjectName) throws InterruptedException {
+		
+		
+		String text = "N/A";
+		String expect = "Verify admin should be able to reject the content";
+		String actual = "Admin is not able to reject the content";
+		try {
+			
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			String ss1 = "//div[text()=' ";
+			String ss2 = ProjectName;
+			String ss3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(1000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VS.getOpenBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getApprovalPending());
+			VDNUtils.waitToBeClickableAndClick(VS.getRejectBtn());
+			String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+			VDNUtils.waitToBeClickableAndSendKeys(VS.getAddRejectComment(), ProjectDesc);
+			VDNUtils.waitToBeClickableAndClick(VS.getSubmitReviewBtn());
+			text = "Completed";
+			actual = "Admin is able to reject the content successfully";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+
+	}
+	
+public static void verifySourcingOrgAdminSendBackForCorrectionsTheContent(String ProjectName) throws InterruptedException {
+		
+		
+		String text = "N/A";
+		String expect = "Verify admin should be able to send content back for corrections";
+		String actual = "Admin is not able to send content back for corrections";
+		try {
+			
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String ss1 = "//div[text()=' ";
+			String ss2 = ProjectName;
+			String ss3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(1000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VS.getOpenBtn());
+			VDNUtils.waitToBeClickableAndClick(VS.getApprovalPending());
+			VDNUtils.waitToBeClickableAndClick(VS.getSendBackForCorrections());
+			String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+			VDNUtils.waitToBeClickableAndSendKeys(VS.getSendBackForCorrections(), ProjectDesc);
+			VDNUtils.waitToBeClickableAndClick(VS.getSubmitReviewBtn());
+			text = "Completed";
+			actual = "Admin is able to send content back for corrections successfully";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+
+	}
+
+
 public static void verifySourcingOrgAdminIsAbleToAssignMoreThanOneReviewer(String ProjectName)
 		throws InterruptedException, IOException {
 	String home = null;
@@ -12564,6 +12761,7 @@ public static void SourcingOrgadminIsNotAbleToAcceptorRejectominationWithClosedN
 	}
 
 }
+
 }
 
 
