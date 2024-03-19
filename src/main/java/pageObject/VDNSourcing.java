@@ -1064,6 +1064,30 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()='Content Details']")
 	private WebElement contentDetails;
 	
+	@FindBy(how=How.XPATH,using="//*[text()=' Help Center ']")
+	private WebElement helpCenter;
+	
+	@FindBy(how=How.XPATH,using="//*[@placeholder='Add comment']")
+	private WebElement addRejectComment;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Submit Review ']")
+	private WebElement submitReviewBtn;
+	
+
+	public WebElement getSubmitReviewBtn() {
+		return submitReviewBtn;
+	}
+
+
+	public WebElement getAddRejectComment() {
+		return addRejectComment;
+	}
+
+
+	public WebElement getHelpCenter() {
+		return helpCenter;
+	}
+
 
 	public WebElement getContentDetails() {
 		return contentDetails;
