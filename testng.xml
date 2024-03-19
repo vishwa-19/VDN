@@ -53,7 +53,7 @@
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
       <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>-->
-       <class name="regression.sourcing.VerifySourcingOrgAdminSendBackForCorrectionsTheContent" />	 
+       <class name="regression.sourcing.VerifySourcingOrgReviewerSendBackForCorrectionsTheContent" />	 
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
