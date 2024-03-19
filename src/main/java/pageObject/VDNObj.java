@@ -700,13 +700,18 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//span[text()='jaga1']//following::span[text()='Review Pending']")
 	private WebElement assertRevPendingOnBoth;
 	
+	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
+	private WebElement clkOpenBtn2;
 	
 	
 	
 	
 	
-	
-	
+	public WebElement getClkOpenBtn2() {
+		return clkOpenBtn2;
+	}
+
+
 	public WebElement getAssertRevPendingOnBoth() {
 		return assertRevPendingOnBoth;
 	}
