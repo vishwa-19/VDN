@@ -1534,6 +1534,8 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//div[text()=' Color ']//following::span[text()=' Pending ']")
 	private WebElement assertPending;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Approved']")
+	private WebElement assertApproved;
 	
 	
 	
@@ -1541,6 +1543,12 @@ public class VDNSourcing {
 	
 	
 	
+	
+	public WebElement getAssertApproved() {
+		return assertApproved;
+	}
+
+
 	public WebElement getAssertPending() {
 		return assertPending;
 	}

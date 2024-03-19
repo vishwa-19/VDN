@@ -12762,6 +12762,7 @@ public static void SourcingOrgadminIsNotAbleToAcceptorRejectominationWithClosedN
 
 }
 
+
 	public static void verifyQuestionMarkIconWithNeedHelpTextIsDisplayed(String ProjectName) throws InterruptedException {
 		
 		
@@ -12787,6 +12788,170 @@ public static void SourcingOrgadminIsNotAbleToAcceptorRejectominationWithClosedN
 		}
 	
 	}
+
+
+public static void verifySourcingOrgAdminIsAbleToAssignReviewerNoTC(String ProjectName)
+		throws InterruptedException, IOException {
+	String home = null;
+	String expect = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top";
+	String actual =  "Admin should be unable to assign reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		
+//		String s1 = "//div[text()=' ";
+//		String s2 = ProjectName;
+//		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		String s4 = " ']//following::button[text()='Open '][1])[3]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s4));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		VDNUtils.waitForElementToBeVisible(VO.getAssertNominations());
+
+		Assert.assertTrue(VO.getAssertNominations().isDisplayed());
+
+		Assert.assertTrue(VO.getAssertAssignUsers().isDisplayed());
+
+		Assert.assertTrue(VO.getAssertContribution().isDisplayed());
+
+//		Assert.assertTrue(VO.getAssertReport().isDisplayed());
+//		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+		Thread.sleep(3000);
+		VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+		
+		Assert.assertTrue(VO.getSearchField().isDisplayed());
+		Thread.sleep(3000);
+		
+		String user =  excel.getContentName("User Role1");
+		System.out.print(user);
+		
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), user);
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+		
+		home = VO.getRolesUpdatedMsg().getText();
+		System.out.println(home);
+		VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+		Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+
+		actual = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("Roles updated...", homeText, expect, actual);
+	}
+}
+
+public static void validateSourceOrgReviewerIsUnAbleToPublishTheContentForTheDigitalTextbookNoTC(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " sourcing orgreviewer should not be able to publish, Rejected and Send back the content for correction once the project is closed.";
+	String actual =  "sourcing orgreviewer is able to publish, Rejected and Send back the content for correction once the project is closed.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkOpenBtn2());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkOpenBtn2());
+		Thread.sleep(3000);
+		
+		String tabDetails = VO.getAssertAllReviewContentHead().getText();
+		
+		String[] lines = tabDetails.split("\r\n|\r|\n");
+		System.out.println(lines.length);
+		
+		for (String line : lines) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Send back for corrections");
+		    Assert.assertNotEquals(line,"Publish");
+		    Assert.assertNotEquals(line,"Reject");
+		}
+
+		home = VO.getAssertApprovalPending().getText();
+		actual = "sourcing orgreviewer is not able to publish, Rejected and Send back the content for correction once the project is closed.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Approval Pending" ,homeText, expect, actual);
+	}
+}
+
+
+
+public static void verifyPublishRejectedsendBackForCorrectionButtonNotAvailableForCloseProjectNoTC(String ProjectName) throws InterruptedException {
+	
+	
+	String home = null;
+	String expect = "User Should be able to Close The Project";
+	String actual = "User is not able to Close The Project";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		
+		
+		String s4 = "//following::span[@class='sb-dotmenu'][1]";
+		Thread.sleep(10000);
+		WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+		assertProjectEdit.isDisplayed();
+		assertProjectEdit.click();
+		
+        String s5 ="//following::a[text()='Close '][1]";
+		
+		WebElement assertProjectCloseBtn = driver.findElement(By.xpath(s1 + s2 + s3+s5));
+		assertProjectCloseBtn.isDisplayed();
+		assertProjectCloseBtn.click();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getConfirmDeletion());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertClose());
+		
+		Assert.assertTrue(VO.getAssertClose().isDisplayed());
+		
+		home = VO.getAssertClose().getText();
+		
+		System.out.print(home);
+
+		actual = "User is able to Close The Project";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("The project has been closed successfully.", homeText, expect, actual);
+	}
+
+}
 
 }
 
