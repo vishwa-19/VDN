@@ -1073,6 +1073,14 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//*[text()=' Submit Review ']")
 	private WebElement submitReviewBtn;
 	
+	@FindBy(how=How.XPATH,using="(//*[text()='Need Help?'])[1]")
+	private WebElement needHelp;
+	
+
+	public WebElement getNeedHelp() {
+		return needHelp;
+	}
+
 
 	public WebElement getSubmitReviewBtn() {
 		return submitReviewBtn;
