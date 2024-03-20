@@ -12953,6 +12953,56 @@ public static void verifyPublishRejectedsendBackForCorrectionButtonNotAvailableF
 
 }
 
+public static void verifyAdminIsAbleToCloseTheLiveProjectViaFrontEnd(String ProjectName) throws InterruptedException {
+	
+	
+	String text = "N/A";
+	String expect = "Admin should be able to close the live project va front end";
+	String actual = "Admin is not able to close the live project va front end";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String s1 = "((//*[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[1]/parent::td/following-sibling::td)[5]/child::div/child::div/child::i";
+		String s4 = "/following-sibling::a/child::div";
+		WebElement kebabMenu = driver.findElement(By.xpath(s1 + s2 + s3 + s4));
+		VDNUtils.waitToBeClickableAndClick(kebabMenu);
+		String s5 = "/descendant::a/following-sibling::a/child::i[@data-tooltip='Close']";
+		WebElement closeBtn = driver.findElement(By.xpath(s1 + s2 + s3 + s4 + s5));
+		VDNUtils.waitToBeClickableAndClick(closeBtn);
+		VDNUtils.waitToBeClickableAndClick(VS.getCloseYesBtn());
+		Assert.assertTrue(VS.getProjectClose().isDisplayed());
+		text = "Completed";
+		actual = "Admin is able to close the live project va front end successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+
+public static void verifyNominationsAutomaticallyApprovedUnderNominationTab(String projectName) {
+	
+	String expect = "Nomination should be approved automatically under nomination tab";
+	String actual = "Nomination is not approved automatically under nomination tab";
+	String text = "N/A";
+	try {
+
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	String s1 = "((//*[text()=' ";
+	String s2 = projectName;
+	String s3 = " '])[3]/parent::td/following-sibling::td)[5]/descendant::button[text()='Open ']";
+	WebElement openBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(openBtn);
+	VDNUtils.waitToBeClickableAndClick(VS.getNominationTab());
+	Assert.assertTrue(VS.getApprovedNomination().isDisplayed());
+	text = "Completed";
+	actual = "Nomination is approved automatically under nomination tab successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+}
+
 }
 
 
