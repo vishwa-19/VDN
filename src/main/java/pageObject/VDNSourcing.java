@@ -1530,12 +1530,143 @@ public class VDNSourcing {
 	private WebElement assertApproved;
 	
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Digital Textbooks: ']")
+	private WebElement assertDigiTextBook;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Digital Textbooks: ']//following::span[text()='1']")
+	private WebElement assertDigiTextBookCount;
+	
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Digital Textbooks')]")
+	private WebElement assertDigiTextBookCol;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Digital Textbooks')]//following::td[3]")
+	private WebElement assertDigiTextBookColCount;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Courses: ']")
+	private WebElement assertCourses;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Courses: ']//following::span[text()='1'])[1]")
+	private WebElement assertCoursesCount;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Courses')]")
+	private WebElement assertCoursesCol;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Courses')]//following::td[3]")
+	private WebElement assertCoursesColCount;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Content Playlists: ']")
+	private WebElement assertContentPlaylists;
+	
+	@FindBy(how=How.XPATH,using="(//div[text()=' Content Playlists: ']//following::span[text()='1'])[1]")
+	private WebElement assertContentPlaylistsCount;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Content Playlists')]")
+	private WebElement assertContentPlaylistsCol;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Content Playlists')]//following::td[3]")
+	private WebElement assertContentPlaylistsColCount;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='View Content']")
+	private WebElement assertViewContent;
+	
+	@FindBy(how=How.XPATH,using="//tbody[@class='sb-table-body']")
+	private WebElement contentRow1;
+	
+	@FindBy(how=How.XPATH,using="//input[@placeholder='Search...']")
+	private WebElement assertSearchBar;
+	
+	@FindBy(how=How.XPATH,using="//h4[text()='All Users']")
+	private WebElement assertAllUserHeader;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertAllUserHeader() {
+		return assertAllUserHeader;
+	}
+
+
+	public WebElement getAssertSearchBar() {
+		return assertSearchBar;
+	}
+
+
+	public WebElement getContentRow1() {
+		return contentRow1;
+	}
+
+
+	public WebElement getAssertViewContent() {
+		return assertViewContent;
+	}
+
+
+	public WebElement getAssertContentPlaylistsColCount() {
+		return assertContentPlaylistsColCount;
+	}
+
+
+	public WebElement getAssertContentPlaylistsCol() {
+		return assertContentPlaylistsCol;
+	}
+
+
+	public WebElement getAssertContentPlaylistsCount() {
+		return assertContentPlaylistsCount;
+	}
+
+
+	public WebElement getAssertContentPlaylists() {
+		return assertContentPlaylists;
+	}
+
+
+	public WebElement getAssertCoursesColCount() {
+		return assertCoursesColCount;
+	}
+
+
+	public WebElement getAssertCoursesCol() {
+		return assertCoursesCol;
+	}
+
+
+	public WebElement getAssertCoursesCount() {
+		return assertCoursesCount;
+	}
+
+
+	public WebElement getAssertCourses() {
+		return assertCourses;
+	}
+
+
+	public WebElement getAssertDigiTextBookColCount() {
+		return assertDigiTextBookColCount;
+	}
+
+
+	public WebElement getAssertDigiTextBookCol() {
+		return assertDigiTextBookCol;
+	}
+
+
+	public WebElement getAssertDigiTextBookCount() {
+		return assertDigiTextBookCount;
+	}
+
+
+	public WebElement getAssertDigiTextBook() {
+		return assertDigiTextBook;
+	}
+
+
 	public WebElement getAssertApproved() {
 		return assertApproved;
 	}

@@ -12925,6 +12925,359 @@ public static void verifyPublishRejectedsendBackForCorrectionButtonNotAvailableF
 
 }
 
+
+public static void verifyContentColumnIntheNominationTabWithTextBook(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home = null;
+	String expect = "Textbook column count should be updated in the Nomination dashboard for created using Textbook";
+	String actual = "Textbook column count is not updated in the Nomination dashboard for created using Textbook";
+
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '])[1]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(5000);
+		
+		Assert.assertTrue(VO.getAssertSkipReviewEnabled().isDisplayed());
+		
+		Assert.assertTrue(VO.getAssertNominationTab().isDisplayed());	
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		Assert.assertTrue(VS.getAssertDigiTextBook().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertDigiTextBookCount().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertDigiTextBookCol().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertDigiTextBookColCount().isDisplayed());
+		
+		home = VS.getAssertDigiTextBookColCount().getText();
+		actual = "Textbook column count is updated in the Nomination dashboard for created using Textbook";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("1", homeText, expect, actual);
+	}
+
+}
+
+public static void verifyContentColumnIntheNominationTabWithCourse(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home = null;
+	String expect = "Course column count should be updated in the Nomination dashboard for created using Textbook";
+	String actual = "Course column count is not updated in the Nomination dashboard for created using Textbook";
+
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '])[1]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(5000);
+		
+//		Assert.assertTrue(VO.getAssertSkipReviewEnabled().isDisplayed());
+		
+		Assert.assertTrue(VO.getAssertNominationTab().isDisplayed());	
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		Assert.assertTrue(VS.getAssertCourses().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertCoursesCount().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertCoursesCol().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertCoursesColCount().isDisplayed());
+		
+		home = VS.getAssertCoursesColCount().getText();
+		actual = "Course column count is updated in the Nomination dashboard for created using Textbook";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("1", homeText, expect, actual);
+	}
+
+}
+
+public static void verifyContentColumnIntheNominationTabWithContentPlaylist(String ProjectName) throws InterruptedException {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	
+	String home = null;
+	String expect = "Course column count should be updated in the Nomination dashboard for created using Textbook";
+	String actual = "Course column count is not updated in the Nomination dashboard for created using Textbook";
+
+	try {
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '])[1]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(5000);
+		
+//		Assert.assertTrue(VO.getAssertSkipReviewEnabled().isDisplayed());
+		
+		Assert.assertTrue(VO.getAssertNominationTab().isDisplayed());	
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
+		
+		Assert.assertTrue(VS.getAssertContentPlaylists().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertContentPlaylistsCount().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertContentPlaylistsCol().isDisplayed());
+		
+		Assert.assertTrue(VS.getAssertContentPlaylistsColCount().isDisplayed());
+		
+		home = VS.getAssertContentPlaylistsColCount().getText();
+		actual = "Course column count is updated in the Nomination dashboard for created using Textbook";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("1", homeText, expect, actual);
+	}
+
+}
+
+
+public static void CloseCreatedProject(String ProjectName) throws InterruptedException {
+	
+	
+	String home = null;
+	String expect = "User Should be able to Close The Project";
+	String actual = "User is not able to Close The Project";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		
+//		String s1 = "(//div[text()=' ";
+//		String s2 = ProjectName;
+//		String s3 = " '])[3]";
+		
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])";
+		
+		
+		String s4 = "//following::span[@class='sb-dotmenu'][1]";
+		Thread.sleep(10000);
+		WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+		assertProjectEdit.isDisplayed();
+		assertProjectEdit.click();
+		
+        String s5 ="//following::a[text()='Close '][1]";
+		
+		WebElement assertProjectCloseBtn = driver.findElement(By.xpath(s1 + s2 + s3+s5));
+		assertProjectCloseBtn.isDisplayed();
+		assertProjectCloseBtn.click();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getConfirmDeletion());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertClose());
+		
+		Assert.assertTrue(VO.getAssertClose().isDisplayed());
+		
+		home = VO.getAssertClose().getText();
+		
+		System.out.print(home);
+
+		actual = "User is able to Close The Project";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("The project has been closed successfully.", homeText, expect, actual);
+	}
+
+}
+
+
+public static void VerifyDefaultAssignedContributorIsUnableToContributeToClosed(String ProjectName) throws InterruptedException {
+	
+	
+	String home = null;
+	String expect = "view content button should be displayed in the project details page for the closed project.";
+	String actual = "view content button is not displayed in the project details page for the closed project.";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		
+//		String s1 = "(//div[text()=' ";
+//		String s2 = ProjectName;
+//		String s3 = " '])[3]";
+		
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		Thread.sleep(2000);
+		Assert.assertTrue(VS.getAssertViewContent().isDisplayed());
+		String TabDetails = VS.getContentRow1().getText();
+		String[] lines = TabDetails.split("\r\n|\r|\n");
+		System.out.println(lines);
+		System.out.println(lines.length);
+		
+		for (String line : lines) {
+		    System.out.println(line);
+		    Assert.assertNotEquals(line,"Upload Content");
+		}
+		
+		home = VS.getAssertViewContent().getText();
+		
+		System.out.print(home);
+
+		actual = "view content button is not displayed in the project details page for the closed project.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("View Content", homeText, expect, actual);
+	}
+
+}
+
+
+public static void validateManageUsersTabIsAvailableForOgadmin() throws InterruptedException {
+	String home1 = null;
+	String expect1 = "1.User name should be Displayed on Manage Users tab";
+	String actual1 =  "1.User name is not Displayed on Manage Users tab";
+	
+	String home2 = null;
+	String expect2 = "2. Email / Mobile should be Displayed on Manage Users tab";
+	String actual2 = "2. Email / Mobile is not Displayed on Manage Users tab";
+	
+	String home3 = null;
+	String expect3 = "3. Roles should be Displayed on Manage Users tab";
+	String actual3 = "3. Roles is not Displayed on Manage Users tab";
+	
+	String home4 = null;
+	String expect4 = "4. Create new Project button Should Displayed on top";
+	String actual4 = "4. Create new Project button is not Displayed on top";
+	
+	String home5 = null;
+	String expect5 = "5. Invite user option Should Displayed on top";
+	String actual5 = "5. Invite user option is not Displayed on top";
+	
+	String home6 = null;
+	String expect6 = "6. Search bar with text field Should Displayed";
+	String actual6 = "6. Search bar with text field is Not Displayed";
+	
+	String home7 = null;
+	String expect7 = "7. All users Header Should Displayed";
+	String actual7 = "7. All users Header is Not Displayed";
+	
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getAssertUserTitle().isDisplayed());
+		Thread.sleep(2000);
+		
+		WebElement table=driver.findElement(By.xpath("/html/body/app-root/div/app-org-user-list/div/div[2]/div/table/tbody/tr[1]/td[1]"));
+		List<WebElement> lst=table.findElements(By.tagName("tr"));
+		System.out.println(lst);
+		
+		
+		home1 = VS.getAssertUserTitle().getText();
+		System.out.println(home1);
+		actual1 = "1.User name is not Displayed on Manage Users tab";
+		
+		Assert.assertTrue(VS.getAssertEmailMobTitle().isDisplayed());
+		Thread.sleep(2000);
+		
+		home2 = VS.getAssertEmailMobTitle().getText();
+		System.out.println(home2);
+		actual2 = "2.Email / Mobile option is Displayed on Manage Users tab";
+		
+		Assert.assertTrue(VS.getAssertRolesTitle().isDisplayed());
+		Thread.sleep(2000);
+		
+		home3 = VS.getAssertRolesTitle().getText();
+		System.out.println(home3);
+		actual3 = "3. Roles Title Header is Displayed on Manage Users tab";
+		
+		Assert.assertTrue(VO.getCreateNewBtn().isDisplayed());
+		Thread.sleep(2000);
+		
+		home4 = VO.getCreateNewBtn().getText();
+		System.out.println(home4);
+		actual4 = "4. Create new Project button is Displayed on top";
+		
+		Assert.assertTrue(VS.getAssertInviteUser().isDisplayed());
+		Thread.sleep(2000);
+		
+		home5 = VS.getAssertInviteUser().getText();
+		System.out.println(home5);
+		actual5 = "5. Invite user option is Displayed on top";
+		
+		Assert.assertTrue(VS.getAssertSearchBar().isDisplayed());
+		Thread.sleep(2000);
+		Assert.assertTrue(VO.getSearchBtn().isDisplayed());
+		
+		home6 = VO.getSearchBtn().getText();
+		System.out.println(home6);
+		actual6 = "6. Search bar with text field is Displayed";
+		
+		Assert.assertTrue(VS.getAssertAllUserHeader().isDisplayed());
+		
+		home7 = VS.getAssertAllUserHeader().getText();
+		System.out.println(home7);
+		actual7 = "7. All users Header is Displayed";
+		
+	} finally {
+	String homeText1 = home1 != null ? home1 : "N/A";
+	System.out.println(home1);
+	Listeners.customAssert("User   ", homeText1, expect1, actual1);
+	
+	String homeText2 = home2 != null ? home2 : "N/A";
+	System.out.println(home2);
+	Listeners.customAssert("Email / Mobile", homeText2, expect2, actual2);
+	
+	String homeText3 = home3 != null ? home3 : "N/A";
+	System.out.println(home3);
+	Listeners.customAssert("Roles   ", homeText3, expect3, actual3);
+	
+	String homeText4 = home4 != null ? home4 : "N/A";
+	System.out.println(home4);
+	Listeners.customAssert("Create New Project", homeText4, expect4, actual4);
+	
+	String homeText5 = home5 != null ? home5 : "N/A";
+	System.out.println(home5);
+	Listeners.customAssert("Invite User", homeText5, expect5, actual5);
+	
+	String homeText6 = home6 != null ? home6 : "N/A";
+	System.out.println(home6);
+	Listeners.customAssert("Search", homeText6, expect6, actual6);
+	
+	String homeText7 = home7 != null ? home7 : "N/A";
+	System.out.println(home7);
+	Listeners.customAssert("All Users", homeText7, expect7, actual7);
+	
+	}
+}
+
+
 }
 
 

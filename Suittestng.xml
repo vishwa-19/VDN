@@ -188,7 +188,7 @@
 			<!--<class name="regression.sourcing.VerifySourcingOrgadminIsAbleToRejectNominationWithoutTC" />-->
 			<!--<class name="regression.sourcing.VerifySourcingOrgAdminAableToViewSampleAndAcceptForK12FrameworkCourse" />-->
 			<!--<class name="regression.sourcing.VerifyOrgAdminIsAbleToEditAndSaveExistingDraftProjects" />-->
-			<class name="regression.sourcing.VerifySourcingOrgreviewerIsNotAbleToSendBackTheContentForCorrectionForClosedProject" />
+			<class name="regression.sourcing.VerifyManageUsersTabIsAvailableForOgadmin" />
 			
 			
 			
