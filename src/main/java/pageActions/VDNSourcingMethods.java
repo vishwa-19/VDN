@@ -12762,6 +12762,34 @@ public static void SourcingOrgadminIsNotAbleToAcceptorRejectominationWithClosedN
 
 }
 
+
+	public static void verifyQuestionMarkIconWithNeedHelpTextIsDisplayed(String ProjectName) throws InterruptedException {
+		
+		
+		String text = "N/A";
+		String expect = "Question mark icon with need help text should be display";
+		String actual = "Question mark icon with need help text is not displayed";
+		try {
+			
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			String ss1 = "//div[text()=' ";
+			String ss2 = ProjectName;
+			String ss3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(1000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(ss1 + ss2 + ss3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(1000);
+			Assert.assertTrue(VS.getNeedHelp().isDisplayed());
+			text = "Completed";
+			actual = "Question mark icon with need help text is displayed successfully";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	
+	}
+
+
 public static void verifySourcingOrgAdminIsAbleToAssignReviewerNoTC(String ProjectName)
 		throws InterruptedException, IOException {
 	String home = null;
