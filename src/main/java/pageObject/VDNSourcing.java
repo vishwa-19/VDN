@@ -1076,6 +1076,22 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="(//*[text()='Need Help?'])[1]")
 	private WebElement needHelp;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='The project has been closed successfully.']")
+	private WebElement projectClose;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()=' Approved '])[1]")
+	private WebElement approvedNomination;
+	
+
+	public WebElement getApprovedNomination() {
+		return approvedNomination;
+	}
+
+
+	public WebElement getProjectClose() {
+		return projectClose;
+	}
+
 
 	public WebElement getNeedHelp() {
 		return needHelp;
