@@ -13358,8 +13358,127 @@ public static void verifyNominationsAutomaticallyApprovedUnderNominationTab(Stri
 }
 
 
+public static String verifycreate100TextBookProjectAndPublish() throws Exception {
+	String home = null;
+	String expect = "100 Digital Textbook Should be Added on Target Collections";
+	String actual = "100 Digital Textbook is not Added on Target Collections";
+
+	String home2 = null;
+	String expect2 = "Admin should be able to create the project with 100 Digital Textbook and publish it.";
+	String actual2 = "Admin is unable to create the project with 100 Digital Textbook and publish it.";
+
+	try {
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+	String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+	String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);		
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+	Date.setTodayDate(driver, VO.getNominationEndDate());
+
+	Thread.sleep(500);
+	Date.setTodayDate(driver);
+	Thread.sleep(1000);
+	Actions action = new Actions(driver);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+
+	VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+	Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+
+	Thread.sleep(500);
+	Date.setTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+	
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getContributionEndDate());
+	VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+	Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+	Thread.sleep(500);
+	Date.setDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+	VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+	Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+	Thread.sleep(500);
+	Date.setNextToDayAfterTomorrowDate(driver);
+	Thread.sleep(1000);
+	action.sendKeys("\b").perform();
+	Thread.sleep(500);
+	action.sendKeys("4").perform();
+	Thread.sleep(500);
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getSelFrameworkDropdown());
+	
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VS.getSelFrameworkTypeK12());
+	
+	VDNUtils.waitToBeClickableAndClick(VS.getBtnApply());
+	Thread.sleep(3000);
+	
+	for(int i=1;i<=100;i++) {
+		String tc ="(//td[@class='collapsing'])["+i+"]";
+		WebElement clkTC = driver.findElement(By.xpath(tc));
+		clkTC.click();
+		
+	}
+	Thread.sleep(3000);
+	Assert.assertTrue(VS.getAssertAdded100DigTexBooks().isDisplayed());
+	
+	home = VS.getAssertAdded100DigTexBooks().getText();
+	actual = "100 Digital Textbook is Added on Target Collections";
+
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+	VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+	home2 = VO.getAssertProjectPublished().getText();
+	actual2 = "Admin is able to create the project with 100 Digital Textbook and publish it.";
+	return ProjectName;
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("100 Digital Textbooks added", homeText, expect, actual);
+	
+	String homeText2 = home2 != null ? home2 : "N/A";
+	Listeners.customAssert("Project published successfully!", homeText2, expect2, actual2);
 }
 
+}
 
-
+}
 
