@@ -33,31 +33,41 @@ import pageObject.VDNSourcing;
 
 public class VDNContributorMethods extends BaseClass {
 
-	public static void validateTabsAvailableUnderMyProjectsTab()
-			throws Exception {
-		String home = null;
-		String expect = "1.For Books/Course/Other Collections 2.For individual content not for any collection 3. For Question sets Tabs Should Displayed After Login Sourcing Portal";
-		String actual = "1.For Books/Course/Other Collections 2.For individual content not for any collection 3. For Question sets Tabs Not Displayed After Login Sourcing Portal";
-
-		try {
-			
-			Thread.sleep(3000);
-			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
-		
-			Assert.assertTrue(VS.getAssertCollection().isDisplayed());
-			Assert.assertTrue(VS.getAssertForQSet().isDisplayed());
-			Assert.assertTrue(VS.getAssertIndContent().isDisplayed());
-			
-			home = VS.getAssertIndContent().getText();
-			System.out.print(home);
-			
-			actual = "1.For Books/Course/Other Collections 2.For individual content not for any collection 3. For Question sets Tabs Displayed After Login Sourcing Portal";
-		} finally {
-			String homeText = home != null ? home : "N/A";
-			Listeners.customAssert("For individual content not for any collection" ,homeText, expect, actual);
-		}
-	}
 	
+	
+	public static void ContributorIsAbleToNominateProjectWithoutUploadingSample(String ProjectName) throws InterruptedException {
+		//HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String home = null;
+		String expect = "contributor should be able to nominate to the framework project without uploading sample";
+		String actual = "contributor is unable to nominate to the framework project without uploading sample";
+		try {
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		Thread.sleep(10000);
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+		Thread.sleep(5000);
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+		home=VO.getAssertNominationSent().getText();
+		actual = "contributor is able to nominate to the framework project without uploading sample";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Nomination sent", homeText, expect, actual);
+	}
 
+	
+	}
 }
 
