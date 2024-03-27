@@ -17,9 +17,6 @@ public class VerifyContributorIsAbleToNominateProjectWithoutUploadingSample exte
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
 	VDNContributorMethods.ContributorIsAbleToNominateProjectWithoutUploadingSample(ProjectName);
-//	UserOnBoarding.VDNlogout();
-//	UserOnBoarding.loginAsSourcing("Admin");
-//	VDNSourcingMethods.validateOpenButtonIsAvailableAgainstPendingNomination(ProjectName);
 	}
 }
 
