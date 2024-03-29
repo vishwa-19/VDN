@@ -458,5 +458,58 @@ public class VDNContributorMethods extends BaseClass {
 		Listeners.customAssert("Initiated", homeText1, expect1, actual1);		
 	}
 }
+	
+	public static void verifyQuestionMarkOnContOrg() throws InterruptedException {
+		String home = null;
+		String expect = "Question Mark icon with Need help ? should be Displayed on Manage Users tab";
+		String actual =  "Question Mark icon with Need help ? is not Displayed on Manage Users tab";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			Assert.assertTrue(VO.getClkManageUsers().isDisplayed());
+			VDNUtils.waitForElementToBeVisible(VO.getClkManageUsers());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkManageUsers());
+			
+			Assert.assertTrue(VS.getAssertNeedHelp().isDisplayed());
+//			Assert.assertTrue(VS.getAssertQuestionMarkIcon().isDisplayed());
+			Thread.sleep(2000);
+			
+			home = VS.getAssertNeedHelp().getText();
+			actual = "Question Mark icon with Need help ? is Displayed On Manage Users tab";
+		
+
+		} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Need Help?", homeText, expect, actual);
+		}
+	}
+	
+	
+	public static void verifyQuestionMarkIconWithNeedHelpUnderNomTab(String ProjectName) throws Exception {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+//		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		String home = null;
+		String expect = "Question Mark icon with Need help ? text should displayed under nomination tab for contribution org admin";
+		String actual = "Question Mark icon with Need help ? text is not displayed under nomination tab for contribution org admin";
+		try {
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		Thread.sleep(10000);
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Assert.assertTrue(VS.getAssertNeedHelp().isDisplayed());
+		Thread.sleep(2000);
+		
+		home = VS.getAssertNeedHelp().getText();
+		actual = "Question Mark icon with Need help ? text is displayed under nomination tab for contribution org admin";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Need Help?", homeText, expect, actual);
+	}
+
+}
+
 
 }
