@@ -510,6 +510,34 @@ public class VDNContributorMethods extends BaseClass {
 	}
 
 }
+	
+	
+	public static void validateKnowMoreButtonIsDisplayedPostClickingOnQuestionMarkIcon(String ProjectName) throws Exception {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String home = null;
+		String expect = "'Know More' button should displayed post clicking on Question Mark icon in contribution portal.";
+		String actual = "'Know More' button is not displayed post clicking on Question Mark icon in contribution portal.";
+		try {
+		
+		Assert.assertTrue(VS.getAssertNeedHelp().isDisplayed());
+		Thread.sleep(2000);
+		
+		Actions action = new Actions(driver);
+		action.moveToElement(VC.getAsserQIcon()).perform();;
+		
+		Thread.sleep(2000);
+		Assert.assertTrue(VS.getAssertKnowMoreBtn().isDisplayed());
+		
+		home = VS.getAssertKnowMoreBtn().getText();
+		
+		home = VS.getAssertKnowMoreBtn().getText();
+		actual = "'Know More' button is displayed post clicking on Question Mark icon in contribution portal.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Know More", homeText, expect, actual);
+	}
 
-
+	}
 }

@@ -17,8 +17,18 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//button[text()=' No ']")
 	private WebElement clkNoBtn;
 	
+	@FindBy(how=How.XPATH,using="//i[@id='contribution_nomination_help']")
+	private WebElement asserQIcon;
 	
 	
+	
+	
+	
+
+	public WebElement getAsserQIcon() {
+		return asserQIcon;
+	}
+
 
 	public WebElement getClkNoBtn() {
 		return clkNoBtn;
