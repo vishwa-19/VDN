@@ -8,15 +8,17 @@ import pageActions.VDNMethods;
 import pageActions.VDNSourcingMethods;
 import utility.BaseClass;
 
-public class VerifyContributorIsAbleToNominateProjectWithoutUploadingSample extends BaseClass {
+public class VerifyConfirmationPopupPage extends BaseClass {
 
 	@Test
-	public static void verifyContributorIsAbleToNominateProjectWithoutUploadingSample() throws Exception {
+	public static void verifyConfirmationPopupPage() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
 	UserOnBoarding.VDNlogout();
-	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
+	UserOnBoarding.loginAsContributor("Ind Contributor");
 	VDNContributorMethods.ContributorIsAbleToNominateProjectWithoutUploadingSample(ProjectName);
+	VDNContributorMethods.validateOpenAndModifyButtonsAreDisplayedWithPendingStatus(ProjectName);
+	VDNContributorMethods.validateConfirmationPopupPage(ProjectName);
+	
 	}
 }
-

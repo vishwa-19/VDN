@@ -10,6 +10,7 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
 	private WebElement clkOpenBtn2;
 	
+
 	@FindBy(how=How.XPATH,using="//*[text()='My Projects']")
 	private WebElement myProjectTab;
 	
@@ -43,6 +44,35 @@ public class VDNContributor {
 
 	public WebElement getMyProjectTab() {
 		return myProjectTab;
+	}
+
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Your nomination is already submitted, do you want to modify it? ']")
+	private WebElement ConfirmationOnModify;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' No ']")
+	private WebElement clkNoBtn;
+	
+	@FindBy(how=How.XPATH,using="//i[@id='contribution_nomination_help']")
+	private WebElement asserQIcon;
+	
+	
+	
+	
+	
+
+	public WebElement getAsserQIcon() {
+		return asserQIcon;
+	}
+
+
+	public WebElement getClkNoBtn() {
+		return clkNoBtn;
+	}
+
+
+	public WebElement getConfirmationOnModify() {
+		return ConfirmationOnModify;
 	}
 
 	public WebElement getClkOpenBtn2() {
