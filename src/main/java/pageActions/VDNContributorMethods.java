@@ -540,4 +540,359 @@ public class VDNContributorMethods extends BaseClass {
 	}
 
 	}
+	
+	public static void validateToastMessageContributorSendTheNomination(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = " Able to upload The Content From Contributor Org for "+ProjectName;
+		String actual =  "Unable to upload The Content From Contributor Org for  "+ProjectName;
+		
+		String home1 = null;
+		String expect1 = "Toast message 'Nomination Sent' should be displayed when contributor send the nomination for the project.";
+		String actual1 = "Toast message 'Nomination Sent' is not displayed when contributor send the nomination for the project.";
+
+		String home2 = null;
+		String expect2 = "Nomination submitted project should be available under My Project table with Pending status.";
+		String actual2 = "Nomination submitted project is not available under My Project table with Pending status.";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			String s4 = " ']//following::span[text()='Pending'][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSelContentTypesbtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckCorseAssesment());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckETextBook());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckLearningRes());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckQuestionSet());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckEContent());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckTeachingRes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());	
+			Thread.sleep(3000);
+			home = VO.getAssertContentSetReview().getText();	
+			System.out.println(home);
+
+			actual = " Able to upload The Content From Contributor Org for "+ProjectName;
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+			Thread.sleep(3000);
+			Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+			home1=VO.getAssertNominationSent().getText();
+			System.out.println(home1);
+			actual1 = "Toast message 'Nomination Sent' is displayed when contributor send the nomination for the project.";
+			
+			Thread.sleep(3000);
+			WebElement assertPendStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+			Assert.assertTrue(assertPendStatus.isDisplayed());
+			home2=assertPendStatus.getText();
+			System.out.println(home2);
+			actual2 = "Nomination submitted project is available under My Project table with Pending status.";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Content sent for review" ,homeText, expect, actual);
+			System.out.println(homeText);
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Nomination sent", homeText1, expect1, actual1);
+			System.out.println(homeText1);
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Pending", homeText2, expect2, actual2);
+			System.out.println(homeText2);
+		}
+	}
+	
+	public static String createProjectBookWithSelectedCont() throws Exception {
+		String home = null;
+		String expect = "Sourcing org admin is able to create and Publish The Project Successfully ";
+		String actual = "Sourcing org admin is unable to create and Publish The Project Successfully";
+
+		try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+
+		String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+
+		String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);		
+	
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectedContributors());
+		VDNUtils.waitForElementToBeVisible(VO.getClkSelectContributors());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSelectContributors());
+		Thread.sleep(3000);
+		Assert.assertTrue(VS.getAssertSelectContributorPopUpHeader().isDisplayed());
+		Assert.assertTrue(VS.getAssertContributorTypeLabel().isDisplayed());
+		Assert.assertTrue(VS.getAssertSaveBtn().isDisplayed());
+		Assert.assertTrue(VS.getAssertCloseBtn().isDisplayed());
+		Thread.sleep(3000);
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkContributionType());
+//		VDNUtils.waitToBeClickableAndClick(VO.getSelIndividual());
+//		Thread.sleep(3000);
+		String OrgCon =  excel.getContentName("Org Contributor");
+		System.out.print(OrgCon);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getEnterOrgName());
+		VDNUtils.waitToBeVisibleAndSendKeys(VO.getEnterOrgName(),OrgCon);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getSearchBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectOrg());
+				
+//		Assert.assertTrue(VS.getAssertSelectedContributor().isDisplayed());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+		
+		Assert.assertTrue(VS.getAssertContributorSelected().isDisplayed());
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkSkipReview());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSkipReview());
+		
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getContributionEndDate());
+		VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+		Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+		Thread.sleep(500);
+		Date.setDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		Actions action = new Actions(driver);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+		VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+		Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+		Thread.sleep(500);
+		Date.setNextToDayAfterTomorrowDate(driver);
+		Thread.sleep(1000);
+		action.sendKeys("\b").perform();
+		Thread.sleep(500);
+		action.sendKeys("4").perform();
+		Thread.sleep(500);
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(Upload.getUploadBtn());
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+	
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+		VDNUtils.waitForElementToBeVisible(VO.getAssertProjectPublished());
+		home = VO.getAssertProjectPublished().getText();
+		actual = "Sourcing org admin is able to Create and Publish The Project Successfully";
+		return ProjectName;
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Project published successfully!", homeText, expect, actual);
+	}
+	}
+	
+	public static void validateConfirmationPopUpPageClose(String ProjectName) throws InterruptedException {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String home1 = null;
+		String expect1 = "1.confirmation popup page should be displayed on clicking Modify Button.";
+		String actual1 = "1.confirmation popup page is not displayed on clicking Modify Button.";
+		
+		String home2 = null;
+		String expect2 = "2.Modify Confirmation popup page should be displayed with the Text : 'Your nomination is already submitted, do you want to modify it?', 'yes' Button and 'No' Button.";
+		String actual2 = "2.Modify Confirmation popup page is not displayed with the Text : 'Your nomination is already submitted, do you want to modify it?', 'yes' Button and 'No' Button.";
+		
+		String home3 = null;
+		String expect3 = "3.on clicking Yes Button on confirmation popup page,the project status should be changed to 'Initiated' state from 'Pending' state";
+		String actual3 = "3.on clicking Yes Button on confirmation popup page,the project status is not changed to 'Initiated' state from 'Pending' state";
+
+		try {
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		String s4 = " ']//following::span[text()='Pending'][1]";
+		String s5 = " ']//following::span[text()='Modify'][1]";
+		String s6 = " ']//following::span[text()='Initiated'][1]";
+		Thread.sleep(10000);
+		
+		WebElement assertPendStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+		WebElement assertModifyBtn = driver.findElement(By.xpath(s1 + s2 + s5));
+		WebElement assertOpenBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+		
+		VDNUtils.waitToBeClickableAndClick(assertModifyBtn);
+		Thread.sleep(3000);
+		Assert.assertTrue(VC.getConfirmationOnModify().isDisplayed());
+		Assert.assertTrue(VO.getConfirmDeletion().isDisplayed());
+		Assert.assertTrue(VC.getClkNoBtn().isDisplayed());
+	
+		
+		home1=VC.getConfirmationOnModify().getText();
+		System.out.println(home1);
+		actual1 = "1.confirmation popup page is displayed on clicking Modify Button.";
+		
+		home2=VC.getClkNoBtn().getText();;
+		System.out.println(home2);
+		actual2 = "2.Modify Confirmation popup page is not displayed with the Text : 'Your nomination is already submitted, do you want to modify it?', 'yes' Button and 'No' Button.";
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getConfirmDeletion());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+		Thread.sleep(3000);
+		
+		WebElement assertStatusUpdate = driver.findElement(By.xpath(s1 + s2 + s6));
+		Assert.assertTrue(assertStatusUpdate.isDisplayed());
+		Thread.sleep(3000);
+		
+		home3=assertStatusUpdate.getText();;
+		System.out.println(home3);
+		actual3 = "3.on clicking Yes Button on confirmation popup page,the project status is changed to 'Initiated' state from 'Pending' state";
+		
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		System.out.println(homeText1);
+		Listeners.customAssert("Your nomination is already submitted, do you want to modify it?", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		System.out.println(homeText2);
+		Listeners.customAssert("No", homeText2, expect2, actual2);
+		
+		String homeText3 = home3 != null ? home3 : "N/A";
+		System.out.println(homeText3);
+		Listeners.customAssert("Initiated", homeText3, expect3, actual3);
+				
+	}
+}
+	
+	public static void verifyNominationConfirmationPopUp(String ProjectName) throws InterruptedException {
+		//HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String home = null;
+		String expect = "contributor should be able to nominate to the framework project without uploading sample";
+		String actual = "contributor is unable to nominate to the framework project without uploading sample";
+		
+		String home1 = null;
+		String expect1 = "On clicking Nominate button, Nomination Confirmation popup page should be displayed with 'Are you sure you want to submit this nomination?'";
+		String actual1 = "On clicking Nominate button, Nomination Confirmation popup page is not displayed with 'Are you sure you want to submit this nomination?'";
+		
+		String home3 = null;
+		String expect3 = "On clicking Nominate button, Nomination Confirmation popup page should displayed with Submit Button";
+		String actual3 = "On clicking Nominate button, Nomination Confirmation popup page is not displayed with Submit Button";
+		
+//		String home3 = null;
+//		String expect3 = "On clicking Nominate button, Nomination Confirmation popup page should displayed with Submit Button";
+//		String actual3 = "On clicking Nominate button, Nomination Confirmation popup page is not displayed with Submit Button";
+		
+		
+		String home2 = null;
+		String expect2 = "The status of the project should be pending.";
+		String actual2 = "The status of the project is not pending";
+
+		try {
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		String s4 = " ']//following::span[text()='Pending'][1]";
+		Thread.sleep(10000);
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+		Thread.sleep(5000);
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+		Thread.sleep(5000);
+		Assert.assertTrue(VC.getNominationConfMsg().isDisplayed());
+		
+		home1=VC.getNominationConfMsg().getText();
+		actual1 = "On clicking Nominate button, Nomination Confirmation popup page is displayed with 'Are you sure you want to submit this nomination?'";
+		
+
+		home3=VO.getSubmitPostNominate().getText();
+		actual3 = "On clicking Nominate button, Nomination Confirmation popup page is displayed with Submit Button";
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+		home=VO.getAssertNominationSent().getText();
+		actual = "contributor is able to nominate to the framework project without uploading sample";
+		
+		WebElement assertPendStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+		Assert.assertTrue(assertPendStatus.isDisplayed());
+		
+		home2=assertPendStatus.getText();
+		actual2 = "The status of the project is pending";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Nomination sent", homeText, expect, actual);
+		String homeText1 = home1 != null ? home1 : "N/A";
+		Listeners.customAssert("Are you sure you want to submit this nomination?", homeText1, expect1, actual1);
+		String homeText3 = home1 != null ? home3 : "N/A";
+		Listeners.customAssert("Submit", homeText3, expect3, actual3);
+		String homeText2 = home2 != null ? home2 : "N/A";
+		Listeners.customAssert("Pending", homeText2, expect2, actual2);	
+	}
+
+}	
+	
 }

@@ -20,10 +20,20 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//i[@id='contribution_nomination_help']")
 	private WebElement asserQIcon;
 	
+	@FindBy(how=How.XPATH,using="//p[text()='Are you sure you want to submit this nomination?']")
+	private WebElement nominationConfMsg;
 	
 	
 	
 	
+	
+	
+	
+
+	public WebElement getNominationConfMsg() {
+		return nominationConfMsg;
+	}
+
 
 	public WebElement getAsserQIcon() {
 		return asserQIcon;
