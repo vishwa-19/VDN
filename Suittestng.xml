@@ -190,7 +190,11 @@
 			<!--<class name="regression.sourcing.VerifyOrgAdminIsAbleToEditAndSaveExistingDraftProjects" />-->
 			<!--<class name="regression.sourcing.VerifySourcingOrgReviewerIsNotAbleToPublishRejectedForClosedProject" />-->
 			
-			<class name="regression.contributor.VerifyThatOclickingNominateButtonNominationConfirmationPopupPageDisplayed" />
+			<!--<class name="regression.contributor.VerifyAssignRolesAndToastMsg" />-->
+			<!--<class name="regression.contributor.VerifyContributorIsAbleToOpenProjectFromAllProjectsTab" />-->
+			<!--<class name="regression.contributor.VerifyIndividualContributorIsAbleToNominateProjectByModify" />-->
+			<class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab" />
+			
 			
 			
 			

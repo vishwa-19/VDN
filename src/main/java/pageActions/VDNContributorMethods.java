@@ -1096,5 +1096,172 @@ public static void verifyProjectIsNotAvailableInMyProjectsAfterSavedTheContentTy
 	}
 
 }	
+	public static void verifyAssignUserAndToastMsg(String ProjectName)
+			throws InterruptedException, IOException {
+		String home = null;
+		String expect = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top";
+		String actual =  "Admin should be unable to assign reviewer to the Project "+ProjectName+" or is not Displayed on the Top";
+
+		String home1 = null;
+		String expect1 = " 1.Contributor orgadmin should be able to assign contributor to the approved project and toast message 'Roles Updated ' should be displayed";
+		String actual1 =  "1.Contributor orgadmin is unable to assign contributor to the approved project and toast message 'Roles Updated ' is not displayed";
+		
+		String home2 = null;
+		String expect2 = " 2.Contributor orgadmin should be able to assign reviewer to the approved project and toast message 'Roles Updated ' should be displayed.";
+		String actual2 =  "2.Contributor orgadmin is unable to assign reviewer to the approved project and toast message 'Roles Updated ' is not displayed.";
+		
+		String home3 = null;
+		String expect3 = " 3.Contributor orgadmin should be able to assign Both to the approved project and toast message 'Roles Updated ' should be displayed.";
+		String actual3 =  "3.Contributor orgadmin is unable to assign Both to the approved project and toast message 'Roles Updated ' is not displayed.";
+		
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Assert.assertTrue(VO.getAsserAssignUsers().isDisplayed());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getAsserAssignUsers());
+			VDNUtils.waitForElementToBeVisible(VO.getSearchField());
+			Assert.assertTrue(VO.getSearchField().isDisplayed());
+			
+			String OrgCon =  excel.getContentName("Org Cont");
+			System.out.print(OrgCon);
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), OrgCon);
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectContributorPostSearch());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+			home1 = VO.getRolesUpdatedMsg().getText();
+			System.out.println(home1);
+			actual1 ="1.Contributor orgadmin is able to assign contributor to the approved project and toast message 'Roles Updated ' is displayed";
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+			
+			Assert.assertTrue(VO.getSearchField().isDisplayed());
+			String OrgRev =  excel.getContentName("Org Rev");
+			System.out.print(OrgRev);
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), OrgRev);
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+			Thread.sleep(5000);
+			home2 = VO.getRolesUpdatedMsg().getText();
+			System.out.println(home);
+			actual2="2.Contributor orgadmin is able to assign reviewer to the approved project and toast message 'Roles Updated ' is displayed.";
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+			
+			Assert.assertTrue(VO.getSearchField().isDisplayed());
+			String OrgBoth =  excel.getContentName("Org Both");
+			System.out.print(OrgBoth);
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(),OrgBoth);
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectBothPostSearch());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
+			Thread.sleep(5000);
+			
+			home3 = VO.getRolesUpdatedMsg().getText();
+			System.out.println(home3);
+			actual3 = "3.Contributor orgadmin is able to assign Both to the approved project and toast message 'Roles Updated ' is displayed.";
+			
+			home = VO.getRolesUpdatedMsg().getText();
+			System.out.println(home);
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
+			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
+
+			actual = " Admin should be able to assign reviewer to the Project "+ProjectName+" and is Displayed on the Top" ;
+		} finally {
+			
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Roles updated...", homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			System.out.println(homeText2);
+			Listeners.customAssert("Roles updated...", homeText2, expect2, actual2);
+			
+			String homeText3 = home3 != null ? home3 : "N/A";
+			System.out.println(homeText3);
+			Listeners.customAssert("Roles updated...", homeText3, expect3, actual3);
+			
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Roles updated...", homeText, expect, actual);
+		}
+	}
+	
+	public static void verifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab(String ProjectName) throws InterruptedException {
+		String home = null;
+		String expect = ProjectName + " is Available on All My Projects Tab for Individual Contributor";
+		String actual = ProjectName + " is not Available on All My Projects Tab for Individual Contributor";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(10000);
+			Assert.assertTrue(VS.getAssertNeedHelp().isDisplayed());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getSelContentTypesbtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckCorseAssesment());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckETextBook());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckLearningRes());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckQuestionSet());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckEContent());
+			VDNUtils.waitToBeClickableAndClick(VO.getCheckTeachingRes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+			Thread.sleep(3000);
+			Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+
+			home=VO.getAssertNominationSent().getText();
+			System.out.println(home);
+			actual =  ProjectName + " is Available on All My Projects Tab for Individual Contributor";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Nomination Sent", homeText, expect, actual);
+		}
+	}
 	
 }
