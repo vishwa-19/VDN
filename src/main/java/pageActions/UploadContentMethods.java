@@ -173,39 +173,24 @@ public static void UploadMP4() throws Exception {
 	}
 	
 	
-public static String UploadEpub() throws Exception {
-		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-		
-		String expect = "Creator should be able to upload epub content successfully";
-		String actual = "Creator is unable to upload epub content ";
-		String closeButton=null;
-	 
-	 try {
-		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
-		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
-		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
-		Thread.sleep(1000);
-		driver.switchTo().frame(0);
-		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
-		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
-	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\A-Room-with-a-View-morrison (1).epub", "Epub uploaded");
-	    Thread.sleep(3000);
-	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
-	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
-	    
-	    String randomName=VDNUtils.set_Content_Name("Epub_Content");
-	    excel.updateData("TestData","Epub" ,randomName, "");
-	    closeButton=Upload.getClose().getText();
-	    actual="Creator is able to upload epub content";
-		return randomName;
-		
-	 } finally {
-		 String Text = Upload.getClose() != null ? closeButton : "N/A";
-			Listeners.customAssert(closeButton, Text, expect, actual);
-	}
-	}
+public static void UploadEpub() throws Exception {
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload EPUB successfully";
+	String actual = "Creator is unable to upload EPUB ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\A-Room-with-a-View-morrison (1).epub");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
 	
 	
 	

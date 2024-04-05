@@ -59,12 +59,21 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//p[text()='Are you sure you want to submit this nomination?']")
 	private WebElement nominationConfMsg;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='My Content']")
+	private WebElement assertMyContentTab;
 	
 	
 	
 	
 	
 	
+	
+	
+	
+
+	public WebElement getAssertMyContentTab() {
+		return assertMyContentTab;
+	}
 
 	public WebElement getNominationConfMsg() {
 		return nominationConfMsg;
