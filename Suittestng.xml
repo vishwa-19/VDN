@@ -195,7 +195,7 @@
 			<!--<class name="regression.contributor.VerifyIndividualContributorIsAbleToNominateProjectByModify" />-->
 			<!--<class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab" />-->
 			<!--<class name="regression.contributor.VerifyMyContentsTabIsAvailableForContributorOrg" />-->
-			<class name="regression.contributor.VerifyContributorIsAbleToUploadPDFAndEpubContent" />
+			<class name="regression.contributor.VerifyContOrgAdminAbleToModifyNominationByContentTypes" />
 			
 			
 			

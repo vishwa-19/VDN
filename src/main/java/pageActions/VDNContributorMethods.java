@@ -1424,4 +1424,220 @@ public static void verifyProjectIsNotAvailableInMyProjectsAfterSavedTheContentTy
 //			System.out.println(homeText2);
 		}
 	}
+	
+	
+	public static void verifyContentStatusOnTocPageIsRejectedForIndContributor(String ProjectName) throws InterruptedException {
+		String home = null;
+		String expect = "Content status on toc page should be 'Rejected' for Individual contributor when sourcing org admin Rejected the content";
+		String actual =  "Content status on toc page is not 'Rejected' for Individual contributor when sourcing org admin Rejected the content";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			String s4 = " ']//following::span[text()='Pending'][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(5000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkUploadCont());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkUploadCont());
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertRejectOnTOC());
+			
+			Assert.assertTrue(VC.getAssertRejectOnTOC().isDisplayed());
+			
+			home = VC.getAssertRejectOnTOC().getText();	
+			System.out.println(home);
+			actual = "Content status on toc page is 'Rejected' for Individual contributor when sourcing org admin Rejected the content";
+			
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Rejected" ,homeText, expect, actual);
+			System.out.println(homeText);
+
+		}
+	}
+	
+	public static void verifyContributorIsAbleToModifyTheNomination(String ProjectName) throws Exception {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String home = null;
+		String expect = "Contributor should be able to modify Nomination";
+		String actual = "Contributor not able to modify Nomination";
+		try {
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::span[text()='Modify'][1]";
+		Thread.sleep(10000);
+		WebElement clkModify = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkModify);
+		VDNUtils.waitToBeClickableAndClick(VC.getModifyNominationYesBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+		Thread.sleep(5000);
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+		
+		
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+
+		String s4 = " ']//following::span[text()='Initiated'][1]";
+		Thread.sleep(10000);
+		WebElement assertInitStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+		Assert.assertTrue(assertInitStatus.isDisplayed());
+		
+		home=assertInitStatus.getText();
+		actual = "Contributor is able to modify Nomination successfully";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Initiated", homeText, expect, actual);
+	}
+
+}
+	
+public static void verifyContributorIsAbleToModifyTheNominationByAddMoreSamples(String ProjectName) throws Exception {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String home = null;
+		String expect = "contributing or admin should be able to modify the nomination by modifying the content types";
+		String actual = "contributing or admin is unable to modify the nomination by modifying the content types";
+		try {
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::span[text()='Modify'][1]";
+		Thread.sleep(10000);
+		WebElement clkModify = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkModify);
+		VDNUtils.waitToBeClickableAndClick(VC.getModifyNominationYesBtn());
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+		Thread.sleep(3000);
+		Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+		Thread.sleep(5000);
+		Thread.sleep(5000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+		
+		
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+		Thread.sleep(3000);
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+		
+		
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample2");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		
+		String s4 = " ']//following::span[text()='Initiated'][1]";
+		Thread.sleep(10000);
+		WebElement assertInitStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+		Assert.assertTrue(assertInitStatus.isDisplayed());
+		
+		home=assertInitStatus.getText();
+		actual = "contributing org admin is able to modify the nomination by modifying the content types";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Initiated", homeText, expect, actual);
+	}
+
+}
 }

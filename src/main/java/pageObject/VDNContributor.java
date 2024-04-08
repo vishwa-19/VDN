@@ -62,14 +62,21 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()='My Content']")
 	private WebElement assertMyContentTab;
 	
+	@FindBy(how=How.XPATH,using="//button[text()='Upload Content']")
+	private WebElement clkUploadCont;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample2']//following::span[text()='Rejected']")
+	private WebElement assertRejectOnTOC;
 	
 	
-	
-	
-	
-	
-	
-	
+
+	public WebElement getAssertRejectOnTOC() {
+		return assertRejectOnTOC;
+	}
+
+	public WebElement getClkUploadCont() {
+		return clkUploadCont;
+	}
 
 	public WebElement getAssertMyContentTab() {
 		return assertMyContentTab;
