@@ -68,7 +68,16 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()=' Sample2']//following::span[text()='Rejected']")
 	private WebElement assertRejectOnTOC;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Select to contribute ']")
+	private WebElement assertContentTypesPopUp;
 	
+	 
+	
+	
+
+	public WebElement getAssertContentTypesPopUp() {
+		return assertContentTypesPopUp;
+	}
 
 	public WebElement getAssertRejectOnTOC() {
 		return assertRejectOnTOC;

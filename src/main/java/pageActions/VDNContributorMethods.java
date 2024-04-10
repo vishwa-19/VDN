@@ -1638,6 +1638,118 @@ public static void verifyContributorIsAbleToModifyTheNominationByAddMoreSamples(
 		String homeText = home != null ? home : "N/A";
 		Listeners.customAssert("Initiated", homeText, expect, actual);
 	}
+	
+}
+
+public static void verifyCheckboxIsDisplayedOnContentTypes(String ProjectName) throws Exception {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = "checkbox should be displayed on content types and opening the Project from My Project with initiated status.";
+	String actual = "checkbox should is not displayed content types and opening the Project from My Project with initiated status.";
+	try {
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::button[text()='Open '][1]";
+	Thread.sleep(10000);
+	WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	
+	
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+	Thread.sleep(3000);
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+
+	String s4 = " ']//following::span[text()='Initiated'][1]";
+	Thread.sleep(10000);
+	WebElement assertInitStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+	Assert.assertTrue(assertInitStatus.isDisplayed());
+	Thread.sleep(5000);
+	
+//	WebElement iframe = driver.findElement(By.tagName("iframe"));
+//	driver.switchTo().frame(iframe);
+	
+//	js.executeScript("arguments[0].scrollIntoView(true);",clkOpenProject);
+//	js.executeScript("window.scrollBy(500, 0)");
+//	Thread.sleep(5000);
+	String s5 =" ']//following::span[@class='pull-right'][1]";
+	WebElement clkOpenProject1 = driver.findElement(By.xpath(s1+s2+s5));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject1);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	
+	home=VO.getSelectContetCheckbox().getText();
+	System.out.println(home);
+	actual = "checkbox is displayed on content types when opening the Project from My Project with initiated status.";
+
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("eTextbook", homeText, expect, actual);
+}
+
+}
+
+public static void VerifyContentTypesPopUpIsDisplayedWithoutTC(String ProjectName) throws Exception {
+	
+	String home = null;
+	String expect = "Content types pop up should be displayed post clicking on create/upload button.";
+	String actual = "Content types pop up is not displayed post clicking on create/upload button.";
+	
+	try {
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		Thread.sleep(10000);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		Thread.sleep(10000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkCreateOrUploadBtn());
+		home=VC.getAssertContentTypesPopUp().getText();
+		actual = "Content types pop up is displayed post clicking on create/upload button.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Select to contribute", homeText, expect, actual);
+	}
 
 }
 }
