@@ -196,7 +196,7 @@
 			<!--<class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab" />-->
 			<!--<class name="regression.contributor.VerifyMyContentsTabIsAvailableForContributorOrg" />-->
 			<!--<class name="regression.contributor.VerifyCheckboxIsDisplayedOnContentTypesOpeningProjectFromMyProjectInitiatedStatus" />-->
-			<class name="regression.contributor.VerifyContentTypesPopUpIsDisplayedPostClickingOnUploadButton" />
+			<class name="regression.contributor.VerifyIndividualContributorIsAbleToUploadAllContentTypesForDigitalTextbook" />
 			
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->

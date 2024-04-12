@@ -1752,4 +1752,94 @@ public static void VerifyContentTypesPopUpIsDisplayedWithoutTC(String ProjectNam
 	}
 
 }
+public static void validateContributorIsAbleToUpdateNominationBeforeApprovalOrRejection(String ProjectName) throws Exception {
+	
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = "contributor should be able to update the nomination before approval or rejection by sourcing orgadmin.";
+	String actual = "contributor is unable to update the nomination before approval or rejection by sourcing orgadmin.";
+	
+	String home2 = null;
+	String expect2 = "The status of the project should be pending post Updating";
+	String actual2 = "The status of the project is not pending post Updating";
+	
+	try {
+	VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::span[text()='Modify'][1]";
+	Thread.sleep(10000);
+	WebElement clkModify = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkModify);
+	VDNUtils.waitToBeClickableAndClick(VC.getModifyNominationYesBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample2");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+	home=VO.getAssertNominationSent().getText();
+	actual = "contributor is able to update the nomination before approval or rejection by sourcing orgadmin.";
+	String s4 = " ']//following::span[text()='Pending'][1]";
+	
+	WebElement assertPendStatus = driver.findElement(By.xpath(s1 + s2 + s4));
+	Assert.assertTrue(assertPendStatus.isDisplayed());
+	home2=assertPendStatus.getText();
+	actual2 = "The status of the project is pending post Updating";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Nomination sent", homeText, expect, actual);
+	String homeText2 = home2 != null ? home2 : "N/A";
+	Listeners.customAssert("Pending", homeText2, expect2, actual2);
+}
+
+}
 }
