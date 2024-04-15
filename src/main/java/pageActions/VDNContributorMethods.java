@@ -1842,4 +1842,131 @@ public static void validateContributorIsAbleToUpdateNominationBeforeApprovalOrRe
 }
 
 }
+
+public static void verifyContributorIsAbleToOpenFromMyProjectsTab(String ProjectName) throws Exception {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = ProjectName + " Nomination is sent Successfully";
+	String actual = ProjectName + " Nomination is not sent Successfully";
+	
+	String home2 = null;
+	String expect2 = "contributor should be able to open the Framework project from My Projects tab post nomination is approved";
+	String actual2 =  "contributor is able to open the Framework project from My Projects tab post nomination is approved";
+	
+	
+	try {
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::button[text()='Open '][1]";
+	Thread.sleep(10000);
+	WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+	home=VO.getAssertNominationSent().getText();
+	actual = ProjectName + " Nomination is sent Successfully";
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+	Thread.sleep(3000);
+	
+	WebElement assertStatusUpdate = driver.findElement(By.xpath(s1 + s2 + s3));
+	Assert.assertTrue(assertStatusUpdate.isDisplayed());
+	Thread.sleep(3000);
+	
+	home2=assertStatusUpdate.getText();;
+	System.out.println(home2);
+	actual2 = "contributor is able to open the Framework project from My Projects tab post nomination is approved";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Nomination sent", homeText, expect, actual);
+	String homeText2 = home2 != null ? home2 : "N/A";
+	System.out.println(homeText2);
+	Listeners.customAssert("Open", homeText2, expect2, actual2);
+}
+
+}
+
+public static void openAndNominateWithoutTargetCollectionWithSample(String ProjectName) throws Exception {
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::button[text()='Open '][1]";
+	Thread.sleep(10000);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	// String assertProjectOnContributor = By.xpath(s1 + s2 + s3);
+	WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	
+//	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	
+	
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+	Thread.sleep(3000);
+	
+	
+
+//	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+//	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+//	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+
+//	VO.getAssertSelectedCTMsg.isDisplayed();
+//	Thread.sleep(3000);
+//	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+//	Thread.sleep(5000);
+
+//	Thread.sleep(5000);
+//	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+
+}
 }
