@@ -52,8 +52,10 @@
       <class name="vdn.SuccessfulReviewerRoleUpdatedForWithoutProjectAnyTargetCollection"/>
       <class name="vdn.VerifyPreApprovedUserNominationIsDisplayedInNominationsTab"/>
       <class name="vdn.DefaultContributionOrgAdminIsAbleAssignRolesWithNominationEnabled"/>
-      <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>-->
-       <class name="regression.contributor.VerifyListOfUploadedSampleIsDisplayedInProjectDetailsPage" />	 
+      <class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>
+      <class name="regression.contributor.VerifyAssignRolesAndToastMsg" />	 -->
+      <class name="regression.contributor.VerifyListOfUploadedSampleIsDisplayedInProjectDetailsPage" />	 
+       
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

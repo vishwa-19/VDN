@@ -148,10 +148,45 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//i[@id='contribution_nomination_help']")
 	private WebElement asserQIcon;
 	
+	@FindBy(how=How.XPATH,using="//p[text()='Are you sure you want to submit this nomination?']")
+	private WebElement nominationConfMsg;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='My Content']")
+	private WebElement assertMyContentTab;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Upload Content']")
+	private WebElement clkUploadCont;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample2']//following::span[text()='Rejected']")
+	private WebElement assertRejectOnTOC;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Select to contribute ']")
+	private WebElement assertContentTypesPopUp;
+	
+	 
 	
 	
-	
-	
+
+	public WebElement getAssertContentTypesPopUp() {
+		return assertContentTypesPopUp;
+	}
+
+	public WebElement getAssertRejectOnTOC() {
+		return assertRejectOnTOC;
+	}
+
+	public WebElement getClkUploadCont() {
+		return clkUploadCont;
+	}
+
+	public WebElement getAssertMyContentTab() {
+		return assertMyContentTab;
+	}
+
+	public WebElement getNominationConfMsg() {
+		return nominationConfMsg;
+	}
+
 
 	public WebElement getAsserQIcon() {
 		return asserQIcon;

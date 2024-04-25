@@ -54,7 +54,5 @@
       <class name="vdn.AssignedAdminIsAbleToAssignContributorAndRevieweRole"/>
    
 		</classes>
-	</test> <!--
-	Test -->
-</suite> <!--
-Suite -->
+	</test> <!--Test -->
+</suite> <!--Suite -->
