@@ -263,6 +263,7 @@ public class VDNContributorMethods extends BaseClass {
 public static void verifyModifyOptionNotAvailable(String ProjectName) throws InterruptedException {
 			
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			boolean test = false;
 			String text = "N/A";
 			String expect = "Modify option should not be prensent post approving and rejecting the nomination";
 			String actual = "Modify option is prensent post approving and rejecting the nomination";
@@ -277,7 +278,9 @@ public static void verifyModifyOptionNotAvailable(String ProjectName) throws Int
 				WebElement clkModify = driver.findElement(By.xpath(s1 + s2 + s3));
 			}catch(NoSuchElementException e) {
 				System.out.println("Modify option not present");
+				test = true;
 			}
+			Assert.assertTrue(test);
 			text = "Completed";
 			actual = "Modify option is not prensent post approving and rejecting the nomination";
 		} finally {
@@ -742,4 +745,300 @@ public static void verifyProjectIsNotAvailableInMyProjectsAfterSavedTheContentTy
 	}
 
 	}
+	
+	public static void verifySelectContentTypePopup(String ProjectName) throws InterruptedException {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String text = "N/A";
+		String expect = "Select content type popup should be closed on click of cancel button";
+		String actual = "Select content type popup is not closed on click of cancel button";
+		try {
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		Thread.sleep(10000);
+		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+		VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+		VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+		VDNUtils.waitToBeClickableAndClick(VC.getContentTypeCancelBtn());
+		Thread.sleep(500);
+		Assert.assertTrue(VC.getContentTypeToasrMsg().isDisplayed());
+		text = "Completed";
+		actual = "Select content type popup is closed on click of cancel button successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+	
+	public static void verifyToastMessageWhileContributorSelectContentType(String ProjectName) throws InterruptedException {
+			
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			String text = "N/A";
+			String expect = "Toast message Selected Content Type(s) saved successfully should be displayed";
+			String actual = "Toast message Selected Content Type(s) saved successfully is not displayed";
+			try {
+				VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+			Thread.sleep(500);
+			Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+			text = "Completed";
+			actual = "Toast message Selected Content Type(s) saved successfully is displayed";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	
+	}
+	
+	public static void verifyPreviouslyOpenedProjectAvailableUnderMyProjectsTab(String ProjectName) throws InterruptedException {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String text = "N/A";
+		String expect = "Previously opened project should be available under my project";
+		String actual = "Previously opened project is not available under my project";
+		try {
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+			Thread.sleep(3000);
+			Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+			Thread.sleep(5000);
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VC.getMyProjectTab());
+			String s4 = "//div[text()=' ";
+			String s5 = ProjectName;
+			String s6 = " ']//following::span[text()='Initiated'][1]";
+			WebElement statusInitiated = driver.findElement(By.xpath(s4 + s5 + s6));
+			Assert.assertTrue(statusInitiated.isDisplayed());
+		text = "Completed";
+		actual = "Previously opened project is available under my project successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+	
+		public static void verifyContributorAdminAbleToClickAndChooseTheContentTypes(String ProjectName) throws InterruptedException {
+			
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			String text = "N/A";
+			String expect = "Content type instruction text shoud be display to user";
+			String actual = "Content type instruction text is not display to user";
+			try {
+				VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+			Assert.assertTrue(VC.getInstructionText().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+			Thread.sleep(500);
+			Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+			text = "Completed";
+			actual = "Content type instruction text is display to user successfully";
+		} finally {
+			Listeners.customAssert("Completed", text, expect, actual);
+		}
+	
+	}
+		
+	public static void verifyAllDetailsAreDisplayedOnOpeningAProject(String ProjectName) throws InterruptedException {
+				
+				VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+				String text = "N/A";
+				String expect = "All details should be display on opening the project";
+				String actual = "All details are not displayed on opening the project";
+				try {
+					VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+					VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+				String s1 = "//div[text()=' ";
+				String s2 = ProjectName;
+				String s3 = " ']//following::button[text()='Open '][1]";
+				String s4 = "((//*[text()='";
+				String s5 = " ']))";
+				Thread.sleep(1000);
+				WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+				VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+				WebElement projectname = driver.findElement(By.xpath(s4 + s2 + s5));
+				Assert.assertTrue(projectname.isDisplayed());
+				Assert.assertTrue(VS.getContentTypeProject().isDisplayed());
+				Assert.assertTrue(VS.getProjectDates().isDisplayed());
+				Assert.assertTrue(VC.getNominationProcess().isDisplayed());
+				Assert.assertTrue(VC.getGuidelineDocument().isDisplayed());
+				text = "Completed";
+				actual = "All details are display on opening the project successfully";
+			} finally {
+				Listeners.customAssert("Completed", text, expect, actual);
+			}
+		
+		}
+	
+	public static void verifyContributorAdminIsAbleToApplyFilterInAllProjectsTab() throws InterruptedException {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String text = "N/A";
+		String expect = "Contributor admin should be able to apply filter in all project tab";
+		String actual = "Contributor admin is not able to apply filter in all project tab";
+		try {
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VC.getApplyFilterButton());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VC.getSelectSourcingOrg());
+			VDNUtils.waitToBeClickableAndClick(VC.getSelectOrg());
+			VDNUtils.waitToBeClickableAndClick(VC.getFilterApplyBtn());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getApplyFilterButton());
+			VDNUtils.waitToBeClickableAndClick(VC.getFilterResetBtn());
+		text = "Completed";
+		actual = "Contributor admin is able to apply filter in all project tab successfully";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+	
+public static void verifyAllTheFieldsAreAvailableInApplyFilterPopUp() throws InterruptedException {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String text = "N/A";
+		String expect = "All the fields should be available in apply filter popup";
+		String actual = "All the fields are not available in apply filter popup";
+		try {
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VC.getApplyFilterButton());
+			Thread.sleep(1000);
+			Assert.assertTrue(VC.getSelectSourcingOrg().isDisplayed());
+			Assert.assertTrue(VC.getFilterResetBtn().isDisplayed());
+			Assert.assertTrue(VC.getFilterApplyBtn().isDisplayed());
+		
+		text = "Completed";
+		actual = "All the fields are available in apply filter popup";
+	} finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+
+}
+
+public static void verifyTermsAndPoliciesPageIsOpenedInSeparateTab() {
+	
+	String text = "N/A";
+	String expect = "Verify terms and policies page should be opend in another tab";
+	String actual = "Terms and policies page is not opend in another tab";
+	
+	try {
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+	String mainWindowHandle = driver.getWindowHandle();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VC.getTermsAndPolicies());
+	VDNUtils.waitForElementToBeVisible(VC.getTermsAndPolicies());
+	VDNUtils.waitToBeClickableAndClick(VC.getTermsAndPolicies());
+	Set<String> allWindowHandles = driver.getWindowHandles();
+	for (String handle : allWindowHandles) {
+	    
+	    if (!handle.equals(mainWindowHandle)) {
+	        System.out.println("New window opened");
+	    }
+	}
+	text = "Completed";
+	actual = "Terms and policies page is opend in another tab successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	
+}
+
+public static void verifyListOfUploadedSampleIsDisplayedInProjectDetailsPage(String ProjectName) throws Exception {
+	HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+	VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+	String home = null;
+	String expect = "List of uploaded sample should be displayed in project details page";
+	String actual = "List of uploaded sample is not displayed in project details page";
+	try {
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+	String s1 = "//div[text()=' ";
+	String s2 = ProjectName;
+	String s3 = " ']//following::button[text()='Open '][1]";
+	Thread.sleep(10000);
+	WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+	VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+	VDNUtils.waitToBeClickableAndClick(VO.getBtnSelectContentTypes());
+	VDNUtils.waitToBeClickableAndClick(VO.getSelectContetCheckbox());
+	VDNUtils.waitToBeClickableAndClick(VO.getClkbtnSelectedContent());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertSelectedCTMsg().isDisplayed());
+	Thread.sleep(5000);
+	Thread.sleep(5000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkUploadCheckBox());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+	
+	Thread.sleep(3000);
+	UploadContentMethods.UploadPdf();
+	
+	
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitBtn());
+	
+	
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+	Thread.sleep(1000);
+	VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+	Thread.sleep(2000);
+	VO.getClkCheckBox().click();
+	Thread.sleep(2000);
+	VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());
+	Assert.assertTrue(VC.getNumberOfSamples().isDisplayed());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+	Thread.sleep(3000);
+	VDNUtils.waitToBeClickableAndClick(VO.getNomitateBtn());
+	VDNUtils.waitToBeClickableAndClick(VO.getSubmitPostNominate());
+	Thread.sleep(3000);
+	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
+	home=VO.getAssertNominationSent().getText();
+	actual = "List of uploaded sample is displayed in project details page";
+} finally {
+	String homeText = home != null ? home : "N/A";
+	Listeners.customAssert("Nomination sent", homeText, expect, actual);
+}
+
+}
+
 }
