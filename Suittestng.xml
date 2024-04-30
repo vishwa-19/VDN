@@ -196,11 +196,12 @@
 			<!--<class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab" />-->
 			<!--<class name="regression.contributor.VerifyMyContentsTabIsAvailableForContributorOrg" />-->
 			<!--<class name="regression.contributor.VerifyCheckboxIsDisplayedOnContentTypesOpeningProjectFromMyProjectInitiatedStatus" />-->
-			<class name="regression.contributor.VerifyContributionOrgContributorIsAbleToSubmitNominationToProjectWithoutTC" />
+			<!--<class name="regression.contributor.VerifyContributorOrgReviewerAbleToRequestForChanges" />-->
 			
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
+			
 			
 			
 			

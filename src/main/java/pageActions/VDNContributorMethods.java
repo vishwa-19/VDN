@@ -1969,4 +1969,167 @@ public static void openAndNominateWithoutTargetCollectionWithSample(String Proje
 	Assert.assertTrue(VO.getAssertNominationSent().isDisplayed());
 
 }
+
+
+public static void verifyContOrgContributorAbleToUploadContentAndAddAllDetails() throws Exception {
+	
+	String home = null;
+	String expect = "Contributor org contributor should be able to upload the content and add all the details in the edit details pop up and send it for review";
+	String actual = "Contributor org contributor is unable to upload the content and add all the details in the edit details pop up and send it for review";
+	
+	try {
+		
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());	
+		Thread.sleep(3000);
+		home = VO.getAssertContentSetReview().getText();	
+		System.out.println(home);
+
+		actual = " Contributor org contributor is able to upload the content and add all the details in the edit details pop up and send it for review ";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Content sent for review", homeText, expect, actual);
+	}
+
+}
+
+public static void uploadContentFromAssignedContributorWithoutTC(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " Content should be available on the TOC with Review Pending status for "+ProjectName+" and is Displayed on the Top";
+	String actual =  "Content is not available on the TOC with Review Pending status for "+ProjectName+" or is not Displayed on the Top";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+
+		Assert.assertTrue(VO.getClkUploadContent().isDisplayed());
+
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadContent());
+		Thread.sleep(2000);
+		//VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadPdf();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+		
+		Thread.sleep(5000);
+		//VO.getSelectSample1().click();
+		VDNUtils.waitForElementToBeVisible(VO.getAssertReviewPending());
+		
+//		home = VO.getAssertApprovalPending().getText();
+		home = VO.getAssertReviewPending().getText();
+		actual = " Content should be available on the TOC with Review Pending status for "+ProjectName+" and is Displayed on the Top";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Review Pending" ,homeText, expect, actual);
+	}
+}
+
+public static void validateOrgReviewerIsAbleApproveNoTC(String ProjectName)
+		throws Exception {
+	String home = null;
+	String expect = " Contributor orgreviewer should be able review the content and submit for approval.";
+	String actual =  "Contributor orgreviewer is unable review the content and submit for approval.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkOpenBtnNoRC());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkOpenBtnNoRC());
+		Thread.sleep(3000);
+		
+
+//		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+		Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+		
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		
+		Assert.assertTrue(VO.getContentDetails().isDisplayed());
+		VDNUtils.waitForElementToBeVisible(VO.getContentDetails());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitForApproval());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertApprovalPending());
+		Assert.assertTrue(VO.getAssertApprovalPending().isDisplayed());
+		String stausApprovalPending = VO.getAssertApprovalPending().getText();
+		Assert.assertEquals(stausApprovalPending,"Approval Pending");			
+		home = VO.getAssertApprovalPending().getText();
+		System.out.print(home);
+		
+		actual = "Contributor orgreviewer is able review the content and submit for approval.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Approval Pending" ,homeText, expect, actual);
+	}
+}
+
 }
