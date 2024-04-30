@@ -25,6 +25,98 @@ public class VDNContributor {
 	
 	@FindBy(how=How.XPATH,using="//*[text()='Total Content']")
 	private WebElement totalContent;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Cancel ']")
+	private WebElement contentTypeCancelBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Content Type(s) selection is mandatory for nomination']")
+	private WebElement contentTypeToasrMsg;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='fs-0-785']")
+	private WebElement  instructionText ;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Nomination Process: ']")
+	private WebElement  nominationProcess ;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' View Content Guidelines Document ']")
+	private WebElement  guidelineDocument;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Apply Filter ']")
+	private WebElement  applyFilterButton;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Select sourcing Organisation']")
+	private WebElement  selectSourcingOrg;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='EKSTEP']")
+	private WebElement  selectOrg;
+	
+	@FindBy(how=How.XPATH,using="//*[@formcontrolname='medium']")
+	private WebElement  selectMedium;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Apply ']")
+	private WebElement  filterApplyBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Terms and Policies ']")
+	private WebElement  termsAndPolicies;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Number of Samples']")
+	private WebElement  numberOfSamples;
+	
+	public WebElement getNumberOfSamples() {
+		return numberOfSamples;
+	}
+
+	public WebElement getTermsAndPolicies() {
+		return termsAndPolicies;
+	}
+
+
+	@FindBy(how=How.XPATH,using="//*[text()=' Reset']")
+	private WebElement  filterResetBtn;
+
+	public WebElement getFilterResetBtn() {
+		return filterResetBtn;
+	}
+
+	public WebElement getFilterApplyBtn() {
+		return filterApplyBtn;
+	}
+
+	public WebElement getSelectMedium() {
+		return selectMedium;
+	}
+
+	public WebElement getSelectOrg() {
+		return selectOrg;
+	}
+
+	public WebElement getSelectSourcingOrg() {
+		return selectSourcingOrg;
+	}
+
+	public WebElement getApplyFilterButton() {
+		return applyFilterButton;
+	}
+
+	public WebElement getGuidelineDocument() {
+		return guidelineDocument;
+	}
+
+	public WebElement getNominationProcess() {
+		return nominationProcess;
+	}
+
+	public WebElement getInstructionText() {
+		return instructionText;
+	}
+
+	public WebElement getContentTypeToasrMsg() {
+		return contentTypeToasrMsg;
+	}
+
+	public WebElement getContentTypeCancelBtn() {
+		return contentTypeCancelBtn;
+	}
 
 	public WebElement getTotalContent() {
 		return totalContent;
