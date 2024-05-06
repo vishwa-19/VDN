@@ -62,6 +62,46 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//*[text()='Number of Samples']")
 	private WebElement  numberOfSamples;
 	
+	@FindBy(how=How.XPATH,using="//span[@class='sb-dotmenu']")
+	private WebElement  clkDottedMenue;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Edit']")
+	private WebElement  assertEditOpt;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Move']")
+	private WebElement  assertMoveOpt;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Delete']")
+	private WebElement  assertDeleteOpt;
+	
+	@FindBy(how=How.XPATH,using="//div[@class='title active']")
+	private WebElement  assertTOC;
+	
+	
+	
+	
+	
+	
+	public WebElement getAssertTOC() {
+		return assertTOC;
+	}
+
+	public WebElement getAssertDeleteOpt() {
+		return assertDeleteOpt;
+	}
+
+	public WebElement getAssertMoveOpt() {
+		return assertMoveOpt;
+	}
+
+	public WebElement getAssertEditOpt() {
+		return assertEditOpt;
+	}
+
+	public WebElement getClkDottedMenue() {
+		return clkDottedMenue;
+	}
+
 	public WebElement getNumberOfSamples() {
 		return numberOfSamples;
 	}
@@ -163,9 +203,57 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[text()=' Select to contribute ']")
 	private WebElement assertContentTypesPopUp;
 	
-	 
+	@FindBy(how=How.XPATH,using="//img[@src='/tenant/ntp/logo.png']")
+	private WebElement assertVDNLogo;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Organisation : ']")
+	private WebElement assertOrg;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='Click here to get started']")
+	private WebElement assertGoStarted;
+	
+	@FindBy(how=How.XPATH,using="//a[text()=' Help Center ']")
+	private WebElement assertHelpCenter;
+	
+	@FindBy(how=How.XPATH,using="//a[text()=' Terms and Policies ']")
+	private WebElement assertTnC;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='My Content']")
+	private WebElement assertMyContent;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' color2  ']")
+	private WebElement assertSearchedUser;
 	
 	
+	
+	
+	public WebElement getAssertSearchedUser() {
+		return assertSearchedUser;
+	}
+
+	public WebElement getAssertMyContent() {
+		return assertMyContent;
+	}
+
+	public WebElement getAssertTnC() {
+		return assertTnC;
+	}
+
+	public WebElement getAssertHelpCenter() {
+		return assertHelpCenter;
+	}
+
+	public WebElement getAssertGoStarted() {
+		return assertGoStarted;
+	}
+
+	public WebElement getAssertOrg() {
+		return assertOrg;
+	}
+
+	public WebElement getAssertVDNLogo() {
+		return assertVDNLogo;
+	}
 
 	public WebElement getAssertContentTypesPopUp() {
 		return assertContentTypesPopUp;
