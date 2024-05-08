@@ -1,5 +1,3 @@
-
-
 package regression.contributor;
 
 import org.testng.annotations.Test;
@@ -9,14 +7,15 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyListOfUploadedContentsIsDisplayedContributorOrgreviewer extends BaseClass {
+public class VerifyListOfContentTypesWhichContributorAsNominatedIsDisplayedInPopUp extends BaseClass {
+
 	@Test
-	public static void verifyListOfUploadedContentsIsDisplayedContributorOrgreviewer() throws Exception {
+	public static void verifyListOfContentTypesWhichContributorAsNominatedIsDisplayedInPopUp() throws Exception {
 		UserOnBoarding.loginAsSourcing("Admin");
-		String ProjectName = VDNMethods.createProjectBookWithoutTargetCollection();
+		String ProjectName = VDNContributorMethods.createProjectWithoutTargetCollectionAllContentTypes();
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont OrgAdmin");
-		VDNMethods.openAndNominateWithoutTargetCollection(ProjectName);
+		VDNContributorMethods.openAndNominateWithoutTargetCollectionAllTypes(ProjectName);
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsSourcing("Admin");
 		VDNMethods.verifySourcingOrgAdminIsAbleToAcceptNominationWithoutTargetCollection(ProjectName);
@@ -25,12 +24,13 @@ public class VerifyListOfUploadedContentsIsDisplayedContributorOrgreviewer exten
 		VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont Only");
-		VDNMethods.uploadTheContentFromContOrgContributorSaveAsDraftAndSendForReviewWithoutTC(ProjectName);
-		UserOnBoarding.VDNlogout();
-		UserOnBoarding.loginAsContributor("Rev Only");
-		VDNContributorMethods.validateListOfUploadedContentsIsDisplayedContributorOrgreviewer(ProjectName);
-
+		VDNContributorMethods.validateListOfContentTypesWhichContributorAsNominatedIsDisplayedInPopUp(ProjectName);
 	}
-
 }
+
+
+
+
+
+
 

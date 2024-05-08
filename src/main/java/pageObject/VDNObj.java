@@ -905,9 +905,38 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//div[text()='Teacher Resource']")
 	private WebElement selTeacherRes;
 	
+	@FindBy(how=How.XPATH,using="//div[text()='Learning Resource']")
+	private WebElement selLearningRes;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Practice Question Set']")
+	private WebElement selPractQSet;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Explanation Content']")
+	private WebElement selExpContent;
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	public WebElement getSelExpContent() {
+		return selExpContent;
+	}
+
+
+	public WebElement getSelPractQSet() {
+		return selPractQSet;
+	}
+
+
+	public WebElement getSelLearningRes() {
+		return selLearningRes;
+	}
+
+
 	public WebElement getSelTeacherRes() {
 		return selTeacherRes;
 	}

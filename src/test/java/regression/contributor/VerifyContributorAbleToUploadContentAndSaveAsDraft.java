@@ -1,5 +1,3 @@
-
-
 package regression.contributor;
 
 import org.testng.annotations.Test;
@@ -9,9 +7,10 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyListOfUploadedContentsIsDisplayedContributorOrgreviewer extends BaseClass {
+public class VerifyContributorAbleToUploadContentAndSaveAsDraft extends BaseClass {
+
 	@Test
-	public static void verifyListOfUploadedContentsIsDisplayedContributorOrgreviewer() throws Exception {
+	public static void verifyContributorAbleToUploadContentAndSaveAsDraft() throws Exception {
 		UserOnBoarding.loginAsSourcing("Admin");
 		String ProjectName = VDNMethods.createProjectBookWithoutTargetCollection();
 		UserOnBoarding.VDNlogout();
@@ -25,12 +24,7 @@ public class VerifyListOfUploadedContentsIsDisplayedContributorOrgreviewer exten
 		VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont Only");
-		VDNMethods.uploadTheContentFromContOrgContributorSaveAsDraftAndSendForReviewWithoutTC(ProjectName);
-		UserOnBoarding.VDNlogout();
-		UserOnBoarding.loginAsContributor("Rev Only");
-		VDNContributorMethods.validateListOfUploadedContentsIsDisplayedContributorOrgreviewer(ProjectName);
-
+		VDNContributorMethods.validateContributorAbleToUploadContentAndSaveAsDraft(ProjectName);
 	}
-
 }
 
