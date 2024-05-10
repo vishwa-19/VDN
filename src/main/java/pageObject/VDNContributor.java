@@ -224,9 +224,37 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[text()=' color2  ']")
 	private WebElement assertSearchedUser;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Not Accepted']//following::button[text()='Open']")
+	private WebElement clkOpenNotAccepted;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Replace File']")
+	private WebElement clkReplaceBtn;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Sample2 ']//following::span[text()='Corrections pending']")
+	private WebElement assertCorrPenNoTC1;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']//following::button[text()='Open']")
+	private WebElement clkOpenCorrPen;
 	
 	
 	
+	
+	public WebElement getClkOpenCorrPen() {
+		return clkOpenCorrPen;
+	}
+
+	public WebElement getAssertCorrPenNoTC1() {
+		return assertCorrPenNoTC1;
+	}
+
+	public WebElement getClkReplaceBtn() {
+		return clkReplaceBtn;
+	}
+
+	public WebElement getClkOpenNotAccepted() {
+		return clkOpenNotAccepted;
+	}
+
 	public WebElement getAssertSearchedUser() {
 		return assertSearchedUser;
 	}

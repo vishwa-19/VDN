@@ -3777,5 +3777,184 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 
 }
 	
+	public static void validateContributionOrgReviewerIsAbleToRequestChangeCorrectedContent(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "program contributor should be able to upload and resubmit the rejected content.";
+		String actual =  "program contributor is unable to upload and resubmit the rejected content.";
 
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkOpenNotAccepted());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkOpenNotAccepted());
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkReplaceBtn());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkReplaceBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+						
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getAssertContentSetReview());
+			
+			Assert.assertTrue(VO.getAssertContentSetReview().isDisplayed());
+			
+			Assert.assertTrue(VO.getAssertContentSetReview().isDisplayed());
+			String stausReviewPending = VO.getAssertReviewPending().getText();
+			Assert.assertEquals(stausReviewPending,"Review Pending");
+			
+			home = VO.getAssertReviewPending().getText();
+			
+			
+			actual = "program contributor is able to upload and resubmit the rejected content.";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Review Pending" ,homeText, expect, actual);
+	}
+}
+	
+	public static void validateSourcingOrgAdminIsAbleToSendBackToCorrectionTheContentFromWithoutTargetCollectionProject(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String home = null;
+		String expect = "sourcing org admin is able to send back to correction the content for The Project "+ProjectName;
+		String actual = "sourcing org admin is unable to send back to correction the content for The Project "+ProjectName;
+		try {
+			String s1 = "(//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1])[3]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(10000);
+			Assert.assertTrue(VO.getAssertTotalTab1().isDisplayed());
+			String TotalCount = VO.getAssertTotalTab1().getText();
+			System.out.print(TotalCount);
+			
+			
+			Assert.assertTrue(VO.getAssertApprovalPendingTab().isDisplayed());
+			String APCount = VO.getAssertApprovalPendingTab().getText();
+			System.out.print(APCount);
+			
+			Assert.assertTrue(VO.getAssertApprovedTab().isDisplayed());
+			String ApprovedCount = VO.getAssertApprovalPendingTab().getText();
+			System.out.print(ApprovedCount);
+			
+			Assert.assertTrue(VO.getAssertRejectedTab().isDisplayed());
+			String RejectedCount = VO.getAssertRejectedTab().getText();
+			System.out.print(RejectedCount);
+			
+			Assert.assertTrue(VO.getAssertCorrectionTab().isDisplayed());
+			String CorrectioCountCount = VO.getAssertCorrectionTab().getText();
+			System.out.print(CorrectioCountCount);
+			
+			VO.getClkOpenBtnOnNoTC().click();
+			Thread.sleep(5000);
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getBtnSendCorrect());
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnSendCorrect());	
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Correct");
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+			Thread.sleep(3000);
+	
+		
+			VDNUtils.waitForElementToBeVisible(VC.getAssertCorrPenNoTC1());
+			Assert.assertTrue(VC.getAssertCorrPenNoTC1().isDisplayed());
+			
+			
+			home = VC.getAssertCorrPenNoTC1().getText();
+			actual = "sourcing org admin is able to send back to correction the content for The Project "+ProjectName;
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Corrections pending", homeText, expect, actual);
+		}
+
+	}	
+	
+	public static void validateAssignedContributorAbleToEditAndSubmitPendingCorrectionContentForReview(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "program contributor should be able to edit and submit the pending correction content for review";
+		String actual =  "program contributor is unable to edit and submit the pending correction content for review";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkOpenCorrPen());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkOpenCorrPen());
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkReplaceBtn());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkReplaceBtn());
+			
+		
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getAssertContentSetReview());
+			
+			Assert.assertTrue(VO.getAssertContentSetReview().isDisplayed());
+			
+			Assert.assertTrue(VO.getAssertContentSetReview().isDisplayed());
+			String stausReviewPending = VO.getAssertReviewPending().getText();
+			Assert.assertEquals(stausReviewPending,"Review Pending");
+			
+			home = VO.getAssertReviewPending().getText();
+					
+			actual = "program contributor is able to edit and submit the pending correction content for review";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Review Pending" ,homeText, expect, actual);
+	}
+}
 }

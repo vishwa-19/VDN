@@ -201,7 +201,8 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
-			<class name="regression.contributor.VerifyContributionOrgAdminAbleToSubmitNominationProjectWithoutTC"/>
+			<class name="regression.contributor.VerifyAssignedContributorAbleToEditAndSubmitPendingCorrectionContentForReview"/>
+			<!--<class name="vdn.SendbackCorrectionsAndRejectBtnsNotDisplayedForSkipReviewEnabledProject"/>-->
 			
 			
 			
