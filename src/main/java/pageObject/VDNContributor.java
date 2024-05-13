@@ -236,9 +236,25 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']//following::button[text()='Open']")
 	private WebElement clkOpenCorrPen;
 	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample1']//following::span[text()='Approved']")
+	private WebElement assertApprovedOnTOC;
+	
+	
+	@FindBy(how=How.XPATH,using="//div[@class='chapter-lists--item']")
+	private WebElement assertApprovedRow;
 	
 	
 	
+	
+	
+	public WebElement getAssertApprovedRow() {
+		return assertApprovedRow;
+	}
+
+	public WebElement getAssertApprovedOnTOC() {
+		return assertApprovedOnTOC;
+	}
+
 	public WebElement getClkOpenCorrPen() {
 		return clkOpenCorrPen;
 	}

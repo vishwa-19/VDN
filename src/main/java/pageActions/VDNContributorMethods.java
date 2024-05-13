@@ -3957,4 +3957,121 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Review Pending" ,homeText, expect, actual);
 	}
 }
+	
+	public static void verifyContentStatusOnTocPageIsApprovedForIndContributor(String ProjectName) throws InterruptedException {
+		String home = null;
+		String expect = "Content status on toc page should be 'Approved' for Individual contributor when source or Approve the content.";
+		String actual =  "Content status on toc page is not 'Approved' for Individual contributor when source or Approve the content.";
+		
+		String home2 = null;
+		String expect2 = "Move/remove option should not be available against the approved content.";
+		String actual2 =  "Move/remove option is available against the approved content.";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+//			String s4 = " ']//following::span[text()='Pending'][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(5000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getClkUploadCont());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkUploadCont());
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertApprovedOnTOC());
+			
+			Assert.assertTrue(VC.getAssertApprovedOnTOC().isDisplayed());
+			
+			home = VC.getAssertApprovedOnTOC().getText();	
+			System.out.println(home);
+			actual = "Content status on toc page is 'Approved' for Individual contributor when source or Approve the content.";
+			
+			String tabDetails = VC.getAssertApprovedRow().getText();
+			
+			String[] lines = tabDetails.split("\r\n|\r|\n");
+			System.out.println(lines.length);
+			
+			for (String line : lines) {
+			    System.out.println(line);
+			    Assert.assertNotEquals(line,"Move");
+			    Assert.assertNotEquals(line,"Delete");
+			}
+			
+			home2 = VC.getAssertApprovedOnTOC().getText();	
+			System.out.println(home);
+			actual2 = "Move/remove option should not be available against the approved content.";
+			
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Approved" ,homeText, expect, actual);
+			System.out.println(homeText);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Approved" ,homeText2, expect2, actual2);
+			System.out.println(homeText2);
+
+		}
+	}
+	
+	public static void validateContributorOrgreviewerIsAbleToReviewContentAndDetailsInViewDetails(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = " Contributor orgreviewer should be able to review the content and details in the view details pop up.";
+		String actual =  "Contributor orgreviewer is unable to review the content and details in the view details pop up.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkOpenBtnNoRC());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkOpenBtnNoRC());
+			Thread.sleep(3000);
+			
+
+//			VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+			Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+			
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+			Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+			
+			Assert.assertTrue(VO.getContentDetails().isDisplayed());
+			VDNUtils.waitForElementToBeVisible(VO.getContentDetails());
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+			Thread.sleep(3000);
+
+			
+			VDNUtils.waitForElementToBeVisible(VO.getAssertEditDetails());
+			Assert.assertTrue(VO.getAssertEditDetails().isDisplayed());
+			home = VO.getAssertEditDetails().getText();
+			System.out.println(home);
+			
+			actual = "Contributor orgreviewer is able to review the content and details in the view details pop up.";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Edit details" ,homeText, expect, actual);
+		}
+	}
 }
