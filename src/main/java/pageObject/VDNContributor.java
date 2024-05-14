@@ -243,10 +243,19 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[@class='chapter-lists--item']")
 	private WebElement assertApprovedRow;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']//following::button[text()='Open']")
+	private WebElement clkOpenCorBtn;
 	
 	
 	
 	
+	
+	
+	
+	public WebElement getClkOpenCorBtn() {
+		return clkOpenCorBtn;
+	}
+
 	public WebElement getAssertApprovedRow() {
 		return assertApprovedRow;
 	}
