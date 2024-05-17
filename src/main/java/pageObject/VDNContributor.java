@@ -246,12 +246,17 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']//following::button[text()='Open']")
 	private WebElement clkOpenCorBtn;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='color5']//following::span[text()='Review Pending']")
+	private WebElement assertRevPending5;
 	
 	
 	
 	
 	
-	
+	public WebElement getAssertRevPending5() {
+		return assertRevPending5;
+	}
+
 	public WebElement getClkOpenCorBtn() {
 		return clkOpenCorBtn;
 	}

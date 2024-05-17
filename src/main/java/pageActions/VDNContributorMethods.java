@@ -2554,19 +2554,7 @@ public static void ValidateAddFromLibraryNotAvailableAndCreateNewOptAvailableOnT
 		System.out.print(home1);		
 		actual1 = "1.Only Create new option is available for nomination enabled projects.";
 		
-//		Thread.sleep(2000);
-//
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		js.executeScript("window.scrollBy(200, 200)");
-//		VDNUtils.waitForElementToBeVisible(VC.getClkDottedMenue());
-//		VDNUtils.waitToBeClickableAndClick(VC.getClkDottedMenue());
-//		Thread.sleep(2000);
-//		Assert.assertTrue(VC.getAssertEditOpt().isDisplayed());
-//		Assert.assertTrue(VC.getAssertMoveOpt().isDisplayed());
-//		Assert.assertTrue(VC.getAssertDeleteOpt().isDisplayed());
-		
-		//div[@class='title active']
-		
+
 		
 		String contentDetails = VC.getAssertTOC().getText();
 		String[] lines = contentDetails.split("\r\n|\r|\n");
@@ -4478,4 +4466,244 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Not Accepted" ,homeText, expect, actual);
 		}
 	}
+	
+	public static void validateFieldsAvailableInApplyFiltersPopUpInMyProjectsTab()
+			throws Exception {
+		String home = null;
+		String expect = "Apply Filters pop up page sould displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+		String actual = "Apply Filters pop up page is not displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+
+		try {
+			
+			Thread.sleep(3000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VS.getApplyBtn());
+			
+			Assert.assertTrue(VS.getAssertApplyFilterPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertMediumOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertClassOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertSubjectsOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertContentTypesOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertTargetCollOnPopUp().isDisplayed());
+			
+
+			Assert.assertTrue(VS.getResetBtn().isDisplayed());
+			
+			Assert.assertTrue(VS.getApplyButton().isDisplayed());
+			
+			home = VS.getApplyButton().getText();
+			System.out.print(home);
+			
+			actual = "Apply Filters pop up page is displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Apply" ,homeText, expect, actual);
+		}
+	}
+	
+	public static void verifyBothAsRoleIsAbleToReviewTheContent(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = " default contribution org reviewer is able to preview the uploaded content by contributor.";
+		String actual =  "default contribution org reviewer is unable to preview the uploaded content by contributor.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VO.getClkUploadContent());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadContent());
+			Thread.sleep(2000);
+			VDNUtils.waitForElementToBeVisible(VO.getAssertReviewPending());
+			Assert.assertTrue(VO.getAssertReviewPending().isDisplayed());
+			
+			//VDNUtils.waitForElementToBeVisible(VO.getAssertReviewPending());
+			//Assert.assertTrue(VO.getClkOpenBtnReview().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+			Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+			Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+//			Assert.assertTrue(VO.getAssertSample().isDisplayed());
+			
+			Assert.assertTrue(VO.getContentDetails().isDisplayed());
+			VDNUtils.waitForElementToBeVisible(VO.getContentDetails());
+			VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getAssertEditDetails());
+			Assert.assertTrue(VO.getAssertEditDetails().isDisplayed());
+			home = VO.getAssertEditDetails().getText();
+			actual = "default contribution org reviewer is able to preview the uploaded content by contributor.";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Edit details" ,homeText, expect, actual);
+		}
+	}
+	
+	public static void UserWithBothRoleIsUnableToReviewHisOwnContent()
+			throws Exception {
+		String ReviewPending = null;
+		String expect = "User should not be allowed to review his own content ";
+		String actual =  "User is allowed to review his own content ";
+
+		try {
+		
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertRevPending5());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertRevPending5());
+			
+			Thread.sleep(3000);
+			String tabDetails = VO.getAssertAllReviewContentHead().getText();
+			
+			String[] lines = tabDetails.split("\r\n|\r|\n");
+			System.out.println(lines.length);
+			
+			for (String line : lines) {
+			    System.out.println(line);
+			    Assert.assertNotEquals(line,"Submit for Approval");
+			    Assert.assertNotEquals(line,"Request changes");
+			}
+			
+			ReviewPending = VO.getAssertReviewPending().getText();
+			
+			
+			actual = "User is not allowed to review his own content ";
+		} finally {
+			String homeText = ReviewPending != null ? ReviewPending : "N/A";
+			Listeners.customAssert("Review Pending" ,homeText, expect, actual);
+		}
+	}
+	
+	public static void CloseEditDetailAnduploadContent()
+			throws Exception {
+		String ReviewPending = null;
+		String expect = "Assigned Contributor Org is able to upload Content For Project ";
+		String actual =  "Assigned Contributor Org is unable to upload Content For Project ";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getCloseEditDetail());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadfromBothRole());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample2");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			VDNUtils.waitForElementToBeVisible(VC.getAssertRevPending5());
+			Assert.assertTrue(VC.getAssertRevPending5().isDisplayed());
+			
+			ReviewPending = VC.getAssertRevPending5().getText();
+			System.out.println(ReviewPending);
+			actual = "Assigned Contributor Org is able to upload Content For Project ";
+		} finally {
+			String homeText = ReviewPending != null ? ReviewPending : "N/A";
+			Listeners.customAssert("Review Pending" ,homeText, expect, actual);
+		}
+	}
+	
+	public static void ValidateProjectsWithAssignedRoleIsDisplayedUderMyProjectsTab(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " 1.Only Create new option is available for nomination enabled projects.";
+		String actual1 =  "1.Only Create new option is not available for nomination enabled projects.";
+		
+		String home2 = null;
+		String expect2 = " 2.+Add from library option is not available for nomination enabled projects.";
+		String actual2 =  "2.+Add from library option is available for nomination enabled projects.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+//			assertProjectOnContributor.click();
+//			Assert.assertTrue(VO.getClkUploadbtn().isDisplayed());
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+//			Thread.sleep(2000);
+//			
+//			Assert.assertTrue(VO.getClkCreateNew().isDisplayed());
+			
+
+			home1 = VO.getClkCreateNew().getText();
+			System.out.print(home1);		
+			actual1 = "1.Only Create new option is available for nomination enabled projects.";
+			
+
+			
+			String contentDetails = VC.getAssertTOC().getText();
+			String[] lines = contentDetails.split("\r\n|\r|\n");
+			System.out.println(lines.length);
+			
+			for (String line : lines) {
+			    System.out.println(line);
+			    Assert.assertNotEquals(line,"Add from library");
+			}
+			
+			
+			home2 = VO.getClkCreateNew().getText();
+			System.out.print(home2);		
+			actual2 = "2.+Add from library option is not available for nomination enabled projects.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Create new" ,homeText1, expect1, actual1);
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Create new" ,homeText2, expect2, actual2);
+		}
+	}
+
+
 }
