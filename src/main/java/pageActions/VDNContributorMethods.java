@@ -4704,6 +4704,182 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Create new" ,homeText2, expect2, actual2);
 		}
 	}
+	
+	public static void verifyAssignedContAbleToApplyFiltersPopUpInMyProjectsTab(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "Apply Filters pop up page sould displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+		String actual = "Apply Filters pop up page is not displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+
+		try {
+			
+			Thread.sleep(3000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+
+			
+//			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+			Thread.sleep(3000);
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VS.getApplyBtn());
+			
+			Assert.assertTrue(VS.getAssertApplyFilterPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertMediumOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertClassOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertSubjectsOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertContentTypesOnPopUp().isDisplayed());
+			
+			Assert.assertTrue(VS.getAssertTargetCollOnPopUp().isDisplayed());
+			
+
+			Assert.assertTrue(VS.getResetBtn().isDisplayed());
+			
+			Assert.assertTrue(VS.getApplyButton().isDisplayed());
+			
+			home = VS.getApplyButton().getText();
+			System.out.print(home);
+			
+			actual = "Apply Filters pop up page is displayed post clicking on Apply Filter button for sourcing org Reviewer With the Details";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Apply" ,homeText, expect, actual);
+		}
+	}
+	
+	
+	public static void validateAvailableprojectDetailsForAssignedContributor(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "project details Should be available on Project Details page";
+		String actual = "project details is unavailable on Project Details page";
+
+		try {
+			
+			Thread.sleep(3000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			String s4 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			WebElement openProject = driver.findElement(By.xpath(s1 + s2 + s4));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			openProject.click();
+			Thread.sleep(3000);
+			String p1= "//h5[text()='";
+			String p3 = " ']";
+			
+			WebElement assertProjName = driver.findElement(By.xpath(p1+ProjectName+p3));
+			assertProjName.isDisplayed();
+			
+			
+			Assert.assertTrue(VC.getAssertContentTypes().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertNominationDates().isDisplayed());
+			Assert.assertTrue(VC.getAssertApprovedStatus().isDisplayed());
+			Assert.assertTrue(VC.getAssertDigiText().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertMedium().isDisplayed());
+			Assert.assertTrue(VC.getAssetClass().isDisplayed());
+			Assert.assertTrue(VC.getAssertSubject().isDisplayed());
+			
+			Thread.sleep(3000);
+
+			home = VC.getAssertSubject().getText();
+			System.out.println(home);
+			
+			actual = "project details is available on Project Details page";
+			
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Subject   " ,homeText, expect, actual);
+		}
+	}
+	
+	public static void validateGuildlineDocumentIsAvailableForAssignedContributor(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "Guildline Document Should be available for assigned Program contributor.";
+		String actual = "Guildline Document is unavailable for assigned Program contributor.";
+
+		try {
+			
+			Thread.sleep(3000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			String s4 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			WebElement openProject = driver.findElement(By.xpath(s1 + s2 + s4));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			openProject.click();
+			Thread.sleep(3000);
+			String p1= "//h5[text()='";
+			String p3 = " ']";
+			
+			WebElement assertProjName = driver.findElement(By.xpath(p1+ProjectName+p3));
+			assertProjName.isDisplayed();
+			
+			
+			Assert.assertTrue(VC.getAssertContentTypes().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertNominationDates().isDisplayed());
+			Assert.assertTrue(VC.getAssertApprovedStatus().isDisplayed());
+			Assert.assertTrue(VC.getAssertDigiText().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertMedium().isDisplayed());
+			Assert.assertTrue(VC.getAssetClass().isDisplayed());
+			Assert.assertTrue(VC.getAssertSubject().isDisplayed());
+			Assert.assertTrue(VC.getAssertViewGuidelineDoc().isDisplayed());
+	
+			Thread.sleep(3000);
+
+			home = VC.getAssertViewGuidelineDoc().getText();
+			System.out.println(home);
+			
+			actual = "Guildline Document is available for assigned Program contributor.";
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertViewGuidelineDoc());
+			Thread.sleep(3000);
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("View Content Guidelines Document" ,homeText, expect, actual);
+		}
+	}
+	
 
 
 }

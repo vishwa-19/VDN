@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
-			<class name="regression.contributor.VerifyOnlyAssignedProjectsWithAssignedRoleIsDisplayedUderMyProjectsTab"/>
+			<class name="regression.contributor.VerifyGuildlineDocumentIsAvailableForAssignedContributor"/>
 			<!--<class name="vdn.SendbackCorrectionsAndRejectBtnsNotDisplayedForSkipReviewEnabledProject"/>-->
 			
 			

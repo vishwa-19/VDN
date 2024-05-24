@@ -249,10 +249,66 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()='color5']//following::span[text()='Review Pending']")
 	private WebElement assertRevPending5;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Content Type(s)']")
+	private WebElement assertContentTypes;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Nomination End Date']")
+	private WebElement assertNominationDates;
+	
+	@FindBy(how=How.XPATH,using="//p[text()='Approved']")
+	private WebElement assertApprovedStatus;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Digital Textbook')]")
+	private WebElement assertDigiText;
+	
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Medium')]")
+	private WebElement assertMedium;
+
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Class')]")
+	private WebElement assetClass;
+
+	@FindBy(how=How.XPATH,using="//th[contains(text(),'Subject')]")
+	private WebElement assertSubject;
+	
+	@FindBy(how=How.XPATH,using="//a[text()=' View Content Guidelines Document ']")
+	private WebElement assertViewGuidelineDoc;
 	
 	
 	
+	public WebElement getAssertViewGuidelineDoc() {
+		return assertViewGuidelineDoc;
+	}
+
+	public WebElement getAssertSubject() {
+		return assertSubject;
+	}
+
+	public WebElement getAssetClass() {
+		return assetClass;
+	}
 	
+	public WebElement getAssertMedium() {
+		return assertMedium;
+	}
+	
+	
+	public WebElement getAssertDigiText() {
+		return assertDigiText;
+	}
+	
+	
+	public WebElement getAssertApprovedStatus() {
+		return assertApprovedStatus;
+	}
+
+	public WebElement getAssertNominationDates() {
+		return assertNominationDates;
+	}
+
+	public WebElement getAssertContentTypes() {
+		return assertContentTypes;
+	}
+
 	public WebElement getAssertRevPending5() {
 		return assertRevPending5;
 	}
