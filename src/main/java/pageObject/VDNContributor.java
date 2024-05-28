@@ -273,8 +273,55 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//a[text()=' View Content Guidelines Document ']")
 	private WebElement assertViewGuidelineDoc;
 	
+	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
+	private WebElement clkOpenBtn;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Approved']//following::button[text()='Open']")
+	private WebElement clkOpenBtnApproved;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Not Accepted']//following::button[text()='Open']")
+	private WebElement clkOpenBtnNotAccepted;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Approval Pending']//following::button[text()='Open']")
+	private WebElement clkOpenBtnAppPen;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Review Pending']//following::button[text()='Open']")
+	private WebElement clkOpenBtnRevPen;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='close icon']//following::button[text()='Done']")
+	private WebElement clkDoneBtn;
 	
 	
+	
+	
+	
+	
+	
+	
+	public WebElement getClkDoneBtn() {
+		return clkDoneBtn;
+	}
+
+	public WebElement getClkOpenBtnRevPen() {
+		return clkOpenBtnRevPen;
+	}
+
+	public WebElement getClkOpenBtnAppPen() {
+		return clkOpenBtnAppPen;
+	}
+
+	public WebElement getClkOpenBtnNotAccepted() {
+		return clkOpenBtnNotAccepted;
+	}
+
+	public WebElement getClkOpenBtnApproved() {
+		return clkOpenBtnApproved;
+	}
+
+	public WebElement getClkOpenBtn() {
+		return clkOpenBtn;
+	}
+
 	public WebElement getAssertViewGuidelineDoc() {
 		return assertViewGuidelineDoc;
 	}
