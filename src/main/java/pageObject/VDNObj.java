@@ -704,9 +704,20 @@ public class VDNObj {
 	private WebElement clkOpenBtn2;
 	
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Upload file']")
+	private WebElement clkUploadFileOpt;
 	
 	
 	
+	
+	
+	
+	
+	public WebElement getClkUploadFileOpt() {
+		return clkUploadFileOpt;
+	}
+
+
 	public WebElement getClkOpenBtn2() {
 		return clkOpenBtn2;
 	}

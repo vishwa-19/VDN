@@ -291,6 +291,20 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//i[@class='close icon']//following::button[text()='Done']")
 	private WebElement clkDoneBtn;
 	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']")
+	private WebElement assertPDFUpload;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Html']")
+	private WebElement assertHTMLUpload;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp4']")
+	private WebElement assertMP4Upload;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Webm']")
+	private WebElement assertWEBMUpload;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_H5p']")
+	private WebElement assertH5pUpload;
 	
 	
 	
@@ -298,6 +312,27 @@ public class VDNContributor {
 	
 	
 	
+	
+	public WebElement getAssertH5pUpload() {
+		return assertH5pUpload;
+	}
+
+	public WebElement getAssertWEBMUpload() {
+		return assertWEBMUpload;
+	}
+
+	public WebElement getAssertMP4Upload() {
+		return assertMP4Upload;
+	}
+
+	public WebElement getAssertHTMLUpload() {
+		return assertHTMLUpload;
+	}
+
+	public WebElement getAssertPDFUpload() {
+		return assertPDFUpload;
+	}
+
 	public WebElement getClkDoneBtn() {
 		return clkDoneBtn;
 	}

@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
-			<class name="regression.contributor.VerifyContributorAbleToUploadContentForExplanationContent"/>
+			<class name="regression.contributor.VerifyContributorAbleToUploadContentForTeacherResource"/>
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			
