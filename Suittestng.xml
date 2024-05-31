@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
-			<class name="regression.contributor.VerifyContributorAbleToUploadContentForTeacherResource"/>
+			<class name="regression.contributor.VerifyIndividualContributorAbleToUploadEpubAndPDdfContentForEtextbook"/>
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			

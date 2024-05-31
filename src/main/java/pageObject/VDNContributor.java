@@ -306,6 +306,8 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()=' Sample_H5p']")
 	private WebElement assertH5pUpload;
 	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Epub']")
+	private WebElement assertEpubUpload;
 	
 	
 	
@@ -313,6 +315,13 @@ public class VDNContributor {
 	
 	
 	
+	
+	
+	
+	public WebElement getAssertEpubUpload() {
+		return assertEpubUpload;
+	}
+
 	public WebElement getAssertH5pUpload() {
 		return assertH5pUpload;
 	}
