@@ -312,12 +312,91 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp3']")
 	private WebElement assertMP3Upload;
 	
+	@FindBy(how=How.XPATH,using="//span[text()='My Content']")
+	private WebElement clkMyContent;
+	
+	@FindBy(how=How.XPATH,using="//h4[text()=' Contribution Details']")
+	private WebElement assertContributionDetails;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' K-12 framework']")
+	private WebElement assertK12fwName;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Board']")
+	private WebElement assertBoardMyContent;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Medium']")
+	private WebElement assertMediumMyContent;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Class']")
+	private WebElement assertClassMyContent;
+
+	@FindBy(how=How.XPATH,using="//label[text()='Subject']")
+	private WebElement assertSubjectMyContent;
+
+	@FindBy(how=How.XPATH,using="//button[text()='Open']")
+	private WebElement assertOpenBtnMyContent;
+	
+	@FindBy(how=How.XPATH,using="//label[@id='usernameLabel']")
+	private WebElement assertEmailMob;
+	
+	@FindBy(how=How.XPATH,using="//label[@id='passwordLabel']")
+	private WebElement assertPwd;
+	
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Forgot password?']")
+	private WebElement assertForgotPwd;
+	
+	
+	    
 	
 	
 	
+	public WebElement getAssertForgotPwd() {
+		return assertForgotPwd;
+	}
+
+	public WebElement getAssertPwd() {
+		return assertPwd;
+	}
+
+	public WebElement getAssertEmailMob() {
+		return assertEmailMob;
+	}
+
+	public WebElement getAssertOpenBtnMyContent() {
+		return assertOpenBtnMyContent;
+	}
+
+	public WebElement getAssertSubjectMyContent() {
+		return assertSubjectMyContent;
+	}
+
+	public WebElement getAssertClassMyContent() {
+		return assertClassMyContent;
+	}
+
 	
 	
-	
+	public WebElement getAssertMediumMyContent() {
+		return assertMediumMyContent;
+	}
+
+	public WebElement getAssertBoardMyContent() {
+		return assertBoardMyContent;
+	}
+
+	public WebElement getAssertK12fwName() {
+		return assertK12fwName;
+	}
+
+	public WebElement getAssertContributionDetails() {
+		return assertContributionDetails;
+	}
+
+	public WebElement getClkMyContent() {
+		return clkMyContent;
+	}
+
 	public WebElement getAssertMP3Upload() {
 		return assertMP3Upload;
 	}
