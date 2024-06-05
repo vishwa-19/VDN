@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="utility.Listeners"></listener>
+	</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="regression.contributor.VerifyTheNominationStatusOfTheProjectApprovedPostNominationAcceptedBySourceOrgAdmin"/>
+      <class name="regression.contributor.VerifyContributionOrgReviewerAbleToRequestChangeTheCorrectedContent"/>
+      <class name="regression.contributor.VerifyIndividualContributorAbleToNominateToTheProject"/>
+      <class name="regression.contributor.VerifyNominateButtonIsEnabledAfterSelectionOfTextbook"/>
+      <class name="regression.contributor.VerifyFromSelectedSetOfContributorsProjectsAreAvailableMyProjects"/>
+      <class name="regression.contributor.VerifyProjectIsNotAvailableInMyProjectsAfterSavedTheContentType"/>
+      <class name="regression.contributor.VerifyModifyOptionNotAvailablePostApprovingAndRejectingTheNomination"/>
+      <class name="regression.contributor.VerifyIndividualContributorAbleToViewTheProjectDetailsAndNotAbleToModify"/>
+      <class name="regression.contributor.VerifyContributionOrAdminAndIndContributorAbleToNominate"/>
+      <class name="regression.contributor.VerifyAllDetailsAreDisplayedOnOpeningAProject"/>
+      <class name="regression.contributor.VerifyIndividualContributorAbleToSelectContentUploadSample"/>
+      <class name="regression.contributor.VerifyMsgNoUsersFoundIsDisplayedIfSearchDataNotFound"/>
+      <class name="regression.contributor.VerifyFieldsAvailableInApplyFiltersPopUpInMyProjectsTab"/>
+      <class name="regression.contributor.VerifyContributionOrgReviewerIsAbleToRequestChangeCorrectedContent"/>
+      <class name="regression.contributor.VerifyKnowMoreButtonIsDisplayedPostClickingOnQuestionMarkIcon"/>
+      <class name="regression.contributor.VerifyIndividualContributorIsAbleToUploadContentForTheChoosenTextbook"/>
+      <class name="regression.contributor.VerifyLandingPageIsProperAndTermsNpoliciesDisplayed"/>
+      <class name="regression.contributor.VerifyAssignedContributorAbleToEditAndSubmitPendingCorrectionContentForReview"/>
+      <class name="regression.contributor.VerifyContributorSelectTheContentTypesAndUploadSample"/>
+      <class name="regression.contributor.VerifyManageUsersTabIsAvailableForContributorOrgAdmin"/>
+      <class name="regression.contributor.VerifyCheckboxBeforeDisclaimerTextAndItsMandatoryForUserToSelectBeforePublish"/>
+      <class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderMyProjectsTab"/>
+      <class name="regression.contributor.VerifyAssignRolesAndToastMsg"/>
+      <class name="regression.contributor.VerifyContributorOrgadminAbleToPreviewContentWhichIsContributedFromBothRole"/>
+      <class name="regression.contributor.VerifySelectedSetOfContributorsAbleToAssignRoles"/>
+      <class name="regression.contributor.VerifyAddFromLibraryNotAvailableAndCreateNewOptAvailableOnTOC"/>
+      <class name="regression.contributor.VerifyUserIsAbleToSelectivelyChooseTextbooksAndNominateToProject"/>
+      <class name="regression.contributor.VerifyContOrgAdminAbleToAssignContributorAndReviewerForProject"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToOpenTheFrameworkProjectFromMyProjectsTab"/>
+      <class name="regression.contributor.VerifyMyContentsTabIsAvailableForContributorOrg"/>
+      <class name="regression.contributor.VerifyOpenAndModifyButtonsAreDisplayedWithPendingStatus"/>
+      <class name="regression.contributor.VerifyContributionOrgReviewerIsAbleToAcceptAndRequestChangesOfDT"/>
+      <class name="regression.contributor.VerifyContributorOrgReviewerAbleToRequestForChanges"/>
+      <class name="regression.contributor.VerifyContributorOrgReviewerAbleToReviewContentAndSubmitForApproval"/>
+      <class name="regression.contributor.VerifyContributionOrgContributorIsAbleToSubmitNominationToProjectWithoutTC"/>
+      <class name="regression.contributor.VerifyContributorOrgReviewerAbleToSubmitForApproval"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToOpenUploadedContentByClickingOpenBtn"/>
+      <class name="regression.contributor.VerifyIndContributorIsAbleToUploadContentAndSave"/>
+      <class name="regression.contributor.VerifySelectRoleOptionIsByDefaultUnderAssignUsers"/>
+      <class name="regression.contributor.VerifyCheckboxIsDisplayedOnContentTypesOpeningProjectFromMyProjectInitiatedStatus"/>
+      <class name="regression.contributor.VerifyContributorOrgReviewerAbleToReviewContentAndRequestChanges"/>
+      <class name="regression.contributor.VerifyContributorOrgadminAbleToSearchUser"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToUpdateNominationBeforeApprovalOrRejection"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToNominateProjectByModify"/>
+      <class name="regression.contributor.VerifyTermsAndPoliciesPageIsOpenedInSeparateTab"/>
+      <class name="regression.contributor.VerifyContributorAbleToUploadContentAndSaveAsDraft"/>
+      <class name="regression.contributor.VerifyContentTypesPopUpIsDisplayedPostClickingOnUploadButton"/>
+      <class name="regression.contributor.VerifyContributorOrgreviewerIsAbleToReviewContentAndDetailsInViewDetails"/>
+      <class name="regression.contributor.VerifyContOrgContributorAbleToUploadContentAndAddAllDetails"/>
+      <class name="regression.contributor.VerifyContributorOrgAdminIsAbleToSubmitNominationWithoutUploadingSample"/>
+      <class name="regression.contributor.VerifyIndividualContributorIsAbleToNominateProjectByModify"/>
+      <class name="regression.contributor.VerifyIndividualContributorCanSubmitNominationAndStatusPending"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToSelectContentTypesAndInitiateNominationOfTheProject"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToNominateProjectWithoutUploadingSample"/>
+      <class name="regression.contributor.VerifyAssignedContributorAbleToApplyFiltersPopUpInMyProjectsTab"/>
+      <class name="regression.contributor.VerifyListOfContentTypesWhichContributorAsNominatedIsDisplayedInPopUp"/>
+      <class name="regression.contributor.VerifyThatOclickingNominateButtonNominationConfirmationPopupPageDisplayed"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToUploadPDFAndEpubContent"/>
+      <class name="regression.contributor.VerifyContentStatusOnTocPageIsApprovedForIndCont"/>
+      <class name="regression.contributor.VerifyAvailableprojectDetailsForAssignedContributor"/>
+      <class name="regression.contributor.VerifyDataDisplayedForContributorOrgAdmin"/>
+      <class name="regression.contributor.VerifyContributingOrgAbleToModifyNominationOnlyWhenProjectStatusIsPending"/>
+      <class name="regression.contributor.VerifyTheConfirmationPopupPageDisplayedOnClickingModify"/>
+      <class name="regression.contributor.VerifyPreviouslyOpenedProjectAvailableUnderMyProjectsTabWithInitiatedStatus"/>
+      <class name="regression.contributor.VerifyTheToastMessageContributorSendTheNomination"/>
+      <class name="regression.contributor.VerifyConfirmationPopupPageAndModifyStatusFromIndCont"/>
+      <class name="regression.contributor.VerifyOnlyAssignedProjectsWithAssignedRoleIsDisplayedUderMyProjectsTab"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToOpenProjectFromAllProjectsTab"/>
+      <class name="regression.contributor.VerifyHelpCenterPageOpenedInAnotherTabPostClickingOnQuestionMark"/>
+      <class name="regression.contributor.VerifyAllTheFieldsAreAvailableInApplyFilterPopUp"/>
+      <class name="regression.contributor.VerifyConfirmationPopupPage"/>
+      <class name="regression.contributor.VerifyAddFromLibraryNotAvailableAndCreateNewOptAvailableOnTOCNominationEnabled"/>
+      <class name="regression.contributor.VerifyContentStatusOnTocPageIsRejectedForIndCont"/>
+      <class name="regression.contributor.VerifyContributorOrgadminIsAbleToAssignAdminRole"/>
+      <class name="regression.contributor.VerifyToastMessageWhileContributorSelectContentType"/>
+      <class name="regression.contributor.VerifyContOrgAdminAbleToModifyNominationByContentTypes"/>
+      <class name="regression.contributor.VerifyContributionOrgReviewerAbleToSubmitApprovalTheCorrectedContent"/>
+      <class name="regression.contributor.TotalSampleCountUploadedShouldBeDisplayedOnTheTOCPage"/>
+      <class name="regression.contributor.VerifyListOfUploadedContentsIsDisplayedContributorOrgreviewer"/>
+      <class name="regression.contributor.VerifyContributionOrAdminAbleToNominateProjectSelectingDigitalTextbooks"/>
+      <class name="regression.contributor.VerifyIndividualContributorIsAbleToUploadAllContentTypesForDigitalTextbook"/>
+      <class name="regression.contributor.VerifyContributorAdminAbleToClickAndChooseTheContentTypes"/>
+      <class name="regression.contributor.VerifyIndividualContributorIsAbleToModifyTheNomination"/>
+      <class name="regression.contributor.VerifyWithoutTCprojectsDisplayedInMyProjectsTab"/>
+      <class name="regression.contributor.VerifyListOfUploadedSampleIsDisplayedInProjectDetailsPage"/>
+      <class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpForContributionOrgAdmin"/>
+      <class name="regression.contributor.VerifyContributionOrgAdminAbleToSubmitNominationProjectWithoutTC"/>
+      <class name="regression.contributor.VerifyQuestionMarkIconWithNeedHelpDisplayedUnderManageUser"/>
+      <class name="regression.contributor.VerifyOpenAndModifyButtonsDisplayedForPendingProject"/>
+      <class name="regression.contributor.VerifyContributorAdminIsAbleToApplyFilterInAllProjectsTab"/>
+      <class name="regression.contributor.VerifySelectContentTypePopup"/>
+      <class name="regression.contributor.VerifyRolesAssignOnContributorOrgadmin"/>
+      <class name="regression.contributor.VerifyContributorOrgReviewerIsAbleToEditNameOfContentAndSave"/>
+      <class name="regression.contributor.VerifyContributorIsAbleToNominateProjectByUploadingSample"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

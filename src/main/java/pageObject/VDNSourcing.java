@@ -1365,11 +1365,21 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//h5[text()=' 100 Digital Textbooks added ']")
 	private WebElement assertAdded100DigTexBooks;
 	
+	
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']")
+	private WebElement assertCorrectionMsg1;
+	
 	 
 	
 	
 	
 	
+	public WebElement getAssertCorrectionMsg1() {
+		return assertCorrectionMsg1;
+	}
+
+
 	public WebElement getAssertAdded100DigTexBooks() {
 		return assertAdded100DigTexBooks;
 	}

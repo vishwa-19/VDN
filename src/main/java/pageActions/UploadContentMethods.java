@@ -45,6 +45,85 @@ public static void UploadPdf() throws Exception {
 	}
 	}
 	
+public static void UploadMp4() throws Exception {
+	
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload Mp4 successfully";
+	String actual = "Creator is unable to upload Mp4 ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\poem.mp4");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
+
+public static void UploadWebm() throws Exception {
+	
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload WEBM successfully";
+	String actual = "Creator is unable to upload WEBM ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\file_example_WEBM_480_900KB (1).webm");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
+
+public static void UploadHp() throws Exception {
+	
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload H5P successfully";
+	String actual = "Creator is unable to upload H5P ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\boardgame.h5p");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
+
+public static void UploadMp3() throws Exception {
+	
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload MP3 successfully";
+	String actual = "Creator is unable to upload MP3 ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\file_example_MP3_700KB.mp3");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
 public static void UploadMP4() throws Exception {
 	
 	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -65,40 +144,40 @@ public static void UploadMP4() throws Exception {
 }
 }
 	
-		public static String UploadMp4() throws Exception {
-		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-		
-		String expect = "Creator should be able to upload Mp4 content successfully";
-		String actual = "Creator is unable to upload Mp4 content ";
-		String closeButton=null;
-	 
-	 try {
-		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
-		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
-		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
-		Thread.sleep(1000);
-		driver.switchTo().frame(0);
-		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
-		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
-	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\poem.mp4", "Mp4 uploaded");
-	    Thread.sleep(3000);
-	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
-	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
-	  
-	    String randomName=VDNUtils.set_Content_Name("Mp4_Content");
-	    excel.updateData("TestData","Mp4" ,randomName, "");
-	   
-	    closeButton=Upload.getClose().getText();
-	    actual="Creator is able to upload Mp4 content successfully";
-		return randomName;
-		
-	 } finally {
-		 String Text = Upload.getClose() != null ? closeButton : "N/A";
-			Listeners.customAssert(closeButton, Text, expect, actual);
-	}
-	}
+//		public static String UploadMp4() throws Exception {
+//		
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+//		
+//		String expect = "Creator should be able to upload Mp4 content successfully";
+//		String actual = "Creator is unable to upload Mp4 content ";
+//		String closeButton=null;
+//	 
+//	 try {
+//		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
+//		Thread.sleep(1000);
+//		driver.switchTo().frame(0);
+//		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
+//		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
+//	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\poem.mp4", "Mp4 uploaded");
+//	    Thread.sleep(3000);
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
+//	  
+//	    String randomName=VDNUtils.set_Content_Name("Mp4_Content");
+//	    excel.updateData("TestData","Mp4" ,randomName, "");
+//	   
+//	    closeButton=Upload.getClose().getText();
+//	    actual="Creator is able to upload Mp4 content successfully";
+//		return randomName;
+//		
+//	 } finally {
+//		 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//			Listeners.customAssert(closeButton, Text, expect, actual);
+//	}
+//	}
 	
 		public static String UploadMorethan50MbContent() throws Exception {
 			
@@ -138,39 +217,39 @@ public static void UploadMP4() throws Exception {
 		
 		
 		
-	public static String UploadWebm() throws Exception {
-		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-		
-		String expect = "Creator should be able to upload webm content successfully";
-		String actual = "Creator is unable to upload webm content ";
-		String closeButton=null;
-	 
-	 try {
-		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
-		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
-		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
-		Thread.sleep(1000);
-		driver.switchTo().frame(0);
-		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
-		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
-	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\file_example_WEBM_480_900KB (1).webm", "Webm uploaded");
-	    Thread.sleep(3000);
-	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
-	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
-	    
-	    String randomName=VDNUtils.set_Content_Name("Webm_Content");
-	    excel.updateData("TestData","Webm" ,randomName, "");
-	    closeButton=Upload.getClose().getText();
-	    actual="Creator is able to upload webm content successfully";
-		return randomName;
-		
-	 } finally {
-		 String Text = Upload.getClose() != null ? closeButton : "N/A";
-			Listeners.customAssert(closeButton, Text, expect, actual);
-	}
-	}
+//	public static String UploadWebm() throws Exception {
+//		
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+//		
+//		String expect = "Creator should be able to upload webm content successfully";
+//		String actual = "Creator is unable to upload webm content ";
+//		String closeButton=null;
+//	 
+//	 try {
+//		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
+//		Thread.sleep(1000);
+//		driver.switchTo().frame(0);
+//		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
+//		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
+//	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\file_example_WEBM_480_900KB (1).webm", "Webm uploaded");
+//	    Thread.sleep(3000);
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
+//	    
+//	    String randomName=VDNUtils.set_Content_Name("Webm_Content");
+//	    excel.updateData("TestData","Webm" ,randomName, "");
+//	    closeButton=Upload.getClose().getText();
+//	    actual="Creator is able to upload webm content successfully";
+//		return randomName;
+//		
+//	 } finally {
+//		 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//			Listeners.customAssert(closeButton, Text, expect, actual);
+//	}
+//	}
 	
 	
 public static void UploadEpub() throws Exception {
@@ -191,42 +270,80 @@ public static void UploadEpub() throws Exception {
 //		Listeners.customAssert(closeButton, Text, expect, actual);
 }
 }
-	
-	
-	
-	public static String UploadH5p() throws Exception {
-		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
-		
-		String expect = "Creator should be able to upload h5p content successfully";
-		String actual = "Creator is unable to upload h5p content ";
-		String closeButton=null;
-	 
-	 try {
-		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
-		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
-		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
-		Thread.sleep(1000);
-		driver.switchTo().frame(0);
-		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
-		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
-	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\boardgame.h5p", "h5p uploaded");
-	    Thread.sleep(60000);
-	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
-	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
 
-	    String randomName=VDNUtils.set_Content_Name("H5p_Content");
-	    excel.updateData("TestData","h5p" ,randomName, "");
-	    closeButton=Upload.getClose().getText();
-	    actual="Creator is able to upload h5p content successfully";
-		return randomName;
-		
-	 } finally {
-		 String Text = Upload.getClose() != null ? closeButton : "N/A";
-			Listeners.customAssert(closeButton, Text, expect, actual);
-	}
-	}
+public static void UploadHtml() throws Exception {
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload HTML successfully";
+	String actual = "Creator is unable to upload HTML ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\HTMLContent_test.zip");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
+	
+
+public static void UploadH5p() throws Exception {
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload H5P successfully";
+	String actual = "Creator is unable to upload H5P ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\boardgame.h5p");
+    Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
+	
+	
+//	public static String UploadH5p() throws Exception {
+//		
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//		UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+//		
+//		String expect = "Creator should be able to upload h5p content successfully";
+//		String actual = "Creator is unable to upload h5p content ";
+//		String closeButton=null;
+//	 
+//	 try {
+//		VDNUtils.waitToBeClickableAndClick(Upload.getHeaderDropdown());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getWorkspace());
+//		VDNUtils.waitToBeClickableAndClick(Upload.getUploadcontent());
+//		Thread.sleep(1000);
+//		driver.switchTo().frame(0);
+//		VDNUtils.waitToBeClickableAndClick(Upload.getContenttypetab());
+//		VDNUtils.waitToBeClickableAndClick(Upload.geteTextbook());
+//	    Library.custom_sendkeys(Upload.getBrowserbutton(),System.getProperty("user.dir")+"\\src\\main\\resources\\boardgame.h5p", "h5p uploaded");
+//	    Thread.sleep(60000);
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getSave());
+//	    VDNUtils.waitToBeClickableAndClick(Upload.getClose());
+//
+//	    String randomName=VDNUtils.set_Content_Name("H5p_Content");
+//	    excel.updateData("TestData","h5p" ,randomName, "");
+//	    closeButton=Upload.getClose().getText();
+//	    actual="Creator is able to upload h5p content successfully";
+//		return randomName;
+//		
+//	 } finally {
+//		 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//			Listeners.customAssert(closeButton, Text, expect, actual);
+//	}
+//	}
 	
    			public static String UploadYoutubeContent() throws Exception {
 			
