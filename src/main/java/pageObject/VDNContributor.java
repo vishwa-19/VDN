@@ -346,11 +346,23 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[text()='Forgot password?']")
 	private WebElement assertForgotPwd;
 	
+	@FindBy(how=How.XPATH,using="//i[@class='close icon']//following::button[text()='Add Transcript']")
+	private WebElement clkAddTranscriptbtn;
 	
+	@FindBy(how=How.XPATH,using="//div[text()='Add/Edit Transcript']")
+	private WebElement assertAddorEditTrans;
 	    
 	
 	
 	
+	public WebElement getAssertAddorEditTrans() {
+		return assertAddorEditTrans;
+	}
+
+	public WebElement getClkAddTranscriptbtn() {
+		return clkAddTranscriptbtn;
+	}
+
 	public WebElement getAssertForgotPwd() {
 		return assertForgotPwd;
 	}

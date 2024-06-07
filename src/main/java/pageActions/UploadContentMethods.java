@@ -135,7 +135,7 @@ public static void UploadMP4() throws Exception {
  
  try {
 	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
-	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\Class 1 English  (Marigold Book) _ Syllabus Overview.mp4");
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\poem.mp4");
     //Thread.sleep(3000);
 	
  } finally {
