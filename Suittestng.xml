@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>-->
-			<class name="regression.contributor.VerifyAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButton"/>
+			<class name="regression.contributor.VerifyAssignedReviewerAbleToSubmitForApprovalAndAllContentStatusIsApprovalPending"/>
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			

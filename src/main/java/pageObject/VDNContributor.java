@@ -351,10 +351,58 @@ public class VDNContributor {
 	
 	@FindBy(how=How.XPATH,using="//div[text()='Add/Edit Transcript']")
 	private WebElement assertAddorEditTrans;
-	    
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingPDF;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Html']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingHTML;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp4']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingMP4;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Webm']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingWEBM;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_H5p']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingH5P;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Epub']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingEPUB;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp3']//following::span[text()='Approval Pending']")
+	private WebElement assertApprovalPendingMP3;
 	
 	
 	
+	public WebElement getAssertApprovalPendingMP3() {
+		return assertApprovalPendingMP3;
+	}
+
+	public WebElement getAssertApprovalPendingEPUB() {
+		return assertApprovalPendingEPUB;
+	}
+
+	public WebElement getAssertApprovalPendingH5P() {
+		return assertApprovalPendingH5P;
+	}
+
+	public WebElement getAssertApprovalPendingWEBM() {
+		return assertApprovalPendingWEBM;
+	}
+
+	public WebElement getAssertApprovalPendingMP4() {
+		return assertApprovalPendingMP4;
+	}
+
+	public WebElement getAssertApprovalPendingHTML() {
+		return assertApprovalPendingHTML;
+	}
+
+	public WebElement getAssertApprovalPendingPDF() {
+		return assertApprovalPendingPDF;
+	}
+
 	public WebElement getAssertAddorEditTrans() {
 		return assertAddorEditTrans;
 	}
