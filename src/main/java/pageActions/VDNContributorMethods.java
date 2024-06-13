@@ -9236,5 +9236,261 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			
 		}
 	}
+	
+	public static void validateReviewerAbleToEditTheNameInTheEditDetailsForm(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = "reviewer should be able to edit the name in the edit details form for PDF Content and is Updated";
+		String actual1 =  "reviewer should be unable to edit the name in the edit details form for PDFContent Or is not Updated";
+		
+		String home2 = null;
+		String expect2 = " reviewer should be able to edit the name in the edit details form for HTML Content and is Updated";
+		String actual2 =  "reviewer should be unable to edit the name in the edit details form for HTML Content or is not Updated";
+		
+		String home3 = null;
+		String expect3 = " reviewer should be able to edit the name in the edit details form for MP4 Content and is Updated";
+		String actual3 =  "reviewer is unable to edit the name in the edit details form for MP4 Content Or is not Updated";
+		
+		String home4 = null;
+		String expect4 = "reviewer should be able to edit the name in the edit details form for WEBM Content and is Updated";
+		String actual4 =  "reviewer is unable to edit the name in the edit details form for WEBM Content or is not Updated";
+		
+		String home5 = null;
+		String expect5 = " reviewer should be able to edit the name in the edit details form for H5P Content and is Updated";
+		String actual5 =  "reviewer is unable to edit the name in the edit details form for H5P Content or is not Updated";
+		
+		String home6 = null;
+		String expect6 = "reviewer should be able to edit the name in the edit details form for EPUB Content and is Updated";
+		String actual6 =  "reviewer is unable to edit the name in the edit details form for EPUB Content or is not Updated";
+		
+		String home7 = null;
+		String expect7 = "reviewer should be able to edit the name in the edit details form for MP3 Content and is Updated";
+		String actual7 =  "reviewer is unable to edit the name in the edit details form for MP3 Content and is not Updated";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+			
+			
+			for (int i=1;i<=7;i++) {
+	
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+
+			VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+			Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+			Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+			
+			Assert.assertTrue(VO.getContentDetails().isDisplayed());
+			VDNUtils.waitForElementToBeVisible(VO.getContentDetails());
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getEnterName());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "-1");
+
+			VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			
+
+			}
+		
+			Assert.assertTrue(VC.getAssertPDFUpdated().isDisplayed());		
+			home1 = VC.getAssertPDFUpdated().getText();
+			System.out.print(home1);
+			
+			actual1 = "reviewer is able to edit the name in the edit details form for PDF Content and is Updated";
+			
+			
+			Assert.assertTrue(VC.getAssertHTMLUpdated().isDisplayed());		
+			home2 = VC.getAssertHTMLUpdated().getText();
+			System.out.print(home2);
+			actual2 = "reviewer is able to edit the name in the edit details form for HTML Content and is Updated";
+			
+			
+			
+			Assert.assertTrue(VC.getAssertMP4Updated().isDisplayed());	
+			home3 = VC.getAssertMP4Updated().getText();
+			System.out.print(home3);
+			actual3 = "reviewer is able to edit the name in the edit details form for MP4 Content and is Updated";
+			
+			Assert.assertTrue(VC.getAssertWEBMUpdated().isDisplayed());
+					
+			home4 = VC.getAssertWEBMUpdated().getText();
+			System.out.print(home4);
+			
+			actual4 = "Assigned project reviewer is able to Accept WEBM content.";
+			
+			Assert.assertTrue(VC.getAssertH5PUpdated().isDisplayed());		
+			home5 = VC.getAssertH5PUpdated().getText();
+			System.out.print(home5);
+			actual5 = "reviewer is able to edit the name in the edit details form for H5P Content and is Updated";
+			
+			
+			Assert.assertTrue(VC.getAssertEPUBUpdated().isDisplayed());			
+			home6 = VC.getAssertEPUBUpdated().getText();
+			System.out.print(home6);
+			
+			actual6 = "reviewer is able to edit the name in the edit details form for EPUB Content and is Updated";
+			
+			Assert.assertTrue(VC.getAssertMP3Updated().isDisplayed());			
+			home7 = VC.getAssertMP3Updated().getText();
+			System.out.print(home7);
+			
+			actual7 = "reviewer is able to edit the name in the edit details form for MP3 Content and is Updated";
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Sample_Pdf-1" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Sample_Html-1" ,homeText2, expect2, actual2);
+			
+			String homeText3 = home3 != null ? home3 : "N/A";
+			Listeners.customAssert("Sample_Mp4-1" ,homeText3, expect3, actual3);
+			
+			String homeText4 = home4 != null ? home4 : "N/A";
+			Listeners.customAssert("Sample_Webm-1" ,homeText4, expect4, actual4);
+			
+			String homeText5 = home5 != null ? home5 : "N/A";
+			Listeners.customAssert("Sample_H5p-1" ,homeText5, expect5, actual5);
+			
+			String homeText6 = home6 != null ? home6 : "N/A";
+			Listeners.customAssert("Sample_Epub-1" ,homeText6, expect6, actual6);
+			
+			String homeText7 = home7 != null ? home7 : "N/A";
+			Listeners.customAssert("Sample_Mp3-1" ,homeText7, expect7, actual7);
+		}
+	}
+	
+	
+	public static void verifyContentStatusApprovedForTheProject(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String home = null;
+		String expect = "Content Should be Approved Successfully ";
+		String actual =  "Content is not Approved ";
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver,VDNContributor.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(10000);
+
+			VO.getClkOpenBtn().click();
+			Thread.sleep(5000);
+
+			VC.getClkSamplePDF().click();
+			Thread.sleep(5000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+			//VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+			
+			VO.getClkPublish().click();
+			Thread.sleep(5000);
+			
+			VC.getClkSamplePDF().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);
+			
+			VC.getClkSamplePDF().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+			Thread.sleep(2000);	
+			Assert.assertTrue(VC.getAssertPDFApproved().isDisplayed());
+			
+			home = VC.getAssertPDFApproved().getText();
+			System.out.print(home);		
+			actual = "Content is Approved Successfully";
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Approved", homeText, expect, actual);
+		}
+
+}
+	
+	public static void validateContentIsApprovedStatusAndOptionToViewContentOnDikshaIsDisplayedForApprovedContent(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " 1.Status should be displayed as content is approved for approved content in content details page for a project reviewer.";
+		String actual1 =  "1.Status is not displayed as content is approved for approved content in content details page for a project reviewer.";
+		
+		String home2 = null;
+		String expect2 = " 2.Option to view content on diksha should be displayed for assigned Project reviewer.";
+		String actual2 =  "2.Option to view content on diksha is not displayed for assigned Project reviewer.";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertPDFApproved());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertPDFApproved());
+			
+			
+			Assert.assertTrue(VS.getAssertApproved().isDisplayed());
+			
+			home1 = VS.getAssertApproved().getText();
+			System.out.print(home1);		
+			actual1 = "1.Status is displayed as content approved for approved content in content details page for a project reviewer.";
+			
+			Assert.assertTrue(VC.getAssertViewContOnDiksha().isDisplayed());
+			
+			home2 = VC.getAssertViewContOnDiksha().getText();
+			System.out.print(home2);		
+			actual2 = "2.Option to view content on diksha is displayed for assigned Project reviewer.";
+			
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Approved" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("View this content on DIKSHA" ,homeText2, expect2, actual2);
+			
+			
+		}
+	}
 
 }

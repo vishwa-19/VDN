@@ -373,8 +373,78 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp3']//following::span[text()='Approval Pending']")
 	private WebElement assertApprovalPendingMP3;
 	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']")
+	private WebElement clkSamplePDF;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']//following::span[text()='Approved']")
+	private WebElement assertPDFApproved;
+
+	@FindBy(how=How.XPATH,using="//a[text()='View this content on DIKSHA']")
+	private WebElement assertViewContOnDiksha;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf-1']")
+	private WebElement assertPDFUpdated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Html-1']")
+	private WebElement assertHTMLUpdated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp4-1']")
+	private WebElement assertMP4Updated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Webm-1']")
+	private WebElement assertWEBMUpdated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_H5p-1']")
+	private WebElement assertH5PUpdated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Epub-1']")
+	private WebElement assertEPUBUpdated;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp3-1']")
+	private WebElement assertMP3Updated;
 	
 	
+	
+	public WebElement getAssertMP3Updated() {
+		return assertMP3Updated;
+	}
+
+	public WebElement getAssertEPUBUpdated() {
+		return assertEPUBUpdated;
+	}
+
+	public WebElement getAssertH5PUpdated() {
+		return assertH5PUpdated;
+	}
+
+	public WebElement getAssertWEBMUpdated() {
+		return assertWEBMUpdated;
+	}
+
+	public WebElement getAssertMP4Updated() {
+		return assertMP4Updated;
+	}
+
+	public WebElement getAssertHTMLUpdated() {
+		return assertHTMLUpdated;
+	}
+
+	public WebElement getAssertPDFUpdated() {
+		return assertPDFUpdated;
+	}
+
+	public WebElement getAssertViewContOnDiksha() {
+		return assertViewContOnDiksha;
+	}
+
+	public WebElement getAssertPDFApproved() {
+		return assertPDFApproved;
+	}
+
+	public WebElement getClkSamplePDF() {
+		return clkSamplePDF;
+	}
+
 	public WebElement getAssertApprovalPendingMP3() {
 		return assertApprovalPendingMP3;
 	}
