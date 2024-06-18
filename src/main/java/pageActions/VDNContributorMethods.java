@@ -9492,5 +9492,575 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			
 		}
 	}
+	
+	public static void verifyContentSendBackForTheCorrections(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String home = null;
+		String expect = "Content Should be Send For Review";
+		String actual =  "Content is not Send For Review ";
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver,VDNContributor.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(10000);
+
+			VO.getClkOpenBtn().click();
+			Thread.sleep(5000);
+
+			VC.getClkSamplePDF().click();
+			Thread.sleep(5000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+			
+			VDNUtils.waitForElementToBeVisible(VO.getBtnSendCorrect());
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnSendCorrect());	
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Correct");
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+			Thread.sleep(2000);
+	
+			home = VO.getAssertContentCorrection().getText();
+			System.out.print(home);		
+			actual = "Content is Send For Review";
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Content sent for corrections", homeText, expect, actual);
+		}
+
+}
+	
+	public static void validateStatusOfContentWithViewCommentsDisplayedInTheContentPreviewPageForCorrectionsPending(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = "1.Status of the content with view comments should be displayed in the content preview page for Corrections Pending content";
+		String actual1 =  "1.Status of the content with view comments is not displayed in the content preview page for Corrections Pending content";
+		
+		String home2 = null;
+		String expect2 = " 2.It should not able to edit the Corrections Pending content";
+		String actual2 =  "2.It is able to edit the Corrections Pending content";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getclKPDFCorrPen());
+			VDNUtils.waitToBeClickableAndClick(VC.getclKPDFCorrPen());
+			
+			
+			Assert.assertTrue(VS.getAssertCorrectionMsg1().isDisplayed());
+			Assert.assertTrue(VC.getAssertViewComment().isDisplayed());
+			
+			
+			home1 = VC.getAssertViewComment().getText();
+			System.out.print(home1);		
+			actual1 = "1.Status of the content with view comments is displayed in the content preview page for Corrections Pending content";
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertViewComment());
+			Thread.sleep(3000);
+			Assert.assertTrue(VC.getAssertReviewComment().isDisplayed());
+			
+			home2 = VC.getAssertReviewComment().getText();
+			System.out.print(home2);		
+			actual2 = "2.It is not able to edit the Corrections Pending content";
+			
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("View Comments" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Correct" ,homeText2, expect2, actual2);
+			
+			
+		}
+	}
+	
+	public static void validateContentIsViewableToAssignedReviewerEvenAfterContentIsAccepted(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " 1.Status should be displayed as content is approved for approved content in content details page for a project reviewer.";
+		String actual1 =  "1.Status is not displayed as content is approved for approved content in content details page for a project reviewer.";
+		
+		String home2 = null;
+		String expect2 = " 2.Option to view content on diksha should be displayed for assigned Project reviewer.";
+		String actual2 =  "2.Option to view content on diksha is not displayed for assigned Project reviewer.";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertPDFApproved());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertPDFApproved());
+			
+			
+			Assert.assertTrue(VS.getAssertApproved().isDisplayed());
+			
+			home1 = VS.getAssertApproved().getText();
+			System.out.print(home1);		
+			actual1 = "1.Status is displayed as content approved for approved content in content details page for a project reviewer.";
+			
+			Assert.assertTrue(VC.getAssertViewContOnDiksha().isDisplayed());
+			
+			home2 = VC.getAssertViewContOnDiksha().getText();
+			System.out.print(home2);		
+			actual2 = "2.Option to view content on diksha is displayed for assigned Project reviewer.";
+			
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Approved" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("View this content on DIKSHA" ,homeText2, expect2, actual2);
+			
+			
+		}
+	}
+	
+	public static void verifyContentStatusRejecedForTheProject(String ProjectName) throws InterruptedException {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		String home = null;
+		String expect = "Content Should be Rejected Successfully ";
+		String actual =  "Content is not Rejected ";
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver,VDNContributor.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(10000);
+
+			VO.getClkOpenBtn().click();
+			Thread.sleep(5000);
+
+			VC.getClkSamplePDF().click();
+			Thread.sleep(5000);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkPublish());
+			//VDNUtils.waitForElementToBeVisible(VO.getClkPublish());
+			
+//			VO.getClkPublish().click();
+//			Thread.sleep(5000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getBtnReject());
+			VDNUtils.waitToBeClickableAndClick(VO.getBtnReject());
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterCommentForReject(), "Reject");
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitRevBtn());
+			Thread.sleep(3000);
+//			VC.getClkSamplePDF().click();
+//			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+//			Thread.sleep(2000);
+//			
+//			VC.getClkSamplePDF().click();
+//			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+//			Thread.sleep(2000);	
+//			Assert.assertTrue(VC.getAssertPDFApproved().isDisplayed());
+			
+			home = VC.getAssertRejectedCount().getText();
+			System.out.print(home);		
+			actual = "Content is Rejected Successfully";
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("1", homeText, expect, actual);
+		}
+
+}
+	
+	
+	public static void validateContentIsViewableToAssignedReviewerEvenAfterContentIsRejecte(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " 1.Status should be displayed as content is approved for approved content in content details page for a project reviewer.";
+		String actual1 =  "1.Status is not displayed as content is approved for approved content in content details page for a project reviewer.";
+		
+		String home2 = null;
+		String expect2 = " 2.Content should be viewable to assigned reviewer even after the content is rejected.";
+		String actual2 =  "2.Content is not viewable to assigned reviewer even after the content is rejected.";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertPDFRejected());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertPDFRejected());
+			
+			
+			Assert.assertTrue(VC.getAssertRejected().isDisplayed());
+			
+			home1 = VC.getAssertRejected().getText();
+			System.out.print(home1);		
+			actual1 = "1.Status is displayed as content Rejected for reject content in content details page for a project reviewer.";
+			
+//			Assert.assertTrue(VC.getAssertViewContOnDiksha().isDisplayed());
+//			
+//			home2 = VC.getAssertViewContOnDiksha().getText();
+//			System.out.print(home2);		
+//			actual2 = "2.Option to view content on diksha is displayed for assigned Project reviewer.";
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertViewComment());
+			Thread.sleep(3000);
+			Assert.assertTrue(VC.getAssertReviewComment().isDisplayed());
+			
+			home2 = VC.getAssertReviewReject().getText();
+			System.out.print(home2);		
+			
+			actual2 = "2.Content is viewable to assigned reviewer even after the content is rejected.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Rejected" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Reject" ,homeText2, expect2, actual2);
+			
+			
+		}
+	}
+	
+	public static void validateAccessibilityDetailsButtonDisplayedWhileUploadingContent(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " Accessibility Details button should displayed while uploading the PDF content";
+		String actual1 =  "Accessibility Details button is not displayed while uploading the PDF content";
+		
+		String home2 = null;
+		String expect2 = " Accessibility Details button should displayed while uploading the HTML content";
+		String actual2 =  "Accessibility Details button is not displayed while uploading the HTML content";
+
+		String home3 = null;
+		String expect3 = " Accessibility Details button should displayed while uploading the MP4 content";
+		String actual3 =  "Accessibility Details button is not displayed while uploading the MP4 content";
+		
+		String home4 = null;
+		String expect4 = "Accessibility Details button should displayed while uploading the WEBM content";
+		String actual4 =  "Accessibility Details button is not displayed while uploading the WEBM content";
+		
+		
+		String home5 = null;
+		String expect5 = " Accessibility Details button should displayed while uploading the H5P content";
+		String actual5 =  "Accessibility Details button is not displayed while uploading the H5P content";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			
+			home1 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home1);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Pdf");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			actual1 = "Accessibility Details button is displayed while uploading the PDF content";
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+						
+			Thread.sleep(3000);
+			UploadContentMethods.UploadHtml();
+			
+			home2 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home1);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Html");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			actual2 = "Accessibility Details button is displayed while uploading the HTML content";
+			
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadMp4();
+			
+			home3 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home3);
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkDoneBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Mp4");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			actual3 = "Accessibility Details button is displayed while uploading the MP4 content";
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadWebm();
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkDoneBtn());
+			Thread.sleep(3000);
+			
+			home4 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home4);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Webm");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			actual4 = "Accessibility Details button is displayed while uploading the WEBM content";
+			Thread.sleep(2000);
+			
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			Thread.sleep(2000);
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadH5p();
+			
+			home5 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home5);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_H5p");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			Thread.sleep(2000);
+			
+			actual5 = "Accessibility Details button is displayed while uploading the H5P content";
+
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText2, expect2, actual2);
+			
+			String homeText3 = home3 != null ? home3 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText3, expect3, actual3);
+			
+			String homeText4 = home4 != null ? home4 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText4, expect4, actual4);
+			
+			String homeText5 = home5 != null ? home5 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText5, expect5, actual5);
+				
+		}
+	}
+	
+	public static void validateAccessibilityDetailsPopUpDisplayedPostClickBtnInContentDetailPage(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " Accessibility Details button should displayed while uploading the content";
+		String actual1 =  "Accessibility Details button is not displayed while uploading the content";
+		
+		String home2 = null;
+		String expect2 = " Accessibility Details pop up should displayed post clicking on Accessibility button in the content details page.";
+		String actual2 =  "Accessibility Details pop up is not displayed post clicking on Accessibility button in the content details page.";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			
+			home1 = VC.getAccessibilityDetailsBtn().getText();
+			System.out.println(home1);
+			actual1 = "Accessibility Details button is displayed while uploading the content";
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getAccessibilityDetailsBtn());
+			Assert.assertTrue(VC.getAssertAccessibilityPopUp().isDisplayed());
+			Assert.assertTrue(VC.getCancelBtn().isDisplayed());
+			Assert.assertTrue(VC.getDoneButton().isDisplayed());
+			
+			
+			home2 = VC.getAssertAccessibilityPopUp().getText();
+			System.out.println(home2);
+			actual2 = "Accessibility Details pop up is displayed post clicking on Accessibility button in the content details page.";
+
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Accessibility Details" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			Listeners.customAssert("Accessibility" ,homeText2, expect2, actual2);
+				
+		}
+	}
 
 }

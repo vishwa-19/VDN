@@ -403,8 +403,76 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Mp3-1']")
 	private WebElement assertMP3Updated;
 	
+	@FindBy(how=How.XPATH,using="//a[text()='View Comments']")
+	private WebElement assertViewComment;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Review Comments ']//following::div[text()=' Correct ']")
+	private WebElement assertReviewComment;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']//following::span[text()='Corrections pending']")
+	private WebElement clKPDFCorrPen;
+	
+	@FindBy(how=How.XPATH,using="(//span[text()=' Rejected:']//following::span[text()=' 1'])[1]")
+	private WebElement assertRejectedCount;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Pdf']//following::span[text()='Rejected']")
+	private WebElement assertPDFRejected;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Rejected']")
+	private WebElement assertRejected;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Review Comments ']//following::div[text()=' Reject ']")
+	private WebElement assertReviewReject;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='Accessibility Details']")
+	private WebElement AccessibilityDetailsBtn;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Accessibility']")
+	private WebElement assertAccessibilityPopUp;
 	
 	
+	
+	
+	
+	
+	
+	
+	public WebElement getAssertAccessibilityPopUp() {
+		return assertAccessibilityPopUp;
+	}
+
+	public WebElement getAccessibilityDetailsBtn() {
+		return AccessibilityDetailsBtn;
+	}
+
+	public WebElement getAssertReviewReject() {
+		return assertReviewReject;
+	}
+
+	public WebElement getAssertRejected() {
+		return assertRejected;
+	}
+
+	public WebElement getAssertPDFRejected() {
+		return assertPDFRejected;
+	}
+
+	public WebElement getAssertRejectedCount() {
+		return assertRejectedCount;
+	}
+
+	public WebElement getclKPDFCorrPen() {
+		return clKPDFCorrPen;
+	}
+
+	public WebElement getAssertReviewComment() {
+		return assertReviewComment;
+	}
+
+	public WebElement getAssertViewComment() {
+		return assertViewComment;
+	}
+
 	public WebElement getAssertMP3Updated() {
 		return assertMP3Updated;
 	}
