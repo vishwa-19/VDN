@@ -143,6 +143,26 @@ public static void UploadMP4() throws Exception {
 //		Listeners.customAssert(closeButton, Text, expect, actual);
 }
 }
+
+public static void UploadVTT() throws Exception {
+	
+	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	UploadPdfContent Upload=PageFactory.initElements(driver, UploadPdfContent.class);
+	
+	String expect = "Creator should be able to upload VTT successfully";
+	String actual = "Creator is unable to upload VTT ";
+	String closeButton=null;
+ 
+ try {
+	 WebElement ele = driver.findElement(By.xpath("//input[@type='file']"));
+	ele.sendKeys(System.getProperty("user.dir")+"\\src\\main\\resources\\captions.bn 3.vtt");
+    //Thread.sleep(3000);
+	
+ } finally {
+//	 String Text = Upload.getClose() != null ? closeButton : "N/A";
+//		Listeners.customAssert(closeButton, Text, expect, actual);
+}
+}
 	
 //		public static String UploadMp4() throws Exception {
 //		

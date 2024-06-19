@@ -430,6 +430,20 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[text()='Accessibility']")
 	private WebElement assertAccessibilityPopUp;
 	
+	@FindBy(how=How.XPATH,using="//button[text()=' Cancel ']")
+	private WebElement cancelBtn;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Done ']")
+	private WebElement DoneButton;
+	
+	@FindBy(how=How.XPATH,using="//sui-select[@formcontrolname='language']")
+	private WebElement clkSelLanguage;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Assamese']")
+	private WebElement clkSelAssamLanguage;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='trash icon sb-color-primary']")
+	private WebElement assetVTTFileUploaded;
 	
 	
 	
@@ -437,6 +451,27 @@ public class VDNContributor {
 	
 	
 	
+	
+	public WebElement getAssetVTTFileUploaded() {
+		return assetVTTFileUploaded;
+	}
+
+	public WebElement getClkSelAssamLanguage() {
+		return clkSelAssamLanguage;
+	}
+
+	public WebElement getClkSelLanguage() {
+		return clkSelLanguage;
+	}
+
+	public WebElement getDoneButton() {
+		return DoneButton;
+	}
+
+	public WebElement getCancelBtn() {
+		return cancelBtn;
+	}
+
 	public WebElement getAssertAccessibilityPopUp() {
 		return assertAccessibilityPopUp;
 	}

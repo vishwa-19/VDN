@@ -3159,47 +3159,6 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			home = VO.getSelectRolePostSearch().getText();
 			System.out.println(home);
 			
-//			VDNUtils.waitToBeClickableAndClick(VO.getSelectContributorPostSearch());
-//			
-//			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
-//			Thread.sleep(5000);
-//			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
-//			
-//			Assert.assertTrue(VO.getSearchField().isDisplayed());
-//			Thread.sleep(5000);
-//			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "color3");
-//			Thread.sleep(5000);
-//			
-//			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
-//			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
-//			
-//			VDNUtils.waitToBeClickableAndClick(VO.getSelectReviewerPostSearch());
-//			
-//			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
-//			Thread.sleep(5000);
-//			home = VO.getRolesUpdatedMsg().getText();
-//			System.out.println(home);
-//			
-//			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
-//			
-//			Assert.assertTrue(VO.getSearchField().isDisplayed());
-//			Thread.sleep(5000);
-//			VDNUtils.waitToBeClickableAndSendKeys(VO.getSearchField(), "color5");
-//			Thread.sleep(5000);
-//			
-//			VDNUtils.waitToBeClickableAndClick(VO.getSearchBtn());
-//			VDNUtils.waitToBeClickableAndClick(VO.getSelectRolePostSearch());
-//			
-//			VDNUtils.waitToBeClickableAndClick(VO.getSelectBothPostSearch());
-//			
-//			VDNUtils.waitForElementToBeVisible(VO.getRolesUpdatedMsg());
-//			Thread.sleep(5000);
-//			
-//			home = VO.getRolesUpdatedMsg().getText();
-//			System.out.println(home);
-//			VDNUtils.waitToBeClickableAndClick(VO.getCloseIcon());
-//			Assert.assertTrue(VO.getAssertReviewerOnTop().isDisplayed());
-
 			actual = "Select Role option is by default selected in the drop down under the assign users to projects tab for Contributor orgadmin. " ;
 		} finally {
 			String homeText = home != null ? home : "N/A";
@@ -8191,12 +8150,12 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 	public static void validateIndividualContributorAbleToContributeAllContentTypesForDigitalTextbook(String ProjectName)
 			throws Exception {
 		String home1 = null;
-		String expect1 = "Individual contributor should be able to upload the PDF content and submit for Review";
-		String actual1 =  "Individual contributor is unable to upload the PDF content and submit for Review ";
+		String expect1 = "1. Individual contributor should be able to upload the PDF content and submit for Review";
+		String actual1 =  "1. Individual contributor is unable to upload the PDF content and submit for Review ";
 		
 		String home2 = null;
-		String expect2 = "Individual contributor should be able to upload the EPUB content and submit for Review";
-		String actual2 =  "Individual contributor is unable to upload the EPUB content and submit for Review ";
+		String expect2 = "2. Individual contributor should be able to upload the EPUB content and submit for Review";
+		String actual2 = "2. Individual contributor is unable to upload the EPUB content and submit for Review ";
 	
 		
 		try {
@@ -8249,7 +8208,7 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 				
 			home1 = VC.getAssertPDFUpload().getText();
 			System.out.println(home1);
-			actual1 = "Individual contributor is able to upload the PDF content and submit for Review";
+			actual1 = "1. Individual contributor is able to upload the PDF content and submit for Review";
 			
 			Thread.sleep(2000);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
@@ -8288,7 +8247,7 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			
 			home2 = VC.getAssertEpubUpload().getText();
 			System.out.println(home2);
-			actual2 = "Individual contributor is unable to upload the EPub content and submit for Review";
+			actual2 = "2. Individual contributor is unable to upload the EPub content and submit for Review";
 			
 
 		} finally {
@@ -10060,6 +10019,329 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			String homeText2 = home2 != null ? home2 : "N/A";
 			Listeners.customAssert("Accessibility" ,homeText2, expect2, actual2);
 				
+		}
+	}
+	
+	public static void validateIndContributorAblAddTranscriptFile()
+			throws Exception {
+		String home1 = null;
+		String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+		String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+//			String s1 = "//div[text()=' ";
+//			String s2 = ProjectName;
+//			String s3 = " ']//following::button[text()='Open '][1]";
+//			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+//			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+//			assertProjectOnContributor.isDisplayed();
+//			assertProjectOnContributor.click();
+//			Thread.sleep(5000);
+//			
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+			Thread.sleep(3000);
+			
+//			VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+//			Thread.sleep(3000);
+//			
+//			
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+//			
+//			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+//			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+//			Thread.sleep(1000);
+//			
+//			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+//			Thread.sleep(2000);
+//			
+//			Thread.sleep(3000);
+//			UploadContentMethods.UploadMP4();
+//			
+//			Thread.sleep(3000);
+			
+			UploadContentMethods.UploadVTT();
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssetVTTFileUploaded().isDisplayed());
+			Thread.sleep(3000);
+			home1 = VO.getClkSaveButton().getText();
+			System.out.println(home1);
+			actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Save" ,homeText1, expect1, actual1);
+		}
+	}
+	
+	public static void validateIndividualContributorAbleToUploadMP4WEBMandMP3TypeForExplanationContent()
+			throws Exception {
+		
+		String home3 = null;
+		String expect3 = " Individual contributor should be able to upload the MP4 content for Explanation Content";
+		String actual3 =  "Individual contributor is unable to upload the MP4 content for Explanation Content";
+		
+		String home4 = null;
+		String expect4 = " Individual contributor should be able to upload the WEBM content for Explanation Content";
+		String actual4 =  "Individual contributor is unable to upload the WEBM content for Explanation Content";
+		
+		String home5 = null;
+		String expect5 = " Individual contributor should be able to upload the MP3 content for Explanation Content";
+		String actual5 =  "Individual contributor is unable to upload the MP3 content for Explanation Content";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelExpContent());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadMp4();
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkDoneBtn());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Mp4");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			home3 = VC.getAssertMP4Upload().getText();
+			System.out.println(home3);
+			actual3 = "Individual contributor is able to upload the MP4 content for Explanation Content";
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelExpContent());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadWebm();
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkDoneBtn());
+			Thread.sleep(3000);
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Webm");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			home4 = VC.getAssertWEBMUpload().getText();
+			System.out.println(home4);
+			actual4 = "Individual contributor is able to upload the WEBM content for Explanation Content";
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelExpContent());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadMp3();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Mp3");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			home5 = VC.getAssertMP3Upload().getText();
+			System.out.println(home5);
+			actual5 = "Individual contributor is able to upload the MP3 content for Explanation Content";
+			Thread.sleep(2000);
+
+		} finally {
+//			String homeText1 = home1 != null ? home1 : "N/A";
+//			Listeners.customAssert("Sample_Pdf" ,homeText1, expect1, actual1);
+//			
+//			String homeText2 = home2 != null ? home2 : "N/A";
+//			Listeners.customAssert("Sample_Epub" ,homeText2, expect2, actual2);
+//			
+			String homeText3 = home3 != null ? home3 : "N/A";
+			Listeners.customAssert("Sample_Mp4" ,homeText3, expect3, actual3);
+			
+			String homeText4 = home4 != null ? home4 : "N/A";
+			Listeners.customAssert("Sample_Webm" ,homeText4, expect4, actual4);
+			
+			String homeText5 = home5 != null ? home5 : "N/A";
+			Listeners.customAssert("Sample_Mp3" ,homeText5, expect5, actual5);
+				
+		}
+	}
+	
+	
+	public static void validateIndividualContributorAbleToUploadH5PadHTMLContentTypes()
+			throws Exception {
+		
+		String home6 = null;
+		String expect6 = " Individual contributor should be able to upload the H5P content for Learning Resource";
+		String actual6 =  "Individual contributor is unable to upload the H5P content for Learning Resource";
+		
+		String home7 = null;
+		String expect7 = " Individual contributor should be able to upload the HTML content for Teacher Resource";
+		String actual7 =  "Individual contributor is unable to upload the HTML content for Teacher Resource";
+		
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelLearningRes());
+			Thread.sleep(1000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadFileOpt());
+			Thread.sleep(2000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadH5p();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_H5p");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			Thread.sleep(2000);
+			home6 = VC.getAssertH5pUpload().getText();
+			System.out.println(home6);
+			Thread.sleep(2000);
+
+			actual6 = " Individual contributor is able to upload the H5P content for Learning Resource ";
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadFileOpt());
+//			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadHtml();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_Html");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+			home7 = VC.getAssertHTMLUpload().getText();
+			System.out.println(home7);
+			actual7 = "Individual contributor is able to upload the HTML content for Teacher Resource";
+
+		} finally {
+	
+			String homeText6 = home6 != null ? home6 : "N/A";
+			Listeners.customAssert("Sample_H5P" ,homeText6, expect6, actual6);
+			
+			String homeText7= home7 != null ? home7 : "N/A";
+			Listeners.customAssert("Sample_Html" ,homeText7, expect7, actual7);
+							
+		}
+	}
+	
+	
+	public static void validateDetailsUnderAssignUsersToProjectsTab(String ProjectName)
+			throws InterruptedException {
+		String home = null;
+		String expect = " Select Role option should be by default selected in the drop down under the assign users to projects tab for Contributor orgadmin. ";
+		String actual =  "Select Role option is not by default selected in the drop down under the assign users to projects tab for Contributor orgadmin.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Assert.assertTrue(VO.getAsserAssignUsers().isDisplayed());
+
+			VDNUtils.waitToBeClickableAndClick(VO.getAsserAssignUsers());
+			
+			home = VO.getSelectRolePostSearch().getText();
+			System.out.println(home);
+			
+			actual = "Select Role option is by default selected in the drop down under the assign users to projects tab for Contributor orgadmin. " ;
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Select Role", homeText, expect, actual);
 		}
 	}
 
