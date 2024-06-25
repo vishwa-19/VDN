@@ -10344,5 +10344,45 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Select Role", homeText, expect, actual);
 		}
 	}
+	
+	public static void verifyContentStatusIsReviewPendingWhenReviewIsNotComplete(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " The Content Status should be Review Pending under TextBook tab , when the contribution or review is not complete.";
+		String actual1 =  "The Content Status is not a Review Pending under TextBook tab , when the contribution or review is not complete.";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+				
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+			
+			
+			home1 = VO.getAssertReviewPending().getText();
+			System.out.println(home1);
+			
+			actual1 = "The Content Status is Review Pending under TextBook tab , when the contribution or review is not complete.";
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Review Pending" ,homeText1, expect1, actual1);
+			
+		}
+	}
 
 }
