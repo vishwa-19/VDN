@@ -445,6 +445,8 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//i[@class='trash icon sb-color-primary']")
 	private WebElement assetVTTFileUploaded;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='Content Type(s)']")
+	private WebElement assetContentTypes;
 	
 	
 	
@@ -452,6 +454,10 @@ public class VDNContributor {
 	
 	
 	
+	public WebElement getAssetContentTypes() {
+		return assetContentTypes;
+	}
+
 	public WebElement getAssetVTTFileUploaded() {
 		return assetVTTFileUploaded;
 	}

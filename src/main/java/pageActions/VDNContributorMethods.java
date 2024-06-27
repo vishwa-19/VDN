@@ -50,7 +50,7 @@ public class VDNContributorMethods extends BaseClass {
 		try {
 		String s1 = "//div[text()=' ";
 		String s2 = ProjectName;
-		String s3 = " ']//following::button[text()='Open '][1]";
+		String s3 = " ]";
 		String s4 = " ']//following::span[text()='Pending'][1]";
 		Thread.sleep(10000);
 		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
@@ -10382,6 +10382,63 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			String homeText1 = home1 != null ? home1 : "N/A";
 			Listeners.customAssert("Review Pending" ,homeText1, expect1, actual1);
 			
+		}
+	}
+	
+	public static void validateTheProjectDetailsPageOnContributor(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = "project details Should be available on Project Details page";
+		String actual = "project details is unavailable on Project Details page";
+
+		try {
+			
+			Thread.sleep(3000);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			String s4 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s4));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(3000);
+
+			
+			String p1 = "//h5[text()='";
+
+					
+			WebElement assertProjName = driver.findElement(By.xpath(p1+ProjectName+s3));
+			assertProjName.isDisplayed();
+			
+			
+			Assert.assertTrue(VC.getAssertContentTypes().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertNominationDates().isDisplayed());
+			Assert.assertTrue(VC.getAssertApprovedStatus().isDisplayed());
+			Assert.assertTrue(VC.getAssertDigiText().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertMedium().isDisplayed());
+			Assert.assertTrue(VC.getAssetClass().isDisplayed());
+			Assert.assertTrue(VC.getAssertSubject().isDisplayed());
+			
+			Thread.sleep(3000);
+
+			home = VC.getAssertSubject().getText();
+			System.out.println(home);
+			
+			actual = "project details is available on Project Details page";
+		} finally {
+     		String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Subject   " ,homeText, expect, actual);
 		}
 	}
 
