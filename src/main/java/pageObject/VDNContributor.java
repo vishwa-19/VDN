@@ -448,12 +448,20 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//label[text()='Content Type(s)']")
 	private WebElement assetContentTypes;
 	
+	@FindBy(how=How.XPATH,using="(//span[@class='font-weight-bold'])[2]")
+	private WebElement getTotalCountTop;
 	
 	
 	
 	
 	
 	
+	
+	
+	public WebElement getGetTotalCountTop() {
+		return getTotalCountTop;
+	}
+
 	public WebElement getAssetContentTypes() {
 		return assetContentTypes;
 	}

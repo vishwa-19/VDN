@@ -15,7 +15,7 @@ public class Date extends BaseClass {
 	public static void setTodayDate(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-		LocalDate today = LocalDate.now().plusDays(1);
+		LocalDate today = LocalDate.now().plusDays(12);
 		String formattedDate = today.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
 		driver.findElement(By.xpath("//input[@formcontrolname='nomination_enddate']"));
@@ -25,7 +25,7 @@ public class Date extends BaseClass {
 	public static void setTodayDate(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-		LocalDate today = LocalDate.now().plusDays(1);
+		LocalDate today = LocalDate.now().plusDays(12);
 		String formattedDate = today.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
 		jsExecutor.executeScript(script, driver.findElement(By.xpath("//input[@formcontrolname='nomination_enddate']")),
@@ -34,7 +34,7 @@ public class Date extends BaseClass {
  
 	public static void setTomorrowDate(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate tomorrow = LocalDate.now().plusDays(2);
+		LocalDate tomorrow = LocalDate.now().plusDays(13);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 		String formattedDate = tomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -52,7 +52,7 @@ public class Date extends BaseClass {
  
 	public static void setTomorrowDate(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate tomorrow = LocalDate.now().plusDays(2);
+		LocalDate tomorrow = LocalDate.now().plusDays(13);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
 		String formattedDate = tomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -66,7 +66,7 @@ public class Date extends BaseClass {
 	
 	public static void setDayAfterTomorrowDate(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate dayAftertomorrow = LocalDate.now().plusDays(3);
+		LocalDate dayAftertomorrow = LocalDate.now().plusDays(14);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 		String formattedDate = dayAftertomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -79,7 +79,7 @@ public class Date extends BaseClass {
 	
 	public static void setDayAfterTomorrowDate(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		LocalDate tomorrow = LocalDate.now().plusDays(14);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 		String formattedDate = tomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -90,7 +90,7 @@ public class Date extends BaseClass {
 	
 	public static void setNextToDayAfterTomorrowDate(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate dayAftertomorrow = LocalDate.now().plusDays(3);
+		LocalDate dayAftertomorrow = LocalDate.now().plusDays(15);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 		String formattedDate = dayAftertomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";
@@ -103,7 +103,7 @@ public class Date extends BaseClass {
 	
 	public static void setNextToDayAfterTomorrowDate(WebDriver driver) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		LocalDate tomorrow = LocalDate.now().plusDays(3);
+		LocalDate tomorrow = LocalDate.now().plusDays(15);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 		String formattedDate = tomorrow.format(formatter);
 		String script = "arguments[0].value = arguments[1];";

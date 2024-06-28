@@ -10441,5 +10441,110 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Subject   " ,homeText, expect, actual);
 		}
 	}
+	
+	public static void validateCorrespondingHelpCenterPageDisplayedForTheAssignedReviewer(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = " Help center page Should be Displayed for the Assigned reviewer";
+		String actual =  "Help center page is not Displayed for the Assigned reviewer";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssertHelpCenter().isDisplayed());
+			
+			home = VC.getAssertHelpCenter().getText();
+			System.out.println(home);
+			actual = "Help center page is Displayed for the Assigned reviewer";
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertHelpCenter());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertHelpCenter());
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Help Center" ,homeText, expect, actual);
+		}
+	}
+	
+	public static void validateCorrespondingHelpCenterPageDisplayedForTheAssignedContributor(String ProjectName)
+			throws Exception {
+		String home = null;
+		String expect = " Help center page Should be Displayed for the Assigned Contributor";
+		String actual =  "Help center page is not Displayed for the Assigned Contributor";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssertHelpCenter().isDisplayed());
+			
+			home = VC.getAssertHelpCenter().getText();
+			System.out.println(home);
+			actual = "Help center page is Displayed for the Assigned Contributor";
+			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertHelpCenter());
+			VDNUtils.waitToBeClickableAndClick(VC.getAssertHelpCenter());
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Help Center" ,homeText, expect, actual);
+		}
+	}
+
+	
+	
+	public static void validateTheCountOnTOCandTopForContributionOgrContributor()
+			throws Exception {
+		String home = null;
+		String expect = " The count on toc and top for contribution org contributor should be correct.";
+		String actual =  "The count on toc and top for contribution org contributor is not correct.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			List <WebElement> TOC_count = driver.findElements(By.xpath("//div[@class='chapter-lists--item']"));
+			int SizeTOC = TOC_count.size();
+			System.out.println(TOC_count.size());
+			
+			String TOP_count = VC.getGetTotalCountTop().getText();
+			System.out.println(TOP_count);
+			
+			int TopCount=Integer.parseInt(TOP_count); 
+			
+			Assert.assertEquals(TopCount,TOC_count.size());
+			home = VC.getAssertMP3Upload().getText();
+			System.out.println(home);
+			actual = "The count on toc and top for contribution or contributor is correct.";
+			Thread.sleep(2000);
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Sample_Mp3" ,homeText, expect, actual);
+		}
+	}
+
 
 }
