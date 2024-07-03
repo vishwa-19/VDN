@@ -10545,6 +10545,208 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Sample_Mp3" ,homeText, expect, actual);
 		}
 	}
+	
+	public static void validateContributorUnableToAddPDFAsATranscriptFile()
+			throws Exception {
+		String home1 = null;
+		String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+		String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+			Thread.sleep(3000);
+			
+			UploadContentMethods.UploadPdf();
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssertInvalidFileType().isDisplayed());
+			Thread.sleep(3000);
+			home1 = VC.getAssertInvalidFileType().getText();
+			System.out.println(home1);
+			actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Invalid file type (supported type: .vtt)" ,homeText1, expect1, actual1);
+		}
+	}
+	
+	public static void validateContributorUnableToAddEpubAsATranscriptFile()
+			throws Exception {
+		String home1 = null;
+		String expect1 = "Contributor org contributor should not be able to add epub file as a transcript file.";
+		String actual1 =  "Contributor org contributor should able to add epub file as a transcript file. ";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+			Thread.sleep(3000);
+			
+			UploadContentMethods.UploadEpub();
+			Thread.sleep(1000);
+			
+			Assert.assertTrue(VC.getAssertInvalidFileType().isDisplayed());
+			Thread.sleep(1000);
+			home1 = VC.getAssertInvalidFileType().getText();
+			System.out.println(home1);
+			actual1 = "Contributor org contributor is not able to add epub file as a transcript file. ";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Invalid file type (supported type: .vtt)" ,homeText1, expect1, actual1);
+		}
+	}
+	
+	public static void verifyContOrgContributorAbleToUploadContentAndAddAllDetailsInEditDetailsPopUpAndSendForReview() throws Exception {
+		
+		String home = null;
+		String expect = "Contributor org contributor should be able to upload the content and add all the details in the edit details pop up and send it for review";
+		String actual = "Contributor org contributor is unable to upload the content and add all the details in the edit details pop up and send it for review";
+		
+		try {
+			
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSeltextBook());
+
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContentDetails());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample1");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2024");
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
+			Thread.sleep(2000);
+//			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());	
+			Thread.sleep(3000);
+			home = VO.getAssertContentSetReview().getText();	
+			System.out.println(home);
+
+			actual = " Contributor org contributor is able to upload the content and add all the details in the edit details pop up and send it for review ";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Content sent for review", homeText, expect, actual);
+		}
+
+	}
+	
+	public static void validateyContributorIsNotAbleToContributeTheClosedWithoutTCProject(String ProjectName) throws Exception {
+		
+		String home = null;
+		String expect = "contributor should not be able to contribute to the closed without target collection project";
+		String actual = "contributor is able to contribute to the closed without target collection project";
+		
+		try {
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
+			Thread.sleep(10000);
+			
+			String tabDetails = VC.getAssertTitles().getText();
+			String[] lines = tabDetails.split("\r\n|\r|\n");
+			System.out.println(lines.length);
+			
+			for (String line : lines) {
+			    System.out.println(line);
+			    Assert.assertNotEquals(line,"Create/Upload Content");
+			    Assert.assertNotEquals(line,"Bulk upload content");
+			}
+			
+			home=VS.getFilterContents().getText();
+			actual = "contributor is not be able to contribute to the closed without target collection project";
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Filter Contents", homeText, expect, actual);
+		}
+
+	}
+	
+	public static void validateSelSetOfContProjectsShouldBeAvailableUnderMyProjectsTabWithApprovedStatus(String ProjectName)
+			throws InterruptedException {
+		String home1 = null;
+		String expect1 = " 1.From a selected set of contributors projects should be available for the selected contributors under My Projects tab with Approved Status";
+		String actual1 =  "1.From a selected set of contributors projects is not available for the selected contributors under My Projects tab with Approved Status";
+		
+		String home2 = null;
+		String expect2 = " 2.selected individual should be able to contribute the contents to the project.";
+		String actual2 =  "2.selected individual is unable to contribute the contents to the project.";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			String s4 = "']//following::span[text()='Approved'][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			WebElement assertApprovedStaus = driver.findElement(By.xpath(s1 + s2 + s4));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertApprovedStaus.isDisplayed();
+			
+			
+			home1 = assertApprovedStaus.getText();
+			System.out.println(home1);
+			actual1 = "1.From a selected set of contributors projects should be available for the selected contributors under My Projects tab with Approved Status";
+			
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+		
+			VDNUtils.waitToBeClickableAndClick(VC.getClkUploadCont());
+			Assert.assertTrue(VO.getClkCreateNew().isDisplayed());
+			
+			home2 = assertApprovedStaus.getText();
+			System.out.println(home2);
+			actual2 = "2.selected individual should be able to contribute the contents to the project.";
+		
+
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Approved", homeText1, expect1, actual1);
+			String homeText2 = home2 != null ? home2 : "N/A";
+			System.out.println(homeText2);
+			Listeners.customAssert("Create new", homeText2, expect2, actual2);
+		}
+	}
 
 
 }

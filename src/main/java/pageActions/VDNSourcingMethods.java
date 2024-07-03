@@ -13480,5 +13480,59 @@ public static String verifycreate100TextBookProjectAndPublish() throws Exception
 
 }
 
+public static void CloseCreatedProjectNoTC(String ProjectName) throws InterruptedException {
+	
+	
+	String home = null;
+	String expect = "User Should be able to Close The Project";
+	String actual = "User is not able to Close The Project";
+	try {
+		
+		VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
+		
+//		String s1 = "(//div[text()=' ";
+//		String s2 = ProjectName;
+//		String s3 = " '])[3]";
+		
+		String s1 = "(//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " '])[3]";
+		
+		
+		String s4 = "//following::span[@class='sb-dotmenu'][1]";
+		Thread.sleep(10000);
+		WebElement assertProjectEdit = driver.findElement(By.xpath(s1 + s2 + s3+s4));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", assertProjectEdit);
+		assertProjectEdit.isDisplayed();
+		assertProjectEdit.click();
+		
+        String s5 ="//following::a[text()='Close '][1]";
+		
+		WebElement assertProjectCloseBtn = driver.findElement(By.xpath(s1 + s2 + s3+s5));
+		assertProjectCloseBtn.isDisplayed();
+		assertProjectCloseBtn.click();
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getConfirmDeletion());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertClose());
+		
+		Assert.assertTrue(VO.getAssertClose().isDisplayed());
+		
+		home = VO.getAssertClose().getText();
+		
+		System.out.print(home);
+
+		actual = "User is able to Close The Project";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		System.out.println(homeText);
+		Listeners.customAssert("The project has been closed successfully.", homeText, expect, actual);
+	}
+
+}
+
 }
 

@@ -77,11 +77,18 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[@class='title active']")
 	private WebElement  assertTOC;
 	
+	@FindBy(how=How.XPATH,using="//div[@class='d-flex fs-0-785 sb-color-gray-300 mb-15 pt-10 mt-10 sb-pageSection-document flex-jc-flex-end']")
+	private WebElement  assertTitles;
 	
 	
 	
 	
 	
+	
+	public WebElement getAssertTitles() {
+		return assertTitles;
+	}
+
 	public WebElement getAssertTOC() {
 		return assertTOC;
 	}
@@ -451,6 +458,8 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="(//span[@class='font-weight-bold'])[2]")
 	private WebElement getTotalCountTop;
 	
+	@FindBy(how=How.XPATH,using="//strong[text()='Invalid file type (supported type: .vtt)']")
+	private WebElement assertInvalidFileType;
 	
 	
 	
@@ -458,6 +467,11 @@ public class VDNContributor {
 	
 	
 	
+	
+	public WebElement getAssertInvalidFileType() {
+		return assertInvalidFileType;
+	}
+
 	public WebElement getGetTotalCountTop() {
 		return getTotalCountTop;
 	}
