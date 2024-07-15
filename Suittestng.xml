@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>-->
-			<class name="regression.contributor.VerifyStatusOfProjectIsApprovedWhenSourcingOrgAdminAcceptsNomination"/>
+			<class name="regression.contributor.VerifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp"/>
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			

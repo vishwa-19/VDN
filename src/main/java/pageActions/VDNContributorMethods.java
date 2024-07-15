@@ -35,6 +35,7 @@ import utility.Listeners;
 import utility.VDNUtils;
 import pageObject.VDNSourcing;
 
+
 public class VDNContributorMethods extends BaseClass {
 	public static void ContributorIsAbleToNominateProjectWithoutUploadingSample(String ProjectName) throws InterruptedException {
 		//HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
@@ -11441,6 +11442,331 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			Listeners.customAssert("Approved", homeText, expect, actual);
 		}
 	}
+	
+	public static void validateStatusOfProjectIsRejectedWhenSourcingOrgAdminRejectsNomination(String ProjectName)
+			throws InterruptedException {
+		String home = null;
+		String expect = "The status of the Project should be Rejected if the sourcing orgadmin Rejects the nomination.";
+		String actual =  "The status of the Project is not Rejected if the sourcing orgadmin Rejects the nomination.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			String s4 = " ']//following::button[text()='Open '][1]";
+			String s5 = " ']//following::span[text()='Rejected'][1]";
 			
+			WebElement assertProjectOnDefCont = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnDefCont);
+			assertProjectOnDefCont.isDisplayed();
+			WebElement assertProjectOpen = driver.findElement(By.xpath(s1 + s2 + s4));
+			assertProjectOpen.isDisplayed();
+			WebElement assertProjectApproved = driver.findElement(By.xpath(s1 + s2 + s5));
+			assertProjectApproved.isDisplayed();
+			home = assertProjectApproved.getText();
+			System.out.print(home);
+
+			actual = "The status of the Project is Rejected if the sourcing orgadmin Rejects the nomination." ;
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Rejected", homeText, expect, actual);
+		}
+	}
+	
+	
+	public static void validateAssignedReviewerIsAbleToSeeAnswerButtonForMCQ(String ProjectName)
+			throws InterruptedException {
+		String home = null;
+		String expect = "Assigned Reviewer should able to see answer button for MCQ question.";
+		String actual =  "Assigned Reviewer is unable to see answer button for MCQ question.";
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkReviewContentBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkReviewContentBtn());
+			Thread.sleep(3000);
+
+			VDNUtils.waitForElementToBeVisible(VC.getClkQSetRevPen());
+			VDNUtils.waitToBeClickableAndClick(VC.getClkQSetRevPen());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getBtnPreview());
+			Thread.sleep(3000);
+			
+			
+			Thread.sleep(3000);
+			
+			WebElement frame = driver.findElement(By.xpath("//iframe[@name='contentPlayer']"));
+			driver.switchTo().frame(frame);
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkAnsOpt2());
+			Thread.sleep(1000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkNext());
+			Thread.sleep(1000);
+			
+			home=VC.getClkSoultion().getText();
+			System.out.println(home);
+			actual =  "Assigned Reviewer is able to see answer button for MCQ question.";
+			
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSoultion());
+			Thread.sleep(1000);
+			
+
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			System.out.println(homeText);
+			Listeners.customAssert("Solution", homeText, expect, actual);
+		}
+	}
+	
+	
+	
+	public static void validateIndContAbleToUploadMP4ContentAndAddMultipleTranscriptFilesAndSendForApproval()
+			throws Exception {
+		String home1 = null;
+		String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+		String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+		
+		String home2 = null;
+		String expect2 = "Individual contributor should be able to upload mp4 content and add multiple transcript files";
+		String actual2 =  "Individual contributor is unable to upload mp4 content and add multiple transcript files";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+			Thread.sleep(3000);
+			
+
+			UploadContentMethods.UploadVTT();
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssetVTTFileUploaded().isDisplayed());
+			Thread.sleep(3000);
+			home1 = VO.getClkSaveButton().getText();
+			System.out.println(home1);
+			actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkBtnAddOrTran());
+			Thread.sleep(2000);
+			
+			
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage2());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VC.getClkSelBengaliLanguage());
+			Thread.sleep(3000);
+			
+
+			UploadContentMethods.UploadVTT();
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssetVTTFileUploaded().isDisplayed());
+			Thread.sleep(3000);
+			home2 = VO.getClkSaveButton().getText();
+			System.out.println(home2);
+			actual2 = "Individual contributor is able to upload mp4/webm content and add multiple transcript files";
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+			Thread.sleep(3000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_MP4");
+			Thread.sleep(1000);
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+			Thread.sleep(2000);
+			VO.getClkCheckBox().click();
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Save" ,homeText1, expect1, actual1);
+			
+			String homeText2 = home2 != null ? home2 : "N/A";
+			System.out.println(homeText2);
+			Listeners.customAssert("Save" ,homeText2, expect2, actual2);
+		}
+	}
+	
+	public static void validateAddorEditTranscriptPopUpDisplayedOnWebmPostClickAddTranscriptButton(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+		String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+			assertProjectOnContributor.isDisplayed();
+			assertProjectOnContributor.click();
+			Thread.sleep(5000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+			
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			Thread.sleep(2000);
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadWebm();
+			
+			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getClkAddTranscriptbtn());
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssertAddorEditTrans().isDisplayed());
+			home1 = VC.getAssertAddorEditTrans().getText();
+			System.out.println(home1);
+			actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Add/Edit Transcript" ,homeText1, expect1, actual1);
+		}
+	}
+	
+	
+	public static void validateOnClickingOpenBtnContributorOrgIsAbleToViewTheProjectDetails(String ProjectName) throws InterruptedException {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		String home1 = null;
+		String expect1 = "On clicking open Button, contributing org should be able to view the Project details";
+		String actual1 = "On clicking open Button, contributing org is unable to view the Project details";
+		
+		String home2 = null;
+		String expect2 = "On clicking open Button, contributing org should be able to view the Project details and should not be able to modify the Project details.";
+		String actual2 = "On clicking open Button, contributing org is unable to view the Project details or  be able to modify the Project details. ";
+
+		try {
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getMyProjectTab());
+			Thread.sleep(3000);
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']//following::button[text()='Open '][1]";
+			
+			WebElement clkOpenBtn = driver.findElement(By.xpath(s1 + s2 + s3));
+			
+			VDNUtils.waitToBeClickableAndClick(clkOpenBtn);
+			Thread.sleep(3000);
+			
+			Assert.assertTrue(VC.getAssertBoardMyContent().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertMediumMyContent().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertClassMyContent().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertSubjectMyContent().isDisplayed());
+			
+			Assert.assertTrue(VO.getAssertPendingStatus().isDisplayed());
+			Assert.assertTrue(VO.getAssertDigiTextbooks().isDisplayed());
+			Assert.assertTrue(VC.getAssertContentTypes().isDisplayed());
+			Assert.assertTrue(VS.getAssertNominationDate().isDisplayed());
+			Assert.assertTrue(VS.getAssertShortlistDate().isDisplayed());
+			Assert.assertTrue(VS.getAssertContributionDate().isDisplayed());
+			Assert.assertTrue(VS.getAssertProjectEndDate().isDisplayed());
+			
+			home1 = VC.getAssertContentTypes().getText();
+			System.out.println(home1);
+			actual1 = "On clicking open Button, contributing org is able to view the Project details";
+			
+			home2 = VO.getAssertPendingStatus().getText();
+			System.out.println(home2);
+			actual2 = "On clicking open Button, contributing org is able to view the Project details and is not be able to modify the Project details.";
+			
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		System.out.println(homeText1);
+		Listeners.customAssert("Content Type(s)", homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		System.out.println(homeText2);
+		Listeners.customAssert("Pending", homeText2, expect2, actual2);
+				
+	}
+					
+}
+	
+	
+	public static void validateAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp(String ProjectName)
+			throws Exception {
+		String home1 = null;
+		String expect1 = " All the accessible feature fields should optional in the Accessibility Details pop up.";
+		String actual1 =  "All the accessible feature fields is not optional in the Accessibility Details pop up.";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+			Thread.sleep(2000);
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+			Thread.sleep(1000);
+			
+			VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+			Thread.sleep(2000);
+			
+			Thread.sleep(3000);
+			UploadContentMethods.UploadPdf();
+			Thread.sleep(3000);
+			
+//			VDNUtils.waitToBeClickableAndClick(VC.getClkAccessibility());
+//			Thread.sleep(3000);
+			VDNUtils.waitToBeClickableAndClick(VC.getAccessibilityDetailsBtn());
+			Assert.assertTrue(VC.getAssertAccessibilityPopUp().isDisplayed());
+			Assert.assertTrue(VC.getDoneButton().isDisplayed());
+			Assert.assertTrue(VC.getDoneButton().isEnabled());
+			home1 = VC.getDoneButton().getText();
+			System.out.println(home1);
+			actual1 = "All the accessible feature fields should optional in the Accessibility Details pop up.";
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			Listeners.customAssert("Done" ,homeText1, expect1, actual1);		
+		}
+	}
 
 }

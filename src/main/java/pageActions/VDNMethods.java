@@ -1442,7 +1442,9 @@ public class VDNMethods extends BaseClass {
 
 		try {
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			Thread.sleep(5000);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			Thread.sleep(5000);
 			String s1 = "//div[text()=' ";
 			String s2 = ProjectName;
 			String s3 = " ']//following::button[text()='Open '][1]";

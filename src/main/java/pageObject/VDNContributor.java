@@ -528,10 +528,45 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//button[text()='Solution']")
 	private WebElement clkSoultion;
 	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Question']//following::span[text()='Review Pending']")
+	private WebElement clkQSetRevPen;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Add/Edit Transcript']")
+	private WebElement clkBtnAddOrTran;
+	
+	@FindBy(how=How.XPATH,using="(//sui-select[@formcontrolname='language'])[2]")
+	private WebElement clkSelLanguage2;
+	
+	@FindBy(how=How.XPATH,using="(//span[text()='Bengali'])[2]")
+	private WebElement clkSelBengaliLanguage;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='universal access icon ']")
+	private WebElement clkAccessibility;
 	
 	
 	
 	
+	
+	public WebElement getClkAccessibility() {
+		return clkAccessibility;
+	}
+
+	public WebElement getClkSelBengaliLanguage() {
+		return clkSelBengaliLanguage;
+	}
+
+	public WebElement getClkSelLanguage2() {
+		return clkSelLanguage2;
+	}
+
+	public WebElement getClkBtnAddOrTran() {
+		return clkBtnAddOrTran;
+	}
+
+	public WebElement getClkQSetRevPen() {
+		return clkQSetRevPen;
+	}
+
 	public WebElement getClkSoultion() {
 		return clkSoultion;
 	}
