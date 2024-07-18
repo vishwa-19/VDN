@@ -543,10 +543,24 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//i[@class='universal access icon ']")
 	private WebElement clkAccessibility;
 	
+	@FindBy(how=How.XPATH,using="//div[text()='Video']")
+	private WebElement ChooseSolType2;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Asset Successfully Uploaded...']")
+	private WebElement assertVideoAdded;
 	
 	
 	
 	
+	
+	public WebElement getAssertVideoAdded() {
+		return assertVideoAdded;
+	}
+
+	public WebElement getChooseSolType2() {
+		return ChooseSolType2;
+	}
+
 	public WebElement getClkAccessibility() {
 		return clkAccessibility;
 	}
