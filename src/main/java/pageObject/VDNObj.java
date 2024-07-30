@@ -703,16 +703,24 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
 	private WebElement clkOpenBtn2;
 	
-	
 	@FindBy(how=How.XPATH,using="//label[text()='Upload file']")
 	private WebElement clkUploadFileOpt;
 	
+	@FindBy(how=How.XPATH,using="//div[@class='sb-bg-color-white pt-32']")
+	private WebElement nominationTabDetails;
 	
 	
 	
 	
 	
 	
+	
+	
+	public WebElement getNominationTabDetails() {
+		return nominationTabDetails;
+	}
+
+
 	public WebElement getClkUploadFileOpt() {
 		return clkUploadFileOpt;
 	}

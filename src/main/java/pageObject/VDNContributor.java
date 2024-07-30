@@ -549,10 +549,25 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//strong[text()='Asset Successfully Uploaded...']")
 	private WebElement assertVideoAdded;
 	
+	@FindBy(how=How.XPATH,using="//label[text()='SA - Short Answer']")
+	private WebElement clkSAtype;
+	
+	@FindBy(how=How.XPATH,using="//button[text()=' Done ']")
+	private WebElement clkDone;
 	
 	
 	
 	
+	
+	
+	public WebElement getClkDone() {
+		return clkDone;
+	}
+
+	public WebElement getClkSAtype() {
+		return clkSAtype;
+	}
+
 	public WebElement getAssertVideoAdded() {
 		return assertVideoAdded;
 	}
