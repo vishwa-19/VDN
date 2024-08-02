@@ -336,6 +336,9 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[2]")
 	private WebElement assertDraftCount;
 	
+	@FindBy(how=How.XPATH,using="//td[text()='VDN Prod']//following::td[2]")
+	private WebElement assertDraftCount1;
+
 	@FindBy(how=How.XPATH,using="//th[text()=' Draft ']")
 	private WebElement assertDraftTitle;
 	
@@ -421,6 +424,10 @@ public class VDNSourcing {
 	private WebElement assertListOfContents;
 	
 	
+	
+	public WebElement getAssertDraftCount1() {
+		return assertDraftCount1;
+	}
 	
 	public WebElement getAssertListOfContents() {
 		return assertListOfContents;
