@@ -703,14 +703,38 @@ public class VDNObj {
 	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
 	private WebElement clkOpenBtn2;
 	
-	
 	@FindBy(how=How.XPATH,using="//label[text()='Upload file']")
 	private WebElement clkUploadFileOpt;
 	
+	@FindBy(how=How.XPATH,using="//*[@formcontrolname='framework']")
+	private WebElement frameWorkType;
+	
+	@FindBy(how=How.XPATH,using="(//*[@class='sb-btn sb-btn-normal sb-btn-primary'])[2]")
+	private WebElement frameWorkTypeYesBtn;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Continuous Professional Development']")
+	private WebElement cpdFrameWork;
+	
+	@FindBy(how=How.XPATH,using="//*[@class='icon close']")
+	private WebElement closeDetails;
 	
 	
 	
-	
+	public WebElement getCloseDetails() {
+		return closeDetails;
+	}
+
+	public WebElement getCpdFrameWork() {
+		return cpdFrameWork;
+	}
+
+	public WebElement getFrameWorkType() {
+		return frameWorkType;
+	}
+
+	public WebElement getFrameWorkTypeYesBtn() {
+		return frameWorkTypeYesBtn;
+	}
 	
 	
 	public WebElement getClkUploadFileOpt() {

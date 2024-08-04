@@ -77,11 +77,18 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//div[@class='title active']")
 	private WebElement  assertTOC;
 	
+	@FindBy(how=How.XPATH,using="//div[@class='d-flex fs-0-785 sb-color-gray-300 mb-15 pt-10 mt-10 sb-pageSection-document flex-jc-flex-end']")
+	private WebElement  assertTitles;
 	
 	
 	
 	
 	
+	
+	public WebElement getAssertTitles() {
+		return assertTitles;
+	}
+
 	public WebElement getAssertTOC() {
 		return assertTOC;
 	}
@@ -451,13 +458,222 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="(//span[@class='font-weight-bold'])[2]")
 	private WebElement getTotalCountTop;
 	
+	@FindBy(how=How.XPATH,using="//strong[text()='Invalid file type (supported type: .vtt)']")
+	private WebElement assertInvalidFileType;
+	
+	@FindBy(how=How.XPATH,using="(//td[text()=' Published']//following::button[text()='Open'])[1]")
+	private WebElement clkOpenPublished;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Published on DIKSHA ']")
+	private WebElement assertPublishedOnDiksha;
+	
+	@FindBy(how=How.XPATH,using="//a[text()='View this content on DIKSHA']")
+	private WebElement clkViewContent;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Not Published on DIKSHA ']")
+	private WebElement assertNotPublishedOnDiksha;
+	
+	@FindBy(how=How.XPATH,using="(//td[text()=' Not Published']//following::button[text()='Open'])[1]")
+	private WebElement clkOpenNotPublished;
+	
+	@FindBy(how=How.XPATH,using="//label[text()='Create Question Sets Online']")
+	private WebElement clkQSetOpt2;
+
+	@FindBy(how=How.XPATH,using="//label[text()='MCQ - Practice Sets']")
+	private WebElement clkMCQPracticeQSet;
+	
+	@FindBy(how=How.XPATH,using="(//span[@class='sb-card-title'])[1]")
+	private WebElement QSetTemplate1;
+	
+	@FindBy(how=How.XPATH,using="(//button[contains(text(),'Submit')])[2]")
+	private WebElement clkSubmitBtn;
+	
+	@FindBy(how=How.XPATH,using="//div[@aria-label='Rich Text Editor, main']")
+	private WebElement Questionfield;
+	
+	@FindBy(how=How.XPATH,using="(//div[@aria-label='Rich Text Editor, main'])[2]")
+	private WebElement Ans1field;
+
+	@FindBy(how=How.XPATH,using="(//div[@aria-label='Rich Text Editor, main'])[3]")
+	private WebElement Ans2field;
+	
+	@FindBy(how=How.XPATH,using="(//div[@aria-label='Rich Text Editor, main'])[4]")
+	private WebElement Ans3field;
+	
+	@FindBy(how=How.XPATH,using="(//div[@aria-label='Rich Text Editor, main'])[5]")
+	private WebElement Ans4field;
+	
+//	@FindBy(how=How.XPATH,using="(//label[text()='Mark as right answer'])[1]")
+	@FindBy(how=How.XPATH,using="(//label[@for='check1'])[2]//preceding::input[@name='example']")
+	private WebElement MarkCorrectAnsOpt1;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Choose type']")
+	private WebElement clkChooseSolType;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Text+Image']")
+	private WebElement ChooseSolType1;
+	
+	@FindBy(how=How.XPATH,using="(//div[@aria-label='Rich Text Editor, main'])[6]")
+	private WebElement enterSol;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Preview']")
+	private WebElement btnPreview;
+	
+	@FindBy(how=How.XPATH,using="//div[@value='1']")
+	private WebElement clkAnsOpt2;
+	
+	@FindBy(how=How.XPATH,using="//img[@alt='Navigate to Next']")
+	private WebElement clkNext;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Solution']")
+	private WebElement clkSoultion;
+	
+	@FindBy(how=How.XPATH,using="//span[text()=' Sample_Question']//following::span[text()='Review Pending']")
+	private WebElement clkQSetRevPen;
+	
+	@FindBy(how=How.XPATH,using="//button[text()='Add/Edit Transcript']")
+	private WebElement clkBtnAddOrTran;
+	
+	@FindBy(how=How.XPATH,using="(//sui-select[@formcontrolname='language'])[2]")
+	private WebElement clkSelLanguage2;
+	
+	@FindBy(how=How.XPATH,using="(//span[text()='Bengali'])[2]")
+	private WebElement clkSelBengaliLanguage;
+	
+	@FindBy(how=How.XPATH,using="//i[@class='universal access icon ']")
+	private WebElement clkAccessibility;
+	
+	@FindBy(how=How.XPATH,using="//div[text()='Video']")
+	private WebElement ChooseSolType2;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Asset Successfully Uploaded...']")
+	private WebElement assertVideoAdded;
 	
 	
 	
 	
 	
+	public WebElement getAssertVideoAdded() {
+		return assertVideoAdded;
+	}
+
+	public WebElement getChooseSolType2() {
+		return ChooseSolType2;
+	}
+
+	public WebElement getClkAccessibility() {
+		return clkAccessibility;
+	}
+
+	public WebElement getClkSelBengaliLanguage() {
+		return clkSelBengaliLanguage;
+	}
+
+	public WebElement getClkSelLanguage2() {
+		return clkSelLanguage2;
+	}
+
+	public WebElement getClkBtnAddOrTran() {
+		return clkBtnAddOrTran;
+	}
+
+	public WebElement getClkQSetRevPen() {
+		return clkQSetRevPen;
+	}
+
+	public WebElement getClkSoultion() {
+		return clkSoultion;
+	}
+
+	public WebElement getClkNext() {
+		return clkNext;
+	}
+
+	public WebElement getClkAnsOpt2() {
+		return clkAnsOpt2;
+	}
+
+	public WebElement getBtnPreview() {
+		return btnPreview;
+	}
+
+	public WebElement getEnterSol() {
+		return enterSol;
+	}
+
+	public WebElement getChooseSolType1() {
+		return ChooseSolType1;
+	}
+
+	public WebElement getClkChooseSolType() {
+		return clkChooseSolType;
+	}
+
+	public WebElement getMarkCorrectAnsOpt1() {
+		return MarkCorrectAnsOpt1;
+	}
+
+	public WebElement getAns4field() {
+		return Ans4field;
+	}
+	
+	public WebElement getAns3field() {
+		return Ans3field;
+	}
+	
+	public WebElement getAns2field() {
+		return Ans2field;
+	}
 	
 	
+	public WebElement getAns1field() {
+		return Ans1field;
+	}
+
+	public WebElement getQuestionfield() {
+		return Questionfield;
+	}
+
+	public WebElement getClkSubmitBtn() {
+		return clkSubmitBtn;
+	}
+
+	public WebElement getQSetTemplate1() {
+		return QSetTemplate1;
+	}
+
+	public WebElement getClkMCQPracticeQSet() {
+		return clkMCQPracticeQSet;
+	}
+
+	public WebElement getClkQSetOpt2() {
+		return clkQSetOpt2;
+	}
+
+	public WebElement getClkOpenNotPublished() {
+		return clkOpenNotPublished;
+	}
+
+	public WebElement getAssertNotPublishedOnDiksha() {
+		return assertNotPublishedOnDiksha;
+	}
+
+	public WebElement getClkViewContent() {
+		return clkViewContent;
+	}
+
+	public WebElement getAssertPublishedOnDiksha() {
+		return assertPublishedOnDiksha;
+	}
+
+	public WebElement getClkOpenPublished() {
+		return clkOpenPublished;
+	}
+
+	public WebElement getAssertInvalidFileType() {
+		return assertInvalidFileType;
+	}
+
 	public WebElement getGetTotalCountTop() {
 		return getTotalCountTop;
 	}

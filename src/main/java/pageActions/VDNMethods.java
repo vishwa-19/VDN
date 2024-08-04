@@ -1442,7 +1442,9 @@ public class VDNMethods extends BaseClass {
 
 		try {
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			Thread.sleep(5000);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+			Thread.sleep(5000);
 			String s1 = "//div[text()=' ";
 			String s2 = ProjectName;
 			String s3 = " ']//following::button[text()='Open '][1]";
@@ -7170,6 +7172,108 @@ public class VDNMethods extends BaseClass {
 
 	}
 
+	public static String createNewProjectwitCpdFrameWorkType() throws InterruptedException {
+		String home = null;
+		String expect = "Sourcing org admin is able to create From anyone along with the Tabs";
+		String actual = "Sourcing org admin is unable to create From anyone along with the Tabs";
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNUtils.waitToBeClickableAndClick(VO.getCreateNewBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getProjOpt1());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkbtn());
+			String ProjectName = VDNUtils.set_Content_Name("AutoP_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectName(), ProjectName);
+			String ProjectDesc = VDNUtils.set_Content_Name("AutoD_");
+			VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterProjectDesc(), ProjectDesc);
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			VDNUtils.waitToBeClickableAndClick(VO.getNominationEndDate());
+			js.executeScript("arguments[0].scrollIntoView(true);", VO.getNominationEndDate());
+			Date.setTodayDate(driver, VO.getNominationEndDate());
+			Thread.sleep(500);
+			Date.setTodayDate(driver);
+			Thread.sleep(1000);
+			Actions action = new Actions(driver);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+			VDNUtils.waitToBeClickableAndClick(VO.getShortlistEndDate());
+			Date.setTomorrowDate(driver, VO.getShortlistEndDate());
+			Thread.sleep(500);
+			Date.setTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+			VDNUtils.waitToBeClickableAndClick(VO.getContributionEndDate());
+			Date.setDayAfterTomorrowDate(driver, VO.getContributionEndDate());
+			Thread.sleep(500);
+			Date.setDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+			VDNUtils.waitToBeClickableAndClick(VO.getEnrollmentEndDate());
+			Date.setNextToDayAfterTomorrowDate(driver, VO.getEnrollmentEndDate());
+			Thread.sleep(500);
+			Date.setNextToDayAfterTomorrowDate(driver);
+			Thread.sleep(1000);
+			action.sendKeys("\b").perform();
+			Thread.sleep(500);
+			action.sendKeys("4").perform();
+			Thread.sleep(500);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkNextButton());
+			VDNUtils.waitToBeClickableAndClick(VO.getFrameWorkType());
+			VDNUtils.waitToBeClickableAndClick(VO.getCpdFrameWork());
+			VDNUtils.waitToBeClickableAndClick(VO.getFrameWorkTypeYesBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelCourseAssesment());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelEtextBook());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelExplanationContent());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelLearningResource());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelPQuestionSet());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherResource());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkContentTypes());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollectionCat());
+			VDNUtils.waitToBeClickableAndClick(VO.getSelDigitalTextBook());
+			VDNUtils.waitToBeClickableAndClick(VO.getChooseTargetCollection());
+			Thread.sleep(5000);
+			VDNUtils.waitToBeClickableAndClick(VO.getClkPublishBtn());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkConfirm());
+			Thread.sleep(10000);
+			js.executeScript("window.scrollBy(0, 0)");
+			String s1 = "//div[text()=' ";
+			String s2 = ProjectName;
+			String s3 = " ']";
+			Thread.sleep(10000);
+			WebElement assertProjectOnMyProjects = driver.findElement(By.xpath(s1 + s2 + s3));
+			assertProjectOnMyProjects.isDisplayed();
+			String s4 = " ']//following::button[text()='Open '][1]";
+			Thread.sleep(10000);
+			WebElement projectOpenbtn = driver.findElement(By.xpath(s1 + s2 + s4));
+			VDNUtils.waitToBeClickableAndClick(projectOpenbtn);
+			Thread.sleep(10000);
+			js.executeScript("window.scrollBy(0, 0)");
+			Thread.sleep(2000);
+			Assert.assertTrue(VO.getAssertNominations().isDisplayed());
+			Assert.assertTrue(VO.getAssertAssignUsers().isDisplayed());
+			Assert.assertTrue(VO.getAssertContribution().isDisplayed());
+			Assert.assertTrue(VO.getAssertReport().isDisplayed());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominations());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertAssignUsers());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertContribution());
+			VDNUtils.waitToBeClickableAndClick(VO.getAssertReport());
+			home = VO.getAssertContribution().getText();
+			actual = "Sourcing org admin is able to create From anyone along with the Tabs";
+			return ProjectName;
+		} finally {
+			String homeText = home != null ? home : "N/A";
+			Listeners.customAssert("Contribution Dashboard", homeText, expect, actual);
+		}
+
+}
 		
 
 	
