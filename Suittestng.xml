@@ -201,7 +201,7 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>-->
-			<class name="regression.contributor.VerifyContributorAbleToContributeTheContentWithAccessibilityFeatures"/>
+			<class name="regression.contributor.VerifyEnrollmentFormIsDisplayedWhenUserLogsInForFirststTime"/>
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			
