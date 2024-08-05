@@ -13534,5 +13534,101 @@ public static void CloseCreatedProjectNoTC(String ProjectName) throws Interrupte
 
 }
 
+public static void verifyAssignedReviewerIsAbleApproveFromBothRole(String ProjectName) throws Exception {
+	String home = null;
+	String expect = " Assigned Reviewer Is Able is able to preview the uploaded content by contributor.";
+	String actual =  "Assigned Reviewer Is Unble is able to preview the uploaded content by contributor.";
+
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		
+		Thread.sleep(3000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkUploadContent());
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadContent());
+		Thread.sleep(3000);
+		
+		for(int i=0;i<4;i++) {
+			
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPending());
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkSubmitForApproval());
+		Assert.assertTrue(VO.getClkSubmitForApproval().isDisplayed());
+		
+		
+		VDNUtils.waitForElementToBeVisible(VO.getClkRequestChanges());
+		Assert.assertTrue(VO.getClkRequestChanges().isDisplayed());
+		
+		Assert.assertTrue(VO.getContentDetails().isDisplayed());
+		VDNUtils.waitForElementToBeVisible(VO.getContentDetails());
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmitForApproval());
+		Thread.sleep(3000);
+
+		
+		Thread.sleep(2000);		
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPendingOrProcessing());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+		Thread.sleep(2000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getAssertReviewPendingOrProcessing());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VO.getBackBtn());
+		Thread.sleep(2000);
+		
+		VDNUtils.waitForElementToBeVisible(VO.getAssertApprovalPendingTOC());
+		Assert.assertTrue(VO.getAssertApprovalPendingTOC().isDisplayed());
+		}
+		String stausApprovalPending = VO.getAssertApprovalPendingTOC().getText();
+		Assert.assertEquals(stausApprovalPending,"Approval Pending");			
+		home = VO.getAssertApprovalPendingTOC().getText();
+		System.out.print(home);
+		
+		actual = "Assigned Reviewer Is Able is able to preview the uploaded content by contributor.";
+	} finally {
+		String homeText = home != null ? home : "N/A";
+		Listeners.customAssert("Approval Pending" ,homeText, expect, actual);
+	}
+}
+
+public static void verifyKnowMoreButtonIsNotDisplayedAfterGoingToHelpCenter() {
+	
+	String text = "N/A";
+	String expect = "Verify help center should be opend in another tab";
+	String actual = "Help center is not opend in another tab";
+	
+	try {
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	
+	String mainWindowHandle = driver.getWindowHandle();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VS.getHelpCenter());
+	VDNUtils.waitForElementToBeVisible(VS.getHelpCenter());
+	VDNUtils.waitToBeClickableAndClick(VS.getHelpCenter());
+	Set<String> allWindowHandles = driver.getWindowHandles();
+	for (String handle : allWindowHandles) {
+	    
+	    if (!handle.equals(mainWindowHandle)) {
+	        System.out.println("New window opened");
+	    }
+	}
+	text = "Completed";
+	actual = "Help center is opend in another tab successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	
+}
+
 }
 

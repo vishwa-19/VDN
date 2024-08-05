@@ -7,12 +7,12 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile extends BaseClass {
-	
+public class VerifyRequestChangesAndSubmitForApprovalButtonIsDisplayedForAssignedReviewer extends BaseClass {
+
 	@Test
-	public static void verifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile() throws Exception {
+	public static void verifyRequestChangesAndSubmitForApprovalButtonIsDisplayedForAssignedReviewer() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
-	String ProjectName=VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
+	String ProjectName = VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
 	VDNMethods.addSampleFromContriutionSideWithoutNominate(ProjectName);
@@ -24,10 +24,11 @@ public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFi
 	VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont Only");
-	VDNContributorMethods.validateAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButton(ProjectName);
-	VDNContributorMethods.validateContributorUnableToAddEpubAsATranscriptFile();
+	VDNContributorMethods.uploadEtextAndExplinitionContentFromContOrgContributorAndSendForReview(ProjectName);
+	UserOnBoarding.VDNlogout();
+	UserOnBoarding.loginAsContributor("Rev Only");
+	VDNContributorMethods.validateContributionOrgReviewerIsAbleToAcceptAndRequestChangesOfDT(ProjectName);
 	
-
 	}
-
 }
+

@@ -6,10 +6,11 @@ import pageActions.UserOnBoarding;
 import pageActions.VDNContributorMethods;
 import utility.BaseClass;
 
-public class VerifyContributionDetailsDisplayedUnderMyContentsTab extends BaseClass{
+public class VerifyContributionDetailsSectionIsAvailableInMyContentsPage extends BaseClass{
 	
 	@Test
-	public static void verifyContributionDetailsDisplayedUnderMyContentsTab() throws Exception {
+	public static void verifyContributionDetailsSectionIsAvailableInMyContentsPage() throws Exception {
+		
 		UserOnBoarding.loginAsContributor("Cont OrgAdmin");
 		VDNContributorMethods.validateContributionDetailsDisplayedUnderMyContentsTab();
 	}

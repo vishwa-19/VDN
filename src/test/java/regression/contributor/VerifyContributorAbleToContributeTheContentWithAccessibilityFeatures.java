@@ -5,26 +5,29 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp extends BaseClass {
-	
+public class VerifyContributorAbleToContributeTheContentWithAccessibilityFeatures extends BaseClass {
 	@Test
-	public static void verifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp() throws Exception {
+	public static void verifyContributorAbleToContributeTheContentWithAccessibilityFeatures() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName=VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
 	UserOnBoarding.VDNlogout();
-	UserOnBoarding.loginAsContributor("Ind Contributor");
+	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
 	VDNMethods.addSampleFromContriutionSideWithoutNominate(ProjectName);
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsSourcing("Admin");
 	VDNMethods.verifySourcingOrgAdminIsAbleToAcceptNomination(ProjectName);
 	UserOnBoarding.VDNlogout();
-	UserOnBoarding.loginAsContributor("Ind Contributor");
+	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
+	VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
+	UserOnBoarding.VDNlogout();
+	UserOnBoarding.loginAsContributor("Cont Only");
 	VDNContributorMethods.validateAccessibilityDetailsButtonDisplayedWhileUploadingContent(ProjectName);
 	VDNContributorMethods.validateAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp(ProjectName);
 
 	}
 
 }
+
 
 
 

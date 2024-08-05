@@ -336,6 +336,9 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//td[text()='Color']//following::td[2]")
 	private WebElement assertDraftCount;
 	
+	@FindBy(how=How.XPATH,using="//td[text()='VDN Prod']//following::td[2]")
+	private WebElement assertDraftCount1;
+
 	@FindBy(how=How.XPATH,using="//th[text()=' Draft ']")
 	private WebElement assertDraftTitle;
 	
@@ -421,6 +424,10 @@ public class VDNSourcing {
 	private WebElement assertListOfContents;
 	
 	
+	
+	public WebElement getAssertDraftCount1() {
+		return assertDraftCount1;
+	}
 	
 	public WebElement getAssertListOfContents() {
 		return assertListOfContents;
@@ -1621,14 +1628,35 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//h4[text()='All Users']")
 	private WebElement assertAllUserHeader;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='My Content']")
+	private WebElement myContentTab;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Total Plays']")
+	private WebElement totalPlays;
+
+	@FindBy(how=How.XPATH,using="//*[text()='Average plays per count']")
+	private WebElement averagePlays;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Average Rating']")
+	private WebElement averageRating;
 	
 	
+	public WebElement getTotalPlays() {
+		return totalPlays;
+	}
 	
-	
-	
-	
-	
-	
+	public WebElement getAveragePlays() {
+		return averagePlays;
+	}
+
+	public WebElement getAverageRating() {
+		return averageRating;
+	}
+
+	public WebElement getMyContentTab() {
+		return myContentTab;
+	}
+
 	public WebElement getAssertAllUserHeader() {
 		return assertAllUserHeader;
 	}

@@ -204,8 +204,12 @@
 			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>
 			<class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>-->
 
-			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>-->
-			<class name="regression.contributor.VerifyThatIndividualContributorIsAbleToContributeForCpdFrameWorkTypes"/>
+			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>
+
+			<class name="regression.contributor.VerifyThatIndividualContributorIsAbleToContributeForCpdFrameWorkTypes"/>-->
+
+			<class name="regression.contributor.VerifyDownloadPublishedContentDetailsOptionIsAvailableInContributedContentsPage"/>
+
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			

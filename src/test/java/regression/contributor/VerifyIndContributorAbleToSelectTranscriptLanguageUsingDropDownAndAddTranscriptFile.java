@@ -22,7 +22,7 @@ public class VerifyIndContributorAbleToSelectTranscriptLanguageUsingDropDownAndA
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Ind Contributor");
 	VDNContributorMethods.validateAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButton(ProjectName);
-	VDNContributorMethods.validateIndContributorAblAddTranscriptFile();
+	VDNContributorMethods.validateIndContributorAbleAddTranscriptFile();
 
 	}
 

@@ -705,7 +705,7 @@ public class VDNObj {
 	
 	@FindBy(how=How.XPATH,using="//label[text()='Upload file']")
 	private WebElement clkUploadFileOpt;
-	
+
 	@FindBy(how=How.XPATH,using="//*[@formcontrolname='framework']")
 	private WebElement frameWorkType;
 	
@@ -717,6 +717,10 @@ public class VDNObj {
 	
 	@FindBy(how=How.XPATH,using="//*[@class='icon close']")
 	private WebElement closeDetails;
+
+	@FindBy(how=How.XPATH,using="//div[@class='sb-bg-color-white pt-32']")
+	private WebElement nominationTabDetails;
+
 	
 	
 	
@@ -737,6 +741,13 @@ public class VDNObj {
 	}
 	
 	
+	
+	
+	public WebElement getNominationTabDetails() {
+		return nominationTabDetails;
+	}
+
+
 	public WebElement getClkUploadFileOpt() {
 		return clkUploadFileOpt;
 	}
