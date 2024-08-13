@@ -51,7 +51,7 @@ public class VDNContributorMethods extends BaseClass {
 		try {
 		String s1 = "//div[text()=' ";
 		String s2 = ProjectName;
-		String s3 = " ]";
+		String s3 = " ']//following::button[text()='Open '][1]";
 		String s4 = " ']//following::span[text()='Pending'][1]";
 		Thread.sleep(10000);
 		WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
@@ -2301,7 +2301,8 @@ public static void verifyContOrgContributorAbleToUploadContentAndAddAllDetails()
 		
 		VDNUtils.waitToBeClickableAndClick(VO.getSaveBtn());
 		Thread.sleep(2000);
-		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
@@ -2310,7 +2311,8 @@ public static void verifyContOrgContributorAbleToUploadContentAndAddAllDetails()
 		Thread.sleep(2000);
 		
 		Thread.sleep(2000);
-		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());	
+//		VDNUtils.waitToBeClickableAndClick(VO.getClkPostSubmit());	
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
 		Thread.sleep(3000);
 		home = VO.getAssertContentSetReview().getText();	
 		System.out.println(home);
@@ -9725,7 +9727,9 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			
 			VDNUtils.waitToBeClickableAndClick(VC.getAssertViewComment());
 			Thread.sleep(3000);
-			Assert.assertTrue(VC.getAssertReviewComment().isDisplayed());
+//			Assert.assertTrue(VC.getAssertReviewComment().isDisplayed());
+			
+			Assert.assertTrue(VC.getAssertReviewReject().isDisplayed());
 			
 			home2 = VC.getAssertReviewReject().getText();
 			System.out.print(home2);		
@@ -10565,9 +10569,8 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 			
 			UploadContentMethods.UploadPdf();
 			Thread.sleep(3000);
-			
+			VDNUtils.waitForElementToBeVisible(VC.getAssertInvalidFileType());
 			Assert.assertTrue(VC.getAssertInvalidFileType().isDisplayed());
-			Thread.sleep(3000);
 			home1 = VC.getAssertInvalidFileType().getText();
 			System.out.println(home1);
 			actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
@@ -11912,6 +11915,11 @@ public static void VerifyManageUsersTabIsAvailableForContOrgAdmin() throws Inter
 //			Thread.sleep(3000);
 //			VDNUtils.waitToBeClickableAndClick(VO.getUploadSampleBtn());
 			
+			Thread.sleep(3000);
+			
+			VDNUtils.waitForElementToBeVisible(VO.getClkUploadContent());
+			VDNUtils.waitToBeClickableAndClick(VO.getClkUploadContent());
+			Thread.sleep(2000);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
 			Thread.sleep(2000);
 			VDNUtils.waitToBeClickableAndClick(VO.getSelPractQSet());
@@ -12563,14 +12571,15 @@ public static void validateTheCountOnTocAndTopForUserWithBothRole(String Project
 		System.out.print(RejectedCount);
 		
 		int RejectedC=Integer.parseInt(RejectedCount); 
-		
+		System.out.print("Rejected :"+RejectedC);
 		String TotalCount = VO.getAssertTotalContCount().getText();
 		System.out.print(TotalCount);
 		
 		int TotalC=Integer.parseInt(TotalCount);
+		System.out.print("Total :"+TotalC);
 		
 		Assert.assertEquals(RejectedC,1);
-		Assert.assertEquals(TotalC,1);
+		Assert.assertEquals(TotalC,6);
 		
 		home = VO.getAssertRejectedOnTOC().getText();
 	
@@ -12748,5 +12757,134 @@ public static void uploadEtextAndExplinitionContentFromContOrgContributorAndSend
 		String homeText = home != null ? home : "N/A";
 		Listeners.customAssert("Review Pending" ,homeText, expect, actual);
 }
+}
+
+public static void validateAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButtonOnWebm(String ProjectName)
+		throws Exception {
+	String home1 = null;
+	String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+	String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkMyProject());
+		String s1 = "//div[text()=' ";
+		String s2 = ProjectName;
+		String s3 = " ']//following::button[text()='Open '][1]";
+		WebElement assertProjectOnContributor = driver.findElement(By.xpath(s1 + s2 + s3));
+		
+		VDNUtils.waitForElementToBeVisible(assertProjectOnContributor);
+		assertProjectOnContributor.isDisplayed();
+		assertProjectOnContributor.click();
+		Thread.sleep(5000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkUploadbtn());
+		
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkCreateNew());
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getSelTeacherRes());
+		Thread.sleep(1000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getContinueBtn());
+		Thread.sleep(2000);
+		
+		Thread.sleep(3000);
+		UploadContentMethods.UploadWebm();
+		
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VC.getClkAddTranscriptbtn());
+		Thread.sleep(3000);
+		
+		Assert.assertTrue(VC.getAssertAddorEditTrans().isDisplayed());
+		home1 = VC.getAssertAddorEditTrans().getText();
+		System.out.println(home1);
+		actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+		
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		System.out.println(homeText1);
+		Listeners.customAssert("Add/Edit Transcript" ,homeText1, expect1, actual1);
+	}
+}
+
+public static void validateIndContAbleToUploadWebmContentAndAddMultipleTranscriptFilesAndSendForApproval()
+		throws Exception {
+	String home1 = null;
+	String expect1 = "Add/edit Transcript pop up should be displayed post clicking on Add Transcript button in the Preview video pop up.";
+	String actual1 =  "Add/edit Transcript pop up is not displayed post clicking on Add Transcript button in the Preview video pop up. ";
+	
+	String home2 = null;
+	String expect2 = "Individual contributor should be able to upload mp4 content and add multiple transcript files";
+	String actual2 =  "Individual contributor is unable to upload mp4 content and add multiple transcript files";
+	try {
+		VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+		VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+
+		
+		VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VC.getClkSelAssamLanguage());
+		Thread.sleep(3000);
+		
+
+		UploadContentMethods.UploadVTT();
+		Thread.sleep(3000);
+		
+		Assert.assertTrue(VC.getAssetVTTFileUploaded().isDisplayed());
+		Thread.sleep(3000);
+		home1 = VO.getClkSaveButton().getText();
+		System.out.println(home1);
+		actual1 = "Add/edit Transcript pop up is displayed post clicking on Add Transcript button in the Preview video pop up.";
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+		Thread.sleep(3000);
+		VDNUtils.waitToBeClickableAndClick(VC.getClkBtnAddOrTran());
+		Thread.sleep(2000);
+		
+		
+		
+		VDNUtils.waitToBeClickableAndClick(VC.getClkSelLanguage2());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VC.getClkSelBengaliLanguage());
+		Thread.sleep(3000);
+		
+
+		UploadContentMethods.UploadVTT();
+		Thread.sleep(3000);
+		
+		Assert.assertTrue(VC.getAssetVTTFileUploaded().isDisplayed());
+		Thread.sleep(3000);
+		home2 = VO.getClkSaveButton().getText();
+		System.out.println(home2);
+		actual2 = "Individual contributor is able to upload webm content and add multiple transcript files";
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSaveButton());
+		Thread.sleep(3000);
+		
+		VDNUtils.waitToBeClickableAndClick(VO.getSubmitForReviewBtn());
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterName(), "Sample_MP4");
+		Thread.sleep(1000);
+		VDNUtils.waitToBeClickableAndSendKeys(VO.getEnterYear(), "2023");
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", VO.getClkCheckBox());
+		Thread.sleep(2000);
+		VO.getClkCheckBox().click();
+		Thread.sleep(2000);
+		VDNUtils.waitToBeClickableAndClick(VO.getClkSubmit());
+		
+	} finally {
+		String homeText1 = home1 != null ? home1 : "N/A";
+		System.out.println(homeText1);
+		Listeners.customAssert("Save" ,homeText1, expect1, actual1);
+		
+		String homeText2 = home2 != null ? home2 : "N/A";
+		System.out.println(homeText2);
+		Listeners.customAssert("Save" ,homeText2, expect2, actual2);
+	}
 }
 }

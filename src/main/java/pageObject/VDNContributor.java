@@ -555,11 +555,43 @@ public class VDNContributor {
 	@FindBy(how=How.XPATH,using="//button[text()=' Done ']")
 	private WebElement clkDone;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Enroll as Contributor ']")
+	private WebElement assertEnrollPopup;
+	
+	@FindBy(how=How.XPATH,using="//label [text()='Do you want to enroll as ? ']")
+	private WebElement enrollPopupConfirmation;
+	
+	@FindBy(how=How.XPATH,using="//label [text()='I understand and accept the ']")
+	private WebElement assertCheckbox;
+	
+	@FindBy(how=How.XPATH,using="//label [text()='Organisation']")
+	private WebElement assertOrgOnPopup;
+	
+	@FindBy(how=How.XPATH,using="//label [text()='Individual']")
+	private WebElement assertIndOnPopup;
 	
 	
 	
-	
-	
+	public WebElement getAssertIndOnPopup() {
+		return assertIndOnPopup;
+	}
+
+	public WebElement getAssertOrgOnPopup() {
+		return assertOrgOnPopup;
+	}
+
+	public WebElement getAssertCheckbox() {
+		return assertCheckbox;
+	}
+
+	public WebElement getEnrollPopupConfirmation() {
+		return enrollPopupConfirmation;
+	}
+
+	public WebElement getAssertEnrollPopup() {
+		return assertEnrollPopup;
+	}
+
 	public WebElement getClkDone() {
 		return clkDone;
 	}

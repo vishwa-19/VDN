@@ -10,10 +10,6 @@ public class VerifyEnrollmentFormIsDisplayedWhenUserLogsInForFirststTime extends
 	@Test
 	public static void verifyEnrollmentFormIsDisplayedWhenUserLogsInForFirststTime() throws Exception {
 	UserOnBoarding.loginAsContributor("First Time");
-//	VDNMethods.validateCreateNewProjectwithAllContentTypesWithDigitalTextBooks();
-//	UserOnBoarding.VDNlogout();
-//	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
-//	VDNContributorMethods.validateToastMessageContributorSendTheNomination(ProjectName);
 	}
 
 }

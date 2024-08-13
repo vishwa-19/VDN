@@ -31,7 +31,6 @@ public class VerifyTheCountOnTocAndTopForUserWithBothRole extends BaseClass {
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsSourcing("Admin");
 	VDNSourcingMethods.verifyContentStatusDigitalTextBook(ProjectName);
-//	VDNSourcingMethods.verifyDetailsAndCountsContributionDashboardWithSkipReviewEnabled();
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Both Role");
 	VDNContributorMethods.validateTheCountOnTocAndTopForUserWithBothRole(ProjectName);

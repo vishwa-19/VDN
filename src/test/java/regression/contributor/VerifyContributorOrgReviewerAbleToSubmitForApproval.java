@@ -21,12 +21,11 @@ public class VerifyContributorOrgReviewerAbleToSubmitForApproval extends BaseCla
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont OrgAdmin");
 		VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
-		
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont Only");
 		VDNContributorMethods.uploadContentFromAssignedContributorWithoutTC(ProjectName);
 		UserOnBoarding.VDNlogout();
-		UserOnBoarding.loginAsSourcing("Rev Only");
+		UserOnBoarding.loginAsContributor("Rev Only");
 		VDNContributorMethods .validateOrgReviewerIsAbleApproveNoTC(ProjectName);
 
 	}

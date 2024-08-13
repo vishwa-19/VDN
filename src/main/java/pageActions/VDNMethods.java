@@ -22,6 +22,7 @@ import org.openqa.selenium.interactions.Actions;
 import io.reactivex.rxjava3.functions.Action;
 import pageObject.HomePage;
 import pageObject.UploadPdfContent;
+import pageObject.VDNContributor;
 import pageObject.VDNObj;
 import pageObject.VDNSourcing;
 import utility.BaseClass;
@@ -2774,6 +2775,7 @@ public class VDNMethods extends BaseClass {
 			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
 			VDNUtils.waitToBeClickableAndClick(VO.getClkTargetCollection());
 			WebElement clkOpenProject = driver.findElement(By.xpath(s1 + s2 + s3));
+			Thread.sleep(5000);
 			VDNUtils.waitToBeClickableAndClick(clkOpenProject);
 
 			VDNUtils.waitToBeClickableAndClick(VO.getAssertNominationTab());
@@ -7172,7 +7174,47 @@ public class VDNMethods extends BaseClass {
 
 	}
 
+	
+	public static void validateEnrollmentFormIsDisplayedForFirststTime()
+			throws InterruptedException {
+		String home1 = null;
+		String expect1 = " 1. Enrollment form should get displayed with contribute as an organization's/ Individual option";
+		String actual1 =  "1. Enrollment form is not displayed with contribute as an organization's/ Individual option";
 		
+		String home2 = null;
+		String expect2 = " 2. Enrollment form should be displayed with contribute as an organization's/ Individual with Popup Confirmation";
+		String actual2 =  "2. Enrollment form is not displayed with contribute as an organization's/ Individual with Popup Confirmation";
+		
+
+		try {
+			VDNObj VO = PageFactory.initElements(driver, VDNObj.class);
+			VDNContributor VC = PageFactory.initElements(driver, VDNContributor.class);
+
+			Assert.assertTrue(VC.getAssertEnrollPopup().isDisplayed());
+			
+			home1 = VC.getAssertEnrollPopup().getText();
+			System.out.println(home1);
+			actual1 = "1. Enrollment form is displayed with contribute as an organization's/ Individual option";
+		
+			Assert.assertTrue(VC.getEnrollPopupConfirmation().isDisplayed());
+			
+			home2  = VC.getEnrollPopupConfirmation().getText();
+			System.out.println(home2);
+			actual2 = "2. Enrollment form is displayed with contribute as an organization's/ Individual with Popup Confirmation";
+
+			Assert.assertTrue(VC.getAssertCheckbox().isDisplayed());
+			Assert.assertTrue(VC.getAssertOrgOnPopup().isDisplayed());
+			Assert.assertTrue(VC.getAssertIndOnPopup().isDisplayed());
+			
+		} finally {
+			String homeText1 = home1 != null ? home1 : "N/A";
+			System.out.println(homeText1);
+			Listeners.customAssert("Enroll as Contributor", homeText1, expect1, actual1);
+			String homeText2 = home2 != null ? home2 : "N/A";
+			System.out.println(homeText2);
+			Listeners.customAssert("Do you want to enroll as ?", homeText2, expect2, actual2);
+		}
+	}
 
 	
 }

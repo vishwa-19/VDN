@@ -26,7 +26,6 @@ public class VerifyContributorOrgReviewerAbleToReviewContentAndSubmitForApproval
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Rev Only");
 		VDNMethods.validateAssignedReviewerIsAbleApproveNoTC(ProjectName);
-//		UserOnBoarding.VDNlogout();
 	}
 
 }

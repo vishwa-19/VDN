@@ -201,7 +201,24 @@
 			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
 			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>-->
-			<class name="regression.contributor.VerifyEnrollmentFormIsDisplayedWhenUserLogsInForFirststTime"/>
+			
+			<!--<class name="regression.contributor.VerifyContributorIsAbleToOpenUploadedContentByClickingOpenBtn"/>
+			<class name="regression.contributor.VerifyContOrgContributorAbleToUploadContentAndAddAllDetails"/>
+			<class name="regression.contributor.VerifyWithoutTCprojectsDisplayedInMyProjectsTab"/>
+			<class name="regression.contributor.VerifyTheCountOnTocAndTopForUserWithBothRole"/>
+			<class name="regression.contributor.VerifyConfirmationPopupPage"/>
+			<class name="regression.contributor.VerifyConfirmationPopupPageAndModifyStatusFromIndCont"/>
+			<class name="regression.contributor.VerifyContributorOrgReviewerAbleToSubmitForApproval"/>
+			<class name="regression.contributor.VerifyTheConfirmationPopupPageDisplayedOnClickingModify"/>
+			<class name="regression.contributor.VerifyOpenAndModifyButtonsAreDisplayedWithPendingStatus"/>-->
+			
+			<!--<class name="regression.contributor.VerifyTotalPlaysCountIsDisplayedUnderAllContentsTab"/>-->
+			<!--<class name="regression.contributor.VerifyContentIsViewableToAssignedReviewerEvenAfterContentIsRejected"/>-->
+			<!--<class name="regression.contributor.VerifyContributionOrgReviewerAbleToSubmitApprovalTheCorrectedContent"/>-->
+			<!--<class name="regression.contributor.VerifyAccessibilityDetailsButtonDisplayedWhileUploadingFromAssinedCont"/>-->
+			<class name="regression.contributor.VerifyContOrgContIsAbleToUploadWebmContentAndAddMultipleTranscriptFileSendForReview"/>
+			<!--<class name="vdn.VerifyEnrollmentFormIsDisplayedForFirststTime"/>-->
+			
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->
 			
 			

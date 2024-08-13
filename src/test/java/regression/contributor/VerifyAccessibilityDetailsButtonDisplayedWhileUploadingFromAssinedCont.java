@@ -9,10 +9,12 @@ public class VerifyAccessibilityDetailsButtonDisplayedWhileUploadingFromAssinedC
 	@Test
 	public static void verifyAccessibilityDetailsButtonDisplayedWhileUploadingFromAssinedCont() throws Exception {
 		UserOnBoarding.loginAsSourcing("Admin");
-		String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
+//		String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
+		String ProjectName = VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsContributor("Cont OrgAdmin");
-		VDNMethods.openAndNominate(ProjectName);
+//		VDNMethods.openAndNominate(ProjectName);
+		VDNMethods.addSampleFromContriutionSideWithoutNominate(ProjectName);
 		UserOnBoarding.VDNlogout();
 		UserOnBoarding.loginAsSourcing("Admin");
 		VDNMethods.verifySourcingOrgAdminIsAbleToAcceptNomination(ProjectName);
