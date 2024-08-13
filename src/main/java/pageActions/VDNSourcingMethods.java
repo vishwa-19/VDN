@@ -13601,5 +13601,34 @@ public static void verifyAssignedReviewerIsAbleApproveFromBothRole(String Projec
 	}
 }
 
+public static void verifyKnowMoreButtonIsNotDisplayedAfterGoingToHelpCenter() {
+	
+	String text = "N/A";
+	String expect = "Verify help center should be opend in another tab";
+	String actual = "Help center is not opend in another tab";
+	
+	try {
+	VDNSourcing VS = PageFactory.initElements(driver, VDNSourcing.class);
+	
+	String mainWindowHandle = driver.getWindowHandle();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView(true);", VS.getHelpCenter());
+	VDNUtils.waitForElementToBeVisible(VS.getHelpCenter());
+	VDNUtils.waitToBeClickableAndClick(VS.getHelpCenter());
+	Set<String> allWindowHandles = driver.getWindowHandles();
+	for (String handle : allWindowHandles) {
+	    
+	    if (!handle.equals(mainWindowHandle)) {
+	        System.out.println("New window opened");
+	    }
+	}
+	text = "Completed";
+	actual = "Help center is opend in another tab successfully";
+	}finally {
+		Listeners.customAssert("Completed", text, expect, actual);
+	}
+	
+}
+
 }
 

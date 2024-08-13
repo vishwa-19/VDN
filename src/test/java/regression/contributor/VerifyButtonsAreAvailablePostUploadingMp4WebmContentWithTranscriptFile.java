@@ -1,14 +1,16 @@
 package regression.contributor;
+
 import org.testng.annotations.Test;
+
 import pageActions.UserOnBoarding;
 import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp extends BaseClass {
+public class VerifyButtonsAreAvailablePostUploadingMp4WebmContentWithTranscriptFile extends BaseClass{
 	
 	@Test
-	public static void verifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp() throws Exception {
+	public static void verifyButtonsAreAvailablePostUploadingMp4WebmContentWithTranscriptFile() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName=VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
 	UserOnBoarding.VDNlogout();
@@ -20,11 +22,7 @@ public class VerifyAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetail
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Ind Contributor");
 	VDNContributorMethods.validateAccessibilityDetailsButtonDisplayedWhileUploadingContent(ProjectName);
-	VDNContributorMethods.validateAllTheAccessibleFeatureFieldsAreOptionalInAccessibilityDetailsPopUp(ProjectName);
 
 	}
 
 }
-
-
-

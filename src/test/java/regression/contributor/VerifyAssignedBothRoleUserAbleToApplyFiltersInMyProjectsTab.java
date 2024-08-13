@@ -7,15 +7,16 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile extends BaseClass {
+public class VerifyAssignedBothRoleUserAbleToApplyFiltersInMyProjectsTab extends BaseClass{
 	
 	@Test
-	public static void verifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile() throws Exception {
+	public static void verifyAssignedBothRoleUserAbleToApplyFiltersInMyProjectsTab() throws Exception {
+		
 	UserOnBoarding.loginAsSourcing("Admin");
-	String ProjectName=VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
+	String ProjectName = VDNMethods.createProjectWithDigitalTextBook();
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont OrgAdmin");
-	VDNMethods.addSampleFromContriutionSideWithoutNominate(ProjectName);
+	VDNMethods.openAndNominate(ProjectName);
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsSourcing("Admin");
 	VDNMethods.verifySourcingOrgAdminIsAbleToAcceptNomination(ProjectName);
@@ -24,10 +25,8 @@ public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFi
 	VDNMethods.verifyContributorOrgAdminIsAbleToSearchAndAssignRoles(ProjectName);
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont Only");
-	VDNContributorMethods.validateAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButton(ProjectName);
-	VDNContributorMethods.validateContributorUnableToAddEpubAsATranscriptFile();
+	VDNContributorMethods.verifyAssignedBothRoleUserAbleToApplyFiltersInMyProjectsTab(ProjectName);
 	
-
 	}
 
 }

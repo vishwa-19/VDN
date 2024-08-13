@@ -1628,14 +1628,35 @@ public class VDNSourcing {
 	@FindBy(how=How.XPATH,using="//h4[text()='All Users']")
 	private WebElement assertAllUserHeader;
 	
+	@FindBy(how=How.XPATH,using="//*[text()='My Content']")
+	private WebElement myContentTab;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Total Plays']")
+	private WebElement totalPlays;
+
+	@FindBy(how=How.XPATH,using="//*[text()='Average plays per count']")
+	private WebElement averagePlays;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Average Rating']")
+	private WebElement averageRating;
 	
 	
+	public WebElement getTotalPlays() {
+		return totalPlays;
+	}
 	
-	
-	
-	
-	
-	
+	public WebElement getAveragePlays() {
+		return averagePlays;
+	}
+
+	public WebElement getAverageRating() {
+		return averageRating;
+	}
+
+	public WebElement getMyContentTab() {
+		return myContentTab;
+	}
+
 	public WebElement getAssertAllUserHeader() {
 		return assertAllUserHeader;
 	}

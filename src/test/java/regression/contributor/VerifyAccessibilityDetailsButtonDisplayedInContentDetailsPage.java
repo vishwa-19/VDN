@@ -6,6 +6,7 @@ import pageActions.VDNMethods;
 import utility.BaseClass;
 
 public class VerifyAccessibilityDetailsButtonDisplayedInContentDetailsPage extends BaseClass {
+	
 	@Test
 	public static void verifyAccessibilityDetailsButtonDisplayedInContentDetailsPage() throws Exception {
 	UserOnBoarding.loginAsSourcing("Admin");

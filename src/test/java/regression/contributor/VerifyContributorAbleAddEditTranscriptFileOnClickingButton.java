@@ -7,10 +7,11 @@ import pageActions.VDNContributorMethods;
 import pageActions.VDNMethods;
 import utility.BaseClass;
 
-public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile extends BaseClass {
+public class VerifyContributorAbleAddEditTranscriptFileOnClickingButton extends BaseClass{
 	
 	@Test
-	public static void verifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFile() throws Exception {
+	public static void verifyContributorAbleAddEditTranscriptFileOnClickingButton() throws Exception {
+		
 	UserOnBoarding.loginAsSourcing("Admin");
 	String ProjectName=VDNContributorMethods.CreateNewProjectwithAllContentTypesWithDigitalTextBooksSkipEnabled();
 	UserOnBoarding.VDNlogout();
@@ -25,7 +26,7 @@ public class VerifyContributorOrgContributorIsNotAbleToAddEpubFileAsTranscriptFi
 	UserOnBoarding.VDNlogout();
 	UserOnBoarding.loginAsContributor("Cont Only");
 	VDNContributorMethods.validateAddorEditTranscriptPopUpDisplayedOnPostClickAddTranscriptButton(ProjectName);
-	VDNContributorMethods.validateContributorUnableToAddEpubAsATranscriptFile();
+	VDNContributorMethods.verifyContributorAbleAddEditTranscriptFileOnClickingButton();
 	
 
 	}

@@ -9,7 +9,6 @@ public class VDNContributor {
 	
 	@FindBy(how=How.XPATH,using="//span[contains(text(),'Approval Pending')]//following::button[1]")
 	private WebElement clkOpenBtn2;
-	
 
 	@FindBy(how=How.XPATH,using="//*[text()='My Projects']")
 	private WebElement myProjectTab;
@@ -81,7 +80,40 @@ public class VDNContributor {
 	private WebElement  assertTitles;
 	
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project description is required ']")
+	private WebElement assertProjDescError;
 	
+	@FindBy(how=How.XPATH,using="//div[text()=' Project name is required ']")
+	private WebElement assertNameError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Content types are required ']")
+	private WebElement assertContentTypeError;
+	
+	@FindBy(how=How.XPATH,using="//div[text()=' Target collection is required ']")
+	private WebElement assertTargetCollError;
+	
+	@FindBy(how=How.XPATH,using="//h4[text()='List of Contents ']")
+	private WebElement assertListOfContents;
+	
+	
+	public WebElement getAssertListOfContents() {
+		return assertListOfContents;
+	}
+
+
+	public WebElement getAssertTargetCollError() {
+		return assertTargetCollError;
+	}
+
+
+	public WebElement getAssertContentTypeError() {
+		return assertContentTypeError;
+	}
+
+
+	public WebElement getAssertNameError() {
+		return assertNameError;
+	}
 	
 	
 	
@@ -592,6 +624,71 @@ public class VDNContributor {
 		return assertEnrollPopup;
 	}
 
+	@FindBy(how=How.XPATH,using="//*[@for='checkitem_00']")
+	private WebElement accessibilityFeatures;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Open']")
+	private WebElement frameWorkOpen;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='Download published content details']")
+	private WebElement downloadContentDetails;
+	
+	
+	
+	@FindBy(how=How.XPATH,using="//*[@placeholder='Add comment']")
+	private WebElement addRejectComment;
+	
+	@FindBy(how=How.XPATH,using="//*[text()=' Submit Review ']")
+	private WebElement submitReviewBtn;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()='Need Help?'])[1]")
+	private WebElement needHelp;
+	
+	@FindBy(how=How.XPATH,using="//*[text()='The project has been closed successfully.']")
+	private WebElement projectClose;
+	
+	@FindBy(how=How.XPATH,using="(//*[text()=' Approved '])[1]")
+	private WebElement approvedNomination;
+	
+
+	public WebElement getApprovedNomination() {
+		return approvedNomination;
+	}
+
+
+	public WebElement getProjectClose() {
+		return projectClose;
+	}
+
+
+	public WebElement getNeedHelp() {
+		return needHelp;
+	}
+
+
+	public WebElement getSubmitReviewBtn() {
+		return submitReviewBtn;
+	}
+
+
+	public WebElement getAddRejectComment() {
+		return addRejectComment;
+	}
+	
+	
+	
+	public WebElement getDownloadContentDetails() {
+		return downloadContentDetails;
+	}
+
+	public WebElement getFrameWorkOpen() {
+		return frameWorkOpen;
+	}
+
+	public WebElement getAccessibilityFeatures() {
+		return accessibilityFeatures;
+	}
+
 	public WebElement getClkDone() {
 		return clkDone;
 	}
@@ -796,7 +893,50 @@ public class VDNContributor {
 	public WebElement getAssertH5PUpdated() {
 		return assertH5PUpdated;
 	}
+	
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample3']//following::button[text()='Open']")
+	private WebElement clkOpenSample3;
+	
+	@FindBy(how=How.XPATH,using="//strong[text()='Content sent for corrections']")
+	private WebElement assertCorrectioToastMsg;
+	
+	@FindBy(how=How.XPATH,using="//td[text()='Sample3']//following::span[text()='Corrections pending']")
+	private WebElement assertCorrectionMsg;
+	
+	@FindBy(how=How.XPATH,using="//h5[text()=' 100 Digital Textbooks added ']")
+	private WebElement assertAdded100DigTexBooks;
+	
+	@FindBy(how=How.XPATH,using="//span[text()='Corrections pending']")
+	private WebElement assertCorrectionMsg1;
+	
+	
+	public WebElement getAssertCorrectionMsg1() {
+		return assertCorrectionMsg1;
+	}
 
+
+	public WebElement getAssertAdded100DigTexBooks() {
+		return assertAdded100DigTexBooks;
+	}
+
+
+	public WebElement getAssertCorrectionMsg() {
+		return assertCorrectionMsg;
+	}
+
+
+	public WebElement getAssertCorrectioToastMsg() {
+		return assertCorrectioToastMsg;
+	}
+
+
+	public WebElement getClkOpenSample3() {
+		return clkOpenSample3;
+	}
+	
+	
+	
 	public WebElement getAssertWEBMUpdated() {
 		return assertWEBMUpdated;
 	}

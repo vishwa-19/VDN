@@ -197,9 +197,12 @@
 			<!--<class name="regression.contributor.VerifyMyContentsTabIsAvailableForContributorOrg" />-->
 			<!--<class name="regression.contributor.VerifyCheckboxIsDisplayedOnContentTypesOpeningProjectFromMyProjectInitiatedStatus" />-->
 			<!--<class name="regression.contributor.VerifyContributorOrgReviewerAbleToRequestForChanges" />-->
-			
-			
 			<!--<class name="vdn.ContentStatusCountsOnCourseTab"/>-->
+			<!--<class name="vdn.UserWithBothRoleIsAbleToUploadContentAndReviewContentUploadedByAnotherUser"/>
+			<class name="vdn.DefaultOrgUserWithBothAsRoleIsAbleToReviewTheContent"/>-->
+			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>
+			<class name="regression.contributor.VerifyThatIndividualContributorIsAbleToContributeForCpdFrameWorkTypes"/>
+			<class name="regression.contributor.VerifyDownloadPublishedContentDetailsOptionIsAvailableInContributedContentsPage"/>-->
 			<!--<class name="vdn.ContributorsAreAbleToUploadASampleAndInitiateNomination"/>-->
 			
 			<!--<class name="regression.contributor.VerifyContributorIsAbleToOpenUploadedContentByClickingOpenBtn"/>
@@ -217,6 +220,10 @@
 			<!--<class name="regression.contributor.VerifyContributionOrgReviewerAbleToSubmitApprovalTheCorrectedContent"/>-->
 			<!--<class name="regression.contributor.VerifyAccessibilityDetailsButtonDisplayedWhileUploadingFromAssinedCont"/>-->
 			<class name="regression.contributor.VerifyContOrgContIsAbleToUploadWebmContentAndAddMultipleTranscriptFileSendForReview"/>
+			<class name="regression.contributor.VerifyContributorAbleContributeForContentPlaylist"/>
+			<class name="regression.contributor.VerifySelectedAccessibleFeaturesAreSavedPostClickingOnSaveButton"/>
+			
+			 
 			<!--<class name="vdn.VerifyEnrollmentFormIsDisplayedForFirststTime"/>-->
 			
 			<!--<class name="contributor.VerifyAssignedBothUserReviewTheAssignedContributorContentsAndSubmitAsAApprovalOrRequestChangesNoTC"/>-->

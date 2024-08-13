@@ -35,16 +35,10 @@ public class BaseClass {
 	@BeforeMethod
 	public void Open() {
 
-		//WebDriverManager.chromedriver().setup();
+		
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-		//System.setProperty("webdriver.chrome.driver", "C://Users//Qualitrix//Downloads//chromedriver-win64 (1)//chromedriver-win64//chromedriver.exe");
 		driver = new ChromeDriver();
-		//driver.get(config.get_Env());
-		//driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-//		ExplorePage explore = PageFactory.initElements(driver, ExplorePage.class);
-//		DikshaUtils.waitToBeClickableAndClick(explore.getExplorebutton());
 
 	}
 
